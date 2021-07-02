@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Activity生命周期详解 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="关于Activity在Android应用程序里，一个Activity就是一个用户界面。用户与程序的交互就是通过Activity来实现的，可以看成网站的页面。主Activity是程序启动的入口。应用程序成功启动之后，呈献给用户的第一个界面，即为该程序的主Activity。 关于任务栈Android中是使用任务（task）来管理活动的，一个任务就是一组存放在栈里的活动的集合，这个任务栈也叫做返回栈。在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Activity生命周期详解">
+<meta property="og:url" content="http://example.com/2018/03/07/Activity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关于Activity在Android应用程序里，一个Activity就是一个用户界面。用户与程序的交互就是通过Activity来实现的，可以看成网站的页面。主Activity是程序启动的入口。应用程序成功启动之后，呈献给用户的第一个界面，即为该程序的主Activity。 关于任务栈Android中是使用任务（task）来管理活动的，一个任务就是一组存放在栈里的活动的集合，这个任务栈也叫做返回栈。在">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://dengw.xyz/hexo-blog/180330/d3jBcAHbj2.png">
+<meta property="og:image" content="http://dengw.xyz/hexo-blog/181002/a3L03Ad13G.png">
+<meta property="og:image" content="http://dengw.xyz/hexo-blog/181002/EJ85jIL8fc.png">
+<meta property="og:image" content="http://dengw.xyz/hexo-blog/181002/3lEmJ4LbcJ.png">
+<meta property="og:image" content="http://dengw.xyz/hexo-blog/181002/le7k0Bb5kA.png">
+<meta property="og:image" content="http://dengw.xyz/hexo-blog/181002/iGkdehdmgj.png">
+<meta property="og:image" content="http://dengw.xyz/hexo-blog/181002/9EHch5Aima.png">
+<meta property="og:image" content="http://dengw.xyz/hexo-blog/181002/A4E8KG2kK5.png">
+<meta property="og:image" content="http://dengw.xyz/hexo-blog/181002/bIfHL70hAE.png">
+<meta property="og:image" content="http://dengw.xyz/hexo-blog/181002/aFFe2B0GE9.png">
+<meta property="og:image" content="http://dengw.xyz/hexo-blog/181002/ACfm7f9mK9.png">
+<meta property="og:image" content="http://dengw.xyz/hexo-blog/181002/HkeG14aefd.png">
+<meta property="article:published_time" content="2018-03-07T03:12:16.000Z">
+<meta property="article:modified_time" content="2021-07-02T10:14:18.881Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Activity">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://dengw.xyz/hexo-blog/180330/d3jBcAHbj2.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Activity生命周期详解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/03/07/Activity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2018-03-07T03:12:16.000Z" itemprop="datePublished">2018-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Activity生命周期详解
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="关于Activity"><a href="#关于Activity" class="headerlink" title="关于Activity"></a>关于Activity</h3><p>在Android应用程序里，一个Activity就是一个用户界面。用户与程序的交互就是通过Activity来实现的，可以看成网站的页面。主Activity是程序启动的入口。应用程序成功启动之后，呈献给用户的第一个界面，即为该程序的主Activity。</p>
+<h3 id="关于任务栈"><a href="#关于任务栈" class="headerlink" title="关于任务栈"></a>关于任务栈</h3><p>Android中是使用任务（task）来管理活动的，一个任务就是一组存放在栈里的活动的集合，这个任务栈也叫做返回栈。在默认情况下，当我们启动了一个新的活动，它会在返回栈中入栈，并处于栈顶的位置。而当我们按下 back 键或调用 finish() 方法去销毁一个活动时，处于栈顶的任务就会出栈，这时前一个入栈的活动就会重新处于栈顶的位置。系统总是会显示处于栈顶的活动给用户。</p>
+<h3 id="Activity的四种状态"><a href="#Activity的四种状态" class="headerlink" title="Activity的四种状态"></a>Activity的四种状态</h3><p>Android 的虚拟机(VM)是使用基于栈(Stack based) 管理，主要有四种状态：</p>
+<p><strong>Active (运行状态)：</strong><br>使用者启动应用程序或Activity 后，Activity 运行中的状态，可与用户之间进行交互，此时当前Activity位于栈顶。<br>需要注意的是，在Android 平台上，同一个时刻只会有一个Activity 处于活动(Active)或运行(Running)状态。其他的Activity 都处于未启动(Dead)、停止(Stopped)、或是暂停(Pause)的状态。</p>
+<p><strong>Paused (暂停状态)</strong><br>当Activity 暂时暗下来，退到背景画面的状态。<br>当使用Toast、AlertDialog或电话呼入时，都会让原本运行的Activity 退到背景画面。新出现的Toast、AlertDialog 等界面元件盖住了原来的Activity 画面。Activity 处在”Paused”状态时，使用者无法与原Activity 互动。</p>
+<p><strong>Stopped (停止状态)</strong><br>Activity完全被另一个Activity所覆盖，则其状态为Stopped。<br>有其他Activity 正在执行，而当前Activity 已经离开屏幕，不再动作的状态。通过长按”Home”钮，可以叫出所有处于”Stopped”状态的应用程序列表。在“Stopped”状态的Activity，还可以通过“Notification”来唤醒。</p>
+<p><strong>Dead (销毁状态)</strong><br>Activity 尚未被启动、已经被手动终止，或已经被系统回收的状态。<br>要手动终止Activity，可以在程序中调用“finish”函数，若是被系统回收，可能是因为内存不足，因此系统根据内存不足时的回收规则，将处于“Stopped”状态的Activity 所占用的内存回收。</p>
+<h3 id="Activity的生命周期"><a href="#Activity的生命周期" class="headerlink" title="Activity的生命周期"></a>Activity的生命周期</h3><p>每个活动（Activity）都处于某个状态。对于开发者来说，是无法控制其应用程序处于某个状态的，这些均由系统来完成。但当一个活动状态发生改变的时，开发者可以通过调用onXXX()方法，获取相关的通知信息。</p>
+<p>完整的Activity 生命周期由”Create”状态开始，由”Destroy”状态结束。建立<br>(Create)时分配资源，销毁(Destroy)时释放资源。</p>
+<p><img src="http://dengw.xyz/hexo-blog/180330/d3jBcAHbj2.png" alt="Activity生命周期流程图"></p>
+<ul>
+<li><strong>onCreate :</strong> 当活动第一次启动时触发该方法。该方法是在Activity被创建时回调，它是生命周期第一个调用的方法，我们在创建Activity时一般都需要重写该方法，然后在该方法中做一些初始化的操作，如通过setContentView设置界面布局的资源，初始化所需要的组件信息等。 </li>
+<li><strong>onStart :</strong> 此方法被回调时表示Activity正在启动，所属活动将被展现给用户，此时Activity已处于可见状态，只是还没有在前台显示，因此无法与用户进行交互。可以简单理解为Activity已显示而我们无法看见摆了。 </li>
+<li><strong>onResume :</strong> 当一个活动和用户发生交互的时候，触发该方法。当此方法回调时，则说明Activity已在前台可见，可与用户交互了（处于前面所说的Active/Running形态），onResume方法与onStart的相同点是两者都表示Activity可见，只不过onStart回调时Activity还是后台无法与用户交互，而onResume则已显示在前台，可与用户交互。当然从流程图，我们也可以看出当Activity停止后（onPause方法和onStop方法被调用），重新回到前台时也会调用onResume方法，因此我们也可以在onResume方法中初始化一些资源，比如重新初始化在onPause或者onStop方法中释放的资源。 </li>
+<li><strong>onPause :</strong> 当一个正在前台运行的活动因为其他的活动需要前台运行而转入后台运行的时候，触发该方法。此方法被回调时则表示Activity正在停止（Paused形态），一般情况下onStop方法会紧接着被回调。但通过流程图我们还可以看到一种情况是onPause方法执行后直接执行了onResume方法，这属于比较极端的现象了，这可能是用户操作使当前Activity退居后台后又迅速地再回到到当前的Activity，此时onResume方法就会被回调。当然，在onPause方法中我们可以做一些数据存储或者动画停止或者资源回收的操作，但是不能太耗时，因为这可能会影响到新的Activity的显示——onPause方法执行完成后，新Activity的onResume方法才会被执行。 </li>
+<li><strong>onStop :</strong> 当一个活动不再需要展示给用户的时候，触发该方法。一般在onPause方法执行完成直接执行，表示Activity即将停止或者完全被覆盖（Stopped形态），此时Activity不可见，仅在后台运行。同样地，在onStop方法可以做一些资源释放的操作（不能太耗时）。如果内存紧张，系统会直接结束这个活动，而不会触发onStop 方法，所以保存状态信息是应该在onPause时做，而不是onStop时做。</li>
+<li><strong>onRestart</strong> : 当处于停止状态的活动需要再次展现给用户的时候，触发该方法，表示Activity正在重新启动，当Activity由不可见变为可见状态时，该方法被回调。这种情况一般是用户打开了一个新的Activity时，当前的Activity就会被暂停（onPause和onStop被执行了），接着又回到当前Activity页面时，onRestart方法就会被回调。 </li>
+<li>  <strong>onDestroy</strong> :当一个活动不再需要展示给用户的时候，触发该方法。此时Activity正在被销毁，也是生命周期最后一个执行的方法，一般我们可以在此方法中做一些回收工作和最终的资源释放。 </li>
+</ul>
+<p>以上关于各个阶段的状态详细说明大部分来自于<a target="_blank" rel="noopener" href="http://blog.csdn.net/javazejian/article/details/51932554">Android之Activity生命周期浅析(一)</a>，并在其基础上做了一些小小的补充。</p>
+<p>以上7个方法中除了onRestart()方法，其他的都是两两相对的，从而又可以将活动分为3个生存期。</p>
+<p><strong>完整生命期</strong>：活动在onCreate()方法到onDestory()方法之间经历的时期。</p>
+<p>第一次启动Activity：依次执行以下方法：onCreate() -&gt; MainActivity created  -&gt; onStart() -&gt; MainActivity started -&gt; onResume() -&gt; MainActivity actived，进入活动状态。</p>
+<p>结束Activity：依次执行以下方法：onPause () -&gt; MainActivity paused -&gt;  onStop () -&gt; MainActivity stoped -&gt;  onDestory()  -&gt;  MainActivity killed。</p>
+<ul>
+<li>Activity由活动状态转为暂停状态。此时它依然与窗口管理器保持连接，系统继续维护其内部状态，所以它仍然可见。但已失去了焦点，故不可与用户交互。在极特殊的情况下，Android将会杀死一个暂停的Activity，来为活动的Activity提供充足的资源；</li>
+<li>Activity被停止，变为完全隐藏，失去焦点，并且不可见。但是系统将仍在内存中保存它所有的状态和信息；</li>
+<li>Activity被杀死，转为销毁状态。Activity结束，退出当前应用程序。</li>
+</ul>
+<p><strong>可见生存期</strong>：活动在onStart()方法到onStop()方法之间经历的时期。<br>当Activity 运行到“Start”状态时，就可以在屏幕上看到该Activity。相反当Activity 运行到“Stop”状态时，此Activity 就会从屏幕上消失。当使用者按下Back 按钮回到上一个Activity 时，会先到Restart 状态，再到一般的Start 状态。</p>
+<p><strong>前台生存期</strong>：活动在onResume()方法到onPause()方法之间经历的时期。<br>使用者能否直接存取屏幕（Resume/Pause），当有个Toast、AlertDialog、短信、电话等信息发生时，原来的Activity 会处于“Pause”状态，暂时放弃直接存取屏幕的能力，被中断到背景去，将前景交给优先级高的事件。当这些优先级高的事件处理完后，Activity 就改进入”Resume”状态，此时又直接存取屏幕。</p>
+<h3 id="一些特殊情况下-Activity-的生命周期变化"><a href="#一些特殊情况下-Activity-的生命周期变化" class="headerlink" title="一些特殊情况下 Activity 的生命周期变化"></a>一些特殊情况下 Activity 的生命周期变化</h3><p>这些情况在开发的时候也会遇得到，但是更多的可能是面试中会问到，很考验开发者对Activity生命周期的掌握情况，具体的包括：</p>
+<ul>
+<li>按下 Home 键当前 Activity 的生命周期变化；</li>
+<li>按下 back 键当前 Activity 的生命周期变化；</li>
+<li>息屏时当前 Activity 的生命周期变化；</li>
+<li>启动一个新的透明 Activity 时当前 Activity 的生命周期变化；</li>
+<li>旋转屏幕未设置 configureChanges 参数时当前 Activity 的生命周期变化；</li>
+<li>旋转屏幕设置了 configureChanges 参数时当前 Activity 的生命周期变化；</li>
+</ul>
+<p>上面这些问题我们通过一个实际的demo，通过生命周期函数打印日志来进行逐一验证；</p>
+<h4 id="按下-Home-键当前-Activity-的生命周期变化"><a href="#按下-Home-键当前-Activity-的生命周期变化" class="headerlink" title="按下 Home 键当前 Activity 的生命周期变化"></a>按下 Home 键当前 Activity 的生命周期变化</h4><p><img src="http://dengw.xyz/hexo-blog/181002/a3L03Ad13G.png" alt="enter image description here"></p>
+<p>可以看到点击 Home 键当前 Activity 会调用 <strong>onPause &gt; onSaveInstanceState &gt; onStop</strong> 函数，并没有调用 onDestroy 方法，说明当前活动没有被销毁，只是不再处于栈顶了。这个时候继续看一下再进入该 Activity 时该  Activity 的生命周期变化：<br><img src="http://dengw.xyz/hexo-blog/181002/EJ85jIL8fc.png" alt="enter image description here"></p>
+<p>可以看到再进入该 Activity 依次调用 <strong>onRestart &gt; onStart &gt; onResume</strong> 方法，结合上面说的，我们总结按下 Home 键时当前 Activity 依然位于任务栈中，只是不在位于任务栈的栈顶。</p>
+<h4 id="按下-back-键当前-Activity-的生命周期变化"><a href="#按下-back-键当前-Activity-的生命周期变化" class="headerlink" title="按下 back 键当前 Activity 的生命周期变化"></a>按下 back 键当前 Activity 的生命周期变化</h4><p>同样的，先使用 demo 试一下，然后根据结果解释；<br><img src="http://dengw.xyz/hexo-blog/181002/3lEmJ4LbcJ.png" alt="enter image description here"><br><img src="http://dengw.xyz/hexo-blog/181002/le7k0Bb5kA.png" alt="enter image description here"></p>
+<p>可以看到当我们在 Activity2 中按下 Back 键返回 Activity1 的时候，Activity2 会调用 <strong>onPause &gt; onStop &gt; onDestroy</strong> 方法，也就是说 Activity2 会被销毁，直接从任务栈中移除掉。正常情况下一个活动直接被销毁除了上面这种情况，另外一种就是直接在一个活动中调用 <strong>finish()</strong> 方法。</p>
+<h4 id="息屏时当前-Activity-的生命周期变化"><a href="#息屏时当前-Activity-的生命周期变化" class="headerlink" title="息屏时当前 Activity 的生命周期变化"></a>息屏时当前 Activity 的生命周期变化</h4><p>先贴一下运行结果：<br><img src="http://dengw.xyz/hexo-blog/181002/iGkdehdmgj.png" alt="enter image description here"></p>
+<p>方法调用过程为：<strong>onPause &gt; onSaveInstanceState &gt; onStop</strong></p>
+<p>然后再进入当前Activity，方法调用过程为：<strong>onRestart &gt; onStart &gt; onResume</strong><br><img src="http://dengw.xyz/hexo-blog/181002/9EHch5Aima.png" alt="enter image description here"></p>
+<h4 id="启动一个新的透明-Activity-时当前-Activity-的生命周期变化"><a href="#启动一个新的透明-Activity-时当前-Activity-的生命周期变化" class="headerlink" title="启动一个新的透明 Activity 时当前 Activity 的生命周期变化"></a>启动一个新的透明 Activity 时当前 Activity 的生命周期变化</h4><p>当我们给 Acticity2 的属性设置如下的时候，可以让 Acticity2 完全透明：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity</span><br><span class="line">	android:name=&quot;.Main2Activity&quot;</span><br><span class="line">	android:theme=&quot;@android:style/Theme.Translucent&quot;&gt;</span><br><span class="line">&lt;/activity&gt;</span><br></pre></td></tr></table></figure>
+<p>这样当我们从 Activity1 启动 Activity2，然后观察 Activity1 的生命周期变化，先看一下结果；<br><img src="http://dengw.xyz/hexo-blog/181002/A4E8KG2kK5.png" alt="enter image description here"><br><img src="http://dengw.xyz/hexo-blog/181002/bIfHL70hAE.png" alt="enter image description here"></p>
+<p>可以看到调用过程为 <strong>onPause &gt; onSaveInsanceState</strong>，没有调用 onStop 方法，这里我们可以这样理解，因为  Activity2 被设置为透明的，这样跳转到  Activity2 时 Activity1 依然可见，所以不会调用 Activity1 的 onStop 方法，因为一个活动调用 onStop 方法后就不再可见。</p>
+<h4 id="旋转屏幕未设置-configureChanges-参数时当前-Activity-的生命周期变化"><a href="#旋转屏幕未设置-configureChanges-参数时当前-Activity-的生命周期变化" class="headerlink" title="旋转屏幕未设置 configureChanges 参数时当前 Activity 的生命周期变化"></a>旋转屏幕未设置 configureChanges 参数时当前 Activity 的生命周期变化</h4><p>默认是设置 configureChanges 参数的，我们先看一下默认情况下的生命周期：<br><img src="http://dengw.xyz/hexo-blog/181002/aFFe2B0GE9.png" alt="enter image description here"><br><img src="http://dengw.xyz/hexo-blog/181002/ACfm7f9mK9.png" alt="enter image description here"></p>
+<p>从结果中我们可以看到，当旋转屏幕并且 configureChanges 为默认值的时候，当前活动的生命周期变化为：<br><strong>onPause &gt; onSaveInstanceState &gt; onStop &gt; onDestroy &gt; onCreate &gt; onStart &gt; onRestoreInstanceState &gt; onResume</strong></p>
+<p>从这些方法中不想归纳出当前活动是被销毁后再重新创建了一个新的活动，即旋转前和旋转后看到的其实不是同一个活动，之前的活动已经从任务栈中出栈然后新建了一个新的活动加入到任务栈中。这个很好理解嘛，旋转前和旋转后活动的宽和高发生了变化，相当于系统配置已经发生了变化，这样活动当然会被重建。</p>
+<h4 id="旋转屏幕设置了-configureChanges-参数时当前-Activity-的生命周期变化"><a href="#旋转屏幕设置了-configureChanges-参数时当前-Activity-的生命周期变化" class="headerlink" title="旋转屏幕设置了 configureChanges 参数时当前 Activity 的生命周期变化"></a>旋转屏幕设置了 configureChanges 参数时当前 Activity 的生命周期变化</h4><p>通过 configureChanges 参数可以让活动在改变系统配置的时候不被重建，比如我们想让 Activity2 在改变系统配置的时候不被重建，可以进行如下配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity</span><br><span class="line">	android:name=&quot;.Main2Activity&quot;</span><br><span class="line">	android:configChanges=&quot;orientation|screenSize&quot;&gt;</span><br><span class="line">&lt;/activity&gt;</span><br></pre></td></tr></table></figure>
+
+<p>调用情况：<br><img src="http://dengw.xyz/hexo-blog/181002/HkeG14aefd.png" alt="enter image description here"></p>
+<p>可以看到只调用了 onConfigurationChanged 方法，说明没有重建过程了，onConfigurationChanged 方法需要我们重写。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onConfigurationChanged</span><span class="params">(Configuration newConfig)</span></span>&#123;</span><br><span class="line">	<span class="keyword">super</span>.onConfigurationChanged(newConfig);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="onSaveInstanceState-和onRestoreInstanceState-调用时机"><a href="#onSaveInstanceState-和onRestoreInstanceState-调用时机" class="headerlink" title="onSaveInstanceState()和onRestoreInstanceState()调用时机"></a>onSaveInstanceState()和onRestoreInstanceState()调用时机</h3><p>在上面的讨论中我们可以看到，有的时候会调用单独调用 onSaveInstanceState() 方法，有的时候onSaveInstanceState()和onRestoreInstanceState() 会成对使用，那么我们再总结一下这两个方法的调用时机。</p>
+<h4 id="onSaveInstanceState-的调用时机"><a href="#onSaveInstanceState-的调用时机" class="headerlink" title="onSaveInstanceState() 的调用时机"></a>onSaveInstanceState() 的调用时机</h4><p>当 activity 有可能被系统回收的情况下会调用 onSaveInstanceState() 方法。需要注意的是有可能，如果是已经确定会被销毁，比如用户按下了返回键，或者调用了finish()方法销毁activity，则 onSaveInstanceState 不会被调用。或者也可以说，此方法只有在activity被异常终止的情况下会被调用。</p>
+<p>总结一下，onSaveInstanceState() 会在以下情况被调用：<br>1、当用户按下HOME键时。<br>2、从最近应用中选择运行其他的程序时。<br>3、按下电源按键（关闭屏幕显示）时。<br>4、从当前activity启动一个新的activity时。<br>5、屏幕方向切换时(无论竖屏切横屏还是横屏切竖屏都会调用)。</p>
+<h4 id="onRestoreInstanceState-的调用时机"><a href="#onRestoreInstanceState-的调用时机" class="headerlink" title="onRestoreInstanceState() 的调用时机"></a>onRestoreInstanceState() 的调用时机</h4><p>onRestoreInstanceState(Bundle savedInstanceState) 方法只有在 activity 确实是被系统回收，重新创建 activity 的情况下才会被调用。如我们上面讨论的默认情况下的旋转屏幕这种情况，在这里 onRestoreInstanceState 被调用，是因为屏幕切换时原来的 activity 确实被系统回收了，又重新创建了一个新的 activity。所以我们可以得出如下的结论，如果 onRestoreInstanceState 被调用了，则页面必然被回收过，则 onSaveInstanceState 必然被调用过。</p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/duang0626/CodeCollection/tree/master/demo/LifeCycleDemo">github-duang0626: LifeCycleDemo</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/03/07/Activity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%AF%A6%E8%A7%A3/" data-id="ckqm6kpko0003xxr5eutachmh" data-title="Activity生命周期详解" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Activity/" rel="tag">Activity</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/08/%E6%8D%8B%E4%B8%80%E6%8D%8BJava%E4%B8%AD%E5%85%B3%E7%B3%BB%E5%A4%8D%E6%9D%82%E7%9A%84%E5%AE%B9%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          捋一捋Java中关系复杂的容器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2012/09/14/%E5%BD%A9%E8%99%B9%E7%B3%96%E7%9A%84%E8%89%BA%E6%9C%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">彩虹糖的艺术</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%AD%A6%E4%B9%A0/">Java学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php%E5%AD%A6%E4%B9%A0/">php学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring%E5%AD%A6%E4%B9%A0/">spring学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ANR/" rel="tag">ANR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/" rel="tag">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" rel="tag">Android消息机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation/" rel="tag">Animation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/" rel="tag">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera%E5%BC%80%E5%8F%91/" rel="tag">Camera开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/" rel="tag">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/" rel="tag">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">Java内存机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%AE%B9%E5%99%A8/" rel="tag">Java容器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/" rel="tag">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecylerView/" rel="tag">RecylerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View%E5%B8%83%E5%B1%80/" rel="tag">View布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Window/" rel="tag">Window</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" rel="tag">apk反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring-boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87Offer/" rel="tag">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0/" rel="tag">实习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" rel="tag">文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%A1%E6%8B%9B/" rel="tag">校招</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" rel="tag">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" rel="tag">网络框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" rel="tag">自定义View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" rel="tag">项目总结</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ANR/" style="font-size: 10px;">ANR</a> <a href="/tags/Activity/" style="font-size: 12.5px;">Activity</a> <a href="/tags/Android/" style="font-size: 12.5px;">Android</a> <a href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Android消息机制</a> <a href="/tags/Animation/" style="font-size: 10px;">Animation</a> <a href="/tags/Bitmap/" style="font-size: 10px;">Bitmap</a> <a href="/tags/Camera%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Camera开发</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/HTTP/" style="font-size: 17.5px;">HTTP</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java内存机制</a> <a href="/tags/Java%E5%AE%B9%E5%99%A8/" style="font-size: 10px;">Java容器</a> <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 17.5px;">Java虚拟机</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Linux命令</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RecylerView/" style="font-size: 10px;">RecylerView</a> <a href="/tags/Retrofit/" style="font-size: 15px;">Retrofit</a> <a href="/tags/View%E5%B8%83%E5%B1%80/" style="font-size: 20px;">View布局</a> <a href="/tags/Window/" style="font-size: 10px;">Window</a> <a href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" style="font-size: 10px;">apk反编译</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring-boot</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/vim/" style="font-size: 12.5px;">vim</a> <a href="/tags/%E5%89%91%E6%8C%87Offer/" style="font-size: 10px;">剑指Offer</a> <a href="/tags/%E5%8F%8D%E5%B0%84/" style="font-size: 12.5px;">反射</a> <a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 12.5px;">实习</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" style="font-size: 10px;">文件下载</a> <a href="/tags/%E6%A0%A1%E6%8B%9B/" style="font-size: 17.5px;">校招</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 10px;">泛型</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" style="font-size: 15px;">类加载</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">网络框架</a> <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" style="font-size: 10px;">自定义View</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15px;">设计模式</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" style="font-size: 10px;">项目总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/">Mac终端常用快捷键总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/">关于php的empty函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">Spring常用注解</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/">使用.gitignore配置git忽略提交规则</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Mysql常用命令总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

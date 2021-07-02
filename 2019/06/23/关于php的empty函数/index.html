@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>关于php的empty函数 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="最近在学习php的时候发现在php中进行判空操作的时候使用的是一个empty()函数。刚看的时候觉得这个方法很简单，就是判断变量对应类型的空值，后来在使用的时候发现自己想的太简单了，这个方法还是很有学问的，这里记录一下这个方法的详细用法，以及准备对比整理两个相似的方法isset()以及is_null()方法。 empty()函数empty()方法的定义以及注释如下： 123456789101112">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于php的empty函数">
+<meta property="og:url" content="http://example.com/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最近在学习php的时候发现在php中进行判空操作的时候使用的是一个empty()函数。刚看的时候觉得这个方法很简单，就是判断变量对应类型的空值，后来在使用的时候发现自己想的太简单了，这个方法还是很有学问的，这里记录一下这个方法的详细用法，以及准备对比整理两个相似的方法isset()以及is_null()方法。 empty()函数empty()方法的定义以及注释如下： 123456789101112">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-06-23T12:08:26.000Z">
+<meta property="article:modified_time" content="2021-07-02T10:14:18.914Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-关于php的empty函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-06-23T12:08:26.000Z" itemprop="datePublished">2019-06-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php%E5%AD%A6%E4%B9%A0/">php学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      关于php的empty函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近在学习php的时候发现在php中进行判空操作的时候使用的是一个<code>empty()</code>函数。刚看的时候觉得这个方法很简单，就是判断变量对应类型的空值，后来在使用的时候发现自己想的太简单了，这个方法还是很有学问的，这里记录一下这个方法的详细用法，以及准备对比整理两个相似的方法<code>isset()</code>以及<code>is_null()</code>方法。</p>
+<h3 id="empty-函数"><a href="#empty-函数" class="headerlink" title="empty()函数"></a>empty()函数</h3><p><code>empty()</code>方法的定义以及注释如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Determine whether a variable is considered to be empty. A variable is considered empty if it does not exist or if its value</span></span><br><span class="line"><span class="comment"> * equals &lt;b&gt;FALSE&lt;/b&gt;. &lt;b&gt;empty()&lt;/b&gt; does not generate a warning if the variable does not exist.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@link</span> https://php.net/manual/en/function.empty.php</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mixed $var &lt;p&gt;Variable to be checked.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;<span class="doctag">Note:</span> Prior to PHP 5.5, &lt;b&gt;empty()&lt;/b&gt; only supports variables; anything else will result in a parse error. In other words,</span></span><br><span class="line"><span class="comment"> * the following will not work: &lt;b&gt;empty(trim($name))&lt;/b&gt;. Instead, use &lt;b&gt;trim($name) == false&lt;/b&gt;.</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * No warning is generated if the variable does not exist. That means &lt;b&gt;empty()&lt;/b&gt; is essentially the concise equivalent</span></span><br><span class="line"><span class="comment"> * to &lt;b&gt;!isset($var) || $var == false&lt;/b&gt;.</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool &lt;p&gt;&lt;b&gt;FALSE&lt;/b&gt; if var exists and has a non-empty, non-zero value. Otherwise returns &lt;b&gt;TRUE&lt;/b&gt;.&lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The following things are considered to be empty:</span></span><br><span class="line"><span class="comment"> * &lt;ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;&quot;&quot; (an empty string)&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;0 (0 as an integer)&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;0.0 (0 as a float)&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;&quot;0&quot; (0 as a string)&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;&lt;b&gt;NULL&lt;/b&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;&lt;b&gt;FALSE&lt;/b&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;array() (an empty array)&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;$var; (a variable declared, but without a value)&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;/ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PS_UNRESERVE_PREFIX_empty</span>(<span class="params"><span class="variable">$var</span></span>)</span>&#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>其实注释已经说得很明白了，这里又要反思自己身上一个不好的习惯了，那就是不习惯看源码。现在的<code>IDE</code>点一下就可以直接跳转去看相应的源码，而自己还习惯于在网上查找，网上的讲解往往很零散，并且每个人在讲解的时候都加了自己的理解与看法，这样反而不利于自己的理解。</p>
+<p>好了说了这么多废话，继续回到<code>empty()</code>本身，什么时候一个变量会被判断为‘empty’，也就是<code>empty()</code>会返回true呢？<strong>如果一个变量不存在或者这个变量的值等于其类型零值的话，<code>empty()</code>函数就会返回true！</strong>。注释中还列出了具体的会被判断为‘empty’的所有情况，可以分为两类：变量不存在或者变量的值为类型零值，即：</p>
+<h4 id="（一）变量不存在"><a href="#（一）变量不存在" class="headerlink" title="（一）变量不存在"></a>（一）变量不存在</h4><p>包括两种情况：</p>
+<ul>
+<li>一个变量不存在，即这个变量重来没有被声明过就直接塞给empty函数了；</li>
+<li>一个变量只是被声明但是还没有被赋值；</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 变量不存在</span></span><br><span class="line"><span class="keyword">empty</span>(<span class="variable">$var1</span>);  <span class="comment">// return true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 变量只声明没赋值</span></span><br><span class="line"><span class="variable">$var2</span>;</span><br><span class="line"><span class="keyword">empty</span>(<span class="variable">$var2</span>);  <span class="comment">// return true</span></span><br></pre></td></tr></table></figure>
+<h4 id="二-变量值为零值"><a href="#二-变量值为零值" class="headerlink" title="(二)变量值为零值"></a>(二)变量值为零值</h4><p>即每种数据类型对应的零值，具体为：</p>
+<ul>
+<li>int: 0</li>
+<li>boolean: false</li>
+<li>float: 0.0</li>
+<li>string: “” and “0” ;</li>
+<li>array: array()</li>
+<li>object: null</li>
+</ul>
+<p>字符串类型稍特殊一点，”0”也会被判断为empty; 但是两个或者以上的全‘0’字符串又会判断为非空，暂时还没有理解到这样规定的意义所在。</p>
+<p>另外php的版本也会对<code>empty()</code>函数产生影响，注释里面说php5.5之前<code>empty()</code>方法只能检验变量，对常量使用的话会产生错误，而在php5.5之后也可以检验常量，这点等换了电脑之后再验证。</p>
+<h3 id="isset-函数"><a href="#isset-函数" class="headerlink" title="isset()函数"></a>isset()函数</h3><p>在上面的注释中有这样一句话：</p>
+<p>No warning is generated if the variable does not exist. That means <b>empty()</b> is essentially the concise equivalent to <b>!isset($var) || $var == false</b>.</p>
+<p>意思就是说 <code>empty()</code> 等价于 <code>!isset($var) || $var == false</code></p>
+<p>先看一下函数的定义以及注释：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Determine if a variable is set and is not &lt;b&gt;NULL&lt;/b&gt;.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;If a variable has been unset with unset(), it will no longer be set. &lt;b&gt;isset()&lt;/b&gt; will return &lt;b&gt;FALSE&lt;/b&gt; if testing a variable</span></span><br><span class="line"><span class="comment"> * that has been set to &lt;b&gt;NULL&lt;/b&gt;. Also note that a null character (&quot;\0&quot;) is not equivalent to the PHP &lt;b&gt;NULL&lt;/b&gt; constant.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;If multiple parameters are supplied then &lt;b&gt;isset()&lt;/b&gt; will return &lt;b&gt;TRUE&lt;/b&gt; only if all of the parameters are set.</span></span><br><span class="line"><span class="comment"> * Evaluation goes from left to right and stops as soon as an unset variable is encountered.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@link</span> https://php.net/manual/en/function.isset.php</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mixed $var &lt;p&gt;The variable to be checked.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mixed $_ [optional] &lt;p&gt;Another variable ...&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool Returns &lt;b&gt;TRUE&lt;/b&gt; if var exists and has value other than &lt;b&gt;NULL&lt;/b&gt;, &lt;b&gt;FALSE&lt;/b&gt; otherwise.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PS_UNRESERVE_PREFIX_isset</span>(<span class="params"><span class="variable">$var</span>, ...<span class="variable">$_</span></span>)</span>&#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>注释说的很明白了，<code>isset()</code>用来检测一个变量是否已经声明并且其值不为NULL。有以下几种情况：</p>
+<ul>
+<li>若变量不存在，返回 FALSE</li>
+<li>若变量存在并且值为NULL，返回 FALSE</li>
+<li>若变量存在且值不为NULL，返回 TURE</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">isset</span>(<span class="variable">$var1</span>);   <span class="comment">//return false</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$var2</span> = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">isset</span>(<span class="variable">$var2</span>);   <span class="comment">//return false</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$var3</span> = <span class="number">0</span>;      <span class="comment">// 赋值过</span></span><br><span class="line"><span class="keyword">isset</span>(<span class="variable">$var3</span>);   <span class="comment">// return true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unset</span>(<span class="variable">$var4</span>);   <span class="comment">// 释放变量</span></span><br><span class="line"><span class="keyword">isset</span>(<span class="variable">$var4</span>);   <span class="comment">// return false</span></span><br></pre></td></tr></table></figure>
+
+<p>并且<code>isset()</code>支持同时检查多个变量，只有当每一个变量都符合上述返回true的条件的时候，整个方法才返回TRUE，也就是一个<code>&amp;&amp;</code>的关系。</p>
+<p>这里要强调的一点就是<code>isset()</code>只适用于变量，用来检验常量的会报错。要检验常量可以使用<code>defined()</code>方法。</p>
+<h3 id="is-null-函数"><a href="#is-null-函数" class="headerlink" title="is_null()函数"></a>is_null()函数</h3><p>从函数意义上<code>is_null()</code>函数就是<code>isset()</code>方法的反函数，对比理解就行了。<br>从用法上<code>is_null()</code>函数只能作用于已经声明的变量，对未声明的变量使用会报错的，这和<code>isset()</code>方法有差别。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Finds whether a variable is &amp;null;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@link</span> https://php.net/manual/en/function.is-null.php</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mixed $var &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The variable being evaluated.</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool true if var is null, false</span></span><br><span class="line"><span class="comment"> * otherwise.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 4.0.4</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 5.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">is_null</span> (<span class="params"><span class="variable">$var</span></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/" data-id="ckqm6kply0031xxr57zw28a59" data-title="关于php的empty函数" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mac终端常用快捷键总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Spring常用注解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%AD%A6%E4%B9%A0/">Java学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php%E5%AD%A6%E4%B9%A0/">php学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring%E5%AD%A6%E4%B9%A0/">spring学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ANR/" rel="tag">ANR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/" rel="tag">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" rel="tag">Android消息机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation/" rel="tag">Animation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/" rel="tag">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera%E5%BC%80%E5%8F%91/" rel="tag">Camera开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/" rel="tag">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/" rel="tag">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">Java内存机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%AE%B9%E5%99%A8/" rel="tag">Java容器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/" rel="tag">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecylerView/" rel="tag">RecylerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View%E5%B8%83%E5%B1%80/" rel="tag">View布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Window/" rel="tag">Window</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" rel="tag">apk反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring-boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87Offer/" rel="tag">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0/" rel="tag">实习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" rel="tag">文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%A1%E6%8B%9B/" rel="tag">校招</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" rel="tag">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" rel="tag">网络框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" rel="tag">自定义View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" rel="tag">项目总结</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ANR/" style="font-size: 10px;">ANR</a> <a href="/tags/Activity/" style="font-size: 12.5px;">Activity</a> <a href="/tags/Android/" style="font-size: 12.5px;">Android</a> <a href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Android消息机制</a> <a href="/tags/Animation/" style="font-size: 10px;">Animation</a> <a href="/tags/Bitmap/" style="font-size: 10px;">Bitmap</a> <a href="/tags/Camera%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Camera开发</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/HTTP/" style="font-size: 17.5px;">HTTP</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java内存机制</a> <a href="/tags/Java%E5%AE%B9%E5%99%A8/" style="font-size: 10px;">Java容器</a> <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 17.5px;">Java虚拟机</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Linux命令</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RecylerView/" style="font-size: 10px;">RecylerView</a> <a href="/tags/Retrofit/" style="font-size: 15px;">Retrofit</a> <a href="/tags/View%E5%B8%83%E5%B1%80/" style="font-size: 20px;">View布局</a> <a href="/tags/Window/" style="font-size: 10px;">Window</a> <a href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" style="font-size: 10px;">apk反编译</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring-boot</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/vim/" style="font-size: 12.5px;">vim</a> <a href="/tags/%E5%89%91%E6%8C%87Offer/" style="font-size: 10px;">剑指Offer</a> <a href="/tags/%E5%8F%8D%E5%B0%84/" style="font-size: 12.5px;">反射</a> <a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 12.5px;">实习</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" style="font-size: 10px;">文件下载</a> <a href="/tags/%E6%A0%A1%E6%8B%9B/" style="font-size: 17.5px;">校招</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 10px;">泛型</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" style="font-size: 15px;">类加载</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">网络框架</a> <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" style="font-size: 10px;">自定义View</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15px;">设计模式</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" style="font-size: 10px;">项目总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/">Mac终端常用快捷键总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/">关于php的empty函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">Spring常用注解</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/">使用.gitignore配置git忽略提交规则</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Mysql常用命令总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

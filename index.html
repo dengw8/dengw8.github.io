@@ -71,12 +71,16 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Mac终端常用命令行总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/07/02/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2021-07-02T09:46:45.055Z" itemprop="datePublished">2021-07-02</time>
+    <a href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2019-07-06T14:05:32.000Z" itemprop="datePublished">2019-07-06</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -85,7 +89,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/07/02/hello-world/">Hello World</a>
+      <a class="p-name article-title" href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/">Mac终端常用快捷键总结</a>
     </h1>
   
 
@@ -93,27 +97,1094 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h2 id="Mac-shell常用快捷键"><a href="#Mac-shell常用快捷键" class="headerlink" title="Mac shell常用快捷键"></a>Mac shell常用快捷键</h2><p>作为一个服务端开发，经常和命令行打交道，觉得还是有必要了解以下在终端中一些常用的快捷键，今天就趁着周末总结学习一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">command + t               新建标签</span><br><span class="line">command + n               新建窗口</span><br><span class="line">command + d               新建标签并垂直分隔当前窗口</span><br><span class="line">command + Shift + d       新建标签并水平分隔窗口标签页</span><br><span class="line">command + k               清屏(不可再回退)</span><br><span class="line">command + &#123; 或 &#125;          向左/向右切换标签</span><br><span class="line">command + w               关闭当前标签页</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">control + a        光标移动到行首（Ahead of line）</span><br><span class="line">control + e        光标移动到行尾（End of line）</span><br><span class="line">control + c        取消当前行输入的命令，相当于control + Break</span><br><span class="line">control + r        根据用户输入查找相关历史命令（reverse-i-search）</span><br><span class="line">control + h        退格删除一个字符，相当于通常的Backspace键</span><br><span class="line">control + u        删除光标之前到行首的字符</span><br><span class="line">control + k        删除光标之前到行尾的字符</span><br><span class="line">control + f        光标向前(Forward)移动一个字符位置</span><br><span class="line">control + b        光标往回(Backward)移动一个字符位置</span><br><span class="line">control + l        清屏，相当于执行clear命令</span><br><span class="line">control + p        调出命令历史中的前一条（Previous）命令，相当于通常的上箭头</span><br><span class="line">control + n        调出命令历史中的下一条（Next）命令，相当于通常的上箭头</span><br><span class="line">control + w        删除从光标位置前到当前所处单词（Word）的开头</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h2 id="Mac-vim常用快捷键"><a href="#Mac-vim常用快捷键" class="headerlink" title="Mac vim常用快捷键"></a>Mac vim常用快捷键</h2><p>顺便再总结一下在vim的一些常用快捷键。</p>
+<h3 id="Vim的几种模式"><a href="#Vim的几种模式" class="headerlink" title="Vim的几种模式"></a>Vim的几种模式</h3><ul>
+<li>正常模式: 可以使用快捷键命令，或按:输入命令行。</li>
+<li>插入模式: 可以输入文本，在正常模式下，按i、a、o等都可以进入插入模式。</li>
+<li>可视模式: 正常模式下按v可以进入可视模式， 在可视模式下，移动光标可以选择文本，按V进入。</li>
+<li>可视行模式， 总是整行整行的选中。ctrl+v进入可视块模式。</li>
+<li>替换模式: 正常模式下，按R进入。</li>
+</ul>
+<h3 id="启动Vim"><a href="#启动Vim" class="headerlink" title="启动Vim"></a>启动Vim</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim -c cmd file: 在打开文件前，先执行指定的命令；</span><br><span class="line">vim -r file: 恢复上次异常退出的文件；</span><br><span class="line">vim -R file: 以只读的方式打开文件，但可以强制保存；</span><br><span class="line">vim -M file: 以只读的方式打开文件，不可以强制保存；</span><br><span class="line">vim -y num file: 将编辑窗口的大小设为num行；</span><br><span class="line">vim + file: 从文件的末首开始；</span><br><span class="line">vim +num file: 从第num行开始；</span><br><span class="line">vim +/string file: 打开file，并将光标停留在第一个找到的string上。</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="Normal模式"><a href="#Normal模式" class="headerlink" title="Normal模式"></a>Normal模式</h3><h4 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">0: 移动到行首</span><br><span class="line"></span><br><span class="line">$: 移动到行尾</span><br><span class="line"></span><br><span class="line">w: 前移一个单词，光标停在下一个单词开头</span><br><span class="line"></span><br><span class="line">b: 光标移动至当前单词首位，如果光标已经在当前单词首位，就移动到前一单词首位</span><br><span class="line"></span><br><span class="line">e: 光标移动至当前单词末位</span><br><span class="line"></span><br><span class="line">gg: 光标移动至文本首行</span><br><span class="line"></span><br><span class="line">Shift + g: 光标移动至文本尾行</span><br><span class="line"></span><br><span class="line">control + f: 下翻一屏</span><br><span class="line"></span><br><span class="line">control + b: 上翻一屏</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h4 id="插入行"><a href="#插入行" class="headerlink" title="插入行"></a>插入行</h4><p>插入完会自动进入insert模式;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">i: 在光标前插入</span><br><span class="line"></span><br><span class="line">o: 在当前光标的下方插入新一行</span><br><span class="line"></span><br><span class="line">Shift+o:  在当前光标的上方插入新一行</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h4 id="文本操作"><a href="#文本操作" class="headerlink" title="文本操作"></a>文本操作</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">x: 删除光标后的一个字符</span><br><span class="line"></span><br><span class="line">Shift + x: 删除光标前的一个字符</span><br><span class="line"></span><br><span class="line">dd: 删除整行</span><br><span class="line"></span><br><span class="line">de: 删除单词</span><br><span class="line"></span><br><span class="line">dw: 删除单词以及之后的空格</span><br><span class="line"></span><br><span class="line">yy: 复制整行</span><br><span class="line"></span><br><span class="line">d: 剪切所选</span><br><span class="line"></span><br><span class="line">dd: 剪切整行</span><br><span class="line"></span><br><span class="line">p: 粘贴文本</span><br><span class="line"></span><br><span class="line">u: 撤销</span><br></pre></td></tr></table></figure>
+
+<h4 id="查找与替换"><a href="#查找与替换" class="headerlink" title="查找与替换"></a>查找与替换</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/something  从文本头往文本尾查找something</span><br><span class="line">?something  从文本尾往文本头查找something</span><br><span class="line"></span><br><span class="line">n  向后查找下一个</span><br><span class="line">N  向前查找下一个</span><br><span class="line"></span><br><span class="line">:s/old/new    用new替换当前行第一个old</span><br><span class="line">:%s/old/new/g    用new替换文件中所有的old。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/" data-id="ckqm6kplg001oxxr52jjj7x8c" data-title="Mac终端常用快捷键总结" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-关于php的empty函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-06-23T12:08:26.000Z" itemprop="datePublished">2019-06-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php%E5%AD%A6%E4%B9%A0/">php学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/">关于php的empty函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近在学习php的时候发现在php中进行判空操作的时候使用的是一个<code>empty()</code>函数。刚看的时候觉得这个方法很简单，就是判断变量对应类型的空值，后来在使用的时候发现自己想的太简单了，这个方法还是很有学问的，这里记录一下这个方法的详细用法，以及准备对比整理两个相似的方法<code>isset()</code>以及<code>is_null()</code>方法。</p>
+<h3 id="empty-函数"><a href="#empty-函数" class="headerlink" title="empty()函数"></a>empty()函数</h3><p><code>empty()</code>方法的定义以及注释如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Determine whether a variable is considered to be empty. A variable is considered empty if it does not exist or if its value</span></span><br><span class="line"><span class="comment"> * equals &lt;b&gt;FALSE&lt;/b&gt;. &lt;b&gt;empty()&lt;/b&gt; does not generate a warning if the variable does not exist.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@link</span> https://php.net/manual/en/function.empty.php</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mixed $var &lt;p&gt;Variable to be checked.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;<span class="doctag">Note:</span> Prior to PHP 5.5, &lt;b&gt;empty()&lt;/b&gt; only supports variables; anything else will result in a parse error. In other words,</span></span><br><span class="line"><span class="comment"> * the following will not work: &lt;b&gt;empty(trim($name))&lt;/b&gt;. Instead, use &lt;b&gt;trim($name) == false&lt;/b&gt;.</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * No warning is generated if the variable does not exist. That means &lt;b&gt;empty()&lt;/b&gt; is essentially the concise equivalent</span></span><br><span class="line"><span class="comment"> * to &lt;b&gt;!isset($var) || $var == false&lt;/b&gt;.</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool &lt;p&gt;&lt;b&gt;FALSE&lt;/b&gt; if var exists and has a non-empty, non-zero value. Otherwise returns &lt;b&gt;TRUE&lt;/b&gt;.&lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The following things are considered to be empty:</span></span><br><span class="line"><span class="comment"> * &lt;ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;&quot;&quot; (an empty string)&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;0 (0 as an integer)&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;0.0 (0 as a float)&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;&quot;0&quot; (0 as a string)&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;&lt;b&gt;NULL&lt;/b&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;&lt;b&gt;FALSE&lt;/b&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;array() (an empty array)&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;li&gt;$var; (a variable declared, but without a value)&lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;/ul&gt;</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PS_UNRESERVE_PREFIX_empty</span>(<span class="params"><span class="variable">$var</span></span>)</span>&#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>其实注释已经说得很明白了，这里又要反思自己身上一个不好的习惯了，那就是不习惯看源码。现在的<code>IDE</code>点一下就可以直接跳转去看相应的源码，而自己还习惯于在网上查找，网上的讲解往往很零散，并且每个人在讲解的时候都加了自己的理解与看法，这样反而不利于自己的理解。</p>
+<p>好了说了这么多废话，继续回到<code>empty()</code>本身，什么时候一个变量会被判断为‘empty’，也就是<code>empty()</code>会返回true呢？<strong>如果一个变量不存在或者这个变量的值等于其类型零值的话，<code>empty()</code>函数就会返回true！</strong>。注释中还列出了具体的会被判断为‘empty’的所有情况，可以分为两类：变量不存在或者变量的值为类型零值，即：</p>
+<h4 id="（一）变量不存在"><a href="#（一）变量不存在" class="headerlink" title="（一）变量不存在"></a>（一）变量不存在</h4><p>包括两种情况：</p>
+<ul>
+<li>一个变量不存在，即这个变量重来没有被声明过就直接塞给empty函数了；</li>
+<li>一个变量只是被声明但是还没有被赋值；</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 变量不存在</span></span><br><span class="line"><span class="keyword">empty</span>(<span class="variable">$var1</span>);  <span class="comment">// return true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 变量只声明没赋值</span></span><br><span class="line"><span class="variable">$var2</span>;</span><br><span class="line"><span class="keyword">empty</span>(<span class="variable">$var2</span>);  <span class="comment">// return true</span></span><br></pre></td></tr></table></figure>
+<h4 id="二-变量值为零值"><a href="#二-变量值为零值" class="headerlink" title="(二)变量值为零值"></a>(二)变量值为零值</h4><p>即每种数据类型对应的零值，具体为：</p>
+<ul>
+<li>int: 0</li>
+<li>boolean: false</li>
+<li>float: 0.0</li>
+<li>string: “” and “0” ;</li>
+<li>array: array()</li>
+<li>object: null</li>
+</ul>
+<p>字符串类型稍特殊一点，”0”也会被判断为empty; 但是两个或者以上的全‘0’字符串又会判断为非空，暂时还没有理解到这样规定的意义所在。</p>
+<p>另外php的版本也会对<code>empty()</code>函数产生影响，注释里面说php5.5之前<code>empty()</code>方法只能检验变量，对常量使用的话会产生错误，而在php5.5之后也可以检验常量，这点等换了电脑之后再验证。</p>
+<h3 id="isset-函数"><a href="#isset-函数" class="headerlink" title="isset()函数"></a>isset()函数</h3><p>在上面的注释中有这样一句话：</p>
+<p>No warning is generated if the variable does not exist. That means <b>empty()</b> is essentially the concise equivalent to <b>!isset($var) || $var == false</b>.</p>
+<p>意思就是说 <code>empty()</code> 等价于 <code>!isset($var) || $var == false</code></p>
+<p>先看一下函数的定义以及注释：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Determine if a variable is set and is not &lt;b&gt;NULL&lt;/b&gt;.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;If a variable has been unset with unset(), it will no longer be set. &lt;b&gt;isset()&lt;/b&gt; will return &lt;b&gt;FALSE&lt;/b&gt; if testing a variable</span></span><br><span class="line"><span class="comment"> * that has been set to &lt;b&gt;NULL&lt;/b&gt;. Also note that a null character (&quot;\0&quot;) is not equivalent to the PHP &lt;b&gt;NULL&lt;/b&gt; constant.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;If multiple parameters are supplied then &lt;b&gt;isset()&lt;/b&gt; will return &lt;b&gt;TRUE&lt;/b&gt; only if all of the parameters are set.</span></span><br><span class="line"><span class="comment"> * Evaluation goes from left to right and stops as soon as an unset variable is encountered.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@link</span> https://php.net/manual/en/function.isset.php</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mixed $var &lt;p&gt;The variable to be checked.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mixed $_ [optional] &lt;p&gt;Another variable ...&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool Returns &lt;b&gt;TRUE&lt;/b&gt; if var exists and has value other than &lt;b&gt;NULL&lt;/b&gt;, &lt;b&gt;FALSE&lt;/b&gt; otherwise.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PS_UNRESERVE_PREFIX_isset</span>(<span class="params"><span class="variable">$var</span>, ...<span class="variable">$_</span></span>)</span>&#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>注释说的很明白了，<code>isset()</code>用来检测一个变量是否已经声明并且其值不为NULL。有以下几种情况：</p>
+<ul>
+<li>若变量不存在，返回 FALSE</li>
+<li>若变量存在并且值为NULL，返回 FALSE</li>
+<li>若变量存在且值不为NULL，返回 TURE</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">isset</span>(<span class="variable">$var1</span>);   <span class="comment">//return false</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$var2</span> = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">isset</span>(<span class="variable">$var2</span>);   <span class="comment">//return false</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$var3</span> = <span class="number">0</span>;      <span class="comment">// 赋值过</span></span><br><span class="line"><span class="keyword">isset</span>(<span class="variable">$var3</span>);   <span class="comment">// return true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unset</span>(<span class="variable">$var4</span>);   <span class="comment">// 释放变量</span></span><br><span class="line"><span class="keyword">isset</span>(<span class="variable">$var4</span>);   <span class="comment">// return false</span></span><br></pre></td></tr></table></figure>
+
+<p>并且<code>isset()</code>支持同时检查多个变量，只有当每一个变量都符合上述返回true的条件的时候，整个方法才返回TRUE，也就是一个<code>&amp;&amp;</code>的关系。</p>
+<p>这里要强调的一点就是<code>isset()</code>只适用于变量，用来检验常量的会报错。要检验常量可以使用<code>defined()</code>方法。</p>
+<h3 id="is-null-函数"><a href="#is-null-函数" class="headerlink" title="is_null()函数"></a>is_null()函数</h3><p>从函数意义上<code>is_null()</code>函数就是<code>isset()</code>方法的反函数，对比理解就行了。<br>从用法上<code>is_null()</code>函数只能作用于已经声明的变量，对未声明的变量使用会报错的，这和<code>isset()</code>方法有差别。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Finds whether a variable is &amp;null;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@link</span> https://php.net/manual/en/function.is-null.php</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mixed $var &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The variable being evaluated.</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool true if var is null, false</span></span><br><span class="line"><span class="comment"> * otherwise.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 4.0.4</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 5.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">is_null</span> (<span class="params"><span class="variable">$var</span></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/" data-id="ckqm6kply0031xxr57zw28a59" data-title="关于php的empty函数" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Spring常用注解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2019-06-16T13:56:24.000Z" itemprop="datePublished">2019-06-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/spring%E5%AD%A6%E4%B9%A0/">spring学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">Spring常用注解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/55442169">https://zhuanlan.zhihu.com/p/55442169</a></p>
+<p>1.声明bean的注解@Component 组件，没有明确的角色@Service 在业务逻辑层使用（service层）@Repository 在数据访问层使用（dao层）@Controller 在展现层使用，控制器的声明（C）2.注入bean的注解@Autowired：由Spring提供@Inject：由JSR-330提供@Resource：由JSR-250提供都可以注解在set方法和属性上，推荐注解在属性上（一目了然，少写代码）。”我自己是一名从事了十余年的后端的老程序员，辞职后目前在做讲师，近期我花了一个月整理了一份最适合2018年学习的JAVA干货（里面有高可用、高并发、高性能及分布式、Jvm性能调优、Spring源码，MyBatis，Netty,Redis,Kafka,Mysql,Zookeeper,Tomcat,Docker,Dubbo,Nginx等多个知识点的架构资料）从事后端的小伙伴们都可以来了解一下的，这里是程序员秘密聚集地，各位还在架构师的道路上挣扎的小伙伴们速来。“加QQ群：611481448（名额有限哦！）3.java配置类相关注解@Configuration 声明当前类为配置类，相当于xml形式的Spring配置（类上）@Bean 注解在方法上，声明当前方法的返回值为一个bean，替代xml中的方式（方法上）@Configuration 声明当前类为配置类，其中内部组合了@Component注解，表明这个类是一个bean（类上）@ComponentScan 用于对Component进行扫描，相当于xml中的（类上）@WishlyConfiguration 为@Configuration与@ComponentScan的组合注解，可以替代这两个注解4.切面（AOP）相关注解Spring支持AspectJ的注解式切面编程。@Aspect 声明一个切面（类上）使用@After、@Before、@Around定义建言（advice），可直接将拦截规则（切点）作为参数。@After 在方法执行之后执行（方法上）@Before 在方法执行之前执行（方法上）@Around 在方法执行之前与之后执行（方法上）@PointCut 声明切点在java配置类中使用@EnableAspectJAutoProxy注解开启Spring对AspectJ代理的支持（类上）5.@Bean的属性支持@Scope 设置Spring容器如何新建Bean实例（方法上，得有@Bean）其设置类型包括：Singleton （单例,一个Spring容器中只有一个bean实例，默认模式）,Protetype （每次调用新建一个bean）,Request （web项目中，给每个http request新建一个bean）,Session （web项目中，给每个http session新建一个bean）,GlobalSession（给每一个 global http session新建一个Bean实例）@StepScope 在Spring Batch中还有涉及@PostConstruct 由JSR-250提供，在构造函数执行完之后执行，等价于xml配置文件中bean的initMethod@PreDestory 由JSR-250提供，在Bean销毁之前执行，等价于xml配置文件中bean的destroyMethod6.@Value注解@Value 为属性注入值（属性上）支持如下方式的注入：》注入普通字符@Value(“Michael Jackson”)String name;》注入操作系统属性@Value(“#{systemProperties[‘os.name’]}”)String osName;》注入表达式结果@Value(“#{ T(java.lang.Math).random()* 100 }”) String randomNumber;》注入其它bean属性@Value(“#{domeClass.name}”)String name;》注入文件资源@Value(“classpath:com/hgs/hello/test.txt”)String Resource file;》注入网站资源@Value(“<a target="_blank" rel="noopener" href="http://www.javastack.cn&quot;)resource/">http://www.javastack.cn&quot;)Resource</a> url;》注入配置文件Value(“${book.name}”)String bookName;注入配置使用方法：① 编写配置文件（test.properties）book.name=《三体》② @PropertySource 加载配置文件(类上)@PropertySource(“classpath:com/hgs/hello/test/test.propertie”)③ 还需配置一个PropertySourcesPlaceholderConfigurer的bean。7.环境切换@Profile 通过设定Environment的ActiveProfiles来设定当前context需要使用的配置环境。（类或方法上）@Conditional Spring4中可以使用此注解定义条件话的bean，通过实现Condition接口，并重写matches方法，从而决定该bean是否被实例化。（方法上）8.异步相关@EnableAsync 配置类中，通过此注解开启对异步任务的支持，叙事性AsyncConfigurer接口（类上）@Async 在实际执行的bean方法使用该注解来申明其是一个异步任务（方法上或类上所有的方法都将异步，需要@EnableAsync开启异步任务）9.定时任务相关@EnableScheduling 在配置类上使用，开启计划任务的支持（类上）@Scheduled 来申明这是一个任务，包括cron,fixDelay,fixRate等类型（方法上，需先开启计划任务的支持）10.@Enable*注解说明这些注解主要用来开启对xxx的支持。@EnableAspectJAutoProxy 开启对AspectJ自动代理的支持@EnableAsync 开启异步方法的支持@EnableScheduling 开启计划任务的支持@EnableWebMvc 开启Web MVC的配置支持@EnableConfigurationProperties 开启对@ConfigurationProperties注解配置Bean的支持@EnableJpaRepositories 开启对SpringData JPA Repository的支持@EnableTransactionManagement 开启注解式事务的支持@EnableTransactionManagement 开启注解式事务的支持@EnableCaching 开启注解式的缓存支持11.测试相关注解@RunWith 运行器，Spring中通常用于对JUnit的支持@RunWith(SpringJUnit4ClassRunner.class)@ContextConfiguration 用来加载配置ApplicationContext，其中classes属性用来加载配置类@ContextConfiguration(classes={TestConfig.class})12.SpringMVC相关注解@EnableWebMvc 在配置类中开启Web MVC的配置支持，如一些ViewResolver或者MessageConverter等，若无此句，重写WebMvcConfigurerAdapter方法（用于对SpringMVC的配置）。@Controller 声明该类为SpringMVC中的Controller@RequestMapping 用于映射Web请求，包括访问路径和参数（类或方法上）@ResponseBody 支持将返回值放在response内，而不是一个页面，通常用户返回json数据（返回值旁或方法上）@RequestBody 允许request的参数在request体中，而不是在直接连接在地址后面。（放在参数前）@PathVariable 用于接收路径参数，比如@RequestMapping(“/hello/{name}”)申明的路径，将注解放在参数中前，即可获取该值，通常作为Restful的接口实现方法。@RestController 该注解为一个组合注解，相当于@Controller和@ResponseBody的组合，注解在类上，意味着，该Controller的所有方法都默认加上了@ResponseBody。@ControllerAdvice 通过该注解，我们可以将对于控制器的全局配置放置在同一个位置，注解了@Controller的类的方法可使用@ExceptionHandler、@InitBinder、@ModelAttribute注解到方法上，这对所有注解了 @RequestMapping的控制器内的方法有效。@ExceptionHandler 用于全局处理控制器里的异常@InitBinder 用来设置WebDataBinder，WebDataBinder用来自动绑定前台请求参数到Model中。@ModelAttribute 本来的作用是绑定键值对到Model里，在@ControllerAdvice中是让全局的@RequestMapping都能获得在此处设置的键值对。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/02/hello-world/" data-id="ckqm6blqu00004ur599av130n" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" data-id="ckqm6kplo002axxr53yeqfo9z" data-title="Spring常用注解" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/" rel="tag">spring-boot</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-使用-gitignore配置git忽略提交规则" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/" class="article-date">
+  <time class="dt-published" datetime="2019-06-05T07:59:37.000Z" itemprop="datePublished">2019-06-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/">使用.gitignore配置git忽略提交规则</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在使用Git的过程中，我们喜欢有的文件比如日志，临时文件，编译的中间文件等不要提交到代码仓库，这时就要设置相应的忽略规则，来忽略这些文件的提交。简单来说一个场景：在你使用git add .的时候，遇到了把你不想提交的文件也添加到了缓存中去的情况，比如项目的本地配置信息，如果你上传到Git中去其他人pull下来的时候就会和他本地的配置有冲突，所以这样的个性化配置文件我们一般不把它推送到git服务器中，但是又为了偷懒每次添加缓存的时候都想用git add .而不是手动一个一个文件添加，该怎么办呢？很简单，git为我们提供了一个.gitignore文件只要在这个文件中申明那些文件你不希望添加到git中去，这样当你使用git add .的时候这些文件就会被自动忽略掉。</p>
+<p>有三种方法可以实现忽略Git中不想提交的文件：</p>
+<h3 id="在Git项目中定义-gitignore文件"><a href="#在Git项目中定义-gitignore文件" class="headerlink" title="在Git项目中定义.gitignore文件"></a>在Git项目中定义.gitignore文件</h3><p>这种方式通过在项目的某个文件夹下定义.gitignore文件，在该文件中定义相应的忽略规则，来管理当前文件夹下的文件的Git提交行为。.gitignore 文件是可以提交到公有仓库中，这就为该项目下的所有开发者都共享一套定义好的忽略规则。在.gitingore 文件中，遵循相应的语法，在每一行指定一个忽略规则。如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*.log</span><br><span class="line">*.temp</span><br><span class="line">/vendor</span><br></pre></td></tr></table></figure>
+<h3 id="在Git项目的设置中指定排除文件"><a href="#在Git项目的设置中指定排除文件" class="headerlink" title="在Git项目的设置中指定排除文件"></a>在Git项目的设置中指定排除文件</h3><p>这种方式只是临时指定该项目的行为，需要编辑当前项目下的 .git/info/exclude文件，然后将需要忽略提交的文件写入其中。需要注意的是，这种方式指定的忽略文件的根目录是项目根目录。</p>
+<h3 id="定义Git全局的-gitignore-文件"><a href="#定义Git全局的-gitignore-文件" class="headerlink" title="定义Git全局的 .gitignore 文件"></a>定义Git全局的 .gitignore 文件</h3><p>除了可以在项目中定义 .gitignore 文件外，还可以设置全局的 git .gitignore文件来管理所有Git项目的行为。这种方式在不同的项目开发者之间是不共享的，是属于项目之上Git应用级别的行为。这种方式也需要创建相应的 .gitignore 文件，可以放在任意位置。然后根目录使用以下命令配置Git：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.excludesfile &quot;全局.gitignore配置所在的文件路径&quot; </span><br></pre></td></tr></table></figure>
+<h3 id="Git忽略文件的原则"><a href="#Git忽略文件的原则" class="headerlink" title="Git忽略文件的原则"></a>Git忽略文件的原则</h3><ul>
+<li> 忽略操作系统自动生成的文件，比如缩略图等；</li>
+<li> 忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如Java编译产生的.class文件；</li>
+<li> 忽略你自己的带有敏感信息的配置文件，比如存放口令的配置文件。</li>
+</ul>
+<h3 id="gitignore忽略规则的优先级"><a href="#gitignore忽略规则的优先级" class="headerlink" title=".gitignore忽略规则的优先级"></a>.gitignore忽略规则的优先级</h3><p>在 .gitingore 文件中，每一行指定一个忽略规则，Git检查忽略规则的时候有多个来源，它的优先级如下（由高到低）：</p>
+<ol>
+<li>从命令行中读取可用的忽略规则；</li>
+<li>当前目录定义的规则；</li>
+<li>父级目录定义的规则，依次递推；</li>
+<li>$GIT_DIR/info/exclude 文件中定义的规则；</li>
+<li>core.excludesfile中定义的全局规则；</li>
+</ol>
+<h3 id="gitignore忽略规则的匹配语法"><a href="#gitignore忽略规则的匹配语法" class="headerlink" title=".gitignore忽略规则的匹配语法"></a>.gitignore忽略规则的匹配语法</h3><p>在 .gitignore 文件中，每一行的忽略规则的语法如下：</p>
+<ol>
+<li>空格不匹配任意文件，可作为分隔符，可用反斜杠转义；</li>
+<li>以“＃”开头的行都会被 Git 忽略。即#开头的文件标识注释，可以使用反斜杠进行转义；</li>
+<li>可以使用标准的glob模式匹配。所谓的glob模式是指shell所使用的简化了的正则表达式；</li>
+<li>以斜杠”/“开头表示目录；”/“结束的模式只匹配文件夹以及在该文件夹路径下的内容，但是不匹配该文件；”/“开始的模式匹配项目跟目录；如果一个模式不包含斜杠，则它匹配相对于当前 .gitignore 文件路径的内容，如果该模式不在 .gitignore 文件中，则相对于项目根目录。</li>
+<li>以星号”*”通配多个字符，即匹配多个任意字符；使用两个星号”**” 表示匹配任意中间目录，比如<code>a/**/z</code>可以匹配 a/z, a/b/z 或 a/b/c/z等。</li>
+<li>以问号”?”通配单个字符，即匹配一个任意字符；</li>
+<li>以方括号”[]“包含单个字符的匹配列表，即匹配任何一个列在方括号中的字符。比如[abc]表示要么匹配一个a，要么匹配一个b，要么匹配一个c；如果在方括号中使用短划线分隔两个字符，表示所有在这两个字符范围内的都可以匹配。比如[0-9]表示匹配所有0到9的数字，[a-z]表示匹配任意的小写字母）。</li>
+<li>以叹号”!”表示不忽略(跟踪)匹配到的文件或目录，即要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号（!）取反。需要特别注意的是：如果文件的父目录已经被前面的规则排除掉了，那么对这个文件用”!”规则是不起作用的。也就是说”!”开头的模式表示否定，该文件将会再次被包含，如果排除了该文件的父级目录，则使用”!”也不会再次被包含。可以使用反斜杠进行转义。</li>
+</ol>
+<p>git对于 gitignore配置文件是按行从上到下进行规则匹配的，意味着如果前面的规则匹配的范围更大，则后面的规则将不会生效。比如前面一个规则将某个文件忽略掉了，后面有使用比如<code>!</code>要把某个文件添加到版本管理中，那么根据这个规则，这个文件依然会被添加到本版管理中。</p>
+<h3 id="gitignore忽略规则简单说明"><a href="#gitignore忽略规则简单说明" class="headerlink" title=".gitignore忽略规则简单说明"></a>.gitignore忽略规则简单说明</h3><p>在一个git项目的根目录下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#               表示此为注释,将被Git忽略</span><br><span class="line"></span><br><span class="line">*.a             表示忽略所有的 .a 文件</span><br><span class="line">!lib.a          结合上一句，表示表示忽略所有以 .a 结尾的文件，但lib.a除外</span><br><span class="line"></span><br><span class="line">/TODO           表示仅仅忽略项目根目录下的 TODO 目录，不包括子目录下的TODO目录</span><br><span class="line"></span><br><span class="line">build/          表示忽略 build/目录下的所有文件，过滤整个build文件夹；</span><br><span class="line"></span><br><span class="line">doc/*.txt       表示会忽略doc/notes.txt但不包括 doc/server/arch.txt</span><br><span class="line"> </span><br><span class="line">bin/:           表示忽略当前路径下的bin文件夹，该文件夹下的所有内容都会被忽略，不忽略 bin 文件</span><br><span class="line">/bin:           表示忽略根目录下的bin文件</span><br><span class="line"></span><br><span class="line">/*.c:           表示忽略根目录下的所有 .c文件 ，不忽略 build/cat.c</span><br><span class="line">debug/*.obj:    表示忽略debug/io.obj，不忽略 debug/common/io.obj和tools/debug/io.obj</span><br><span class="line">**/foo:         表示忽略/foo,a/foo,a/b/foo等</span><br><span class="line">a/**/b:         表示忽略a/b, a/x/b,a/x/y/b等</span><br><span class="line"></span><br><span class="line">!/bin/run.sh    表示不忽略bin目录下的run.sh文件</span><br><span class="line"></span><br><span class="line">config.php:     表示忽略当前路径的 config.php 文件</span><br><span class="line"> </span><br><span class="line">/mtk/           表示过滤整个文件夹</span><br><span class="line">/mtk/do.c       表示过滤某个具体文件</span><br><span class="line"></span><br><span class="line">fd1/*</span><br><span class="line">说明：忽略目录 fd1 下的全部内容；注意，不管是根目录下的 /fd1/ 目录，还是某个子目录 /child/fd1/ 目录，都会被忽略；</span><br><span class="line"> </span><br><span class="line">/fd1/*</span><br><span class="line">说明：忽略根目录下的 /fd1/ 目录的全部内容；</span><br></pre></td></tr></table></figure>
+
+<h3 id="gitignore忽略规则常用示例"><a href="#gitignore忽略规则常用示例" class="headerlink" title=".gitignore忽略规则常用示例"></a>.gitignore忽略规则常用示例</h3><p>常用的<code>.gitignore</code>配置: <a target="_blank" rel="noopener" href="https://github.com/github/gitignore">https://github.com/github/gitignore</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/" data-id="ckqm6kpls002nxxr56pwqb673" data-title="使用.gitignore配置git忽略提交规则" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/" rel="tag">Github</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Mysql常用命令总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2019-06-05T01:22:47.000Z" itemprop="datePublished">2019-06-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Mysql常用命令总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="登录数据库"><a href="#登录数据库" class="headerlink" title="登录数据库"></a>登录数据库</h3><h4 id="登录本地数据库"><a href="#登录本地数据库" class="headerlink" title="登录本地数据库"></a>登录本地数据库</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>回车后输入密码; 也可以p后不加空格，直接加密码，回车登录。</p>
+<h4 id="登录远程数据库"><a href="#登录远程数据库" class="headerlink" title="登录远程数据库"></a>登录远程数据库</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uusername -ppwd -Pport -hhost</span><br></pre></td></tr></table></figure>
+<p>例如，要登陆一个host为172.18.182.21，端口为8080，username为admin、密码为admin123的远程数据库：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uadmin -padmin123 -P8080 -h172.18.182.21</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询类"><a href="#查询类" class="headerlink" title="查询类"></a>查询类</h2><h3 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+<p>注意命令后面有一个英语的分号；</p>
+<p><img src="http://dengw.xyz/20190606094548.png"></p>
+<h3 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use db_name;</span><br></pre></td></tr></table></figure>
+<p>查看<code>db_name</code>为 <code>db_olime</code>的数据库；<br><img src="http://dengw.xyz/20190606094846.png"></p>
+<h3 id="查看当前使用的数据库"><a href="#查看当前使用的数据库" class="headerlink" title="查看当前使用的数据库"></a>查看当前使用的数据库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select database();</span><br></pre></td></tr></table></figure>
+<p><img src="http://dengw.xyz/20190606100921.png"></p>
+<h3 id="查看数据表"><a href="#查看数据表" class="headerlink" title="查看数据表"></a>查看数据表</h3><p>查看当前数据库的所有table;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show tables;</span><br></pre></td></tr></table></figure>
+<p><img src="http://dengw.xyz/20190606095236.png"></p>
+<h3 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h3><p>显示表结构，字段类型，主键，是否为空等属性，但不显示外键。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc tabl_name;</span><br></pre></td></tr></table></figure>
+<p><img src="http://dengw.xyz/20190606095535.png"></p>
+<h3 id="查看建表语句、表注释"><a href="#查看建表语句、表注释" class="headerlink" title="查看建表语句、表注释"></a>查看建表语句、表注释</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show create table table_name;</span><br></pre></td></tr></table></figure>
+<p><img src="http://dengw.xyz/20190606100313.png"></p>
+<h3 id="查看数据库的连接情况"><a href="#查看数据库的连接情况" class="headerlink" title="查看数据库的连接情况"></a>查看数据库的连接情况</h3><p>会显示前100个连接；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show full processlist;</span><br></pre></td></tr></table></figure>
+<p><img src="http://dengw.xyz/20190606100701.png"></p>
+<h3 id="查看数据库状态"><a href="#查看数据库状态" class="headerlink" title="查看数据库状态"></a>查看数据库状态</h3><p>参考链接：<a target="_blank" rel="noopener" href="https://codeplayer.vip/p/j7sc4">使用show status查看MySQL服务器状态信息</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show status;</span><br></pre></td></tr></table></figure>
+<p>列出所连接的mysql服务器的状态信息，信息会有很多条，具体的含义等以后来理解。</p>
+<p><img src="http://dengw.xyz/20190606103403.png"></p>
+<p>如果你只想查看某一条具体的状态，可以使用以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show status like &#x27;Variable_name&#x27;;</span><br></pre></td></tr></table></figure>
+<p>比如要查看当前MySQL本次启动后的运行统计时间；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show status like &#x27;uptime&#x27;;</span><br></pre></td></tr></table></figure>
+<p><img src="http://dengw.xyz/20190606103737.png"></p>
+<p>此外，与WHERE子句中的LIKE关键字类似，show status后的LIKE关键字也可以使用’_’ 或’%’等通配符来进行模糊匹配。例如我们可以执行如下语句来查看MySQL服务器的线程信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show status like &#x27;Thread_%&#x27;;</span><br></pre></td></tr></table></figure>
+<p><img src="http://dengw.xyz/20190606104040.png"></p>
+<p>下面列一些常用的show status命令：<br>常用的:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">--查看查询时间超过long_query_time秒的查询的个数。</span><br><span class="line"></span><br><span class="line">show status like &#x27;slow_queries&#x27;;</span><br><span class="line"></span><br><span class="line">--查看创建时间超过slow_launch_time秒的线程数。</span><br><span class="line"></span><br><span class="line">show status like &#x27;slow_launch_threads&#x27;;</span><br><span class="line"></span><br><span class="line">--查看不能立即获得的表的锁的次数。如果该值较高，并且有性能问题，你应首先优化查询，然后拆分表或使用复制。</span><br><span class="line"></span><br><span class="line">show status like &#x27;table_locks_waited&#x27;;</span><br><span class="line"></span><br><span class="line">--查看立即获得的表的锁的次数。</span><br><span class="line"></span><br><span class="line">show status like &#x27;table_locks_immediate&#x27;;</span><br><span class="line"></span><br><span class="line">--查看激活的(非睡眠状态)线程数。</span><br><span class="line"></span><br><span class="line">show status like &#x27;threads_running&#x27;;</span><br><span class="line"></span><br><span class="line">--查看创建用来处理连接的线程数。如果Threads_created较大，你可能要增加thread_cache_size值。</span><br><span class="line"></span><br><span class="line">show status like &#x27;threads_created&#x27;;</span><br><span class="line"></span><br><span class="line">--查看当前打开的连接的数量。</span><br><span class="line"></span><br><span class="line">show status like &#x27;threads_connected&#x27;;</span><br><span class="line"></span><br><span class="line">--查看线程缓存内的线程的数量。</span><br><span class="line"></span><br><span class="line">show status like &#x27;threads_cached&#x27;;</span><br><span class="line"></span><br><span class="line">--查看试图连接到MySQL(不管是否连接成功)的连接数</span><br><span class="line"></span><br><span class="line">show status like &#x27;connections&#x27;;</span><br><span class="line"></span><br><span class="line">--查看delete语句的执行数</span><br><span class="line"></span><br><span class="line">show [global] status like &#x27;com_delete&#x27;;</span><br><span class="line"></span><br><span class="line">--查看update语句的执行数</span><br><span class="line"></span><br><span class="line">show [global] status like &#x27;com_update&#x27;;</span><br><span class="line"></span><br><span class="line">--查看insert语句的执行数</span><br><span class="line"></span><br><span class="line">show [global] status like &#x27;com_insert&#x27;;</span><br><span class="line"></span><br><span class="line">--查看select语句的执行数</span><br><span class="line"></span><br><span class="line">show [global] status like &#x27;com_select&#x27;;</span><br><span class="line"></span><br><span class="line">--查看MySQL本次启动后的运行时间(单位：秒)</span><br><span class="line"></span><br><span class="line">show status like &#x27;uptime&#x27;;</span><br></pre></td></tr></table></figure>
+<h3 id="打印当前时间"><a href="#打印当前时间" class="headerlink" title="打印当前时间"></a>打印当前时间</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select now();</span><br><span class="line">或</span><br><span class="line">select current_timestamp();</span><br></pre></td></tr></table></figure>
+<p><img src="http://dengw.xyz/20190606102015.png"></p>
+<h2 id="alter命令"><a href="#alter命令" class="headerlink" title="alter命令"></a>alter命令</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zsg88/p/7818684">https://www.cnblogs.com/zsg88/p/7818684</a>.<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013063153/article/details/53304325">https://blog.csdn.net/u013063153/article/details/53304325</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kuillldan/p/5865339.html">https://www.cnblogs.com/kuillldan/p/5865339.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/devcjq/articles/6021338.html">https://www.cnblogs.com/devcjq/articles/6021338.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="ckqm6kplh001rxxr5ectrhjlc" data-title="Mysql常用命令总结" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/" rel="tag">sql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-常用Linux命令学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/05/30/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2019-05-30T08:29:20.000Z" itemprop="datePublished">2019-05-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/05/30/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/">常用Linux命令学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="查看进程状态-—-ps"><a href="#查看进程状态-—-ps" class="headerlink" title="查看进程状态 — ps"></a>查看进程状态 — ps</h3><p>Linux中的进程查看命令，使用该命令可以确定有哪些进程正在运行和运行的状态、进程是否结束、进程有没有僵尸、哪些进程占用了过多的资源等等;需要注意的是进程是正在运行的程序，一直处于动态变化中，而ps命令所显示的进程工作状态是瞬间的。</p>
+<p>使用方式:<code>ps[options][-help]</code>，参数的具体含义以及使用方法可以使用<code>man ps</code>命令查看，下面列出一下常用的参数以及常用的命令:</p>
+<h4 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数:"></a>常用参数:</h4><ul>
+<li>-A : 所有的进程均显示出来，与 -e 具有同样的效用;</li>
+<li>-a : 显示现行终端机下的所有进程，包括其他用户的进程;</li>
+<li>-u : 以用户为主的进程状态 ;</li>
+<li>x : 通常与 a 这个参数一起使用，可列出较完整信息。</li>
+</ul>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令:"></a>常用命令:</h4><ul>
+<li>ps -u username 查看特定用户下的进程;</li>
+<li>ps -ef 显示所有进程信息，连同命令行;</li>
+<li>ps -ef | grep name 查询进程然后匹配;</li>
+<li><h4 id="进程的描述的字段解释"><a href="#进程的描述的字段解释" class="headerlink" title="进程的描述的字段解释:"></a>进程的描述的字段解释:</h4></li>
+<li>USER 进程的属主;</li>
+<li>PID 进程的ID;</li>
+<li>PPID 父进程;</li>
+<li>NI 进程的NICE值，数值大，表示较少占用CPU时间;</li>
+<li>VSZ 进程虚拟大小;</li>
+<li>RSS 驻留中页的数量;</li>
+<li>%CPU 进程占用的CPU百分比;</li>
+<li>%MEM 占用内存的百分比;</li>
+<li>TTY 终端ID</li>
+<li>STAT 进程状态（有以下几种）<ul>
+<li>D 无法中断的休眠状态（通常 IO 的进程）;</li>
+<li>R 正在运行可中在队列中可过行的;</li>
+<li>S 处于休眠状态;</li>
+<li>T 停止或被追踪;</li>
+<li>W 进入内存交换（从内核2.6开始无效）;</li>
+<li>X 死掉的进程（从来没见过）;</li>
+<li>Z 僵尸进程;</li>
+<li>&lt; 优先级高的进程</li>
+<li>N 优先级较低的进程</li>
+<li>L 有些页被锁进内存;</li>
+<li>s 进程的领导者（在它之下有子进程）;</li>
+<li>l 多进程的（使用 CLONE_THREAD, 类似 NPTL pthreads）;</li>
+<li>+ 位于后台的进程组;</li>
+</ul>
+</li>
+<li>WCHAN 正在等待的进程资源;</li>
+<li>START 启动进程的时间;</li>
+<li>TIME 进程消耗CPU的时间;</li>
+<li>COMMAND 命令的名称和参数;</li>
+</ul>
+<h3 id="文本搜索-—-grep"><a href="#文本搜索-—-grep" class="headerlink" title="文本搜索 — grep"></a>文本搜索 — grep</h3><p>grep (global search regular expression(RE) and print out the line,全面搜索正则表达式并把行打印出来)是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。</p>
+<h4 id="匹配控制项"><a href="#匹配控制项" class="headerlink" title="匹配控制项"></a>匹配控制项</h4><ul>
+<li>-i : 搜索时候忽略大小写</li>
+<li>-v : 反转匹配，选择没有被匹配到的内容</li>
+<li>-n : 显示匹配内容的行号</li>
+<li>-c : 计算找到‘搜索字符串’的行数</li>
+<li>-r : 当指定要查找的是目录而非文件时，必须使用这项参数，否则grep命令将回报信息并停止动作</li>
+<li>-l : 列出文件内容符合指定的范本样式的文件名称</li>
+</ul>
+<h4 id="常用命令-1"><a href="#常用命令-1" class="headerlink" title="常用命令"></a>常用命令</h4><ul>
+<li>ps -ef | grep java : 查找指定进程</li>
+<li>ps -ef | grep -c java : 查找指定进程个数</li>
+</ul>
+<p>更多详细用法请参考 : <a target="_blank" rel="noopener" href="https://www.cnblogs.com/kongzhongqijing/articles/4462793.html">linux命令—grep命令</a></p>
+<h3 id="显示当前文件夹列表-—-ls"><a href="#显示当前文件夹列表-—-ls" class="headerlink" title="显示当前文件夹列表 — ls"></a>显示当前文件夹列表 — ls</h3><p>用法 : <code>ls [选项] [目录或文件名]</code></p>
+<h4 id="常用参数-1"><a href="#常用参数-1" class="headerlink" title="常用参数"></a>常用参数</h4><ul>
+<li>-a : –all的缩写，显示所有的文件，包括隐藏文件</li>
+<li>-A : –almost-all的缩写，显示所有的文件，包括隐藏文件，但不包括表示当前目录.和上级目录..这两个文件</li>
+<li>-l : 列出长数据串，显示出文件的属性与权限等数据信息;</li>
+<li>–color[=WHEN] : 是否根据文件类型显示颜色，WHEN可以为never、always或者auto</li>
+<li>-t : 以修改时间排序</li>
+<li>-S : 以文件大小排序</li>
+<li>-r : –reverse，将排序结果以倒序方式显示</li>
+</ul>
+<h3 id="显示文件的开头至标准输出中-head"><a href="#显示文件的开头至标准输出中-head" class="headerlink" title="显示文件的开头至标准输出中 - head"></a>显示文件的开头至标准输出中 - head</h3><p>用来显示开头或者结尾某个数量的文字区块，head用来显示档案的开头至标准输出当中,默认head命令打印其相应文件的开头10行。</p>
+<p>用法 <code>head [OPTION] FILE</code></p>
+<h4 id="OPTION-命令参数"><a href="#OPTION-命令参数" class="headerlink" title="OPTION 命令参数"></a>OPTION 命令参数</h4><ul>
+<li>-q : 显示多文件的头部内容时，隐藏文件名;</li>
+<li>-v : 显示多文件的头部内容时，显示文件名;</li>
+<li>-c : 显示字节数;</li>
+<li>-n : 显示的行数;</li>
+</ul>
+<h4 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h4><ul>
+<li>head -c 100 filename : 显示文件的前100个字节;</li>
+<li>head -c -100 filename : 显示除了最后n个字节以外的其他内容;</li>
+<li>head -n 5 filename : 显示文档中的前5行;</li>
+<li>head -n -5 filename : 显示文件除了最后n行以外的其他内容;</li>
+<li>head -n 100 file1 &gt;file2 : 将file1的前100行输出到file2中;</li>
+</ul>
+<h3 id="显示文件的尾部至标准输出流中-tail"><a href="#显示文件的尾部至标准输出流中-tail" class="headerlink" title="显示文件的尾部至标准输出流中 - tail"></a>显示文件的尾部至标准输出流中 - tail</h3><p>用法 <code>tail [OPTION] FILE</code></p>
+<h4 id="OPTION-命令参数-1"><a href="#OPTION-命令参数-1" class="headerlink" title="OPTION 命令参数"></a>OPTION 命令参数</h4><ul>
+<li>-f : 循环读取，监视file的增长;</li>
+<li>-c&lt;数目&gt; : 显示的字节数;</li>
+<li>-n&lt;行数&gt; : 显示文件的尾部 n 行内容;</li>
+<li>-q : 显示多文件的末尾内容时，不显示文件名;</li>
+<li>-v : 显示多文件的末尾内容时，显示文件名（此为tail的默认选项）;</li>
+<li>–pid=PID : 与-f合用,表示在进程ID,PID死掉之后自动退出tail命令;</li>
+<li>-s N : 与-f合用，表示休眠N秒后在读取文件内容（默认为1s）;</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/05/30/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/" data-id="ckqm6kpme0045xxr5abtz086t" data-title="常用Linux命令学习" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java大文件下载方法优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/05/10/Java%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95%E4%BC%98%E5%8C%96/" class="article-date">
+  <time class="dt-published" datetime="2019-05-10T06:49:28.000Z" itemprop="datePublished">2019-05-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java%E5%AD%A6%E4%B9%A0/">Java学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/05/10/Java%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95%E4%BC%98%E5%8C%96/">Java大文件下载方法优化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/05/10/Java%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95%E4%BC%98%E5%8C%96/" data-id="ckqm6kpl7000yxxr5f378edky" data-title="Java大文件下载方法优化" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" rel="tag">文件下载</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Linux下使用vim出现中文乱码的解决方法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/04/16/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8vim%E5%87%BA%E7%8E%B0%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2019-04-16T11:32:24.000Z" itemprop="datePublished">2019-04-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/04/16/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8vim%E5%87%BA%E7%8E%B0%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">Linux下使用vim出现中文乱码的解决方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_36250487/article/details/79888103">https://blog.csdn.net/weixin_36250487/article/details/79888103</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/04/16/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8vim%E5%87%BA%E7%8E%B0%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" data-id="ckqm6kplc001exxr5bpki6fym" data-title="Linux下使用vim出现中文乱码的解决方法" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-去掉标题栏或状态栏与沉浸式状态栏" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/01/09/%E5%8E%BB%E6%8E%89%E6%A0%87%E9%A2%98%E6%A0%8F%E6%88%96%E7%8A%B6%E6%80%81%E6%A0%8F%E4%B8%8E%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F/" class="article-date">
+  <time class="dt-published" datetime="2019-01-09T08:26:42.000Z" itemprop="datePublished">2019-01-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/01/09/%E5%8E%BB%E6%8E%89%E6%A0%87%E9%A2%98%E6%A0%8F%E6%88%96%E7%8A%B6%E6%80%81%E6%A0%8F%E4%B8%8E%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F/">去掉标题栏或状态栏与沉浸式状态栏</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="隐藏标题栏"><a href="#隐藏标题栏" class="headerlink" title="隐藏标题栏"></a>隐藏标题栏</h3><p>去掉AppcompaActivity的标题栏方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (getSupportActionBar()!=<span class="keyword">null</span>)&#123; </span><br><span class="line">    getSupportActionBar().hide(); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>总结一下：AppCompatActivity相对于Activity的主要的两点变化； </p>
+<ol>
+<li>主界面带有toolbar的标题栏； </li>
+<li>theme主题只能用android:theme=”@style/AppTheme （appTheme主题或者其子类），而不能用android:style，即附录中的系统自带样式。 否则会提示错误：<code>Caused by: java.lang.IllegalStateException: You need to use a Theme.AppCompat theme (or descendant) with this activity.</code></li>
+</ol>
+<h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>给要消除标题栏的Activity所使用的Theme中添加以下属性：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>例如：让默认使用的 AppTheme 隐藏掉标题栏，</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;AppTheme&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;Theme.AppCompat.Light.DarkActionBar&quot;</span>&gt;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- Customize your theme here. --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorPrimary&quot;</span>&gt;</span>@color/colorPrimary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorPrimaryDark&quot;</span>&gt;</span>@color/colorPrimaryDark<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorAccent&quot;</span>&gt;</span>@color/colorAccent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这儿需要注意的使用这种方法会讲所有使用该主题的 Activity 都设置为隐藏标题栏，所以你只是想让某一个具体的 Activity 实现该效果就只修改该 Activity 的 theme 属性的值。</p>
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>在清单文件AndroidManifest.xml中修改theme,使用系统自带的无标题样式，：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:theme</span> = <span class="string">&quot;@android:style/Theme.NoTitleBar&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>但是设置好运行之后程序有可能会直接崩掉，根据错误提示发现原因是使用这种方法的Activity不能是<code>AppCompatActivity</code>的子类，而必须是<code>Activity</code>的子类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span></span><br></pre></td></tr></table></figure>
+
+<h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p>上面两种方法都有一些局限，下面介绍一种更加灵活的方法，自定义Theme:</p>
+<p>在<code>res/values/styles.xml</code>文件中，添加一个自定义的主题，比如名字就叫做<code>NoTitle</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;NoTitle&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;Theme.AppCompat.DayNight.NoActionBar&quot;</span>&gt;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorPrimary&quot;</span>&gt;</span>@color/colorPrimary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorPrimaryDark&quot;</span>&gt;</span>@color/colorPrimaryDark<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorAccent&quot;</span>&gt;</span>@color/colorAccent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后修改你想作用于的Activity的Theme属性：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:theme</span>=<span class="string">&quot;@style/NoTitle&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="方法四"><a href="#方法四" class="headerlink" title="方法四"></a>方法四</h4><p>上面介绍的这些方法都是修改xml文件实现的，下面介绍一种在java代码中修改的方法，在 <code>Activity</code>的<code>OnCreate</code>方法中的 setContentView(R.layout.activity_main); 语句前面添加如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    requestWindowFeature(Window.FEATURE_NO_TITLE);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里需要注意的是 requestWindowFeature(Window.FEATURE_NO_TITLE) 必须要在 setContentView(R.layout.activity_main) 前面，另外有一点需要注意的就是该 Activity 必须继承于 <code>Activity</code>，不能是<code>AppCompatActivity</code>，不然会没有效果。</p>
+<h3 id="隐藏状态栏"><a href="#隐藏状态栏" class="headerlink" title="隐藏状态栏"></a>隐藏状态栏</h3><h4 id="方法一-1"><a href="#方法一-1" class="headerlink" title="方法一"></a>方法一</h4><p>在<code>AndroidManifest.xml</code>文件中修改 theme 为<code>android:theme=&quot;@android:style/Theme.NoTitleBar.Fullscreen&quot;</code>, 使用这种方法的Activity的必须继承于Activity，不能是<code>AppCompatActivity</code>。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:theme</span>=<span class="string">&quot;@android:style/Theme.NoTitleBar.Fullscreen&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="方法二-1"><a href="#方法二-1" class="headerlink" title="方法二"></a>方法二</h4><p>在 <code>Activity</code>的<code>OnCreate</code>方法中的 setContentView(R.layout.activity_main); 语句前面添加如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,</span><br><span class="line">            WindowManager.LayoutParams.FLAG_FULLSCREEN);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里需要注意的是这段代码必须要在 setContentView(R.layout.activity_main) 前面。</p>
+<h4 id="方法三-1"><a href="#方法三-1" class="headerlink" title="方法三"></a>方法三</h4><p>通过View的setSystemUiVisibility方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Window window = getWindow();</span><br><span class="line">View decorView = window.getDecorView();</span><br><span class="line">decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN</span><br><span class="line">        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);</span><br></pre></td></tr></table></figure>
+<p>其中该方法传入的参数可以为：</p>
+<ul>
+<li>View.SYSTEM_UI_FLAG_VISIBLE：显示状态栏，Activity不全屏显示(恢复到有状态的正常情况)。</li>
+<li>View.INVISIBLE：隐藏状态栏，同时Activity会伸展全屏显示。</li>
+<li>View.SYSTEM_UI_FLAG_FULLSCREEN：隐藏状态栏，点击屏幕区域不会出现，需要从状态栏位置下拉才会出现。</li>
+<li>View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN：Activity全屏显示，但状态栏不会被隐藏覆盖，状态栏依然可见，Activity顶端布局部分会被状态遮住。</li>
+<li>View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION：将布局内容拓展到导航栏的后面;</li>
+<li>View.SYSTEM_UI_LAYOUT_FLAGS：效果同View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN</li>
+<li>View.SYSTEM_UI_FLAG_HIDE_NAVIGATION：隐藏导航栏，点击屏幕任意区域，导航栏将重新出现，并且不会自动消失。有些手机会用虚拟按键来代替物理按键。</li>
+<li>View.SYSTEM_UI_FLAG_LOW_PROFILE：状态栏显示处于低能显示状态(low profile模式)，状态栏上一些图标显示会被隐藏。</li>
+<li>View.SYSTEM_UI_FLAG_LAYOUT_STABLE：稳定布局，主要是在全屏和非全屏切换时，布局不要有大的变化。一般和View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN、View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION搭配使用。同时，android:fitsSystemWindows要设置为true。</li>
+<li>View.SYSTEM_UI_FLAG_IMMERSIVE：使状态栏和导航栏真正的进入沉浸模式,即全屏模式，如果没有设置这个标志，设置全屏时，我们点击屏幕的任意位置，就会恢复为正常模式。所以，View.SYSTEM_UI_FLAG_IMMERSIVE都是配合View.SYSTEM_UI_FLAG_FULLSCREEN和View.SYSTEM_UI_FLAG_HIDE_NAVIGATION一起使用的。</li>
+<li>View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY：它的效果跟View.SYSTEM_UI_FLAG_IMMERSIVE一样。但是，它在全屏模式下，用户上下拉状态栏或者导航栏时，这些系统栏只是以半透明的状态显示出来，并且在一定时间后会自动消失。</li>
+</ul>
+<p>具体的效果参考:<a target="_blank" rel="noopener" href="https://blog.csdn.net/QQxiaoqiang1573/article/details/79867127">Android setSystemUiVisibility详解</a></p>
+<h4 id="方法四-1"><a href="#方法四-1" class="headerlink" title="方法四"></a>方法四</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 隐藏状态栏 */</span></span><br><span class="line">getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN) </span><br><span class="line"><span class="comment">/* 显示状态栏 */</span></span><br><span class="line">getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN) </span><br></pre></td></tr></table></figure>
+
+<h3 id="实现沉浸式状态栏"><a href="#实现沉浸式状态栏" class="headerlink" title="实现沉浸式状态栏"></a>实现沉浸式状态栏</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置沉浸式状态栏</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setImmersiveStatebar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Window window = getWindow();</span><br><span class="line">    View decorView = window.getDecorView();</span><br><span class="line">    decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN</span><br><span class="line">            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);</span><br><span class="line">    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);</span><br><span class="line">    window.setStatusBarColor(Color.TRANSPARENT);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面这个方法在OnCreate中调用，并且不能够再调用隐藏状态栏的方法。</p>
+<p>我觉得这个方法是一个用来适配刘海屏的方法，当你写布局的时候就按照正常的屏幕来写布局，然后在<code>setContenView</code>的时候检测该手机是否是刘海屏，如果是的话就在所写布局的顶部添加一个刘海屏高度的透明view，这样嵌入到刘海屏的就是我们添加的这个view，防止刘海屏遮住我们实际想要显示的内容。</p>
+<h3 id="附录——Android系统自带样式-android-style"><a href="#附录——Android系统自带样式-android-style" class="headerlink" title="附录——Android系统自带样式(@android:style/)"></a>附录——Android系统自带样式(@android:style/)</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">// 默认状态，即如果theme这里不填任何属性的时候，默认为Theme</span><br><span class="line">android:theme=&quot;@android:style/Theme&quot;</span><br><span class="line">// 背景主题的没有标题栏的样式，默认如果没有设置的话，显示黑背景</span><br><span class="line">android:theme = &quot;@android:style/Theme.NoTitleBar&quot;</span><br><span class="line">// 背景主题的没有标题栏且全屏的样式，默认为黑背景</span><br><span class="line">android:theme = &quot;@android:style/Theme.NoTitleBar.Fullscreen&quot; </span><br><span class="line">// 任何都不显示。比较适用于只是运行了activity，但未显示任何东西</span><br><span class="line">android:theme=&quot;@android:style/Theme.NoDisplay&quot;</span><br><span class="line">// 将一个Activity显示为对话框模式</span><br><span class="line">android:theme = &quot;@android:style/Theme.Dialog&quot; </span><br><span class="line"> </span><br><span class="line">//布局页面最上面不会显示 android:icon=&quot;@drawable/ic_launcher&quot;中的值和android:label=&quot;@string/app_name&quot;的值</span><br><span class="line">android:theme=&quot;@android:style/Theme.Holo.Light.NoActionBar.Fullscreen&quot;</span><br><span class="line"></span><br><span class="line">// 背景为白色</span><br><span class="line">android:theme = &quot;@android:style/Theme.Light&quot; </span><br><span class="line">// 白色背景并无标题栏</span><br><span class="line">andorid:theme = &quot;@android:style/Theme.Light.NoTitleBar&quot; </span><br><span class="line">// 白色背景，无标题栏，全屏</span><br><span class="line">android:theme=&quot;@android:style/Theme.Light.NoTitleBar.Fullscreen&quot;</span><br><span class="line">// 删除掉所有多余的窗口装饰，在一个空的矩形框中填充内容，作用范围相当于把dialog中的所有元素全部去掉，只是一个空的矩形框，且默认是light的样式</span><br><span class="line">android:theme = &quot;@android:style/Theme.Light.Panel&quot; </span><br><span class="line"></span><br><span class="line">// 背景为黑色</span><br><span class="line">android:theme = &quot;@android:style/Theme.Black&quot; </span><br><span class="line">// 黑色背景并无标题栏</span><br><span class="line">android:theme = &quot;@android:style/Theme.Black.NoTitleBar&quot; </span><br><span class="line">// 黑色背景，无标题栏，全屏</span><br><span class="line">android:theme = &quot;@android:style/Theme.Black.NoTitleBar.Fullscreen&quot; </span><br><span class="line"></span><br><span class="line">// 用系统桌面为应用程序背景</span><br><span class="line">android:theme = &quot;@android:style/Theme.Wallpaper&quot; </span><br><span class="line">// 使用墙纸做主题，默认是使用将上一个界面调暗之后作为主题</span><br><span class="line">android:theme=&quot;@android:style/Theme.WallpaperSettings&quot;</span><br><span class="line">// 用系统桌面为应用程序背景，且无标题栏</span><br><span class="line">android:theme = &quot;@android:style/Theme.Wallpaper.NoTitleBar&quot; </span><br><span class="line">// 用系统桌面为应用程序背景，无标题栏，全屏</span><br><span class="line">android:theme = &quot;@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen&quot; </span><br><span class="line"></span><br><span class="line">// 透明状态下的背景，将运行此activity之前的屏幕作为半透明状态作为此activity运行时的样式。</span><br><span class="line">android:theme = &quot;@android:style/Theme.Translucent&quot; </span><br><span class="line">// 透明背景并无标题</span><br><span class="line">android:theme = &quot;@android:style/Theme.Translucent.NoTitleBar&quot; </span><br><span class="line">// 透明背景并无标题，全屏</span><br><span class="line">android:theme = &quot;@android:style/Theme.Translucent.NoTitleBar.Fullscreen&quot; </span><br><span class="line">// 删除掉所有多余的窗口装饰，在一个空的矩形框中填充内容，作用范围相当于把dialog中的所有元素全部去掉，只是一个空的矩形框，且此为默认的样式</span><br><span class="line">android:theme = &quot;@android:style/Theme.Panel&quot; </span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/09/%E5%8E%BB%E6%8E%89%E6%A0%87%E9%A2%98%E6%A0%8F%E6%88%96%E7%8A%B6%E6%80%81%E6%A0%8F%E4%B8%8E%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F/" data-id="ckqm6kpm1003axxr56stkhz3w" data-title="去掉标题栏或状态栏与沉浸式状态栏" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/View%E5%B8%83%E5%B1%80/" rel="tag">View布局</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Mac上Android studio捷键总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/11/29/Mac%E4%B8%8AAndroid%20studio%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2018-11-29T09:52:07.000Z" itemprop="datePublished">2018-11-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/11/29/Mac%E4%B8%8AAndroid%20studio%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/">Android studio快捷捷总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>现在日渐觉得快捷键使用的重要性了，对工作效率的提升以及code style很有帮助。然后在网上看到一个博客讲的非常详细，但是感觉有点乱，所以就基于这篇博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zq019/article/details/54618185">史上最全的Android studio 的快捷键 MAC 和Win版本</a>进行总结归纳一下，也方便加深印象。</p>
+<p>仔细看完发觉这些快捷键还是有规律的，很多都是键盘左下方那些功能键和一些字母的组合，并且字母很多情况下都是功能键所代表的功能英文名称的首字母，所以还是很好记的。下面就以在 mac 上的操作为</p>
+<h3 id="command"><a href="#command" class="headerlink" title="command +"></a>command +</h3><table>
+<thead>
+<tr>
+<th align="left">功能描述</th>
+<th align="left">keymap对应名字</th>
+<th align="left">mac</th>
+<th align="left">Win/Linux</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">AS配置界面</td>
+<td align="left">Preferences</td>
+<td align="left">command + ,</td>
+<td align="left">control+alt+S</td>
+</tr>
+<tr>
+<td align="left">工程项目配置界面</td>
+<td align="left">Project Structure</td>
+<td align="left">command + ;</td>
+<td align="left">Control＋Alt+Shift+S</td>
+</tr>
+<tr>
+<td align="left">注释选中代码</td>
+<td align="left">Comment with Line Comment</td>
+<td align="left">command + /</td>
+<td align="left">ctrl + /</td>
+</tr>
+<tr>
+<td align="left">代码折叠/展开</td>
+<td align="left">Collapse/Expand</td>
+<td align="left">command + 减号/加号</td>
+<td align="left">ctrl + 减号/加号</td>
+</tr>
+<tr>
+<td align="left">返回上次光标处</td>
+<td align="left">略</td>
+<td align="left">command + [</td>
+<td align="left">略</td>
+</tr>
+<tr>
+<td align="left">跳转到下次光标处</td>
+<td align="left">略</td>
+<td align="left">command + ]</td>
+<td align="left">略</td>
+</tr>
+<tr>
+<td align="left">文件方法结构</td>
+<td align="left">File Structure</td>
+<td align="left">command + F12</td>
+<td align="left">ctrl + F12</td>
+</tr>
+<tr>
+<td align="left">快捷向下复制行</td>
+<td align="left">Duplicate Line or Block</td>
+<td align="left">command + D</td>
+<td align="left">ctrl + D</td>
+</tr>
+<tr>
+<td align="left">快捷最近打开</td>
+<td align="left">Recent Files</td>
+<td align="left">command + E</td>
+<td align="left">ctrl + E</td>
+</tr>
+<tr>
+<td align="left">文件内查找</td>
+<td align="left">Edit/Find/Find</td>
+<td align="left">command + F</td>
+<td align="left">ctrl + F</td>
+</tr>
+<tr>
+<td align="left">按照模板生成代码</td>
+<td align="left">Insert Live Template</td>
+<td align="left">command + J</td>
+<td align="left">ctrl + J</td>
+</tr>
+<tr>
+<td align="left">定位到行</td>
+<td align="left">Navigate/Line</td>
+<td align="left">command + L</td>
+<td align="left">ctrl + G</td>
+</tr>
+<tr>
+<td align="left">快速构成代码</td>
+<td align="left">Code Generate</td>
+<td align="left">command + N</td>
+<td align="left">alt + insert</td>
+</tr>
+<tr>
+<td align="left">查找类</td>
+<td align="left">Navigate/Class</td>
+<td align="left">command + O</td>
+<td align="left">ctrl + N</td>
+</tr>
+<tr>
+<td align="left">提示参数类型</td>
+<td align="left">Parameter Info</td>
+<td align="left">command + P</td>
+<td align="left">ctrl + P</td>
+</tr>
+<tr>
+<td align="left">文件内替换</td>
+<td align="left">Replace</td>
+<td align="left">command + R</td>
+<td align="left">ctrl + R</td>
+</tr>
+<tr>
+<td align="left">跳转到父类</td>
+<td align="left">Super method</td>
+<td align="left">command + U</td>
+<td align="left">ctrl + U</td>
+</tr>
+<tr>
+<td align="left">关闭当前tab标签</td>
+<td align="left">Close Editor Tabs</td>
+<td align="left">command + W</td>
+<td align="left">ctrl + shift + a</td>
+</tr>
+<tr>
+<td align="left">删除行</td>
+<td align="left">Delete Line</td>
+<td align="left">command + delete</td>
+<td align="left">ctrl + Y</td>
+</tr>
+<tr>
+<td align="left">快速到行首/尾</td>
+<td align="left">Move Caret to Line Start/End</td>
+<td align="left">command + Left/Right</td>
+<td align="left">ctrl + Left/Right</td>
+</tr>
+</tbody></table>
+<h3 id="control"><a href="#control" class="headerlink" title="control +"></a>control +</h3><table>
+<thead>
+<tr>
+<th align="left">功能描述</th>
+<th align="left">keymap对应名字</th>
+<th align="left">mac</th>
+<th align="left">Win/Linux</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">显示类关系继承体系</td>
+<td align="left">Type Hierarchy</td>
+<td align="left">control + H</td>
+<td align="left">ctrl + H</td>
+</tr>
+<tr>
+<td align="left">快速覆写方法</td>
+<td align="left">override Methods</td>
+<td align="left">control + O</td>
+<td align="left">ctrl + O</td>
+</tr>
+<tr>
+<td align="left">重构入口</td>
+<td align="left">Refactor This</td>
+<td align="left">control + T</td>
+<td align="left">ctrl + alt + shift + T</td>
+</tr>
+</tbody></table>
+<h3 id="Shift"><a href="#Shift" class="headerlink" title="Shift +"></a>Shift +</h3><table>
+<thead>
+<tr>
+<th align="left">功能描述</th>
+<th align="left">keymap对应名字</th>
+<th align="left">mac</th>
+<th align="left">Win/Linux</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">重命名</td>
+<td align="left">Rename</td>
+<td align="left">shift + F6</td>
+<td align="left">shift + F6</td>
+</tr>
+</tbody></table>
+<h3 id="option"><a href="#option" class="headerlink" title="option +"></a>option +</h3><table>
+<thead>
+<tr>
+<th align="left">功能描述</th>
+<th align="left">keymap对应名字</th>
+<th align="left">mac</th>
+<th align="left">Win/Linux</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">选择视图</td>
+<td align="left">select in any view</td>
+<td align="left">option + F1</td>
+<td align="left">alt + F1</td>
+</tr>
+<tr>
+<td align="left">扩大缩小选中范围</td>
+<td align="left">Extend Selection/Shrink Selection</td>
+<td align="left">option + UP/Down</td>
+<td align="left">ctrl + W + shift + W</td>
+</tr>
+</tbody></table>
+<h3 id="command-shift"><a href="#command-shift" class="headerlink" title="command + shift +"></a>command + shift +</h3><table>
+<thead>
+<tr>
+<th align="left">功能描述</th>
+<th align="left">keymap对应名字</th>
+<th align="left">mac</th>
+<th align="left">Win/Linux</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">窗口内所有代码折叠/展开</td>
+<td align="left">Collapse/Expand All</td>
+<td align="left">command + shift + 减号/加号</td>
+<td align="left">ctrl + shift + 减号/加号</td>
+</tr>
+<tr>
+<td align="left">拷贝文件路径</td>
+<td align="left">Copy Paths</td>
+<td align="left">command + shift + C</td>
+<td align="left">ctrl + shift + C</td>
+</tr>
+<tr>
+<td align="left">最近修改的文件</td>
+<td align="left">Recent edited file</td>
+<td align="left">Command + Shift + E</td>
+<td align="left">Ctrl + shift + enter</td>
+</tr>
+<tr>
+<td align="left">全路径查找</td>
+<td align="left">Find in Path</td>
+<td align="left">command + shift + F</td>
+<td align="left">ctrl + shift + F</td>
+</tr>
+<tr>
+<td align="left">查找文件</td>
+<td align="left">avigate/File</td>
+<td align="left">command + shift + O</td>
+<td align="left">ctrl + shift + N</td>
+</tr>
+<tr>
+<td align="left">全路径中替换</td>
+<td align="left">Replace in Path</td>
+<td align="left">command + shift + R</td>
+<td align="left">ctrl + shift + R</td>
+</tr>
+<tr>
+<td align="left">大小写转换</td>
+<td align="left">Toggle Case</td>
+<td align="left">command + shift + U</td>
+<td align="left">ctrl + shift + U</td>
+</tr>
+<tr>
+<td align="left">显示粘贴版历史</td>
+<td align="left">Paste from History</td>
+<td align="left">command + shift + V</td>
+<td align="left">ctrl + shift + V</td>
+</tr>
+<tr>
+<td align="left">移动代码块</td>
+<td align="left">Move Statement Up/Down</td>
+<td align="left">command + shift + down/up</td>
+<td align="left">ctrl + shift + down/up</td>
+</tr>
+<tr>
+<td align="left">代码补全</td>
+<td align="left">Complete Current Statement</td>
+<td align="left">command + shift + enter</td>
+<td align="left">ctrl + shift + enter</td>
+</tr>
+<tr>
+<td align="left">返回光标最后编辑位置</td>
+<td align="left">Last Edit Location</td>
+<td align="left">command + shift + delete</td>
+<td align="left">control + shift + Backspace</td>
+</tr>
+</tbody></table>
+<h3 id="command-option"><a href="#command-option" class="headerlink" title="command + option +"></a>command + option +</h3><table>
+<thead>
+<tr>
+<th align="left">功能描述</th>
+<th align="left">keymap对应名字</th>
+<th align="left">mac</th>
+<th align="left">Win/Linux</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">全局查找符号</td>
+<td align="left">略</td>
+<td align="left">command + option + O</td>
+<td align="left">略</td>
+</tr>
+<tr>
+<td align="left">格式化代码</td>
+<td align="left">Reformat Code</td>
+<td align="left">command + option + L</td>
+<td align="left">ctrl + alt + L</td>
+</tr>
+<tr>
+<td align="left">用代码模板包裹代码</td>
+<td align="left">surround with Live Template</td>
+<td align="left">command + option + J</td>
+<td align="left">ctrl + alt + J</td>
+</tr>
+<tr>
+<td align="left">if/try等包裹代码</td>
+<td align="left">Surround With..</td>
+<td align="left">command + option + T</td>
+<td align="left">ctrl + alt + T</td>
+</tr>
+<tr>
+<td align="left">多行注释</td>
+<td align="left">Code/Comment</td>
+<td align="left">command + option + /</td>
+<td align="left">ctrl + alt + /</td>
+</tr>
+<tr>
+<td align="left">抽取方法</td>
+<td align="left">Extract Method</td>
+<td align="left">command + option + M</td>
+<td align="left">control+alt+M</td>
+</tr>
+<tr>
+<td align="left">抽取变量</td>
+<td align="left">Extract Variable</td>
+<td align="left">command + option + V</td>
+<td align="left">control+alt+V</td>
+</tr>
+<tr>
+<td align="left">抽取字段</td>
+<td align="left">Extract Field</td>
+<td align="left">command + option + F</td>
+<td align="left">control+alt+F</td>
+</tr>
+<tr>
+<td align="left">抽取常量</td>
+<td align="left">Extract Constant</td>
+<td align="left">command + option + C</td>
+<td align="left">control+alt+C</td>
+</tr>
+<tr>
+<td align="left">抽取参数</td>
+<td align="left">Extract Parameter</td>
+<td align="left">command + option + P</td>
+<td align="left">control+alt+P</td>
+</tr>
+<tr>
+<td align="left">调到代码块首部/尾部</td>
+<td align="left">Move Caret To Code Block</td>
+<td align="left">Command + option +  [ 或者 ]</td>
+<td align="left">Control+[ 或者 ]</td>
+</tr>
+</tbody></table>
+<h3 id="option-shift"><a href="#option-shift" class="headerlink" title="option + shift +"></a>option + shift +</h3><table>
+<thead>
+<tr>
+<th align="left">功能描述</th>
+<th align="left">keymap对应名字</th>
+<th align="left">mac</th>
+<th align="left">Win/Linux</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">向下移动一行</td>
+<td align="left">Move Line Down</td>
+<td align="left">option + shift + Down</td>
+<td align="left">alt + shift + Down</td>
+</tr>
+<tr>
+<td align="left">向上移动一行</td>
+<td align="left">Move Line Up</td>
+<td align="left">option + shift + Up</td>
+<td align="left">alt + shift + Up</td>
+</tr>
+</tbody></table>
+<h3 id="control-option"><a href="#control-option" class="headerlink" title="control + option +"></a>control + option +</h3><table>
+<thead>
+<tr>
+<th align="left">功能描述</th>
+<th align="left">keymap对应名字</th>
+<th align="left">mac</th>
+<th align="left">Win/Linux</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">去除无效包引用</td>
+<td align="left">Optimize Imports</td>
+<td align="left">control + option + O</td>
+<td align="left">ctrl + alt + O</td>
+</tr>
+<tr>
+<td align="left">查找调用的位置</td>
+<td align="left">Call hierarchy</td>
+<td align="left">control + option + H</td>
+<td align="left">ctrl + alt + H</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/11/29/Mac%E4%B8%8AAndroid%20studio%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/" data-id="ckqm6kplf001lxxr5bkti2ea3" data-title="Android studio快捷捷总结" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0/" rel="tag">实习</a></li></ul>
+
     </footer>
   </div>
   
@@ -124,23 +1195,49 @@
   
 
 
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
+
 </section>
         
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%AD%A6%E4%B9%A0/">Java学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php%E5%AD%A6%E4%B9%A0/">php学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring%E5%AD%A6%E4%B9%A0/">spring学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ANR/" rel="tag">ANR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/" rel="tag">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" rel="tag">Android消息机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation/" rel="tag">Animation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/" rel="tag">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera%E5%BC%80%E5%8F%91/" rel="tag">Camera开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/" rel="tag">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/" rel="tag">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">Java内存机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%AE%B9%E5%99%A8/" rel="tag">Java容器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/" rel="tag">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecylerView/" rel="tag">RecylerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View%E5%B8%83%E5%B1%80/" rel="tag">View布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Window/" rel="tag">Window</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" rel="tag">apk反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring-boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87Offer/" rel="tag">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0/" rel="tag">实习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" rel="tag">文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%A1%E6%8B%9B/" rel="tag">校招</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" rel="tag">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" rel="tag">网络框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" rel="tag">自定义View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" rel="tag">项目总结</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ANR/" style="font-size: 10px;">ANR</a> <a href="/tags/Activity/" style="font-size: 12.5px;">Activity</a> <a href="/tags/Android/" style="font-size: 12.5px;">Android</a> <a href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Android消息机制</a> <a href="/tags/Animation/" style="font-size: 10px;">Animation</a> <a href="/tags/Bitmap/" style="font-size: 10px;">Bitmap</a> <a href="/tags/Camera%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Camera开发</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/HTTP/" style="font-size: 17.5px;">HTTP</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java内存机制</a> <a href="/tags/Java%E5%AE%B9%E5%99%A8/" style="font-size: 10px;">Java容器</a> <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 17.5px;">Java虚拟机</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Linux命令</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RecylerView/" style="font-size: 10px;">RecylerView</a> <a href="/tags/Retrofit/" style="font-size: 15px;">Retrofit</a> <a href="/tags/View%E5%B8%83%E5%B1%80/" style="font-size: 20px;">View布局</a> <a href="/tags/Window/" style="font-size: 10px;">Window</a> <a href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" style="font-size: 10px;">apk反编译</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring-boot</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/vim/" style="font-size: 12.5px;">vim</a> <a href="/tags/%E5%89%91%E6%8C%87Offer/" style="font-size: 10px;">剑指Offer</a> <a href="/tags/%E5%8F%8D%E5%B0%84/" style="font-size: 12.5px;">反射</a> <a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 12.5px;">实习</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" style="font-size: 10px;">文件下载</a> <a href="/tags/%E6%A0%A1%E6%8B%9B/" style="font-size: 17.5px;">校招</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 10px;">泛型</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" style="font-size: 15px;">类加载</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">网络框架</a> <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" style="font-size: 10px;">自定义View</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15px;">设计模式</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" style="font-size: 10px;">项目总结</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a></li></ul>
     </div>
   </div>
 
@@ -153,7 +1250,23 @@
       <ul>
         
           <li>
-            <a href="/2021/07/02/hello-world/">Hello World</a>
+            <a href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/">Mac终端常用快捷键总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/">关于php的empty函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">Spring常用注解</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/">使用.gitignore配置git忽略提交规则</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Mysql常用命令总结</a>
           </li>
         
       </ul>

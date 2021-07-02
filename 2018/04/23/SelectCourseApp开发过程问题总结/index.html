@@ -4,14 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Archives | Hexo</title>
+  <title>SelectCourseApp开发过程问题总结 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="Fragement的部署以及实现fragment效果的几种方法总结一下   Viewpager的使用   tools属性    getColor方法过时的解决方法   关于页面顶部标题栏和状态栏的操作方法，沉浸式状态栏(透明状态栏)    不同布局场景下的一些居中方法    不同的布局使用方法    PopupWindow的使用与一些定制化   Spinner的使用   RecycleView和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SelectCourseApp开发过程问题总结">
+<meta property="og:url" content="http://example.com/2018/04/23/SelectCourseApp%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Fragement的部署以及实现fragment效果的几种方法总结一下   Viewpager的使用   tools属性    getColor方法过时的解决方法   关于页面顶部标题栏和状态栏的操作方法，沉浸式状态栏(透明状态栏)    不同布局场景下的一些居中方法    不同的布局使用方法    PopupWindow的使用与一些定制化   Spinner的使用   RecycleView和">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-04-23T13:35:57.000Z">
+<meta property="article:modified_time" content="2021-07-02T10:14:18.904Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="项目总结">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -69,226 +74,118 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-07-06T14:05:32.000Z" itemprop="datePublished">Jul 6</time>
+        <section id="main"><article id="post-SelectCourseApp开发过程问题总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/23/SelectCourseApp%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2018-04-23T13:35:57.000Z" itemprop="datePublished">2018-04-23</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/">Mac终端常用快捷键总结</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      SelectCourseApp开发过程问题总结
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Fragement的部署以及实现fragment效果的几种方法总结一下</p>
+</blockquote>
+<blockquote>
+<p>Viewpager的使用</p>
+</blockquote>
+<blockquote>
+<p>tools属性</p>
+</blockquote>
+<blockquote>
+<p> getColor方法过时的解决方法</p>
+</blockquote>
+<blockquote>
+<p>关于页面顶部标题栏和状态栏的操作方法，沉浸式状态栏(透明状态栏)</p>
+</blockquote>
+<blockquote>
+<p> 不同布局场景下的一些居中方法</p>
+</blockquote>
+<blockquote>
+<p> 不同的布局使用方法</p>
+</blockquote>
+<blockquote>
+<p> PopupWindow的使用与一些定制化</p>
+</blockquote>
+<blockquote>
+<p>Spinner的使用</p>
+</blockquote>
+<blockquote>
+<p>RecycleView和ListView的底层原理</p>
+</blockquote>
+<blockquote>
+<p>使图片填满ImageView(比例问题)</p>
+</blockquote>
+<blockquote>
+<p>去掉窗口顶部的通知栏（从windows的角度）<br>顺便学习Android中windows相关的</p>
+</blockquote>
+<blockquote>
+<p>设置顶部通知栏的颜色（从windows的角度）</p>
+</blockquote>
+<blockquote>
+<p>去掉应用顶部的标题栏</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (getSupportActionBar() != <span class="keyword">null</span>)&#123;</span><br><span class="line">    getSupportActionBar().hide();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Fragment的使用总结</p>
+</blockquote>
+<blockquote>
+<p>怎么让一个Activity在点击返回按钮后不会再出现，比如登录Activity， SplashActivity</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/04/23/SelectCourseApp%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" data-id="ckqm6kpll0023xxr53ztb4atu" data-title="SelectCourseApp开发过程问题总结" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" rel="tag">项目总结</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/25/2018%E5%B9%B4%E5%AE%9E%E4%B9%A0%E6%98%A5%E6%8B%9B%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          2018年实习春招面试总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/18/Android-MVP%E5%88%9D%E4%BD%93%E9%AA%8C/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android学习笔记—MVP初体验</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-06-23T12:08:26.000Z" itemprop="datePublished">Jun 23</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/">关于php的empty函数</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-06-16T13:56:24.000Z" itemprop="datePublished">Jun 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">Spring常用注解</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-06-05T07:59:37.000Z" itemprop="datePublished">Jun 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/">使用.gitignore配置git忽略提交规则</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-06-05T01:22:47.000Z" itemprop="datePublished">Jun 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Mysql常用命令总结</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/30/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-05-30T08:29:20.000Z" itemprop="datePublished">May 30</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/30/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/">常用Linux命令学习</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/10/Java%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95%E4%BC%98%E5%8C%96/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-05-10T06:49:28.000Z" itemprop="datePublished">May 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/10/Java%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95%E4%BC%98%E5%8C%96/">Java大文件下载方法优化</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/16/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8vim%E5%87%BA%E7%8E%B0%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-04-16T11:32:24.000Z" itemprop="datePublished">Apr 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/16/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8vim%E5%87%BA%E7%8E%B0%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">Linux下使用vim出现中文乱码的解决方法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/01/09/%E5%8E%BB%E6%8E%89%E6%A0%87%E9%A2%98%E6%A0%8F%E6%88%96%E7%8A%B6%E6%80%81%E6%A0%8F%E4%B8%8E%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-01-09T08:26:42.000Z" itemprop="datePublished">Jan 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/09/%E5%8E%BB%E6%8E%89%E6%A0%87%E9%A2%98%E6%A0%8F%E6%88%96%E7%8A%B6%E6%80%81%E6%A0%8F%E4%B8%8E%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F/">去掉标题栏或状态栏与沉浸式状态栏</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/11/29/Mac%E4%B8%8AAndroid%20studio%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time class="dt-published" datetime="2018-11-29T09:52:07.000Z" itemprop="datePublished">Nov 29</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/29/Mac%E4%B8%8AAndroid%20studio%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/">Android studio快捷捷总结</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         

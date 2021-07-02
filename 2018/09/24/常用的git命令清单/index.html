@@ -4,14 +4,20 @@
   <meta charset="utf-8">
   
   
-  <title>Archives | Hexo</title>
+  <title>常用的git命令清单 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="一、新建代码库在当前目录新建一个Git代码库  git init  新建一个目录，将其初始化为Git代码库  git init [project-name]  下载一个项目和它的整个代码历史  git clone [url]  二、配置Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。 显示当前的Git配置  git config –list">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用的git命令清单">
+<meta property="og:url" content="http://example.com/2018/09/24/%E5%B8%B8%E7%94%A8%E7%9A%84git%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、新建代码库在当前目录新建一个Git代码库  git init  新建一个目录，将其初始化为Git代码库  git init [project-name]  下载一个项目和它的整个代码历史  git clone [url]  二、配置Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。 显示当前的Git配置  git config –list">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-09-24T09:27:12.000Z">
+<meta property="article:modified_time" content="2021-07-02T10:14:18.928Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Github">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -69,226 +75,375 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-07-06T14:05:32.000Z" itemprop="datePublished">Jul 6</time>
+        <section id="main"><article id="post-常用的git命令清单" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/09/24/%E5%B8%B8%E7%94%A8%E7%9A%84git%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95/" class="article-date">
+  <time class="dt-published" datetime="2018-09-24T09:27:12.000Z" itemprop="datePublished">2018-09-24</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/">Mac终端常用快捷键总结</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      常用的git命令清单
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="一、新建代码库"><a href="#一、新建代码库" class="headerlink" title="一、新建代码库"></a>一、新建代码库</h3><p>在当前目录新建一个Git代码库</p>
+<ul>
+<li>git init</li>
+</ul>
+<p>新建一个目录，将其初始化为Git代码库</p>
+<ul>
+<li>git init [project-name]</li>
+</ul>
+<p>下载一个项目和它的整个代码历史</p>
+<ul>
+<li>git clone [url]</li>
+</ul>
+<h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h3><p>Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。</p>
+<p>显示当前的Git配置</p>
+<ul>
+<li>git config –list</li>
+</ul>
+<p>编辑Git配置文件</p>
+<ul>
+<li>git config -e [–global]</li>
+</ul>
+<p>设置提交代码时的用户信息</p>
+<ul>
+<li>git config [–global] user.name “[name]”</li>
+<li>git config [–global] user.email “[email address]”</li>
+</ul>
+<h3 id="三、增加-删除文件"><a href="#三、增加-删除文件" class="headerlink" title="三、增加/删除文件"></a>三、增加/删除文件</h3><p>添加指定文件到暂存区</p>
+<ul>
+<li>git add [file1] [file2] …</li>
+</ul>
+<p>添加指定目录到暂存区，包括子目录</p>
+<ul>
+<li>git add [dir]</li>
+</ul>
+<p>添加当前目录的所有文件到暂存区</p>
+<ul>
+<li>git add .</li>
+</ul>
+<p>删除工作区文件，并且将这次删除放入暂存区</p>
+<ul>
+<li>git rm [file1] [file2] …</li>
+</ul>
+<p>停止追踪指定文件，但该文件会保留在工作区</p>
+<ul>
+<li>git rm –cached [file]</li>
+</ul>
+<p>改名文件，并且将这个改名放入暂存区</p>
+<ul>
+<li>git mv [file-original] [file-renamed]</li>
+</ul>
+<h3 id="四、代码提交"><a href="#四、代码提交" class="headerlink" title="四、代码提交"></a>四、代码提交</h3><p>提交暂存区到仓库区</p>
+<ul>
+<li>git commit -m [message]</li>
+</ul>
+<p>提交暂存区的指定文件到仓库区</p>
+<ul>
+<li>git commit [file1] [file2] … -m [message]</li>
+</ul>
+<p>提交工作区自上次commit之后的变化，直接到仓库区</p>
+<ul>
+<li>git commit -a</li>
+</ul>
+<p>提交时显示所有diff信息</p>
+<ul>
+<li>git commit -v</li>
+</ul>
+<p>使用一次新的commit，替代上一次提交，如果代码没有任何新变化，则用来改写上一次commit的提交信息</p>
+<ul>
+<li>git commit –amend -m [message]</li>
+</ul>
+<p>重做上一次commit，并包括指定文件的新变化</p>
+<ul>
+<li>git commit –amend …</li>
+</ul>
+<h3 id="五、分支"><a href="#五、分支" class="headerlink" title="五、分支"></a>五、分支</h3><p>列出所有本地分支</p>
+<ul>
+<li>git branch</li>
+</ul>
+<p>列出所有远程分支</p>
+<ul>
+<li>git branch -r</li>
+</ul>
+<p>列出所有本地分支和远程分支</p>
+<ul>
+<li>git branch -a</li>
+</ul>
+<p>新建一个分支，但依然停留在当前分支</p>
+<ul>
+<li>git branch [branch-name]</li>
+</ul>
+<p>新建一个分支，并切换到该分支</p>
+<ul>
+<li>git checkout -b [branch]</li>
+</ul>
+<p>新建一个分支，指向指定commit</p>
+<ul>
+<li>git branch [branch] [commit]</li>
+</ul>
+<p>新建一个分支，与指定的远程分支建立追踪关系</p>
+<ul>
+<li> git branch –track [branch] [remote-branch]</li>
+</ul>
+<p>切换到指定分支，并更新工作区</p>
+<ul>
+<li>git checkout [branch-name]</li>
+</ul>
+<p>建立追踪关系，在现有分支与指定的远程分支之间</p>
+<ul>
+<li>git branch –set-upstream [branch] [remote-branch]</li>
+</ul>
+<p>合并指定分支到当前分支</p>
+<ul>
+<li>git merge [branch]</li>
+</ul>
+<p>选择一个commit，合并进当前分支</p>
+<ul>
+<li>git cherry-pick [commit]</li>
+</ul>
+<p>删除分支</p>
+<ul>
+<li>git branch -d [branch-name]</li>
+</ul>
+<p>删除远程分支</p>
+<ul>
+<li><p>git push origin –delete</p>
+</li>
+<li><ul>
+<li>git branch -dr</li>
+</ul>
+</li>
+</ul>
+<p>###六、标签</p>
+<p>列出所有tag</p>
+<ul>
+<li> git tag</li>
+</ul>
+<p>新建一个tag在当前commit</p>
+<ul>
+<li>git tag [tag]</li>
+</ul>
+<p>新建一个tag在指定commit</p>
+<ul>
+<li>git tag [tag] [commit]</li>
+</ul>
+<p>查看tag信息</p>
+<ul>
+<li>git show [tag]</li>
+</ul>
+<p>提交指定tag</p>
+<ul>
+<li>git push [remote] [tag]</li>
+</ul>
+<p>提交所有tag</p>
+<ul>
+<li>git push [remote] –tags</li>
+</ul>
+<p>新建一个分支，指向某个tag</p>
+<ul>
+<li>git checkout -b [branch] [tag]</li>
+</ul>
+<h3 id="七、查看信息"><a href="#七、查看信息" class="headerlink" title="七、查看信息"></a>七、查看信息</h3><p>显示有变更的文件</p>
+<ul>
+<li>git status</li>
+</ul>
+<p>显示当前分支的版本历史</p>
+<ul>
+<li>git log</li>
+</ul>
+<p>显示commit历史，以及每次commit发生变更的文件</p>
+<ul>
+<li>git log –stat</li>
+</ul>
+<p>显示某个文件的版本历史，包括文件改名</p>
+<ul>
+<li><p>git log –follow [file]</p>
+</li>
+<li><p>git whatchanged [file]</p>
+</li>
+</ul>
+<p>显示指定文件相关的每一次diff</p>
+<ul>
+<li>git log -p [file]</li>
+</ul>
+<p>显示指定文件是什么人在什么时间修改过</p>
+<ul>
+<li>git blame [file]</li>
+</ul>
+<p>显示暂存区和工作区的差异</p>
+<ul>
+<li>git diff</li>
+</ul>
+<p>显示暂存区和上一个commit的差异</p>
+<ul>
+<li>git diff –cached []</li>
+</ul>
+<p>显示工作区与当前分支最新commit之间的差异</p>
+<ul>
+<li>git diff HEAD</li>
+</ul>
+<p>显示两次提交之间的差异</p>
+<ul>
+<li>git diff [first-branch]…[second-branch]</li>
+</ul>
+<p>显示某次提交的元数据和内容变化</p>
+<ul>
+<li>git show [commit]</li>
+</ul>
+<p>显示某次提交发生变化的文件</p>
+<ul>
+<li>git show –name-only [commit]</li>
+</ul>
+<p>显示某次提交时，某个文件的内容</p>
+<ul>
+<li>git show [commit]:[filename]</li>
+</ul>
+<p>显示当前分支的最近几次提交</p>
+<ul>
+<li>git reflog</li>
+</ul>
+<h3 id="八、远程同步"><a href="#八、远程同步" class="headerlink" title="八、远程同步"></a>八、远程同步</h3><p>下载远程仓库的所有变动</p>
+<ul>
+<li>git fetch [remote]</li>
+</ul>
+<p>显示所有远程仓库</p>
+<ul>
+<li>git remote -v</li>
+</ul>
+<p>显示某个远程仓库的信息</p>
+<ul>
+<li>git remote show [remote]</li>
+</ul>
+<p>增加一个新的远程仓库，并命名</p>
+<ul>
+<li>git remote add [shortname] [url]</li>
+</ul>
+<p>取回远程仓库的变化，并与本地分支合并</p>
+<ul>
+<li>git pull [remote] [branch]</li>
+</ul>
+<p>上传本地指定分支到远程仓库</p>
+<ul>
+<li>git push [remote] [branch]</li>
+</ul>
+<p>强行推送当前分支到远程仓库，即使有冲突</p>
+<ul>
+<li>git push [remote] –force</li>
+</ul>
+<p>推送所有分支到远程仓库</p>
+<ul>
+<li>git push [remote] –all</li>
+</ul>
+<h3 id="九、撤销"><a href="#九、撤销" class="headerlink" title="九、撤销"></a>九、撤销</h3><p>恢复暂存区的指定文件到工作区</p>
+<ul>
+<li>git checkout [file]</li>
+</ul>
+<p>恢复某个commit的指定文件到工作区</p>
+<ul>
+<li>git checkout [commit] [file]</li>
+</ul>
+<p>恢复上一个commit的所有文件到工作区</p>
+<ul>
+<li>git checkout .</li>
+</ul>
+<p>重置暂存区的指定文件，与上一次commit保持一致，但工作区不变</p>
+<ul>
+<li>git reset [file]</li>
+</ul>
+<p>重置暂存区与工作区，与上一次commit保持一致</p>
+<ul>
+<li>git reset –hard</li>
+</ul>
+<p>重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</p>
+<ul>
+<li>git reset [commit]</li>
+</ul>
+<p>重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</p>
+<ul>
+<li>git reset –hard [commit]</li>
+</ul>
+<p>重置当前HEAD为指定commit，但保持暂存区和工作区不变</p>
+<ul>
+<li>git reset –keep [commit]</li>
+</ul>
+<p>新建一个commit，用来撤销指定commit，后者的所有变化都将被前者抵消，并且应用到当前分支</p>
+<ul>
+<li>git revert [commit]</li>
+</ul>
+<h3 id="十、其他"><a href="#十、其他" class="headerlink" title="十、其他"></a>十、其他</h3><p>生成一个可供发布的压缩包</p>
+<ul>
+<li>git archive</li>
+</ul>
+<p>备份当前工作区的内容</p>
+<ul>
+<li>git stash</li>
+</ul>
+<p>从Git栈中读取最近一次保存的内容，恢复工作区的相关内容</p>
+<ul>
+<li>git stash pop</li>
+</ul>
+<p>显示Git栈内的所有备份</p>
+<ul>
+<li>git stash list</li>
+</ul>
+<p>清空Git栈</p>
+<ul>
+<li>git stash clear</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/09/24/%E5%B8%B8%E7%94%A8%E7%9A%84git%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95/" data-id="ckqm6kpmf0048xxr52t8lchjn" data-title="常用的git命令清单" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/" rel="tag">Github</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/30/Android%E5%BC%80%E5%8F%912018%E5%B9%B4%E4%BA%92%E8%81%94%E7%BD%91%E7%A7%8B%E6%8B%9B%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android开发2018年互联网秋招总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/22/Android%E7%BB%98%E5%9B%BE%E4%B9%8BPaint%E5%92%8CCanvas%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android绘图之Paint和Canvas的使用方法</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-06-23T12:08:26.000Z" itemprop="datePublished">Jun 23</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/">关于php的empty函数</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-06-16T13:56:24.000Z" itemprop="datePublished">Jun 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">Spring常用注解</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-06-05T07:59:37.000Z" itemprop="datePublished">Jun 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/">使用.gitignore配置git忽略提交规则</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-06-05T01:22:47.000Z" itemprop="datePublished">Jun 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Mysql常用命令总结</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/30/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-05-30T08:29:20.000Z" itemprop="datePublished">May 30</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/30/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/">常用Linux命令学习</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/10/Java%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95%E4%BC%98%E5%8C%96/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-05-10T06:49:28.000Z" itemprop="datePublished">May 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/10/Java%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95%E4%BC%98%E5%8C%96/">Java大文件下载方法优化</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/16/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8vim%E5%87%BA%E7%8E%B0%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-04-16T11:32:24.000Z" itemprop="datePublished">Apr 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/16/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8vim%E5%87%BA%E7%8E%B0%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">Linux下使用vim出现中文乱码的解决方法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/01/09/%E5%8E%BB%E6%8E%89%E6%A0%87%E9%A2%98%E6%A0%8F%E6%88%96%E7%8A%B6%E6%80%81%E6%A0%8F%E4%B8%8E%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F/" class="archive-article-date">
-  <time class="dt-published" datetime="2019-01-09T08:26:42.000Z" itemprop="datePublished">Jan 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/09/%E5%8E%BB%E6%8E%89%E6%A0%87%E9%A2%98%E6%A0%8F%E6%88%96%E7%8A%B6%E6%80%81%E6%A0%8F%E4%B8%8E%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F/">去掉标题栏或状态栏与沉浸式状态栏</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/11/29/Mac%E4%B8%8AAndroid%20studio%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  <time class="dt-published" datetime="2018-11-29T09:52:07.000Z" itemprop="datePublished">Nov 29</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/29/Mac%E4%B8%8AAndroid%20studio%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/">Android studio快捷捷总结</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         

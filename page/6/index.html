@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-SelectCourseApp开发过程问题总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/23/SelectCourseApp%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2018-04-23T13:35:57.000Z" itemprop="datePublished">2018-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/23/SelectCourseApp%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">SelectCourseApp开发过程问题总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Fragement的部署以及实现fragment效果的几种方法总结一下</p>
+</blockquote>
+<blockquote>
+<p>Viewpager的使用</p>
+</blockquote>
+<blockquote>
+<p>tools属性</p>
+</blockquote>
+<blockquote>
+<p> getColor方法过时的解决方法</p>
+</blockquote>
+<blockquote>
+<p>关于页面顶部标题栏和状态栏的操作方法，沉浸式状态栏(透明状态栏)</p>
+</blockquote>
+<blockquote>
+<p> 不同布局场景下的一些居中方法</p>
+</blockquote>
+<blockquote>
+<p> 不同的布局使用方法</p>
+</blockquote>
+<blockquote>
+<p> PopupWindow的使用与一些定制化</p>
+</blockquote>
+<blockquote>
+<p>Spinner的使用</p>
+</blockquote>
+<blockquote>
+<p>RecycleView和ListView的底层原理</p>
+</blockquote>
+<blockquote>
+<p>使图片填满ImageView(比例问题)</p>
+</blockquote>
+<blockquote>
+<p>去掉窗口顶部的通知栏（从windows的角度）<br>顺便学习Android中windows相关的</p>
+</blockquote>
+<blockquote>
+<p>设置顶部通知栏的颜色（从windows的角度）</p>
+</blockquote>
+<blockquote>
+<p>去掉应用顶部的标题栏</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (getSupportActionBar() != <span class="keyword">null</span>)&#123;</span><br><span class="line">    getSupportActionBar().hide();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Fragment的使用总结</p>
+</blockquote>
+<blockquote>
+<p>怎么让一个Activity在点击返回按钮后不会再出现，比如登录Activity， SplashActivity</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/04/23/SelectCourseApp%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" data-id="ckqm6kpll0023xxr53ztb4atu" data-title="SelectCourseApp开发过程问题总结" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" rel="tag">项目总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Android-MVP初体验" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/18/Android-MVP%E5%88%9D%E4%BD%93%E9%AA%8C/" class="article-date">
+  <time class="dt-published" datetime="2018-04-17T17:27:18.000Z" itemprop="datePublished">2018-04-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/18/Android-MVP%E5%88%9D%E4%BD%93%E9%AA%8C/">Android学习笔记—MVP初体验</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>最近正在学习MVP模式，在学习了相关的知识之后就尝试着对之前的一些项目使用MVP模式进行重构。在这个过程中有一些个人感悟，在这里记录一下这次尝试中自己的一些想法、遇到的问题以及解决思路。最后在贴上重构前以及重构后的代码版本，方便对比学习。因为这是自己第一次尝试着使用MVP模式，应该一些地方自己理解的不是很深刻，肯定有很多需要改进的地方，对MVP的一些特性暂时理解不到。</p>
+<h3 id="MVP简单介绍"><a href="#MVP简单介绍" class="headerlink" title="MVP简单介绍"></a>MVP简单介绍</h3><p>MVC模式想必大家已经比较熟悉了，之前在做web应用开发的时候就已经接触过了。在学习Android的时候，使用AS开发项目一般都是使用MVC模式的。但是随着开发的深入，会发现Activity类会越来越臃肿，在Activity中实现的逻辑越来越复杂，有时候甚至会把业务逻辑，数据请求等全部放在Activity中实现。即使你对里面使用到的函数有很好的命名规范，但是一段时间后你再回来看甚至看不明白这个类，这个函数有什么用。</p>
+<p>这个时候MVP模式就显得很有用了，它可以把逻辑关系里的非常顺，条理非常清晰，MVP模式对各个层的任务有非常明确的分配。所以学习MVP模式很重要的一点个人感觉就是了解各个层的具体任务，明白各个层具体是干嘛的，这样就能够将功能进行有效的划分，这也是一个初学者的首要任务吧。</p>
+<p>在介绍各个层之前有必要介绍另外一个重要的概念—接口。Model、Presenter和View都被设置成为接口的形式。至于为什么要全部设置为接口而不直接设成类，个人觉得这样更符合Java面向抽象的设计思想，一个接口可以有很多个具体实现的类，实现方法根据具体的类而定；另外一个原因我想应该是根据接口的特性，一个类可以实现多个接口，因为存在一个类中要使用多个类中的方法，而接口可以更好地满足这一点。</p>
+<p><strong>Model层</strong></p>
+<p>我最开始以为model层就放一些bean类就好了，后来发现其实不是。我认为model层更准确的叫法叫data层，是用来和数据打交道的，比如请求数据，处理数据的。当你确定好有哪些和数据相关的方法之后，就可以在model层接口中声明相应的函数，然后根据函数的返回情况设置好相应的回调函数。然后在Presenter层会获得当前model接口的一个引用，这样就能调用接口的方法进行数据处理了。</p>
+<p>一个访问网络请求数据的接口实现如下：</p>
+<p>根据用户名访问网络请求数据，回调函数接口为GetUserInfoCallback</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.duang1996.githubfetcher.Main.model;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by duang1996 on 2018/4/17.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IMainModel</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getUserInfo</span><span class="params">(String userName, GetUserInfoCallback getUserInfoCallback)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>回调函数的实现，因为我是使用Retrofit请求数据的，这里返回情况有三种</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.duang1996.githubfetcher.Main.model;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by duang1996 on 2018/4/17.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GetUserInfoCallback</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">GetSuccess</span><span class="params">(Map&lt;String, Object&gt; tem)</span></span>;    <span class="comment">// 对应于onSuccess()</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">GetComplete</span><span class="params">()</span></span>;                          <span class="comment">// 对应于onNext</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">GetFailed</span><span class="params">()</span></span>;                            <span class="comment">//对应于onError</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现model接口，实现了具体的方法，用来实例化接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainModel</span> <span class="keyword">implements</span> <span class="title">IMainModel</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> GitHubService gitHubService = <span class="keyword">new</span> ServiceFactory().getGitHubService();;</span><br><span class="line">    <span class="keyword">private</span> Subscriber&lt;User&gt; subscriber;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUserInfo</span><span class="params">(String userName, <span class="keyword">final</span> GetUserInfoCallback getUserInfoCallback)</span> </span>&#123;</span><br><span class="line">        subscriber = <span class="keyword">new</span> Subscriber&lt;User&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                getUserInfoCallback.GetComplete();   <span class="comment">//调动回调函数接口中的方法，下同</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">                getUserInfoCallback.GetFailed();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">                Map&lt;String, Object&gt; tem = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line">                tem.put(<span class="string">&quot;name&quot;</span>, user.getLogin());</span><br><span class="line">                tem.put(<span class="string">&quot;id&quot;</span>, <span class="string">&quot;id: &quot;</span> + user.getId());</span><br><span class="line">                tem.put(<span class="string">&quot;blog&quot;</span>, <span class="string">&quot;blog: &quot;</span> + user.getBlog());</span><br><span class="line">                getUserInfoCallback.GetSuccess(tem);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        gitHubService.getUser(userName)</span><br><span class="line">                .subscribeOn(Schedulers.io())</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .subscribe(subscriber);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>View层</strong><br>View层用来处理UI界面相关的逻辑，作用效果是改变UI视图，一般这个接口的方法最开始不太好定义，因为不知道具体有哪些地方需要更改UI，不过不用着急，有个笨办法，当你需要一个就定义一个。不过这种方法对于接口的复用不太友好，而复用又是MVP很重要的一个特性。当你水平够高了，项目经验足够丰富的时候就可以一眼看穿，事先定义好啦~</p>
+<p>继续来样例，View接口的定义</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.duang1996.githubfetcher.Main.view;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by duang1996 on 2018/4/17.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IMainView</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showProcessBar</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hideProcessBar</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">toRepoActivity</span><span class="params">(String userName)</span></span>;   <span class="comment">//其实这个方法是否放在这儿还有待考虑</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">notifyItemInserted</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>View接口的实现：<br>看网上相关的教程不难发现。View接口的具体实现是在Activity中操作，我刚开始看到的时候还在想，为什么View接口的不单独新建一个类来实现View接口中的方法呢，凭什么其他两种接口就可以有单独的类来实现就View就没有呢？你们先想一下能够想到答案吗？</p>
+<p>哈哈，机智的你应该已经想到了。我的理解是这样的。首先，View层是用来干嘛的，是用来更新UI的，准确的说是用来改变布局控件的外观的，那这些控件是在哪儿实例化的呢，就是在Activity中，所以View接口是在activity中实现的，方便方法直接访问这些控件。</p>
+<p>说完了就看一下view接口的具体实现吧</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> <span class="keyword">implements</span> <span class="title">IMainView</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> EditText input;</span><br><span class="line">    <span class="keyword">private</span> Button clearBtn;</span><br><span class="line">    <span class="keyword">private</span> Button fetchBtn;</span><br><span class="line">    <span class="keyword">private</span> ProgressBar progressBar;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> RecyclerView usersView;</span><br><span class="line">    <span class="keyword">private</span> CardAdapter cardAdapter;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MainPresenterCompl mainPresenterCompl;  <span class="comment">//获取一个继承自presenter接口的实例</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         *初始化元素</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        initViews();</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	......</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showProcessBar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        progressBar.setVisibility(View.VISIBLE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hideProcessBar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        progressBar.setVisibility(View.GONE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">toRepoActivity</span><span class="params">(String userName)</span></span>&#123;</span><br><span class="line">        Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, RepoActivity.class);</span><br><span class="line">        intent.putExtra(<span class="string">&quot;login&quot;</span>, userName);</span><br><span class="line">        startActivity(intent);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyItemInserted</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        cardAdapter.notifyItemInserted(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Presenter层"><a href="#Presenter层" class="headerlink" title="Presenter层"></a>Presenter层</h3><p>Presenter是Model和View之间交互的桥梁，我的理解是将model层返回的数据传递给View层，然后更新UI界面，此外还可以收到view层UI上的反馈命令后分发处理逻辑，充当一个业务逻辑层的额角色</p>
+<p>一个Presenter接口定义如下，里面的函数包括一些业务逻辑函数以及对model层函数的包装</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.duang1996.githubfetcher.Main.presenter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by duang1996 on 2018/4/17.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IMainPresenter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getUserInfo</span><span class="params">(String str)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setClick</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setLongClick</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">destorySubscription</span><span class="params">()</span></span>;</span><br><span class="line">    List&lt;Map&lt;String, Object&gt;&gt; getUserList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>presenter接口的具体实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//view 与model之间的桥梁</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainPresenterCompl</span> <span class="keyword">implements</span> <span class="title">IMainPresenter</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> IMainModel iMainModel;  <span class="comment">// 获取model接口的引用</span></span><br><span class="line">    <span class="keyword">private</span> IMainView iMainView;  <span class="comment">// 获取view接口的引用</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Map&lt;String, Object&gt;&gt; userList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MainPresenterCompl</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.iMainModel = <span class="keyword">new</span> MainModel();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//因为要获取Activity的引用，结合下面的方法可以防止引用空指针</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attachView</span><span class="params">(IMainView iMainView)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.iMainView = iMainView;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isViewAttached</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> iMainView != <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 解除引用，防止内存泄漏</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">detachView</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">this</span>.iMainView= <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUserInfo</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isViewAttached()) &#123;</span><br><span class="line">            iMainView.showProcessBar();</span><br><span class="line">            iMainModel.getUserInfo(str, <span class="keyword">new</span> GetUserInfoCallback() &#123;  </span><br><span class="line">			    <span class="comment">//model 层中回调接口的具体实现</span></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetSuccess</span><span class="params">(Map&lt;String, Object&gt; tem)</span> </span>&#123;</span><br><span class="line">                    userList.add(tem);</span><br><span class="line">                    iMainView.notifyItemInserted(userList.size() - <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    iMainView.hideProcessBar();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetFailed</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setClick</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isViewAttached()) &#123;</span><br><span class="line">            Map&lt;String, Object&gt; tem = userList.get(i);</span><br><span class="line">            String login = tem.get(<span class="string">&quot;name&quot;</span>).toString();</span><br><span class="line">            iMainView.toRepoActivity(login);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLongClick</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isViewAttached()) &#123;</span><br><span class="line">            userList.remove(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isViewAttached()) &#123;</span><br><span class="line">            userList.clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Map&lt;String, Object&gt;&gt; getUserList() &#123;</span><br><span class="line">        <span class="keyword">if</span>(isViewAttached()) &#123;</span><br><span class="line">            <span class="keyword">return</span> userList;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destorySubscription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isViewAttached()) &#123;</span><br><span class="line">            iMainModel.destorySubscription();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="MVP各层之间的引用关系"><a href="#MVP各层之间的引用关系" class="headerlink" title="MVP各层之间的引用关系"></a>MVP各层之间的引用关系</h3><p><img src="http://dengw.xyz/hexo-blog/180420/HGCGE61a88.png" alt="层关系引用图"><br><strong>Presenterc层</strong><br>Presenter持有model接口和view接口的引用，这样也很好理解，Presenter充当一个桥梁的角色，肯定要能够使用到两个接口中的方法</p>
+<p><strong>View层</strong><br>View层持有presenter层的接口，presenter层需要处理一些UI界面上的业务逻辑，因此将presenter接口暴露给view层方便调用。</p>
+<p>可能初学的时候大家会觉得presenter层和view层互相持有对方的接口有一点绕，可以按照下面的这个思路来理解。</p>
+<p>Model层获取到数据返回给Prensenter层，这时候需要更新UI，然后根据Presenter中引用的View接口，调用View接口中的相应方法，这是presenter层到view层。<br>当View层上获取一些逻辑命名，比如button被点击了，这个时候通过View层中引用的Presenter接口，调用presenter接口中定义相关的函数，这是view层到presenter层。</p>
+<h3 id="使用对比"><a href="#使用对比" class="headerlink" title="使用对比"></a>使用对比</h3><p>下面是使用MVP模式和不适用MVP模式对同一个项目的两种实现，完整的代码：<br><a target="_blank" rel="noopener" href="https://github.com/duang0626/GithubFetcher/tree/7bd31479901f9c0163f707e8e3e91282b5bbb180">使用MVP模式重构之前的版本</a><br><a target="_blank" rel="noopener" href="https://github.com/duang0626/GithubFetcher">使用MVP模式重构之后的版本</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/04/18/Android-MVP%E5%88%9D%E4%BD%93%E9%AA%8C/" data-id="ckqm6kpks0007xxr5359c2p0a" data-title="Android学习笔记—MVP初体验" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MVP/" rel="tag">MVP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Retrofit2.0完全解读（三）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/03/31/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%B8%89%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2018-03-31T07:44:13.000Z" itemprop="datePublished">2018-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/03/31/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%B8%89%EF%BC%89/">Retrofit2.0完全解读（三）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在前面一篇文章中介绍了Retrofit的快速使用，根据这些介绍就可以搭建一个简单的Demo来练练手了。但是这些对了掌握Retrofit来说当然是远远不够，下面就详细地讲解一下在步骤中一些很重要的东西吧。</p>
+<h2 id="依赖添加"><a href="#依赖添加" class="headerlink" title="依赖添加"></a>依赖添加</h2><p>Retrofit 2.0以后的版本已经默认使用OkHttp作为作为HTTP 连接接口，在之前的版本是可以选择的。所以在之前的版本里面，如果想要使用OkHttp，就必须要像下面这样把OkHttp的依赖也添加到依赖文件里面：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    ...</span><br><span class="line">    compile <span class="string">&#x27;com.squareup.retrofit2:retrofit:2.0.2&#x27;</span></span><br><span class="line"></span><br><span class="line">    compile <span class="string">&#x27;com.squareup.okhttp3:okhttp:3.1.2&#x27;</span></span><br><span class="line">	</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>但是在Retrofit 2.0中，已经自动为OkHttp设置了依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.squareup.okhttp&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;okhttp&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+<p>所以在依赖文件只需要添加Retrofit的依赖即可:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    ...</span><br><span class="line">    implementation &#x27;com.squareup.retrofit2:retrofit:2.3.0&#x27;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>当然一般我们都会集合Gson使用，有时候还会使用RxJava，这些也要添加依赖的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    ...</span><br><span class="line">    implementation &#x27;com.squareup.retrofit2:retrofit:2.3.0&#x27;</span><br><span class="line">    implementation &#x27;com.squareup.retrofit2:adapter-rxjava:2.3.0&#x27;</span><br><span class="line">    implementation &#x27;com.squareup.retrofit2:converter-gson:2.3.0&#x27;</span><br><span class="line"></span><br><span class="line">    implementation &#x27;io.reactivex:rxandroid:1.2.1&#x27;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="接口创建"><a href="#接口创建" class="headerlink" title="接口创建"></a>接口创建</h2><p>官方给的是这样的一个样例，看着简单，但是这里面却有很多要说</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GitHubService</span> </span>&#123;</span><br><span class="line">  <span class="meta">@GET(&quot;users/&#123;user&#125;/repos&quot;)</span></span><br><span class="line">  Call&lt;List&lt;Repo&gt;&gt; listRepos(<span class="meta">@Path(&quot;user&quot;)</span> String user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到在接口设置这儿有很多的注解类型，Retrofit2.0 中有三种类型的注解，分别是：网络请求方法、标记类、网络请求参数。</p>
+<h3 id="网络请求方法"><a href="#网络请求方法" class="headerlink" title="网络请求方法"></a>网络请求方法</h3><p>这儿对应Http request的请求类型，上面示范代码中的<code>@Get</code>就是网络请求方法的一种，不同的注解代表不同的操作，Http请求方法有以下几种，其中，除HTTP以外都对应了HTTP标准中的请求方法：</p>
+<p><img src="http://dengw.xyz/hexo-blog/180331/Hci6kla12g.png" alt="HTTP请求方法注解"></p>
+<p>对于每种方法的作用这里就不详细的介绍，具体的讲一下每一种请求类型在这儿的使用方法。</p>
+<ul>
+<li>@GET、@POST、@PUT、@DELETE、@HEAD、@Path、@HEAD、@OPTIONS</li>
+</ul>
+<p>这些方法都是HTTP的请求方法，它们的使用方法很类似，都可以以下面这样的形式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@XXX(path)</span></span><br><span class="line"></span><br><span class="line">比如：</span><br><span class="line"><span class="meta">@GET(&quot;users/list&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@POST(&quot;users/new&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@PUT(&quot;user/photo&quot;)</span></span><br></pre></td></tr></table></figure>
+<p>说到这儿了，就很有必要讲一下Retrofit2.0 的URL组成了。一般都是由两部分组成: baseUrl + path， 其中baseUrl是在创建Retrofit2.0 实例时设置的，path就是上面请求方法中括号中的path。组合的规则如下：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>具体的使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>path = 完整的Url</td>
+<td>Url =  <a target="_blank" rel="noopener" href="https://api.github.com/users/list">https://api.github.com/users/list</a><br>path =   <a target="_blank" rel="noopener" href="https://api.github.com/users/list">https://api.github.com/users/list</a><br>baseUrl不设置</td>
+</tr>
+<tr>
+<td>path = 绝对路径</td>
+<td>Url =  <a target="_blank" rel="noopener" href="https://api.github.com/users/list">https://api.github.com/users/list</a><br>path = /users/list<br>baseUrl = <a target="_blank" rel="noopener" href="https://api.github.com/a/b">https://api.github.com/a/b</a></td>
+</tr>
+<tr>
+<td>path =  相对路径<br>baseUrl = 目录形式</td>
+<td>Url =  <a target="_blank" rel="noopener" href="https://api.github.com/users/list">https://api.github.com/users/list</a><br>path = users/list<br>baseUrl = <a target="_blank" rel="noopener" href="https://api.github.com/">https://api.github.com/</a></td>
+</tr>
+</tbody></table>
+<p>一种比较好的定义形式是第三种，即</p>
+<blockquote>
+<p>Base URL: 总是以 /结尾<br>@Url: 不要以 / 开头</p>
+</blockquote>
+<ul>
+<li>HTTP</li>
+<li>作用：替换上面提到的七种注解 及 更多功能拓展</li>
+<li>具体使用：通过属性method、path、hasBody进行设置</li>
+</ul>
+<p>例如，下面两段代码等价：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@GET(&quot;users/&#123;user&#125;&quot;)</span></span><br><span class="line"> <span class="function">Observable&lt;User&gt; <span class="title">getUser</span><span class="params">(<span class="meta">@Path(&quot;user&quot;)</span> String user)</span></span>;</span><br><span class="line">	</span><br><span class="line"><span class="comment">//使用@HTTP替代@GET</span></span><br><span class="line"><span class="meta">@HTTP(method=&quot;GET&quot;, path=&quot;users/&#123;user&#125;&quot;, hasBody = false)</span></span><br><span class="line"> <span class="function">Observable&lt;User&gt; <span class="title">getUser</span><span class="params">(<span class="meta">@Path(&quot;user&quot;)</span> String user)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>method 表示请求的方法，区分大小写</li>
+<li>path表示路径</li>
+<li>hasBody表示是否有请求体</li>
+</ul>
+<h3 id="标记"><a href="#标记" class="headerlink" title="标记"></a>标记</h3><p><img src="http://dengw.xyz/hexo-blog/180331/LB9HF0e2ak.png" alt="标记类注解"></p>
+<p>@FormUrlEncoded</p>
+<p>作用：表示发送form-encoded的数据<br>每个键值对需要用@Filed来注解键名，随后的对象需要提供值。</p>
+<p>@Multipart</p>
+<p>作用：表示发送form-encoded的数据（适用于 有文件 上传的场景）<br>每个键值对需要用@Part来注解键名，随后的对象需要提供值。 </p>
+<p>@Streaming</p>
+<p>如果下载一个非常大的文件，Retrofit会试图将整个文件读进内存。为了避免这种现象的发生，我们添加了一个特殊的注解来声明请求。</p>
+<p>声明@Streaming并不是意味着你需要观察一个Netflix文件。它意味着立刻传递字节码，而不需要把整个文件读进内存。值得注意的是，如果你使用了@Streaming，并且依然使用以上的代码片段来进行处理。Android将会抛出android.os.NetworkOnMainThreadException异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> FormUrlEncoded&#125; 表明是一个表单格式的请求（Content-Type:application/x-www-form-urlencoded）</span></span><br><span class="line"><span class="comment"> * &lt;code&gt;Field(&quot;username&quot;)&lt;/code&gt; 表示将后面的 &lt;code&gt;String name&lt;/code&gt; 中name的取值作为 username 的值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line"><span class="meta">@FormUrlEncoded</span></span><br><span class="line"><span class="function">Call&lt;ResponseBody&gt; <span class="title">testFormUrlEncoded1</span><span class="params">(<span class="meta">@Field(&quot;username&quot;)</span> String name, <span class="meta">@Field(&quot;age&quot;)</span> <span class="keyword">int</span> age)</span></span>;</span><br><span class="line">		</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> Part&#125; 后面支持三种类型，&#123;<span class="doctag">@link</span> RequestBody&#125;、&#123;<span class="doctag">@link</span> okhttp3.MultipartBody.Part&#125; 、任意类型</span></span><br><span class="line"><span class="comment"> * 除 &#123;<span class="doctag">@link</span> okhttp3.MultipartBody.Part&#125; 以外，其它类型都必须带上表单字段(&#123;<span class="doctag">@link</span> okhttp3.MultipartBody.Part&#125; 中已经包含了表单字段的信息)，</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line"><span class="meta">@Multipart</span></span><br><span class="line"><span class="function">Call&lt;ResponseBody&gt; <span class="title">testFileUpload1</span><span class="params">(<span class="meta">@Part(&quot;name&quot;)</span> RequestBody name, <span class="meta">@Part(&quot;age&quot;)</span> RequestBody age, <span class="meta">@Part</span> MultipartBody.Part file)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="网络请求参数"><a href="#网络请求参数" class="headerlink" title="网络请求参数"></a>网络请求参数</h3><p><img src="http://dengw.xyz/hexo-blog/180331/mbLCdbcdId.png" alt="参数类注解"></p>
+<ul>
+<li>@Header &amp; @Headers</li>
+</ul>
+<p>开始这部分内容之前可以先了解一下Http的请求头。</p>
+<blockquote>
+<p>作用：添加请求头 &amp;添加不固定的请求头</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @Header</span></span><br><span class="line"><span class="meta">@GET(&quot;user&quot;)</span></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">getUser</span><span class="params">(<span class="meta">@Header(&quot;Authorization&quot;)</span> String authorization)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// @Headers</span></span></span><br><span class="line"><span class="function">@<span class="title">Headers</span><span class="params">(<span class="string">&quot;Authorization: authorization&quot;</span>)</span></span></span><br><span class="line"><span class="function">@<span class="title">GET</span><span class="params">(<span class="string">&quot;user&quot;</span>)</span></span></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">getUser</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 以上的效果是一致的。</span></span></span><br><span class="line"><span class="function"><span class="comment">// 区别在于使用场景和使用方式</span></span></span><br><span class="line"><span class="function"><span class="comment">// 1. 使用场景：@Header用于添加不固定的请求头，@Headers用于添加固定的请求头</span></span></span><br><span class="line"><span class="function"><span class="comment">// 2. 使用方式：@Header作用于方法的参数；@Headers作用于方法</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>@Body</li>
+</ul>
+<blockquote>
+<p>作用：以 Post方式 传递 自定义数据类型 给服务器<br>特别注意：如果提交的是一个Map，那么作用相当于 @Field </p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@POST(&quot;blog&quot;)</span></span><br><span class="line">Call&lt;Result&lt;Blog&gt;&gt; createBlog(<span class="meta">@Body</span> Blog blog);</span><br></pre></td></tr></table></figure>
+
+<p>被@Body注解的的Blog将会被Gson转换成RequestBody发送到服务器。</p>
+<p>具体使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BlogService service = retrofit.create(BlogService.class);</span><br><span class="line">Blog blog = <span class="keyword">new</span> Blog();</span><br><span class="line">blog.content = <span class="string">&quot;新建的Blog&quot;</span>;</span><br><span class="line">blog.title = <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">blog.author = <span class="string">&quot;怪盗kidou&quot;</span>;</span><br><span class="line">Call&lt;Result&lt;Blog&gt;&gt; call = service.createBlog(blog);</span><br></pre></td></tr></table></figure>
+
+<p>服务器收到的数据：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Result&#123;code=<span class="number">200</span>, msg=<span class="string">&#x27;OK&#x27;</span>, data=Blog&#123;id=<span class="number">20</span>, date=<span class="string">&#x27;2016-04-21 05:29:58&#x27;</span>, author=<span class="string">&#x27;怪盗kidou&#x27;</span>, title=<span class="string">&#x27;测试&#x27;</span>, content=<span class="string">&#x27;新建的Blog&#x27;</span>&#125;, count=<span class="number">0</span>, page=<span class="number">0</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>@Field &amp; @FieldMap<blockquote>
+<p>作用：发送 Post请求 时提交请求的表单字段<br>具体使用：与 @FormUrlEncoded 注解配合使用</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GetRequest_Interface</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *表明是一个表单格式的请求（Content-Type:application/x-www-form-urlencoded）</span></span><br><span class="line"><span class="comment">     * &lt;code&gt;Field(&quot;username&quot;)&lt;/code&gt; 表示将后面的 &lt;code&gt;String name&lt;/code&gt; 中name的取值作为 username 的值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line">    <span class="meta">@FormUrlEncoded</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">testFormUrlEncoded1</span><span class="params">(<span class="meta">@Field(&quot;username&quot;)</span> String name, <span class="meta">@Field(&quot;age&quot;)</span> <span class="keyword">int</span> age)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">      * Map的key作为表单的键</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line">    <span class="meta">@FormUrlEncoded</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">testFormUrlEncoded2</span><span class="params">(<span class="meta">@FieldMap</span> Map&lt;String, Object&gt; map)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体使用</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// @Field</span></span><br><span class="line">    Call&lt;ResponseBody&gt; call1 = service.testFormUrlEncoded1(<span class="string">&quot;Carson&quot;</span>, <span class="number">24</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// @FieldMap</span></span><br><span class="line">    <span class="comment">// 实现的效果与上面相同，但要传入Map</span></span><br><span class="line">    Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;Carson&quot;</span>);</span><br><span class="line">    map.put(<span class="string">&quot;age&quot;</span>, <span class="number">24</span>);</span><br><span class="line">    Call&lt;ResponseBody&gt; call2 = service.testFormUrlEncoded2(map);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> @Part &amp; @PartMap<blockquote>
+<p>作用：发送 Post请求 时提交请求的表单字段<br>与@Field的区别：功能相同，但携带的参数类型更加丰富，包括数据流，所以适用于 有文件上传 的场景</p>
+</blockquote>
+</li>
+</ul>
+<p>具体使用：与 @Multipart 注解配合使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GetRequest_Interface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &#123;<span class="doctag">@link</span> Part&#125; 后面支持三种类型，&#123;<span class="doctag">@link</span> RequestBody&#125;、&#123;<span class="doctag">@link</span> okhttp3.MultipartBody.Part&#125; 、任意类型</span></span><br><span class="line"><span class="comment">     * 除 &#123;<span class="doctag">@link</span> okhttp3.MultipartBody.Part&#125; 以外，其它类型都必须带上表单字段(&#123;<span class="doctag">@link</span> okhttp3.MultipartBody.Part&#125; 中已经包含了表单字段的信息)，</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line">    <span class="meta">@Multipart</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">testFileUpload1</span><span class="params">(<span class="meta">@Part(&quot;name&quot;)</span> RequestBody name, <span class="meta">@Part(&quot;age&quot;)</span> RequestBody age, <span class="meta">@Part</span> MultipartBody.Part file)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * PartMap 注解支持一个Map作为参数，支持 &#123;<span class="doctag">@link</span> RequestBody &#125; 类型，</span></span><br><span class="line"><span class="comment">     * 如果有其它的类型，会被&#123;<span class="doctag">@link</span> retrofit2.Converter&#125;转换，如后面会介绍的 使用&#123;<span class="doctag">@link</span> com.google.gson.Gson&#125; 的 &#123;<span class="doctag">@link</span> retrofit2.converter.gson.GsonRequestBodyConverter&#125;</span></span><br><span class="line"><span class="comment">     * 所以&#123;<span class="doctag">@link</span> MultipartBody.Part&#125; 就不适用了,所以文件只能用&lt;b&gt; <span class="doctag">@Part</span> MultipartBody.Part &lt;/b&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line">    <span class="meta">@Multipart</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">testFileUpload2</span><span class="params">(<span class="meta">@PartMap</span> Map&lt;String, RequestBody&gt; args, <span class="meta">@Part</span> MultipartBody.Part file)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line">    <span class="meta">@Multipart</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">testFileUpload3</span><span class="params">(<span class="meta">@PartMap</span> Map&lt;String, RequestBody&gt; args)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 具体使用</span></span><br><span class="line">    MediaType textType = MediaType.parse(<span class="string">&quot;text/plain&quot;</span>);</span><br><span class="line">    RequestBody name = RequestBody.create(textType, <span class="string">&quot;Carson&quot;</span>);</span><br><span class="line">    RequestBody age = RequestBody.create(textType, <span class="string">&quot;24&quot;</span>);</span><br><span class="line">    RequestBody file = RequestBody.create(MediaType.parse(<span class="string">&quot;application/octet-stream&quot;</span>), <span class="string">&quot;这里是模拟文件的内容&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// @Part</span></span><br><span class="line">    MultipartBody.Part filePart = MultipartBody.Part.createFormData(<span class="string">&quot;file&quot;</span>, <span class="string">&quot;test.txt&quot;</span>, file);</span><br><span class="line">    Call&lt;ResponseBody&gt; call3 = service.testFileUpload1(name, age, filePart);</span><br><span class="line">    ResponseBodyPrinter.printResponseBody(call3);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// @PartMap</span></span><br><span class="line">    <span class="comment">// 实现和上面同样的效果</span></span><br><span class="line">    Map&lt;String, RequestBody&gt; fileUpload2Args = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    fileUpload2Args.put(<span class="string">&quot;name&quot;</span>, name);</span><br><span class="line">    fileUpload2Args.put(<span class="string">&quot;age&quot;</span>, age);</span><br><span class="line">    <span class="comment">//这里并不会被当成文件，因为没有文件名(包含在Content-Disposition请求头中)，但上面的 filePart 有</span></span><br><span class="line">    <span class="comment">//fileUpload2Args.put(&quot;file&quot;, file);</span></span><br><span class="line">    Call&lt;ResponseBody&gt; call4 = service.testFileUpload2(fileUpload2Args, filePart); <span class="comment">//单独处理文件</span></span><br><span class="line">    ResponseBodyPrinter.printResponseBody(call4);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>@Query和@QueryMap<blockquote>
+<p>作用：用于 @GET 方法的查询参数（Query = Url 中 ‘?’ 后面的 key-value）</p>
+</blockquote>
+</li>
+</ul>
+<p>具体使用：配置时只需要在接口方法中增加一个参数即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//url = http://www.println.net/?cate=android，其中，Query = cate</span></span><br><span class="line"><span class="meta">@GET(&quot;/&quot;)</span>    </span><br><span class="line"><span class="function">Call&lt;String&gt; <span class="title">cate</span><span class="params">(<span class="meta">@Query(&quot;cate&quot;)</span> String cate)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>@Path<blockquote>
+<p>作用：URL地址的缺省值</p>
+</blockquote>
+</li>
+</ul>
+<p>具体使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GetRequest_Interface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GET(&quot;users/&#123;user&#125;/repos&quot;)</span></span><br><span class="line">    Call&lt;ResponseBody&gt;  getBlog（<span class="meta">@Path(&quot;user&quot;)</span> String user ）;</span><br><span class="line">    <span class="comment">// 访问的API是：https://api.github.com/users/&#123;user&#125;/repos</span></span><br><span class="line">    <span class="comment">// 在发起请求时， &#123;user&#125; 会被替换为方法的第一个参数 user（被@Path注解作用）</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>@Url</li>
+</ul>
+<blockquote>
+<p>作用：直接传入一个请求的 URL变量 用于URL设置</p>
+</blockquote>
+<p>具体使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GetRequest_Interface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GET</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">testUrlAndQuery</span><span class="params">(<span class="meta">@Url</span> String url, <span class="meta">@Query(&quot;showAll&quot;)</span> <span class="keyword">boolean</span> showAll)</span></span>;</span><br><span class="line">    <span class="comment">// 当有URL注解时，@GET传入的URL就可以省略</span></span><br><span class="line">    <span class="comment">// 当GET、POST...HTTP等方法中没有设置Url时，则必须使用 &#123;@link Url&#125;提供</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建Retrofit-实例"><a href="#创建Retrofit-实例" class="headerlink" title="创建Retrofit 实例"></a>创建Retrofit 实例</h2><p>在这一步中也有很多需要注意的地方。</p>
+<h3 id="OkHttpClient"><a href="#OkHttpClient" class="headerlink" title="OkHttpClient"></a>OkHttpClient</h3><p>前面已经提到，Retrofit2.0中会自动使用OkHttp实现HTTP连接，所以没有特殊需求的话，可以向下面这样很快的创建一个Retrofit 实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">    .baseUrl(<span class="string">&quot;https://api.github.com&quot;</span>)</span><br><span class="line">    .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<p>但是当你需要进行一些特殊化处理的时候，比如cookie的设置、网络超时的设置、请求header设置等，这个时候我们就需要自己先配置好好OkHttpClient然后手动地设置Retrofit 的Client。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先配置好一个OkHttpClient</span></span><br><span class="line">OkHttpClient okHttpClient = <span class="keyword">new</span> OkHttpClient.Builder()  </span><br><span class="line">            .connectTimeout(<span class="number">5</span>*<span class="number">1000</span>, TimeUnit.MILLISECONDS) <span class="comment">//链接超时  </span></span><br><span class="line">            .readTimeout(<span class="number">10</span>*<span class="number">1000</span>,TimeUnit.MILLISECONDS) <span class="comment">//读取超时  </span></span><br><span class="line">            .writeTimeout(<span class="number">10</span>*<span class="number">1000</span>,TimeUnit.MILLISECONDS) <span class="comment">//写入超时  </span></span><br><span class="line">            .addInterceptor(<span class="keyword">new</span> HttpHeadInterceptor()) <span class="comment">//应用拦截器：统一添加消息头  </span></span><br><span class="line">            .addNetworkInterceptor(<span class="keyword">new</span> NetworkspaceInterceptor())<span class="comment">//网络拦截器  </span></span><br><span class="line">            .addInterceptor(loggingInterceptor)<span class="comment">//应用拦截器：打印日志  </span></span><br><span class="line">            .cache(cache)  <span class="comment">//设置缓存  </span></span><br><span class="line">            .build();</span><br><span class="line">			</span><br><span class="line">retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">		.baseUrl(baseUrl)</span><br><span class="line">		 .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">		.addCallAdapterFactory(RxJavaCallAdapterFactory.create())</span><br><span class="line">		 .client(okHttpClient)                      <span class="comment">//设置配置好的OkHttpClient为Retrofit的Client</span></span><br><span class="line">		 .build();</span><br></pre></td></tr></table></figure>
+<p><strong>NOTE：</strong>具体可配置参数见<a target="_blank" rel="noopener" href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.Builder.html">OkHttpClient.Builder</a>类。</p>
+<h3 id="数据解析器（Converter）"><a href="#数据解析器（Converter）" class="headerlink" title="数据解析器（Converter）"></a>数据解析器（Converter）</h3><p>Retrofit2.0 支持多种数据解析方式，官方给了下面几种解析器，根据自己需要选择。</p>
+<table>
+<thead>
+<tr>
+<th>数据解析器</th>
+<th>Gradle依赖</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/google/gson">Gson</a></td>
+<td>com.squareup.retrofit2:converter-gson</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://wiki.fasterxml.com/JacksonHome">Jackson</a></td>
+<td>com.squareup.retrofit2:converter-jackson</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/square/moshi/">Mossi</a></td>
+<td>com.squareup.retrofit2:converter-moshi</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/">Protobuf</a></td>
+<td>com.squareup.retrofit2:converter-protobuf</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/square/wire">Wire</a></td>
+<td>com.squareup.retrofit2:converter-wire</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://simple.sourceforge.net/">Simple XML</a></td>
+<td>com.squareup.retrofit2:converter-simplexml</td>
+</tr>
+<tr>
+<td>Scalars (primitives, boxed, and String)</td>
+<td>com.squareup.retrofit2:converter-scalars</td>
+</tr>
+</tbody></table>
+<p><strong>注</strong>：上述依赖中还需要在后面添加特定的版本号。</p>
+<h3 id="网络请求适配器（CallAdapter）"><a href="#网络请求适配器（CallAdapter）" class="headerlink" title="网络请求适配器（CallAdapter）"></a>网络请求适配器（CallAdapter）</h3><blockquote>
+<p>使用时如使用的是 Android 默认的 CallAdapter，则不需要添加网络请求适配器的依赖，否则则需要按照需求进行添加 </p>
+</blockquote>
+<p>Retrofit2.0 除了默认的 CallAdapter外，还支持多种网络请求适配器方式：guava、Java8和 rxjava<br>不过我就只用过RxJava，这应该是Retrofit名气最大的适配器，确实非常好用，多好用呢？自己去感受一下。关于RxJava的使用也有很多是要学习的，这里帖两篇很好的博客。<br><a target="_blank" rel="noopener" href="http://gank.io/post/560e15be2dca930e00da1083">给 Android 开发者的 RxJava 详解</a><br><a target="_blank" rel="noopener" href="https://gank.io/post/56e80c2c677659311bed9841">RxJava 与 Retrofit 结合的最佳实践</a></p>
+<h3 id="发送网络请求"><a href="#发送网络请求" class="headerlink" title="发送网络请求"></a>发送网络请求</h3><p>Retrofit 2.0发送网络请求有两种方法，同步和异步。我们在Retrofit 2.0 和Retrofit 1.0的差别中有介绍到，Retrofit 2.0不管是使用同步还是使用异步的方法，都是同一个函数接口，这一点相比Retrofit 1.0，省去不少功夫，具体的调用方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 发送网络请求（同步）</span></span><br><span class="line">Response&lt;Reception&gt; response = call.execute();</span><br><span class="line"></span><br><span class="line"><span class="comment">//发送网络请求(异步)</span></span><br><span class="line">call.enqueue(<span class="keyword">new</span> Callback&lt;Translation&gt;() &#123;</span><br><span class="line">	  <span class="comment">//请求成功时回调</span></span><br><span class="line">	  <span class="meta">@Override</span></span><br><span class="line">	  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;Translation&gt; call, Response&lt;Translation&gt; response)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//请求处理,输出结果</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//请求失败时候的回调</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;Translation&gt; call, Throwable throwable)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>注</strong>：本文大部分内容来自<a target="_blank" rel="noopener" href="https://blog.csdn.net/carson_ho/article/details/73732076"> 这是一份很详细的 Retrofit 2.0 使用教程（含实例讲解）</a>，我写出来主要是为了加深自己的印象，作为个人博客能够好好系统总结一下，并结合自己理解对内容作了部分修改。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/03/31/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%B8%89%EF%BC%89/" data-id="ckqm6kpnh006zxxr5gb1s7g7x" data-title="Retrofit2.0完全解读（三）" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" rel="tag">网络框架</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Retrofit2.0完全解读（二）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/03/22/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2018-03-22T09:57:11.000Z" itemprop="datePublished">2018-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/03/22/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89/">Retrofit2.0完全解读（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在了解了Retrofit 2.0 和Retrofit 1.0的主要差别后，我们就要开始深入的学习Retrofit 2.0 了。个人觉得在Android学习中，刚接触到一个新的东西，还是要先了解具体是怎么使用的，而不是一开始就抱着源码啃。这种学习方法我觉得太抽象了，特别是对应用性比较强的技术。除非你之前接触过类型的东西，其原理在某些方面很相似，能够帮助理解，不然的话会很难理解原理的。当然这都是个人看法，只是这种方法对我来说效率更高，下面就结合实例讲一下Retrofit 2.0 的使用方法。</p>
+<h2 id="Retrofit-2-0-快速使用"><a href="#Retrofit-2-0-快速使用" class="headerlink" title="Retrofit 2.0 快速使用"></a>Retrofit 2.0 快速使用</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>在前面我们介绍到Retrofit2.0 是一个基于OKHttp的具有RESTful API风格的 HTTP 网络请求框架的封装，网络请求的本质是 OkHttp 完成的，Retrofit 2.0仅负责网络请求接口的封装。使用Retrofit2.0框架访问网络的具体过程如下：</p>
+<p><img src="http://dengw.xyz/hexo-blog/180323/mba6hhI8ki.png"></p>
+<ul>
+<li>App应用程序通过 Retrofit 访问网络，实际上是使用 Retrofit 接口层封装请求参数、Header、Url 等信息，之后由 OkHttp 完成后续的请求操作。</li>
+<li>在服务端返回数据之后，OkHttp 将原始的结果交给 Retrofit，Retrofit根据用户的需求对结果进行解析</li>
+</ul>
+<h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h3><p>使用Retrofit 2.0主要包括以下几个步骤：</p>
+<blockquote>
+<p>step1：添加Retrofit库的依赖<br> step2：创建 接收服务器返回数据 的类<br> step3：创建 用于描述网络请求 的接口<br> step4：创建 Retrofit 实例<br> step5：创建 网络请求接口实例 并 配置网络请求参数<br> step6：发送网络请求（异步 / 同步）<br> step7：处理服务器返回的数据</p>
+</blockquote>
+<p>下面我们就结合实例一步一步的实现:</p>
+<p><strong>实例</strong>：使用Retrofit 2.0获取Github用户信息，输入uesername返回该用户的个人信息。<br><strong>相关API：</strong> <a target="_blank" rel="noopener" href="https://api.github.com/users/username">https://api.github.com/users/username</a></p>
+<h4 id="step1：添加Retrofit库的依赖"><a href="#step1：添加Retrofit库的依赖" class="headerlink" title="step1：添加Retrofit库的依赖"></a>step1：添加Retrofit库的依赖</h4><p>在<code>src</code>目录下的<code>build.gradle</code>中添加Retrofit库的依赖，一般也把RxJava和Gson的依赖也加上，因为基本上都会用到。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">    implementation &#x27;com.squareup.retrofit2:retrofit:2.3.0&#x27;</span><br><span class="line">    implementation &#x27;com.squareup.retrofit2:adapter-rxjava:2.3.0&#x27;</span><br><span class="line">    implementation &#x27;com.squareup.retrofit2:converter-gson:2.3.0&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>添加网络权限 ，因为涉及到网络访问，肯定要添加网络的权限。</p>
+<p>在AndroidManifest.xml文件中</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=<span class="string">&quot;android.permission.INTERNET&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="step2-定义接收服务器返回数据的Model类"><a href="#step2-定义接收服务器返回数据的Model类" class="headerlink" title="step2 定义接收服务器返回数据的Model类"></a>step2 定义接收服务器返回数据的Model类</h4><p>在定义Model类之前，需要先确定的希望获取的数据格式。<br>比如我们访问 <a target="_blank" rel="noopener" href="https://api.github.com/users/duang0626">https://api.github.com/users/duang0626</a> ，返回的信息如下：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;login&quot;</span>: <span class="string">&quot;duang0626&quot;</span>,</span><br><span class="line">  <span class="string">&quot;id&quot;</span>: <span class="number">15682310</span>,</span><br><span class="line">  <span class="string">&quot;avatar_url&quot;</span>: <span class="string">&quot;https://avatars3.githubusercontent.com/u/15682310?v=4&quot;</span>,</span><br><span class="line">  <span class="string">&quot;gravatar_id&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="string">&quot;url&quot;</span>: <span class="string">&quot;https://api.github.com/users/duang0626&quot;</span>,</span><br><span class="line">  <span class="string">&quot;html_url&quot;</span>: <span class="string">&quot;https://github.com/duang0626&quot;</span>,</span><br><span class="line">  <span class="string">&quot;followers_url&quot;</span>: <span class="string">&quot;https://api.github.com/users/duang0626/followers&quot;</span>,</span><br><span class="line">  <span class="string">&quot;following_url&quot;</span>: <span class="string">&quot;https://api.github.com/users/duang0626/following&#123;/other_user&#125;&quot;</span>,</span><br><span class="line">  <span class="string">&quot;gists_url&quot;</span>: <span class="string">&quot;https://api.github.com/users/duang0626/gists&#123;/gist_id&#125;&quot;</span>,</span><br><span class="line">  <span class="string">&quot;starred_url&quot;</span>: <span class="string">&quot;https://api.github.com/users/duang0626/starred&#123;/owner&#125;&#123;/repo&#125;&quot;</span>,</span><br><span class="line">  <span class="string">&quot;subscriptions_url&quot;</span>: <span class="string">&quot;https://api.github.com/users/duang0626/subscriptions&quot;</span>,</span><br><span class="line">  <span class="string">&quot;organizations_url&quot;</span>: <span class="string">&quot;https://api.github.com/users/duang0626/orgs&quot;</span>,</span><br><span class="line">  <span class="string">&quot;repos_url&quot;</span>: <span class="string">&quot;https://api.github.com/users/duang0626/repos&quot;</span>,</span><br><span class="line">  <span class="string">&quot;events_url&quot;</span>: <span class="string">&quot;https://api.github.com/users/duang0626/events&#123;/privacy&#125;&quot;</span>,</span><br><span class="line">  <span class="string">&quot;received_events_url&quot;</span>: <span class="string">&quot;https://api.github.com/users/duang0626/received_events&quot;</span>,</span><br><span class="line">  <span class="string">&quot;type&quot;</span>: <span class="string">&quot;User&quot;</span>,</span><br><span class="line">  <span class="string">&quot;site_admin&quot;</span>: false,</span><br><span class="line">  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Dengw&quot;</span>,</span><br><span class="line">  <span class="string">&quot;company&quot;</span>: null,</span><br><span class="line">  <span class="string">&quot;blog&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="string">&quot;location&quot;</span>: <span class="string">&quot;GuangZhou China&quot;</span>,</span><br><span class="line">  <span class="string">&quot;email&quot;</span>: null,</span><br><span class="line">  <span class="string">&quot;hireable&quot;</span>: null,</span><br><span class="line">  <span class="string">&quot;bio&quot;</span>: <span class="string">&quot;A software engineering student&quot;</span>,</span><br><span class="line">  <span class="string">&quot;public_repos&quot;</span>: <span class="number">27</span>,</span><br><span class="line">  <span class="string">&quot;public_gists&quot;</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="string">&quot;followers&quot;</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="string">&quot;following&quot;</span>: <span class="number">4</span>,</span><br><span class="line">  <span class="string">&quot;created_at&quot;</span>: <span class="string">&quot;2015-11-06T03:17:19Z&quot;</span>,</span><br><span class="line">  <span class="string">&quot;updated_at&quot;</span>: <span class="string">&quot;2018-03-09T17:15:32Z&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假如我们只需要显示查询user的login, id, name这三个字段的话，那我们就可以像下面这样定义Model类，根据自己的需要设置就好。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String login;</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLogin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> login;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLogin</span><span class="params">(String login)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.login = login;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="step3-创建-用于描述网络请求-的接口"><a href="#step3-创建-用于描述网络请求-的接口" class="headerlink" title="step3 创建 用于描述网络请求 的接口"></a>step3 创建 用于描述网络请求 的接口</h3><p>Retrofit将 Http请求 抽象成 Java接口：采用 注解 描述网络请求参数 和配置网络请求参数 。</p>
+<blockquote>
+<p>用动态代理动态将该接口的注解“翻译”成一个 Http 请求，最后再执行 Http 请求<br>接口中的每个方法的参数都需要使用注解标注，否则会报错</p>
+</blockquote>
+<p>自定义接口，根据Retrofit 2.0规范定义方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GitHubService</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     *@GET注解的作用:采用Get方法发送网络请求</span></span><br><span class="line"><span class="comment">     * getUser() 接收网络请求数据的方法</span></span><br><span class="line"><span class="comment">     * 其中返回类型为Call&lt;*&gt;，*是接收数据的类（即上面定义的User类）</span></span><br><span class="line"><span class="comment">     *  @Path(&quot;user&quot;) String user 方法参数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@GET(&quot;users/&#123;user&#125;&quot;)</span></span><br><span class="line">    <span class="function">Call&lt;User&gt; <span class="title">getUser</span><span class="params">(<span class="meta">@Path(&quot;user&quot;)</span> String user)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="step4-创建-Retrofit-实例"><a href="#step4-创建-Retrofit-实例" class="headerlink" title="step4 创建 Retrofit 实例"></a>step4 创建 Retrofit 实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String baseUrl = <span class="string">&quot;https://api.github.com/&quot;</span>;</span><br><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">    .baseUrl(baseUrl)   <span class="comment">//Url的base地址</span></span><br><span class="line">    .addConverterFactory(GsonConverterFactory.create())  <span class="comment">// 设置数据解析器</span></span><br><span class="line">    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())  <span class="comment">// 支持RxJava</span></span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+
+<h3 id="step5-创建网络请求接口实例"><a href="#step5-创建网络请求接口实例" class="headerlink" title="step5 创建网络请求接口实例"></a>step5 创建网络请求接口实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GitHubService request = retrofit.create(GitHubService.class);</span><br></pre></td></tr></table></figure>
+
+<h3 id="step6-发送网络请求"><a href="#step6-发送网络请求" class="headerlink" title="step6 发送网络请求"></a>step6 发送网络请求</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Call&lt;User&gt; call = request.getUser();</span><br><span class="line">call.enqueue(<span class="keyword">new</span> Callback&lt;User&gt;() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;User&gt; call, Response&lt;User&gt; response)</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">//请求成功,处理返回结果</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;User&gt; call, Throwable t)</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">//请求失败时调用</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="step7-处理返回数据"><a href="#step7-处理返回数据" class="headerlink" title="step7 处理返回数据"></a>step7 处理返回数据</h3><p>处理数据的步骤就根据自己的需要在 reponse 提取返回的数据，如果按照我们上面那样方式发送请求。在onResponse函数返回的参数reponse.Body()就是一个我们之前自己定义User类，要读取User信息直接使用相应的get函数即可获取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;User&gt; call, Response&lt;User&gt; response)</span> </span>&#123;</span><br><span class="line"> Map&lt;String, Object&gt; tem = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line"> tem.put(<span class="string">&quot;name&quot;</span>, response.body().getLogin());</span><br><span class="line"> tem.put(<span class="string">&quot;id&quot;</span>, <span class="string">&quot;id: &quot;</span> + response.body().getId());</span><br><span class="line"> tem.put(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;name: &quot;</span> + response.body().getName());</span><br><span class="line"> userList.add(tem);</span><br><span class="line"> cardAdapter.notifyItemInserted(userList.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果显示如下：</p>
+<p><img src="http://dengw.xyz/hexo-blog/180323/d0HdE5Eh7k.png"></p>
+<p>Retrofit 2.0的快速使用就介绍到这儿了，通过上面介绍的方法就可以使用Retrofit 2.0访问网络了。相信你也看到了，这个过程中的一些参数可能重来都没有见过，下一篇文章就将介绍Retrofit 2.0使用的一些细节，参数的设置，具体的含义。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/03/22/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89/" data-id="ckqm6kplj001zxxr5bpd43aqg" data-title="Retrofit2.0完全解读（二）" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" rel="tag">网络框架</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-华为2018年春招在线笔试题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/03/18/%E5%8D%8E%E4%B8%BA2018%E5%B9%B4%E6%98%A5%E6%8B%9B%E5%9C%A8%E7%BA%BF%E7%AC%94%E8%AF%95%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2018-03-18T11:21:49.000Z" itemprop="datePublished">2018-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/03/18/%E5%8D%8E%E4%B8%BA2018%E5%B9%B4%E6%98%A5%E6%8B%9B%E5%9C%A8%E7%BA%BF%E7%AC%94%E8%AF%95%E9%A2%98/">华为2018年春招在线笔试题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>既然励志成为技术大拿，一个很重要的点就是要学会记录，学会总结，学会分享。趁着还热乎，现在就分享一下今天晚上刚参加完的华为笔试吧。</p>
+<h3 id="大数乘法"><a href="#大数乘法" class="headerlink" title="大数乘法"></a>大数乘法</h3><blockquote>
+<p>问题的描述很简单，就是实现两个带符号大数的乘法。具体的思路如下：<br>因为涉及到大数，所以肯定不能够使用常规的运算方法，即使使用 long long类型的数据还是会超出其表示范围。一种可行的方法就是使用字符串来表示一串数字，然后自己来通过字符操作来实现乘法的具体的过程：一个数的每一位分别乘以另外一个数，在乘的过程中注意移位的变化，最后再将所有的中间结果按照正确的位置相加得到最后的结果。其实就是我们将我们小学数学乘法的过程化，hahaha……但是这样算法的事件复杂度比较高，刚刚看网上有时间复杂度为O(lgn)的方法.</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span>                                                                                                                          </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function">string  <span class="title">Large_Multiplication</span><span class="params">(string str1, string str2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len1 = str1.<span class="built_in">length</span>();</span><br><span class="line">    <span class="keyword">int</span> len2 = str2.<span class="built_in">length</span>();</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     *两个数A和B，A的位数为m，B的位数为n，</span></span><br><span class="line"><span class="comment">     *则乘积结果要么为 m+n-1位（最高位无进位）或者为 m+n位（最高位有进位）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">string <span class="title">re</span><span class="params">(len1 + len2, <span class="string">&#x27;0&#x27;</span>)</span></span>;</span><br><span class="line">    <span class="comment">//使用第二个数的每一位乘以第一个数得到中间结果</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = len2 - <span class="number">1</span>;  i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">int</span> carry_pre = <span class="number">0</span>;  <span class="comment">//每一位的乘法中向下一位的进位</span></span><br><span class="line">        <span class="keyword">int</span> carry_add = <span class="number">0</span>;  <span class="comment">//计算中间和时向下一位的进位</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = len1 - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">int</span> num = (str2[i] - <span class="string">&#x27;0&#x27;</span>) * (str1[j] - <span class="string">&#x27;0&#x27;</span>) + carry_pre;</span><br><span class="line">            carry_pre = num / <span class="number">10</span>;</span><br><span class="line">            num %= <span class="number">10</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//计算竖向中间和，填充结果的i+j+1位</span></span><br><span class="line">            <span class="keyword">int</span> sum = (re[i+j+<span class="number">1</span>] - <span class="string">&#x27;0&#x27;</span>) + num + carry_add;</span><br><span class="line">            re[i+j+<span class="number">1</span>] = sum % <span class="number">10</span> + <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            carry_add = sum / <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        re[i] += carry_add + carry_pre;  <span class="comment">//处理进位</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(re[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span>) &#123;  <span class="comment">//判断乘积的位数</span></span><br><span class="line">        re = re.<span class="built_in">substr</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    string num1, num2;</span><br><span class="line">    cin&gt;&gt;num1&gt;&gt;num2;</span><br><span class="line">    <span class="keyword">if</span>(num1[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span> || num2[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">        cout&lt;&lt;<span class="number">0</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> sign1 = <span class="number">1</span>, sign2 = <span class="number">1</span>;  <span class="comment">//记录两个数的正负号</span></span><br><span class="line">        string a, b;   <span class="comment">//a, b参数用于去符号乘法</span></span><br><span class="line">        <span class="keyword">if</span>(num1[<span class="number">0</span>] == <span class="string">&#x27;-&#x27;</span>) &#123;</span><br><span class="line">            sign1 = <span class="number">-1</span>;</span><br><span class="line">            a = num1.<span class="built_in">substr</span>(<span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span>  &#123;</span><br><span class="line">            a = num1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(num2[<span class="number">0</span>] == <span class="string">&#x27;-&#x27;</span>) &#123;</span><br><span class="line">            sign2 = <span class="number">-1</span>;</span><br><span class="line">            b = num2.<span class="built_in">substr</span>(<span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            b= num2;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        string product = <span class="built_in">Large_Multiplication</span>(a, b);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(sign1 * sign2 == <span class="number">-1</span>) product = <span class="string">&quot;-&quot;</span> + product;</span><br><span class="line">        cout&lt;&lt;product&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外一种思路：上面一种思路主要是面上过程化，需要注意的细节更多。下面这种思路更过的是面向结果，不要考虑那么多细节，要更简单一点，传入的参数还是要先把符号处理了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">Large_Multiplication</span><span class="params">(string num1, string num2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len1 = num1.<span class="built_in">length</span>();</span><br><span class="line">    <span class="keyword">int</span> len2 = num2.<span class="built_in">length</span>();</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">re</span> <span class="params">(len1 + len2, <span class="number">0</span>)</span></span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = len2 - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = len1 - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">			re[i + j + <span class="number">1</span>] += (num2[i] - <span class="string">&#x27;0&#x27;</span>) * (num1[j] - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = re.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="keyword">int</span> sum = re[i] + carry;</span><br><span class="line">		carry = sum / <span class="number">10</span>;</span><br><span class="line">		re[i] = sum % <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> re;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这道题按到来说应该不难，但是上次做大数的运算应该还是大一的时候了，在那之后就没遇到过了，在准备数据结构和算法的时候也没注意到这个部分，完全没有准备，所以还是花了挺多时间的。这也说明了一个问题，还是自己做的题太少了，对于知识点的掌握不好，再加上理解的不够深刻，所以很难想到解决方法。后来在自己试了一下大数加法之后才摸索+回忆起大数乘法的算法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/03/18/%E5%8D%8E%E4%B8%BA2018%E5%B9%B4%E6%98%A5%E6%8B%9B%E5%9C%A8%E7%BA%BF%E7%AC%94%E8%AF%95%E9%A2%98/" data-id="ckqm6kpm00036xxr599p64g3n" data-title="华为2018年春招在线笔试题" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%A1%E6%8B%9B/" rel="tag">校招</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Retrofit2.0完全解读（一）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/03/10/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2018-03-10T07:52:26.000Z" itemprop="datePublished">2018-03-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/03/10/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/">Retrofit 2.0 完全解读（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Retrofit 是Square公司生产的一款基于OkHttp的，遵循RESTful API设计风格的开源网络请求库，目前也是Android领域最热门请求库。<br>Retrofit 通过注解配置网络请求参数，包括请求参数，请求方法，请求头以及返回参数等。并且支持同步、异步的网络请求方式。通过搭配多种多种Converter支持多种数据解析方式 &amp; 序列化方式，包括：Gson, Json, XML, Protobuf。此外还提供对RxJava的支持。功能可以说是十分的强大。<br>现在自己正在学习Retrofit 2.0，再加上为面试准备一下，所以希望通过总结一下Retrofit 2.0来加深自己的理解，更加深入地学习一下。如果这系列文章能够帮助他人来理解Retrofit 2.0的话，那就可以说是很开心了，超额完成任务。</p>
+<h2 id="Retrofit-1-0-和-Retrofit-2-0的差别"><a href="#Retrofit-1-0-和-Retrofit-2-0的差别" class="headerlink" title="Retrofit 1.0 和 Retrofit 2.0的差别"></a>Retrofit 1.0 和 Retrofit 2.0的差别</h2><p>在介绍Retrofit 2.0之前呢，不知道大家有没有这样的疑问。在网上搜索Retrofit几乎都是关于Retrofit2.0的介绍，关于Retrofit之前的版本1.0介绍的很少。我这个人有这样的习惯，在接触一个新的东西，如果对你之前先关的一无所知的话，心里会很不踏实。新的版本一般都是对之前版本的一个改进优化，了解一下老版本就很够很好的帮助我们理解新版本的一些特性，影响也更深刻。如果你也没有这样的想法的话，那么希望这篇文章能够给你解除部分疑惑，做到心里有底。</p>
+<h3 id="包的引用方式"><a href="#包的引用方式" class="headerlink" title="包的引用方式"></a>包的引用方式</h3><p>包的引用方式没变，只是需要改变了一下版本号，使用哪个版本就添加哪一个版本号。将你项目中app目录下的build文件中Retrofit依赖一行的版本号改为对应的版本，然后点击右上角的 <code>sync now</code>同步一下就可以使用了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">&#x27;com.squareup.retrofit2:retrofit:2.0.0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="同步和异步定义以及执行方式"><a href="#同步和异步定义以及执行方式" class="headerlink" title="同步和异步定义以及执行方式"></a>同步和异步定义以及执行方式</h3><p>Retrofit1.0版本中，如果你想定义一个同步或者异步函数，你应该这样定义：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 具有返回值的函数为同步执行的。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@GET(&quot;/user/&#123;id&#125;/photo&quot;)</span></span><br><span class="line"><span class="function">Photo <span class="title">listUsers</span><span class="params">(<span class="meta">@Path(&quot;id&quot;)</span>  <span class="keyword">int</span> id)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 而异步执行函数没有返回值并且要求函数最后一个参数为Callback对象</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@GET(&quot;/user/&#123;id&#125;/photo&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">listUsers</span><span class="params">(<span class="meta">@Path(&quot;id&quot;)</span> <span class="keyword">int</span> id, Callback cb)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>在Retrofit 2.0上，只需定义一个模式，因此要简单得多。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* 定义</span><br><span class="line">*/</span><br><span class="line">@POST(&quot;/list&quot;)</span><br><span class="line">Call loadRepo();</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">* 同步调用</span><br><span class="line">*/</span><br><span class="line">Call call=service.loadRepo();</span><br><span class="line">Repo repo=call.execute();</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">* 异步调用</span><br><span class="line">*/</span><br><span class="line">Call call=service.loadRepo();</span><br><span class="line">call.enqueue(new Callback() &#123;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void onResponse(Response response)&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void onFailure(Throwable t) &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="取消正在进行的网络任务"><a href="#取消正在进行的网络任务" class="headerlink" title="取消正在进行的网络任务"></a>取消正在进行的网络任务</h3><p> Retrofit1对正在进行的网络任务无法取消，如果你想做这件事必须手动杀死，而这并不好实现。而Retrofit2接口的定时形式变化，正是为了解决这个问题。要做到这点，你只需要调用call.cancel即可.</p>
+<h3 id="Converter现在从Retrofit中删除Retrofit1中的setConverter，在2-0中换以addConverterFactory，用于支持Gson转换。"><a href="#Converter现在从Retrofit中删除Retrofit1中的setConverter，在2-0中换以addConverterFactory，用于支持Gson转换。" class="headerlink" title="Converter现在从Retrofit中删除Retrofit1中的setConverter，在2.0中换以addConverterFactory，用于支持Gson转换。"></a>Converter现在从Retrofit中删除Retrofit1中的setConverter，在2.0中换以addConverterFactory，用于支持Gson转换。</h3><p>在Retrofit 1.9中，GsonConverter 包含在了package 中而且自动在RestAdapter创建的时候被初始化。这样来自服务器的son结果会自动解析成定义好了的Data Access Object（DAO）<br>但是在Retrofit 2.0中，Converter 不再包含在package 中了。你需要自己插入一个Converter 不然的话Retrofit 只能接收字符串结果。同样的，Retrofit 2.0也不再依赖于Gson 。</p>
+<p>如果你想接收json 结果并解析成DAO，你必须把Gson Converter 作为一个独立的依赖添加进来。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">&#x27;com.squareup.retrofit:converter-gson:2.1.0&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>然后使用addConverterFactory把它添加进来。注意RestAdapter的别名仍然为Retrofit。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = new Retrofit<span class="selector-class">.Builder</span>()</span><br><span class="line">			<span class="selector-class">.baseUrl</span>(<span class="string">&quot;http://api.nuuneoi.com/base/&quot;</span>)</span><br><span class="line">			<span class="selector-class">.addConverterFactory</span>(GsonConverterFactory<span class="selector-class">.create</span>())</span><br><span class="line">			<span class="selector-class">.build</span>();</span><br></pre></td></tr></table></figure>
+<h3 id="自定义Gson对象"><a href="#自定义Gson对象" class="headerlink" title="自定义Gson对象"></a>自定义Gson对象</h3><p> 为了以防你需要调整json里面的一些格式，比如，Date Format。你可以创建一个Gson 对象并把它传递给GsonConverterFactory.create()。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Gson gson = new GsonBuilder()</span><br><span class="line">		<span class="selector-class">.setDateFormat</span>(<span class="string">&quot;yyyy-MM-dd&#x27;T&#x27;HH:mm:ssZ&quot;</span>)</span><br><span class="line">		<span class="selector-class">.create</span>();</span><br><span class="line">Retrofit retrofit = new Retrofit<span class="selector-class">.Builder</span>()</span><br><span class="line">		<span class="selector-class">.baseUrl</span>(<span class="string">&quot;http://api.nuuneoi.com/base/&quot;</span>)</span><br><span class="line">		<span class="selector-class">.addConverterFactory</span>(GsonConverterFactory<span class="selector-class">.create</span>(gson))</span><br><span class="line">		<span class="selector-class">.build</span>();</span><br></pre></td></tr></table></figure>
+
+<h3 id="新的URL定义方式"><a href="#新的URL定义方式" class="headerlink" title="新的URL定义方式"></a>新的URL定义方式</h3><p>对于 Retrofit 2.0中新的URL定义方式，建议：</p>
+<ul>
+<li><p>Base URL: 总是以 /结尾</p>
+</li>
+<li><p>@Url: 不要以 / 开头</p>
+</li>
+</ul>
+<p> 而且在Retrofit 2.0中我们还可以在@Url里面定义完整的URL, 这种情况下Base URL会被忽略。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@POST(<span class="string">&quot;http://api.nuuneoi.com/special/user/list&quot;</span>)</span><br><span class="line">Call loadSpecialUsers();</span><br></pre></td></tr></table></figure>
+
+<p>可以看到在URL的处理方式上发生了很大变化。它和前面的版本完全不同。如果你想把代码迁移到Retrofit 2.0，别忘了修正URL部分的代码。</p>
+<h3 id="即使response存在问题onResponse依然被调用"><a href="#即使response存在问题onResponse依然被调用" class="headerlink" title="即使response存在问题onResponse依然被调用"></a>即使response存在问题onResponse依然被调用</h3><p>在Retrofit 1.9中，如果获取的 response 不能背解析成定义好的对象，则会调用failure。但是在Retrofit 2.0中，不管 response 是否能被解析。onResponse总是会被调用。但是在结果不能被解析的情况下，response.body()会返回null。所以使用的时候别忘了处理这种情况。</p>
+<p>如果response存在什么问题，比如404什么的，onResponse也会被调用。你可以从response.errorBody().string()中获取错误信息的主体。</p>
+<h3 id="缺少INTERNET权限会导致SecurityException异常"><a href="#缺少INTERNET权限会导致SecurityException异常" class="headerlink" title="缺少INTERNET权限会导致SecurityException异常"></a>缺少INTERNET权限会导致SecurityException异常</h3><p>在Retrofit 1.9中，如果你忘记在AndroidManifest.xml文件中添加INTERNET权限。异步请求会直接进入failure回调方法，得到PERMISSION DENIED 错误消息。没有任何异常被抛出。<br>但是在Retrofit 2.0中，当你调用call.enqueue或者call.execute，将立即抛出SecurityException，如果你不使用try-catch会导致崩溃。</p>
+<h3 id="Use-an-Interceptor-from-OkHttp"><a href="#Use-an-Interceptor-from-OkHttp" class="headerlink" title="Use an Interceptor from OkHttp"></a>Use an Interceptor from OkHttp</h3><p>在Retrofit 1.9中，你可以使用RequestInterceptor来拦截一个请求，但是它已经从Retrofit 2.0 移除了，因为HTTP连接层已经转为OkHttp。<br>结果就是，现在我们必须转而使用OkHttp里面的Interceptor。首先你需要使用Interceptor创建一个OkHttpClient对象，通常的应用时用于拦截OkHttp日志。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();</span><br><span class="line"></span><br><span class="line">interceptor<span class="selector-class">.setLevel</span>(HttpLoggingInterceptor<span class="selector-class">.Level</span>.BODY);</span><br><span class="line">client = new OkHttpClient<span class="selector-class">.Builder</span>()</span><br><span class="line">			<span class="selector-class">.addInterceptor</span>(interceptor)</span><br><span class="line">			<span class="selector-class">.retryOnConnectionFailure</span>(true)</span><br><span class="line">			<span class="selector-class">.connectTimeout</span>(<span class="number">15</span>, TimeUnit.SECONDS)</span><br><span class="line">			<span class="selector-class">.addNetworkInterceptor</span>(authorizationInterceptor)</span><br><span class="line">			<span class="selector-class">.build</span>();</span><br></pre></td></tr></table></figure>
+<p> 然后传递创建的client到Retrofit的Builder链中。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = new Retrofit<span class="selector-class">.Builder</span>()</span><br><span class="line">			<span class="selector-class">.baseUrl</span>(<span class="string">&quot;http://api.nuuneoi.com/base/&quot;</span>)</span><br><span class="line">			<span class="selector-class">.addConverterFactory</span>(GsonConverterFactory<span class="selector-class">.create</span>())</span><br><span class="line">			<span class="selector-class">.client</span>(client)</span><br><span class="line">			<span class="selector-class">.build</span>();</span><br></pre></td></tr></table></figure>
+
+<h3 id="RxJava-Integration-with-CallAdapter"><a href="#RxJava-Integration-with-CallAdapter" class="headerlink" title="RxJava Integration with CallAdapter"></a>RxJava Integration with CallAdapter</h3><p>  RxJava准备的CallAdapter，它将作为Observable返回。要使用它，你的项目依赖中必须包含两个modules。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">&#x27;io.reactivex:rxandroid:1.2.1&#x27;</span></span><br><span class="line"></span><br><span class="line">compile <span class="string">&#x27;com.squareup.retrofit:adapter-rxjava:2.1.0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p> Gradle并在Retrofit Builder链表中如下调用addCallAdapterFactory：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = new Retrofit<span class="selector-class">.Builder</span>()</span><br><span class="line">			<span class="selector-class">.baseUrl</span>(<span class="string">&quot;http://api.nuuneoi.com/base/&quot;</span>)</span><br><span class="line">			<span class="selector-class">.addConverterFactory</span>(GsonConverterFactory<span class="selector-class">.create</span>())</span><br><span class="line">			<span class="selector-class">.addCallAdapterFactory</span>(RxJavaCallAdapterFactory<span class="selector-class">.create</span>())</span><br><span class="line">			<span class="selector-class">.build</span>();</span><br><span class="line"></span><br><span class="line">Observable observable=service<span class="selector-class">.loadDessertListRx</span>();</span><br></pre></td></tr></table></figure>
+
+<p>可能还有一些issues本文没有提到，更多的完整的变化可以去官方的<a target="_blank" rel="noopener" href="https://github.com/square/retrofit/blob/master/CHANGELOG.md">Change Log </a>查看，对于每个版本的变化都有详细的讲解。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/03/10/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckqm6kpli001vxxr54z0g6q9a" data-title="Retrofit 2.0 完全解读（一）" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" rel="tag">网络框架</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-捋一捋Java中关系复杂的容器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/03/08/%E6%8D%8B%E4%B8%80%E6%8D%8BJava%E4%B8%AD%E5%85%B3%E7%B3%BB%E5%A4%8D%E6%9D%82%E7%9A%84%E5%AE%B9%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2018-03-08T11:21:49.000Z" itemprop="datePublished">2018-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java%E5%AD%A6%E4%B9%A0/">Java学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/03/08/%E6%8D%8B%E4%B8%80%E6%8D%8BJava%E4%B8%AD%E5%85%B3%E7%B3%BB%E5%A4%8D%E6%9D%82%E7%9A%84%E5%AE%B9%E5%99%A8/">捋一捋Java中关系复杂的容器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>上个学期在学习Android的时候接触了很多Java的容器类，比如ArrayList HashMap等等。这段时间准备找一个Android相关的实习，因为之前没有学习过java，所以着重复习了一下Java的基础。在学习J2SE容器相关部分的时候就惊呆了，相比c++,Java的容器太多了! 每种容器也有很多特性，为了不翻船，就觉得很有必要对Java一些常用到的容器总结一下，了解各种容器的特性，把一些容器横向对比，加深印象，帮助理解。</p>
+<h2 id="常用容器类及其继承关系"><a href="#常用容器类及其继承关系" class="headerlink" title="常用容器类及其继承关系"></a>常用容器类及其继承关系</h2><p>先上图，原图片链接：<a target="_blank" rel="noopener" href="http://pierrchen.blogspot.com/2014/03/java-collections-framework-cheat-sheet.html">Java Collections Framework Cheat Sheet</a></p>
+<p><img src="http://dengw.xyz/hexo-blog/180330/j4a9Hl940J.PNG" alt="Java Collections Framework Cheat Sheet"></p>
+<p>这张图真是总结的太好了，几乎把我想说的都表达了出来，容器是类还是接口，容器之间的继承关系，底层的实现方式，容器的特性在这张图上都可以很清楚的知道。</p>
+<ul>
+<li> 图中实线代表继承了这个类，虚线代表实现了这个接口。</li>
+<li> 左上角的那一块灰色里面的四个类（Dictionary、HashTable、Vector、Stack）是线程安全的，但是它们都是JDK的老的遗留类，现在基本都不怎么使用了，都有了对应的取代类。其中Map是用来代替图片中左上角的那个Dictionary抽象类（Map的官方文档里面有说明）。官方推荐使用Map接口来代替它。同样对于HashTable，官方推荐ConcurrentHashMap来代替。接着Vector可以用ArrayList替代。</li>
+<li> 图片最上面的粉红色部分一些具有某些特性的接口，中间的绿色层就是我们常用的一些容器类了。</li>
+<li> 最下方的一个整块都是java.util.concurrent包里面的类，按照包名我们就可以知道这个包里面的类都是用来处理Java编程中各种并发场景的，这个部分我现在暂时还没有接触到，等找到实习过后再来学习。所以博客后面的内容主要对中间绿色层的部分容器进行讲解。</li>
+</ul>
+<h3 id="对容器的分类"><a href="#对容器的分类" class="headerlink" title="对容器的分类"></a>对容器的分类</h3><ul>
+<li>直接或间接实现Map接口的有：HashMap、HashTable、TreeMap、Sortedmap、LinkedHashMap、EnumMap、IdentityHashMap、WeakHashMap；</li>
+<li>实现List接口的有：ArrayList，LinkedList，Vector；</li>
+<li>实现Set接口的有：HashSet、LinkedHashSet、TreeSet；</li>
+<li>实现Queue接口的有：PriorityQueue、LinkedList、ArrayQueue；</li>
+</ul>
+<h3 id="根据底层实现的数据结构分类"><a href="#根据底层实现的数据结构分类" class="headerlink" title="根据底层实现的数据结构分类"></a>根据底层实现的数据结构分类</h3><ul>
+<li>底层以数组的形式实现：ArrayList、EnumMap、ArrayQueue；</li>
+<li>底层以链表的形式实现：LinkedList、LinkedHashSet、LinkedHashMap；</li>
+<li>底层以hash table(哈希表)的形式实现：HashMap、HashSet、LinkedHashMap、LinkedHashSet、WeakHashMap、IdentityHashMap；</li>
+<li>底层以红黑树的形式实现：TreeMap、TreeSet；</li>
+<li>底层以二叉堆的形式实现：PriorityQueue；</li>
+</ul>
+<h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterable</span>&lt;<span class="title">E</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Collection中的操作方法：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/7/docs/api/java/util/Collection.html#method_summary">Interface Collection</a></p>
+<p>从图片上我们可以得出容器主要分为两种类型，两个接口Collection与Map定义了两类不同的对象存储方式。<br>Collection接口是很多容器的根接口，从Collection可以衍生出很多容器，在Collection中的数据以元素的形式存在，一个Collection代表一组Object。说的更简单点，Collection就是普通的集合，相比于Map中每个元素是以键值对的形式存在<code>&lt;Object, Value&gt;</code>即Collection中一个元素就是一个Object, Map中一个元素就是一个<code>&lt;Object, Value&gt;</code>,感觉说的有点啰嗦了。</p>
+<h3 id="List-Set-Map"><a href="#List-Set-Map" class="headerlink" title="List, Set, Map"></a>List, Set, Map</h3><p> 这三个接口都是实现了 Collection接口，三者主要的差别如下：</p>
+<p><strong>List</strong>：链表，对元素的操作是有序的(怎么存的就怎么取出来，顺序不会乱)，元素可以重复，允许存储项的值为空。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>List的操作方法：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/7/docs/api/java/util/List.html#method_summary">Interface List</a></p>
+<p> <strong>Set</strong>: 集，类似于数学上集合的概念，也具有一些相似的性质，元素不按特定方式排序，不能有重复的元素，对集中成员的访问和操作是通过集中对象的引用进行的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Set的操作方法：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/7/docs/api/java/util/Set.html#method_summary">Interface Set</a></p>
+<p> <strong>Queue</strong>：队列，就是数据结构中的队列，在List的基础上，对元素的增加和删除做了一些特殊的处理，添加元素添加到队列的尾部，删除元素从队列的头部删除，即先进先出，需要执行先进先出的动作时可以直接使用Queue接口就可以了。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Queue</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Queue的操作方法：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/7/docs/api/java/util/Queue.html#method_summary">Interface Queue</a></p>
+<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p>我的理解是功能相当于C++中的Vector，是一个容量能够动态增长的动态数组。它继承了AbstractList，实现了List、RandomAccess, Cloneable, java.io.Serializable。<br>ArrayList是在Array的基础上，增加了一个自动扩容的方法，弥补了数组长度固定的不足，底层使用数组实现的。ArrayList的扩容机制是通过new一个新的容量更大的ArrayList，然后把元素赋值过去并丢弃旧的ArrayList，这也是ArrayList最主要的效率不高的地方。<br>ArrayList的操作不是线程安全的！一般在单线程中才使用ArrayList，而在多线程中一般使用Vector或者CopyOnWriteArrayList。</p>
+<p> <strong>构造方法</strong>：</p>
+<blockquote>
+<p>(1) ArrayList()<br>构造一个空的数组，默认容量是 10;</p>
+</blockquote>
+<blockquote>
+<p>(2) ArrrayList(int initialCapacity)<br>构造一个指定容量的空数组，当增加数据导致容量不足时，容量默认增加上次容量大小的一半;</p>
+</blockquote>
+<blockquote>
+<p>(3) ArrayList(Collection&lt;? extends E&gt; c)<br>生成一个与括号内数组一样的另一个数组，括号内的数组能够继承生成后的数组。 </p>
+</blockquote>
+<p><strong>ArrayList 中常用的方法</strong>：</p>
+<blockquote>
+<p>add(E e):                     在数组末尾添加元素；<br>size():                           数组中实际元素个数，并不是数组容量；<br>add(int index, E e):    在数组指定位置添加元素；<br>clear():                         将数组中元素清空；<br>contains(E e):             判断数组中是否含有某个元素；<br>get(int index):             返回数组指定位置的元素；<br>indexOf(E e):              返回数组指定元素第一次出现的位置；<br>set(int index, E e):     替换数组指定位置的值；<br>remove(int index):     移除数组指定位置的元素；<br>remove(E e):              移除数组中第一次出现的指定元素；<br>addAll(Collection<? extends E> c):                     在数组末尾添加另一个数组 ；
+addAll(int index, collection<? extends E> c):     在数组指定位置添加另一个数组 ；
+removeAll(Collection<?>c):                                   将数组中属于数组 c 中的元素全部删除；</p>
+</blockquote>
+<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p> LinkedList 是一种基于链表实现的，继承自 AbstractSequentialList 接口，同时了还实现了 Deque, Queue 接口的数据结构。与普通List不同的是，LinkedList是一个双向链表，每一个节点是一个双向节点，即同时可以指向上一个节点也可以指向下一个节点。<br> ArrayList 也不是线程安全的！</p>
+<p> <strong>LinkedList的操作方法</strong>：<br> <strong>add</strong></p>
+<blockquote>
+<p>boolean add(E e)：在链表后添加一个元素，如果成功，返回true，否则返回false；<br>void addFirst(E e)：在链表头部插入一个元素；<br>addLast(E e)：在链表尾部添加一个元素；<br>void add(int index, E element)：在指定位置插入一个元素。</p>
+</blockquote>
+<p><strong>remove</strong></p>
+<blockquote>
+<p>E remove()；移除链表中第一个元素；<br>boolean remove(Object o)：移除链表中指定的元素；<br>E remove(int index)：移除链表中指定位置的元素；<br>E removeFirst()：移除链表中第一个元素，与remove类似；<br>E removeLast()：移除链表中最后一个元素；<br>boolean removeFirstOccurrence(Object o)：移除链表中第一次出现所在位置的元素；<br>boolean removeLastOccurrence(Object o)：移除链表中最后一次出现所在位置的元素；</p>
+</blockquote>
+<p><strong>get</strong></p>
+<blockquote>
+<p>E get(int index)：按照下边获取元素；<br>E getFirst()：获取第一个元素；<br>E getLast()：获取第二个元素；</p>
+</blockquote>
+<p><strong>push、pop、poll</strong></p>
+<blockquote>
+<p>void push(E e)：与addFirst一样，实际上它就是addFirst；<br>E pop()：与removeFirst一样，实际上它就是removeFirst；<br>E poll()：查询并移除第一个元素；</p>
+</blockquote>
+<p><strong>peek</strong></p>
+<blockquote>
+<p>E peek()：获取第一个元素，但是不移除；<br>E peekFirst()：获取第一个元素，但是不移除；<br>E peekLast()：获取最后一个元素，但是不移除；</p>
+</blockquote>
+<p><strong>offer</strong></p>
+<blockquote>
+<p>boolean offer(E e)：在链表尾部插入一个元素；<br>boolean offerFirst(E e)：与addFirst一样，实际上它就是addFirst；<br>boolean offerLast(E e)：与addLast一样，实际上它就是addLast；</p>
+</blockquote>
+<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><p>HashSet实现Set接口，由哈希表（实际上是一个HashMap实例）支持。<br>看了网上挺多博客，都说HashSet是基于HashMap实现的，我开始就很疑惑，明明是继承自Set接口啊，怎么会是基于HashMap实现的呢。后来看了源码才知道HashSet在构造函数中实例化了一个HashMap实例来作为元素存储的容器，感兴趣的可以去找一下源码来读。来这儿又加深了自己对Java接口这个概念的理解，接口就是用来提供方法的。<br>既然HashSet是基于HashMap实现的，HashSet的很多方法也都是使用HashMap的方法来实现的了，这部分可以直接看后面的HashMap的介绍。<br>说到这儿又有点疑惑了，那么HashSet和HashMap相比又有什么区别嗯，不可能造两个完全一样的容器吧。仔细一想，两者的差别它们的名字的已经告诉我们了。一个是Set，一个是Map.前面提到，Set是不允许重复元素出现的，HashSet实现了Set接口，它不允许集合中出现重复元素。后来查阅了相关资料，发现两者除此之外还有一些其他的区别：</p>
+<table>
+<thead>
+<tr>
+<th>HashMap</th>
+<th>HashSet</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>实现了Map接口</td>
+<td>实现Set接口</td>
+</tr>
+<tr>
+<td><strong>存储键值对</strong></td>
+<td><strong>仅存储对象</strong></td>
+</tr>
+<tr>
+<td>调用put（）向map中添加元素</td>
+<td>调用add（）方法向Set中添加元素</td>
+</tr>
+<tr>
+<td>HashMap使用键（Key）计算Hashcode</td>
+<td>HashSet使用成员对象来计算hashcode值</td>
+</tr>
+<tr>
+<td>HashMap相对于HashSet较快，因为它是使用唯一的键获取对象</td>
+<td>HashSet较HashMap来说比较慢</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>HashMap中元素形式：&lt;Object, value&gt;, HashSet中元素的形式：Object.</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>具体的存储形式为：数据存储在HashMap的key中，value都是同一个默认值。</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h3><p>LinkedHashSet继承自HashSet，唯一的区别是LinkedHashSet内部使用的是LinkHashMap。这样做的意义或者好处就是LinkedHashSet中的元素顺序是可以保证的，也就是说遍历序和插入序是一致的。LinkHashMap见本博客后面的内容。</p>
+<h3 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h3><p>TreeSet 是一个有序的集合，它的作用是提供有序的Set集合。它继承于AbstractSet抽象类，实现了NavigableSet<E>,Cloneable,java.io.Serializable接口。一种基于TreeMap的NavigableSet实现。TreeSet与TreeMap的关系和HashSet与HashMap的关系类似，可类比理解。<br>TreeSet继承了AbstractSet抽象类，所以它是一个有序的set集合，且具有set的属性和方法。<br>TreeSet是基于TreeMap实现的，使用TreeMap作为元素容器，底层的操作也是通过TreeMap实现的，所以两者不同点：</p>
+<ul>
+<li>TreeSet和TreeMap非别实现Set和Map接口 </li>
+<li>TreeSet只存储一个对象，而TreeMap存储两个对象Key和Value（仅仅key对象有序） </li>
+<li>TreeSet中不能有重复对象，而TreeMap中可以存在。</li>
+</ul>
+<h3 id="ArrayDeque"><a href="#ArrayDeque" class="headerlink" title="ArrayDeque"></a>ArrayDeque</h3><p>ArrayDeque类是<strong>双端队列</strong>的实现类，类的继承结构如下面，继承自AbastractCollection（该类实习了部分集合通用的方法，其实现了Collection接口），其实现的接口Deque接口中定义了双端队列的主要的方法，比如从头删除，从尾部删除，获取头数据，获取尾部数据等等。<strong>底层是通过数组实现的。</strong></p>
+<p><strong>NOTE</strong>：ArrayDeque不是线程安全的，ArrayDeque不可以存取null元素。</p>
+<p><strong>双端队列</strong>：双端队列，即可以同时在队列头和队列尾部进行增加删除的操作。</p>
+<p>当作为栈使用时，性能比Stack好；当作为队列使用时，性能比LinkedList好。（这个从底层实现分析）</p>
+<p>此外呢，ArrayDeque有一些方法，扩容机制很特殊，以后再仔细研究。</p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>Map是Map层级结构中的根接口，维护键/值对，描述<strong>不重复</strong>的<strong>一对一</strong>的键到值的映射。<br>Map 接口提供三种collection 视图，允许以键集、值集或键-值映射关系集的形式查看某个映射的内容。<br>即Map的元素为一个键值对接口：Entry&lt;Object, Value&gt;.</p>
+<p>其接口为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>可以说是Map中最重要的一种结构了，是很多结构的实现基础。<br>HashMap继承自抽象类AbstractMap，抽象类AbstractMap实现了Map接口。</p>
+<p>HashMap采用了链地址法，也就是使用数组+链表的方式解决哈希冲突。主干是一个Entry数组。Entry是HashMap的基本组成单元，每一个Entry包含一个key-value键值对，枝干是使用链表实现的，链表的节点也是一个Entry，包含一个key-value键值对。</p>
+<p><img src="http://dengw.xyz/hexo-blog/180330/dgIfbCKL1H.png" alt="HashMap的整体结构"></p>
+<p><strong>很重要</strong>：</p>
+<ul>
+<li>不管hashcode还是Equal的对象都是键，即Object</li>
+<li>HashMap最多只允许一条记录的键为null，允许多条记录的值为null。</li>
+<li>HashMap非线程安全，可以使用使用ConcurrentHashMap替代。</li>
+</ul>
+<p>一篇非常好的关于HashMap的讲解文章：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/chengxiao/p/6059914.html#t2">HashMap实现原理及源码分析</a></p>
+<h3 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h3><p>前面讲TreeSet的时候就有提到TreeSet是基于 TreeMap实现的，现在就具体的讲讲TreeMap。</p>
+<p>TreeMap继承AbstractMap，实现NavigableMap、Cloneable、Serializable三个接口。其中AbstractMap表明TreeMap为一个Map即支持key-value的集合， NavigableMap由于实现了TreeMap的接口则意味着它支持一系列的导航方法，具备针对给定搜索目标返回最接近匹配项的导航方法 ，<strong>并且是有序的</strong>。<br>在算法上，TreeMap的实现是红黑树算法的实现的，所以要想学习TreeMap原理的话要写学习一下红黑树相关的知识。</p>
+<p><strong>TreeMap特点：</strong></p>
+<blockquote>
+<p>TreeMap是非线程安全的。</p>
+</blockquote>
+<blockquote>
+<p>TreeMap是用键来进行升序顺序来排序的。通过Comparable 或 Comparator来排序。</p>
+</blockquote>
+<blockquote>
+<p>TreeMap是SortedMap接口的基于红黑树的实现。此类保证了映射按照升序顺序排列关键字， 根据使用的构造方法不同，可能会按照键的类的自然顺序进行排序，或者按照创建时所提供的比较器（自定义）进行排序。</p>
+</blockquote>
+<blockquote>
+<p>和HashMap一样，如果插入重复的元素，后面的元素会覆盖前面的。 </p>
+</blockquote>
+<blockquote>
+<p>键不可以为null（如果比较器对null做了处理，就可以为null）,但是值可以为null。 </p>
+</blockquote>
+<p>由于现在有些赶，对TreeMap也不是很深入，这里贴一篇关于<a target="_blank" rel="noopener" href="https://blog.csdn.net/chenssy/article/details/26668941">TreeMap</a>的博客，讲解的非常清楚，等这段时间面试完再来补。</p>
+<h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><p>inkedHashMap不仅像HashMap那样对其进行基于哈希表和单链表的Entry数组+ next链表的存储方式，而且还结合了LinkedList的优点，为每个Entry节点增加了前驱和后继，并增加了一个为null头结点，构造了一个<strong>双向循环链表</strong>。<strong>即主干同样是一个数组，而枝干是一个双向链表实现的，并且该链表是有序的，可以按元素插入顺序或元素最近访问顺序(LRU)排列。</strong></p>
+<p><img src="http://dengw.xyz/hexo-blog/180330/h2b0eH8C1H.png" alt="LinkedHashMap具体结构"></p>
+<p>看一下LinkedHashMap的构造方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">LinkedHashMap</span><span class="params">(<span class="keyword">int</span> initialCapacity, <span class="keyword">float</span> loadFactor)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">super</span>(initialCapacity, loadFactor);  </span><br><span class="line">        accessOrder = <span class="keyword">false</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>accessOrder若为false，遍历双向链表时，是按照插入顺序排序。<br>accessOrder若为true，表示双向链表中的元素按照访问的先后顺序排列，最先遍历到（链表头）的是最近最少使用的元素。</p>
+</blockquote>
+<p>因此在插入值的时候，相比HashMap，还有一些额外的操作来维护链表中元素存在的顺序。</p>
+<p>我这里也只有大概介绍一下，同样贴一篇非常好的博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/seu_calvin/article/details/52684341">LinkedHashMap源码详解</a>.</p>
+<p>待续……</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/03/08/%E6%8D%8B%E4%B8%80%E6%8D%8BJava%E4%B8%AD%E5%85%B3%E7%B3%BB%E5%A4%8D%E6%9D%82%E7%9A%84%E5%AE%B9%E5%99%A8/" data-id="ckqm6kpni0074xxr55rdxfc9a" data-title="捋一捋Java中关系复杂的容器" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java%E5%AE%B9%E5%99%A8/" rel="tag">Java容器</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Activity生命周期详解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/03/07/Activity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2018-03-07T03:12:16.000Z" itemprop="datePublished">2018-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/03/07/Activity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%AF%A6%E8%A7%A3/">Activity生命周期详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="关于Activity"><a href="#关于Activity" class="headerlink" title="关于Activity"></a>关于Activity</h3><p>在Android应用程序里，一个Activity就是一个用户界面。用户与程序的交互就是通过Activity来实现的，可以看成网站的页面。主Activity是程序启动的入口。应用程序成功启动之后，呈献给用户的第一个界面，即为该程序的主Activity。</p>
+<h3 id="关于任务栈"><a href="#关于任务栈" class="headerlink" title="关于任务栈"></a>关于任务栈</h3><p>Android中是使用任务（task）来管理活动的，一个任务就是一组存放在栈里的活动的集合，这个任务栈也叫做返回栈。在默认情况下，当我们启动了一个新的活动，它会在返回栈中入栈，并处于栈顶的位置。而当我们按下 back 键或调用 finish() 方法去销毁一个活动时，处于栈顶的任务就会出栈，这时前一个入栈的活动就会重新处于栈顶的位置。系统总是会显示处于栈顶的活动给用户。</p>
+<h3 id="Activity的四种状态"><a href="#Activity的四种状态" class="headerlink" title="Activity的四种状态"></a>Activity的四种状态</h3><p>Android 的虚拟机(VM)是使用基于栈(Stack based) 管理，主要有四种状态：</p>
+<p><strong>Active (运行状态)：</strong><br>使用者启动应用程序或Activity 后，Activity 运行中的状态，可与用户之间进行交互，此时当前Activity位于栈顶。<br>需要注意的是，在Android 平台上，同一个时刻只会有一个Activity 处于活动(Active)或运行(Running)状态。其他的Activity 都处于未启动(Dead)、停止(Stopped)、或是暂停(Pause)的状态。</p>
+<p><strong>Paused (暂停状态)</strong><br>当Activity 暂时暗下来，退到背景画面的状态。<br>当使用Toast、AlertDialog或电话呼入时，都会让原本运行的Activity 退到背景画面。新出现的Toast、AlertDialog 等界面元件盖住了原来的Activity 画面。Activity 处在”Paused”状态时，使用者无法与原Activity 互动。</p>
+<p><strong>Stopped (停止状态)</strong><br>Activity完全被另一个Activity所覆盖，则其状态为Stopped。<br>有其他Activity 正在执行，而当前Activity 已经离开屏幕，不再动作的状态。通过长按”Home”钮，可以叫出所有处于”Stopped”状态的应用程序列表。在“Stopped”状态的Activity，还可以通过“Notification”来唤醒。</p>
+<p><strong>Dead (销毁状态)</strong><br>Activity 尚未被启动、已经被手动终止，或已经被系统回收的状态。<br>要手动终止Activity，可以在程序中调用“finish”函数，若是被系统回收，可能是因为内存不足，因此系统根据内存不足时的回收规则，将处于“Stopped”状态的Activity 所占用的内存回收。</p>
+<h3 id="Activity的生命周期"><a href="#Activity的生命周期" class="headerlink" title="Activity的生命周期"></a>Activity的生命周期</h3><p>每个活动（Activity）都处于某个状态。对于开发者来说，是无法控制其应用程序处于某个状态的，这些均由系统来完成。但当一个活动状态发生改变的时，开发者可以通过调用onXXX()方法，获取相关的通知信息。</p>
+<p>完整的Activity 生命周期由”Create”状态开始，由”Destroy”状态结束。建立<br>(Create)时分配资源，销毁(Destroy)时释放资源。</p>
+<p><img src="http://dengw.xyz/hexo-blog/180330/d3jBcAHbj2.png" alt="Activity生命周期流程图"></p>
+<ul>
+<li><strong>onCreate :</strong> 当活动第一次启动时触发该方法。该方法是在Activity被创建时回调，它是生命周期第一个调用的方法，我们在创建Activity时一般都需要重写该方法，然后在该方法中做一些初始化的操作，如通过setContentView设置界面布局的资源，初始化所需要的组件信息等。 </li>
+<li><strong>onStart :</strong> 此方法被回调时表示Activity正在启动，所属活动将被展现给用户，此时Activity已处于可见状态，只是还没有在前台显示，因此无法与用户进行交互。可以简单理解为Activity已显示而我们无法看见摆了。 </li>
+<li><strong>onResume :</strong> 当一个活动和用户发生交互的时候，触发该方法。当此方法回调时，则说明Activity已在前台可见，可与用户交互了（处于前面所说的Active/Running形态），onResume方法与onStart的相同点是两者都表示Activity可见，只不过onStart回调时Activity还是后台无法与用户交互，而onResume则已显示在前台，可与用户交互。当然从流程图，我们也可以看出当Activity停止后（onPause方法和onStop方法被调用），重新回到前台时也会调用onResume方法，因此我们也可以在onResume方法中初始化一些资源，比如重新初始化在onPause或者onStop方法中释放的资源。 </li>
+<li><strong>onPause :</strong> 当一个正在前台运行的活动因为其他的活动需要前台运行而转入后台运行的时候，触发该方法。此方法被回调时则表示Activity正在停止（Paused形态），一般情况下onStop方法会紧接着被回调。但通过流程图我们还可以看到一种情况是onPause方法执行后直接执行了onResume方法，这属于比较极端的现象了，这可能是用户操作使当前Activity退居后台后又迅速地再回到到当前的Activity，此时onResume方法就会被回调。当然，在onPause方法中我们可以做一些数据存储或者动画停止或者资源回收的操作，但是不能太耗时，因为这可能会影响到新的Activity的显示——onPause方法执行完成后，新Activity的onResume方法才会被执行。 </li>
+<li><strong>onStop :</strong> 当一个活动不再需要展示给用户的时候，触发该方法。一般在onPause方法执行完成直接执行，表示Activity即将停止或者完全被覆盖（Stopped形态），此时Activity不可见，仅在后台运行。同样地，在onStop方法可以做一些资源释放的操作（不能太耗时）。如果内存紧张，系统会直接结束这个活动，而不会触发onStop 方法，所以保存状态信息是应该在onPause时做，而不是onStop时做。</li>
+<li><strong>onRestart</strong> : 当处于停止状态的活动需要再次展现给用户的时候，触发该方法，表示Activity正在重新启动，当Activity由不可见变为可见状态时，该方法被回调。这种情况一般是用户打开了一个新的Activity时，当前的Activity就会被暂停（onPause和onStop被执行了），接着又回到当前Activity页面时，onRestart方法就会被回调。 </li>
+<li>  <strong>onDestroy</strong> :当一个活动不再需要展示给用户的时候，触发该方法。此时Activity正在被销毁，也是生命周期最后一个执行的方法，一般我们可以在此方法中做一些回收工作和最终的资源释放。 </li>
+</ul>
+<p>以上关于各个阶段的状态详细说明大部分来自于<a target="_blank" rel="noopener" href="http://blog.csdn.net/javazejian/article/details/51932554">Android之Activity生命周期浅析(一)</a>，并在其基础上做了一些小小的补充。</p>
+<p>以上7个方法中除了onRestart()方法，其他的都是两两相对的，从而又可以将活动分为3个生存期。</p>
+<p><strong>完整生命期</strong>：活动在onCreate()方法到onDestory()方法之间经历的时期。</p>
+<p>第一次启动Activity：依次执行以下方法：onCreate() -&gt; MainActivity created  -&gt; onStart() -&gt; MainActivity started -&gt; onResume() -&gt; MainActivity actived，进入活动状态。</p>
+<p>结束Activity：依次执行以下方法：onPause () -&gt; MainActivity paused -&gt;  onStop () -&gt; MainActivity stoped -&gt;  onDestory()  -&gt;  MainActivity killed。</p>
+<ul>
+<li>Activity由活动状态转为暂停状态。此时它依然与窗口管理器保持连接，系统继续维护其内部状态，所以它仍然可见。但已失去了焦点，故不可与用户交互。在极特殊的情况下，Android将会杀死一个暂停的Activity，来为活动的Activity提供充足的资源；</li>
+<li>Activity被停止，变为完全隐藏，失去焦点，并且不可见。但是系统将仍在内存中保存它所有的状态和信息；</li>
+<li>Activity被杀死，转为销毁状态。Activity结束，退出当前应用程序。</li>
+</ul>
+<p><strong>可见生存期</strong>：活动在onStart()方法到onStop()方法之间经历的时期。<br>当Activity 运行到“Start”状态时，就可以在屏幕上看到该Activity。相反当Activity 运行到“Stop”状态时，此Activity 就会从屏幕上消失。当使用者按下Back 按钮回到上一个Activity 时，会先到Restart 状态，再到一般的Start 状态。</p>
+<p><strong>前台生存期</strong>：活动在onResume()方法到onPause()方法之间经历的时期。<br>使用者能否直接存取屏幕（Resume/Pause），当有个Toast、AlertDialog、短信、电话等信息发生时，原来的Activity 会处于“Pause”状态，暂时放弃直接存取屏幕的能力，被中断到背景去，将前景交给优先级高的事件。当这些优先级高的事件处理完后，Activity 就改进入”Resume”状态，此时又直接存取屏幕。</p>
+<h3 id="一些特殊情况下-Activity-的生命周期变化"><a href="#一些特殊情况下-Activity-的生命周期变化" class="headerlink" title="一些特殊情况下 Activity 的生命周期变化"></a>一些特殊情况下 Activity 的生命周期变化</h3><p>这些情况在开发的时候也会遇得到，但是更多的可能是面试中会问到，很考验开发者对Activity生命周期的掌握情况，具体的包括：</p>
+<ul>
+<li>按下 Home 键当前 Activity 的生命周期变化；</li>
+<li>按下 back 键当前 Activity 的生命周期变化；</li>
+<li>息屏时当前 Activity 的生命周期变化；</li>
+<li>启动一个新的透明 Activity 时当前 Activity 的生命周期变化；</li>
+<li>旋转屏幕未设置 configureChanges 参数时当前 Activity 的生命周期变化；</li>
+<li>旋转屏幕设置了 configureChanges 参数时当前 Activity 的生命周期变化；</li>
+</ul>
+<p>上面这些问题我们通过一个实际的demo，通过生命周期函数打印日志来进行逐一验证；</p>
+<h4 id="按下-Home-键当前-Activity-的生命周期变化"><a href="#按下-Home-键当前-Activity-的生命周期变化" class="headerlink" title="按下 Home 键当前 Activity 的生命周期变化"></a>按下 Home 键当前 Activity 的生命周期变化</h4><p><img src="http://dengw.xyz/hexo-blog/181002/a3L03Ad13G.png" alt="enter image description here"></p>
+<p>可以看到点击 Home 键当前 Activity 会调用 <strong>onPause &gt; onSaveInstanceState &gt; onStop</strong> 函数，并没有调用 onDestroy 方法，说明当前活动没有被销毁，只是不再处于栈顶了。这个时候继续看一下再进入该 Activity 时该  Activity 的生命周期变化：<br><img src="http://dengw.xyz/hexo-blog/181002/EJ85jIL8fc.png" alt="enter image description here"></p>
+<p>可以看到再进入该 Activity 依次调用 <strong>onRestart &gt; onStart &gt; onResume</strong> 方法，结合上面说的，我们总结按下 Home 键时当前 Activity 依然位于任务栈中，只是不在位于任务栈的栈顶。</p>
+<h4 id="按下-back-键当前-Activity-的生命周期变化"><a href="#按下-back-键当前-Activity-的生命周期变化" class="headerlink" title="按下 back 键当前 Activity 的生命周期变化"></a>按下 back 键当前 Activity 的生命周期变化</h4><p>同样的，先使用 demo 试一下，然后根据结果解释；<br><img src="http://dengw.xyz/hexo-blog/181002/3lEmJ4LbcJ.png" alt="enter image description here"><br><img src="http://dengw.xyz/hexo-blog/181002/le7k0Bb5kA.png" alt="enter image description here"></p>
+<p>可以看到当我们在 Activity2 中按下 Back 键返回 Activity1 的时候，Activity2 会调用 <strong>onPause &gt; onStop &gt; onDestroy</strong> 方法，也就是说 Activity2 会被销毁，直接从任务栈中移除掉。正常情况下一个活动直接被销毁除了上面这种情况，另外一种就是直接在一个活动中调用 <strong>finish()</strong> 方法。</p>
+<h4 id="息屏时当前-Activity-的生命周期变化"><a href="#息屏时当前-Activity-的生命周期变化" class="headerlink" title="息屏时当前 Activity 的生命周期变化"></a>息屏时当前 Activity 的生命周期变化</h4><p>先贴一下运行结果：<br><img src="http://dengw.xyz/hexo-blog/181002/iGkdehdmgj.png" alt="enter image description here"></p>
+<p>方法调用过程为：<strong>onPause &gt; onSaveInstanceState &gt; onStop</strong></p>
+<p>然后再进入当前Activity，方法调用过程为：<strong>onRestart &gt; onStart &gt; onResume</strong><br><img src="http://dengw.xyz/hexo-blog/181002/9EHch5Aima.png" alt="enter image description here"></p>
+<h4 id="启动一个新的透明-Activity-时当前-Activity-的生命周期变化"><a href="#启动一个新的透明-Activity-时当前-Activity-的生命周期变化" class="headerlink" title="启动一个新的透明 Activity 时当前 Activity 的生命周期变化"></a>启动一个新的透明 Activity 时当前 Activity 的生命周期变化</h4><p>当我们给 Acticity2 的属性设置如下的时候，可以让 Acticity2 完全透明：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity</span><br><span class="line">	android:name=&quot;.Main2Activity&quot;</span><br><span class="line">	android:theme=&quot;@android:style/Theme.Translucent&quot;&gt;</span><br><span class="line">&lt;/activity&gt;</span><br></pre></td></tr></table></figure>
+<p>这样当我们从 Activity1 启动 Activity2，然后观察 Activity1 的生命周期变化，先看一下结果；<br><img src="http://dengw.xyz/hexo-blog/181002/A4E8KG2kK5.png" alt="enter image description here"><br><img src="http://dengw.xyz/hexo-blog/181002/bIfHL70hAE.png" alt="enter image description here"></p>
+<p>可以看到调用过程为 <strong>onPause &gt; onSaveInsanceState</strong>，没有调用 onStop 方法，这里我们可以这样理解，因为  Activity2 被设置为透明的，这样跳转到  Activity2 时 Activity1 依然可见，所以不会调用 Activity1 的 onStop 方法，因为一个活动调用 onStop 方法后就不再可见。</p>
+<h4 id="旋转屏幕未设置-configureChanges-参数时当前-Activity-的生命周期变化"><a href="#旋转屏幕未设置-configureChanges-参数时当前-Activity-的生命周期变化" class="headerlink" title="旋转屏幕未设置 configureChanges 参数时当前 Activity 的生命周期变化"></a>旋转屏幕未设置 configureChanges 参数时当前 Activity 的生命周期变化</h4><p>默认是设置 configureChanges 参数的，我们先看一下默认情况下的生命周期：<br><img src="http://dengw.xyz/hexo-blog/181002/aFFe2B0GE9.png" alt="enter image description here"><br><img src="http://dengw.xyz/hexo-blog/181002/ACfm7f9mK9.png" alt="enter image description here"></p>
+<p>从结果中我们可以看到，当旋转屏幕并且 configureChanges 为默认值的时候，当前活动的生命周期变化为：<br><strong>onPause &gt; onSaveInstanceState &gt; onStop &gt; onDestroy &gt; onCreate &gt; onStart &gt; onRestoreInstanceState &gt; onResume</strong></p>
+<p>从这些方法中不想归纳出当前活动是被销毁后再重新创建了一个新的活动，即旋转前和旋转后看到的其实不是同一个活动，之前的活动已经从任务栈中出栈然后新建了一个新的活动加入到任务栈中。这个很好理解嘛，旋转前和旋转后活动的宽和高发生了变化，相当于系统配置已经发生了变化，这样活动当然会被重建。</p>
+<h4 id="旋转屏幕设置了-configureChanges-参数时当前-Activity-的生命周期变化"><a href="#旋转屏幕设置了-configureChanges-参数时当前-Activity-的生命周期变化" class="headerlink" title="旋转屏幕设置了 configureChanges 参数时当前 Activity 的生命周期变化"></a>旋转屏幕设置了 configureChanges 参数时当前 Activity 的生命周期变化</h4><p>通过 configureChanges 参数可以让活动在改变系统配置的时候不被重建，比如我们想让 Activity2 在改变系统配置的时候不被重建，可以进行如下配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity</span><br><span class="line">	android:name=&quot;.Main2Activity&quot;</span><br><span class="line">	android:configChanges=&quot;orientation|screenSize&quot;&gt;</span><br><span class="line">&lt;/activity&gt;</span><br></pre></td></tr></table></figure>
+
+<p>调用情况：<br><img src="http://dengw.xyz/hexo-blog/181002/HkeG14aefd.png" alt="enter image description here"></p>
+<p>可以看到只调用了 onConfigurationChanged 方法，说明没有重建过程了，onConfigurationChanged 方法需要我们重写。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onConfigurationChanged</span><span class="params">(Configuration newConfig)</span></span>&#123;</span><br><span class="line">	<span class="keyword">super</span>.onConfigurationChanged(newConfig);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="onSaveInstanceState-和onRestoreInstanceState-调用时机"><a href="#onSaveInstanceState-和onRestoreInstanceState-调用时机" class="headerlink" title="onSaveInstanceState()和onRestoreInstanceState()调用时机"></a>onSaveInstanceState()和onRestoreInstanceState()调用时机</h3><p>在上面的讨论中我们可以看到，有的时候会调用单独调用 onSaveInstanceState() 方法，有的时候onSaveInstanceState()和onRestoreInstanceState() 会成对使用，那么我们再总结一下这两个方法的调用时机。</p>
+<h4 id="onSaveInstanceState-的调用时机"><a href="#onSaveInstanceState-的调用时机" class="headerlink" title="onSaveInstanceState() 的调用时机"></a>onSaveInstanceState() 的调用时机</h4><p>当 activity 有可能被系统回收的情况下会调用 onSaveInstanceState() 方法。需要注意的是有可能，如果是已经确定会被销毁，比如用户按下了返回键，或者调用了finish()方法销毁activity，则 onSaveInstanceState 不会被调用。或者也可以说，此方法只有在activity被异常终止的情况下会被调用。</p>
+<p>总结一下，onSaveInstanceState() 会在以下情况被调用：<br>1、当用户按下HOME键时。<br>2、从最近应用中选择运行其他的程序时。<br>3、按下电源按键（关闭屏幕显示）时。<br>4、从当前activity启动一个新的activity时。<br>5、屏幕方向切换时(无论竖屏切横屏还是横屏切竖屏都会调用)。</p>
+<h4 id="onRestoreInstanceState-的调用时机"><a href="#onRestoreInstanceState-的调用时机" class="headerlink" title="onRestoreInstanceState() 的调用时机"></a>onRestoreInstanceState() 的调用时机</h4><p>onRestoreInstanceState(Bundle savedInstanceState) 方法只有在 activity 确实是被系统回收，重新创建 activity 的情况下才会被调用。如我们上面讨论的默认情况下的旋转屏幕这种情况，在这里 onRestoreInstanceState 被调用，是因为屏幕切换时原来的 activity 确实被系统回收了，又重新创建了一个新的 activity。所以我们可以得出如下的结论，如果 onRestoreInstanceState 被调用了，则页面必然被回收过，则 onSaveInstanceState 必然被调用过。</p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/duang0626/CodeCollection/tree/master/demo/LifeCycleDemo">github-duang0626: LifeCycleDemo</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/03/07/Activity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%AF%A6%E8%A7%A3/" data-id="ckqm6kpko0003xxr5eutachmh" data-title="Activity生命周期详解" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Activity/" rel="tag">Activity</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-彩虹糖的艺术" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2012/09/14/%E5%BD%A9%E8%99%B9%E7%B3%96%E7%9A%84%E8%89%BA%E6%9C%AF/" class="article-date">
+  <time class="dt-published" datetime="2012-09-14T05:53:33.000Z" itemprop="datePublished">2012-09-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2012/09/14/%E5%BD%A9%E8%99%B9%E7%B3%96%E7%9A%84%E8%89%BA%E6%9C%AF/">彩虹糖的艺术</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>高中的时候写的，感觉很中二。不过现在让我写肯定写不出来了，文字功底退化了。</p>
+<p>彩虹糖，正如它的名字一样，彩虹，是要经历风雨之后才能看到的。吃彩虹糖也是这样，刚放到嘴里的时候，那个酸味，简直是不能用语言来形容的，如果你一次性的吃了几颗，那么恭喜你，可能你的眼泪都要出来了。但是，慢慢的，慢慢的，酸味会慢慢的减淡，取而代之的一丝的甜味，时间一点一点的过去，甜味会越来越多，只到最后，完完全全地融入的你的舌尖。     回头想想，我们的高中又何尝不是，整个高中就是吃彩虹糖，后面的日子就是尝彩虹糖，这是一个有时间先后的过程，你不可能只尝后面的甜味，而直接跳过前面的一个过程，所以，好好的静下来，学会享受这一过程。    其实，在我们刚吃彩虹糖的时候，即使很酸，但只要你慢慢适应，久而久之，你也会享受酸带给你的乐趣。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2012/09/14/%E5%BD%A9%E8%99%B9%E7%B3%96%E7%9A%84%E8%89%BA%E6%9C%AF/" data-id="ckqm6kpmg004bxxr50vv8byrq" data-title="彩虹糖的艺术" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%AD%A6%E4%B9%A0/">Java学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php%E5%AD%A6%E4%B9%A0/">php学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring%E5%AD%A6%E4%B9%A0/">spring学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ANR/" rel="tag">ANR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/" rel="tag">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" rel="tag">Android消息机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation/" rel="tag">Animation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/" rel="tag">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera%E5%BC%80%E5%8F%91/" rel="tag">Camera开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/" rel="tag">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/" rel="tag">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">Java内存机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%AE%B9%E5%99%A8/" rel="tag">Java容器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/" rel="tag">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecylerView/" rel="tag">RecylerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View%E5%B8%83%E5%B1%80/" rel="tag">View布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Window/" rel="tag">Window</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" rel="tag">apk反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring-boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87Offer/" rel="tag">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0/" rel="tag">实习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" rel="tag">文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%A1%E6%8B%9B/" rel="tag">校招</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" rel="tag">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" rel="tag">网络框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" rel="tag">自定义View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" rel="tag">项目总结</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ANR/" style="font-size: 10px;">ANR</a> <a href="/tags/Activity/" style="font-size: 12.5px;">Activity</a> <a href="/tags/Android/" style="font-size: 12.5px;">Android</a> <a href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Android消息机制</a> <a href="/tags/Animation/" style="font-size: 10px;">Animation</a> <a href="/tags/Bitmap/" style="font-size: 10px;">Bitmap</a> <a href="/tags/Camera%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Camera开发</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/HTTP/" style="font-size: 17.5px;">HTTP</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java内存机制</a> <a href="/tags/Java%E5%AE%B9%E5%99%A8/" style="font-size: 10px;">Java容器</a> <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 17.5px;">Java虚拟机</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Linux命令</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RecylerView/" style="font-size: 10px;">RecylerView</a> <a href="/tags/Retrofit/" style="font-size: 15px;">Retrofit</a> <a href="/tags/View%E5%B8%83%E5%B1%80/" style="font-size: 20px;">View布局</a> <a href="/tags/Window/" style="font-size: 10px;">Window</a> <a href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" style="font-size: 10px;">apk反编译</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring-boot</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/vim/" style="font-size: 12.5px;">vim</a> <a href="/tags/%E5%89%91%E6%8C%87Offer/" style="font-size: 10px;">剑指Offer</a> <a href="/tags/%E5%8F%8D%E5%B0%84/" style="font-size: 12.5px;">反射</a> <a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 12.5px;">实习</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" style="font-size: 10px;">文件下载</a> <a href="/tags/%E6%A0%A1%E6%8B%9B/" style="font-size: 17.5px;">校招</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 10px;">泛型</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" style="font-size: 15px;">类加载</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">网络框架</a> <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" style="font-size: 10px;">自定义View</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15px;">设计模式</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" style="font-size: 10px;">项目总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/">Mac终端常用快捷键总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/">关于php的empty函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">Spring常用注解</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/">使用.gitignore配置git忽略提交规则</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Mysql常用命令总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
