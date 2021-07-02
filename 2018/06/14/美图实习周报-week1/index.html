@@ -233,15 +233,48 @@
 <h2 id="这一周都做了什么"><a href="#这一周都做了什么" class="headerlink" title="这一周都做了什么"></a>这一周都做了什么</h2><p>初来咋到，这一周师兄给了一个小项目先热热身，虽然只是一个小项目，但是时间花的真挺多的。<br>师兄给的项目是模仿<code>Camera 360 lite</code>版本滤镜打开动画，做出来的效果如下：<br><img src="http://dengw.xyz/blog/180614/kilIdD9kCm.gif" srcset="/img/loading.gif" lazyload alt="mark"></p>
 <p>大概的过程就是：实现一个支持drop down的菜单栏，并且是一个具有两级菜单的菜单栏，最开始，菜单都是隐藏的，当点击下方的按钮，出发条件，显示出一级菜单，并且这是一个滑动的过程，弹性的移动，一级菜单可以从左向右滑动，当点击点击一级菜单中的某个item，显示出对应的二级菜单，这个过程也是动态的，这也是这个项目中的一个难点所在，下面详细讲解，二级菜单也可以左右滑动，点击某个item，然后to do something. 每个二级菜单的最左边有一个fixed 返回按钮，它不会随着二级菜单的滑动而移动，当前及这个返回按钮，会返回之前进入二级菜单时的一级菜单，这个过程也是动态，同时也是本此项目的一个难点所在，也下面详细讲解。最下方的按钮控制真个菜单的隐藏与显示，当菜单是显示的时候，不管显示的一级菜单还是二级菜单，点击都要隐藏整个菜单，同理，当整个菜单隐藏的时候，点击后显示。</p>
 <h2 id="怎么实现的"><a href="#怎么实现的" class="headerlink" title="怎么实现的"></a>怎么实现的</h2><h3 id="在布局上"><a href="#在布局上" class="headerlink" title="在布局上"></a>在布局上</h3><p>首先两个菜单，根据效果，选择使用<code>RecylerView</code>实现，这里为什么没有选择<code>ListView</code>呢？因为有很多动画，使用<code>RecylerView</code>更好实现，功能更多，并且能用<code>ListView</code>实现的肯定<code>RecylerView</code>也能实现。在控件的层次上，最下层需要是二级菜单，中间一层是一级菜单，最上面一层是蓝色的部分，i还有就是fixed按钮需要在二级菜单的上层。具体布局文件可以看博客最后面给的项目链接。<br>还有一个比较有记录价值的就是简单的实现一个圆形按钮，首先在drawable中添加<code>circle_background_for_image_button.xml</code>文件，代码如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">shape</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span> &gt;</span><br>    <span class="hljs-comment">&lt;!-- 填充色 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">solid</span> <span class="hljs-attr">android:color</span>=<span class="hljs-string">&quot;@color/white&quot;</span> /&gt;</span><br>    <span class="hljs-comment">&lt;!-- 圆角 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">corners</span> <span class="hljs-attr">android:radius</span>=<span class="hljs-string">&quot;90dp&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">shape</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">shape</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span> &gt;</span>
+    <span class="hljs-comment">&lt;!-- 填充色 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">solid</span> <span class="hljs-attr">android:color</span>=<span class="hljs-string">&quot;@color/white&quot;</span> /&gt;</span>
+    <span class="hljs-comment">&lt;!-- 圆角 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">corners</span> <span class="hljs-attr">android:radius</span>=<span class="hljs-string">&quot;90dp&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">shape</span>&gt;</span></code></pre></div>
 
 <p>然后把该文件赋值给控件的<code>background</code>属性就Ok了。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">ImageButton</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/fixedButton&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;40dp&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;40dp&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_alignBottom</span>=<span class="hljs-string">&quot;@id/menu2&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_marginBottom</span>=<span class="hljs-string">&quot;5dp&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:layout_marginLeft</span>=<span class="hljs-string">&quot;10dp&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;@drawable/circle_background_for_image_button&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:src</span>=<span class="hljs-string">&quot;@drawable/ic_keyboard_return_grey_500_24dp&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">ImageButton</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/fixedButton&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;40dp&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;40dp&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_alignBottom</span>=<span class="hljs-string">&quot;@id/menu2&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_marginBottom</span>=<span class="hljs-string">&quot;5dp&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_marginLeft</span>=<span class="hljs-string">&quot;10dp&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;@drawable/circle_background_for_image_button&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:src</span>=<span class="hljs-string">&quot;@drawable/ic_keyboard_return_grey_500_24dp&quot;</span> /&gt;</span></code></pre></div>
 <h3 id="动画的实现"><a href="#动画的实现" class="headerlink" title="动画的实现"></a>动画的实现</h3><h4 id="一级菜单的弹性滑动"><a href="#一级菜单的弹性滑动" class="headerlink" title="一级菜单的弹性滑动"></a>一级菜单的弹性滑动</h4><p>对于一级菜单，首先是一个弹性滑动，这里需要一个动画效果，然后移动后还能够响应点击事件，所以这就需要使用是属性动画来实现，所以代码是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 使用动画平滑移动view指定的距离</span><br><span class="hljs-comment"> * @param1 要移动的view</span><br><span class="hljs-comment"> * @param2 标志位，值为true的时候下移，值为false的时候上移</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">moveViewSmooth</span><span class="hljs-params">(View view, <span class="hljs-keyword">boolean</span> sign)</span> </span>&#123;<br>    <span class="hljs-keyword">float</span> from = view.getTranslationY(), to;<br>    <span class="hljs-keyword">if</span> (sign) &#123;<br>        to = from + fromDpToPx();<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        to = from - fromDpToPx();<br>    &#125;<br>    ObjectAnimator.ofFloat(view, <span class="hljs-string">&quot;translationY&quot;</span>, from, to).setDuration(<span class="hljs-number">400</span>).start();<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * 使用动画平滑移动view指定的距离</span>
+<span class="hljs-comment"> * @param1 要移动的view</span>
+<span class="hljs-comment"> * @param2 标志位，值为true的时候下移，值为false的时候上移</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">moveViewSmooth</span><span class="hljs-params">(View view, <span class="hljs-keyword">boolean</span> sign)</span> </span>&#123;
+    <span class="hljs-keyword">float</span> from = view.getTranslationY(), to;
+    <span class="hljs-keyword">if</span> (sign) &#123;
+        to = from + fromDpToPx();
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        to = from - fromDpToPx();
+    &#125;
+    ObjectAnimator.ofFloat(view, <span class="hljs-string">&quot;translationY&quot;</span>, from, to).setDuration(<span class="hljs-number">400</span>).start();
+&#125;</code></pre></div>
 
 <p>NOTE: 这里面的<code>fromDpToPx()</code>函数是一个将固定Dp（控件的高度）值转化为px值的函数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 将dp = 60的值转化为对应px值</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> <span class="hljs-title">fromDpToPx</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> scale = getApplicationContext().getResources().getDisplayMetrics().density;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">60</span> * scale + <span class="hljs-number">0.5f</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * 将dp = 60的值转化为对应px值</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> <span class="hljs-title">fromDpToPx</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> scale = getApplicationContext().getResources().getDisplayMetrics().density;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">60</span> * scale + <span class="hljs-number">0.5f</span>;
+&#125;</code></pre></div>
 
 <h4 id="显示二级菜单"><a href="#显示二级菜单" class="headerlink" title="显示二级菜单"></a>显示二级菜单</h4><p>这个过程如效果图：点击屏幕上的某个一个菜单，从该位置处开始显示二级菜单，并且是从中间向两边逐个显示二级菜单的item，最后同时到达各自的边界。<br>对于这个动画，我们要明确一下几点，也是要解决的问题：</p>
 <ol>
@@ -254,18 +287,59 @@
 <ol>
 <li>获取所点击item的横坐标。<br>对于这个问题，我们先要明白，在<code>Activity</code>或者<code>Fragment</code>中的是一个<code>RecylerView</code>的实例，是没有办法获取到其中一个Item的横坐标的，那有什么办法呢，方法就是在<code>Adapter</code>中获取，并且还只有在能获取<code>MotionEvent</code>的函数中才能获取坐标信息，因此在<code>Adapter</code>中的<code>onClick</code>函数中获取不到，因为该函数没有捕捉<code>MotionEvent</code>，那怎么办呢？我们发现<code>View</code>的<code>onTouch</code>函数会捕捉<code>MotionEvent</code>。因此一个可以解决问题的方案是：在<code>adapter</code>的<code>onBindViewHolder</code>函数中重写<code>holder.itemView</code>的<code>setOnTouchListener</code>函数，在该函数中记录最近一次点击的横坐标，然后在需要的时候通过<code>Adapter</code>返回给<code>Acticity</code>。</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br>   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onBindViewHolder</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ViewHolder holder, <span class="hljs-keyword">int</span> position)</span> </span>&#123;<br>       holder.name.setText(itemList.get(position).getName());<br>       holder.itemView.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() &#123;<br>           <span class="hljs-meta">@Override</span><br>           <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;<br>               click.onItemClick(holder.getAdapterPosition());<br>           &#125;<br>       &#125;);<br>       <span class="hljs-comment">// 获取所点击Item相对于屏幕的横坐标</span><br>       holder.itemView.setOnTouchListener(<span class="hljs-keyword">new</span> View.OnTouchListener() &#123;<br>           <span class="hljs-meta">@Override</span><br>           <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onTouch</span><span class="hljs-params">(View view, MotionEvent motionEvent)</span> </span>&#123;<br>               <span class="hljs-keyword">if</span> (motionEvent.getAction() == MotionEvent.ACTION_DOWN) &#123;<br>                   rawX = motionEvent.getRawX();<br>               &#125;<br>               <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;   <span class="hljs-comment">//这里要返回false,返回true会使点击事件无效</span><br>           &#125;<br>       &#125;);<br>   &#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onBindViewHolder</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ViewHolder holder, <span class="hljs-keyword">int</span> position)</span> </span>&#123;
+       holder.name.setText(itemList.get(position).getName());
+       holder.itemView.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() &#123;
+           <span class="hljs-meta">@Override</span>
+           <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+               click.onItemClick(holder.getAdapterPosition());
+           &#125;
+       &#125;);
+       <span class="hljs-comment">// 获取所点击Item相对于屏幕的横坐标</span>
+       holder.itemView.setOnTouchListener(<span class="hljs-keyword">new</span> View.OnTouchListener() &#123;
+           <span class="hljs-meta">@Override</span>
+           <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onTouch</span><span class="hljs-params">(View view, MotionEvent motionEvent)</span> </span>&#123;
+               <span class="hljs-keyword">if</span> (motionEvent.getAction() == MotionEvent.ACTION_DOWN) &#123;
+                   rawX = motionEvent.getRawX();
+               &#125;
+               <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;   <span class="hljs-comment">//这里要返回false,返回true会使点击事件无效</span>
+           &#125;
+       &#125;);
+   &#125;</code></pre></div>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">float</span> <span class="hljs-title">getRawX</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">return</span> rawX;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">float</span> <span class="hljs-title">getRawX</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">return</span> rawX;
+&#125;</code></pre></div>
 
 <p>这其中需要注意的是<code>onTouch</code>函数这里需要返回false，不然会和<code>onClick</code>函数冲突是<code>onClick</code>函数失效。</p>
 <ol start="2">
 <li> 确定二级菜单item的移动方向<br>首先对于二级菜单的移动，因为每个item的动画都不一样，因此只有在二级菜单的<code>adapter</code>中的<code>onBindViewHolder</code>函数中给每个item添加动画，因此在new一个二级菜单的    <code>Adapter</code> 的时候需要把刚得到的坐标作为参数传递给二级菜单的    <code>Adapter</code>内部。这里我们把位置参数转化为<code>position</code>传递进去，转化的代码逻辑很简单,<code>fromDpToPx()</code>上面已经提过。</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 获取二级菜单动画开始的下标</span><br><span class="hljs-comment"> * @param 所点击一级菜单item的横坐标</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getStartPosition</span><span class="hljs-params">(<span class="hljs-keyword">float</span> rawX)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> ((rawX - fromDpToPx()) &gt;= <span class="hljs-number">0.0001</span>) &#123;<br>        n++;<br>        rawX -= fromDpToPx();<br>    &#125;<br>    <span class="hljs-keyword">return</span> n;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * 获取二级菜单动画开始的下标</span>
+<span class="hljs-comment"> * @param 所点击一级菜单item的横坐标</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getStartPosition</span><span class="hljs-params">(<span class="hljs-keyword">float</span> rawX)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> ((rawX - fromDpToPx()) &gt;= <span class="hljs-number">0.0001</span>) &#123;
+        n++;
+        rawX -= fromDpToPx();
+    &#125;
+    <span class="hljs-keyword">return</span> n;
+&#125;</code></pre></div>
 
 <p>在二级菜单的<code>adapter</code>中获取到这个<code>position</code>参数之后，<code>adapter</code>内部支持重写一个<code>getItemViewType</code>函数，这样就可以根据item的下标与动画开始下标的关系，决定item的移动方向。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getItemViewType</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (position &gt; startPosition) &#123;<br>        <span class="hljs-keyword">return</span> RIGHT;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(position &lt; startPosition)&#123;<br>        <span class="hljs-keyword">return</span> LEFT;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> MIDDLE;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getItemViewType</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position)</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (position &gt; startPosition) &#123;
+        <span class="hljs-keyword">return</span> RIGHT;
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(position &lt; startPosition)&#123;
+        <span class="hljs-keyword">return</span> LEFT;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-keyword">return</span> MIDDLE;
+    &#125;
+&#125;</code></pre></div>
 
 <ol start="3">
 <li><p>因为每个item移动的距离都有差别，所以不能使用<code>xml</code>文件定义定义动画的方式为item添加动画，需要根据位置的关系使用java代码动态添加。这里使用了以下几类：<code>TranslateAnimation</code>、<code>ScaleAnimation</code>、<code>AlphaAnimation</code>。<br>这里需要补充的一点就是当你使用java代码要为同一个View添加多个动画的时候，可以使用动画集合<code> AnimationSet</code>。</p>
@@ -274,12 +348,57 @@
 </li>
 </ol>
 <h4 id="关闭二级菜单"><a href="#关闭二级菜单" class="headerlink" title="关闭二级菜单"></a>关闭二级菜单</h4><p>关闭二级菜单类似与一个关门的效果，但是有一点不同的是之前在屏幕上哪个位置打开的二级菜单，那么关闭的时候二级菜单的结束位置也要在这个位置。其实动画的设置和开始动画挺像的，肯定位置关系添加动画属性，所以这不是难点。首先我们也明确这个动画是作用于每个item的，不是作用于个<code>RecylerView</code>，这和开始动画有点一样，但也有不一样的地方。开始动画我们是在<code>adapter</code>的<code>onBinderView</code>函数中添加的，而<code>onBinderBinder</code>函数是<code>adapter</code>的生命周期函数，是可以自发执行的，但是当我们关闭二级菜单的时候，<code>adapter</code>的生命周期中并没有这样一个类似的函数供我们来调用，这样我们就不能获取到每个item，相应的也不能把动画添加给每个item，这么办呢？这个问题困扰了我很久，始终找不到什么好的解决方法，昨天下午突然灵光一闪，我在adapter中添加一个<code>ViewHolder</code>类型的属性，然后在<code>onCreateViewHolder</code>中把create出来的<code>ViewHolder</code>实例添加进容器里面，这样我们就能在非生命周期函数中操作这些item，达到想要的效果。<br>这个部分值得留意的获取一个RecylerView当前可见Item的下标范围。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 获取secondMenu可见item范围的下值</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getFirstVisibleItemPosition</span><span class="hljs-params">(RecyclerView view)</span> </span>&#123;<br>    LinearLayoutManager layoutManager = (LinearLayoutManager) view.getLayoutManager();<br>    <span class="hljs-keyword">return</span> layoutManager.findFirstVisibleItemPosition();<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 获取secondMenu可见item范围的上值</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getLastVisibleItemPosition</span><span class="hljs-params">(RecyclerView view)</span> </span>&#123;<br>    LinearLayoutManager layoutManager = (LinearLayoutManager) view.getLayoutManager();<br>    <span class="hljs-keyword">return</span> layoutManager.findLastVisibleItemPosition();<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * 获取secondMenu可见item范围的下值</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getFirstVisibleItemPosition</span><span class="hljs-params">(RecyclerView view)</span> </span>&#123;
+    LinearLayoutManager layoutManager = (LinearLayoutManager) view.getLayoutManager();
+    <span class="hljs-keyword">return</span> layoutManager.findFirstVisibleItemPosition();
+&#125;
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * 获取secondMenu可见item范围的上值</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getLastVisibleItemPosition</span><span class="hljs-params">(RecyclerView view)</span> </span>&#123;
+    LinearLayoutManager layoutManager = (LinearLayoutManager) view.getLayoutManager();
+    <span class="hljs-keyword">return</span> layoutManager.findLastVisibleItemPosition();
+&#125;</code></pre></div>
 
 <h4 id="其他一些实现"><a href="#其他一些实现" class="headerlink" title="其他一些实现"></a>其他一些实现</h4><blockquote>
 <p>尝试了facebook开源框架<a target="_blank" rel="noopener" href="http://facebook.github.io/rebound/">rebound</a>的使用，可以添加一个弹簧效果。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * item平移动画结束后的弹簧效果</span><br><span class="hljs-comment"> * @param 要作用的view</span><br><span class="hljs-comment"> * @param 标记位，用于判断左右方向（true: 向左， false: 向右）</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addSpringEffect</span><span class="hljs-params">(<span class="hljs-keyword">final</span> View viewToAnim, <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> isLeft)</span> </span>&#123;<br>    Runnable startSpringAnimation = <span class="hljs-keyword">new</span> Runnable() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>            SpringConfig config = <span class="hljs-keyword">new</span> SpringConfig(<span class="hljs-number">250</span>, <span class="hljs-number">25</span>);<br>            Spring spring = SpringSystem.create().createSpring();<br>            spring.setSpringConfig(config);<br>            spring.addListener(<span class="hljs-keyword">new</span> SimpleSpringListener() &#123;<br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSpringUpdate</span><span class="hljs-params">(Spring spring)</span> </span>&#123;<br>                    <span class="hljs-keyword">float</span> val;<br>                    <span class="hljs-keyword">if</span>(isLeft) &#123;<br>                        val = (<span class="hljs-keyword">float</span>) (-MAX_SPRING_LENGTH - spring.getCurrentValue());<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        val = (<span class="hljs-keyword">float</span>) (MAX_SPRING_LENGTH - spring.getCurrentValue());<br>                    &#125;<br>                    viewToAnim.setTranslationX(val);<br>                &#125;<br>            &#125;);<br>            <span class="hljs-keyword">if</span>(isLeft) &#123;<br>                spring.setEndValue(-MAX_SPRING_LENGTH);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                spring.setEndValue(MAX_SPRING_LENGTH);<br>            &#125;<br>        &#125;<br>    &#125;;<br>    viewToAnim.postDelayed(startSpringAnimation, ANIMATATE_DURATION - <span class="hljs-number">20</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * item平移动画结束后的弹簧效果</span>
+<span class="hljs-comment"> * @param 要作用的view</span>
+<span class="hljs-comment"> * @param 标记位，用于判断左右方向（true: 向左， false: 向右）</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addSpringEffect</span><span class="hljs-params">(<span class="hljs-keyword">final</span> View viewToAnim, <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> isLeft)</span> </span>&#123;
+    Runnable startSpringAnimation = <span class="hljs-keyword">new</span> Runnable() &#123;
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
+            SpringConfig config = <span class="hljs-keyword">new</span> SpringConfig(<span class="hljs-number">250</span>, <span class="hljs-number">25</span>);
+            Spring spring = SpringSystem.create().createSpring();
+            spring.setSpringConfig(config);
+            spring.addListener(<span class="hljs-keyword">new</span> SimpleSpringListener() &#123;
+                <span class="hljs-meta">@Override</span>
+                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSpringUpdate</span><span class="hljs-params">(Spring spring)</span> </span>&#123;
+                    <span class="hljs-keyword">float</span> val;
+                    <span class="hljs-keyword">if</span>(isLeft) &#123;
+                        val = (<span class="hljs-keyword">float</span>) (-MAX_SPRING_LENGTH - spring.getCurrentValue());
+                    &#125; <span class="hljs-keyword">else</span> &#123;
+                        val = (<span class="hljs-keyword">float</span>) (MAX_SPRING_LENGTH - spring.getCurrentValue());
+                    &#125;
+                    viewToAnim.setTranslationX(val);
+                &#125;
+            &#125;);
+            <span class="hljs-keyword">if</span>(isLeft) &#123;
+                spring.setEndValue(-MAX_SPRING_LENGTH);
+            &#125; <span class="hljs-keyword">else</span> &#123;
+                spring.setEndValue(MAX_SPRING_LENGTH);
+            &#125;
+        &#125;
+    &#125;;
+    viewToAnim.postDelayed(startSpringAnimation, ANIMATATE_DURATION - <span class="hljs-number">20</span>);
+&#125;</code></pre></div>
 
 <blockquote>
 <p>另外一个技巧就是实现延时动画</p>

@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      656 字
+      657 字
     </span>
   
 
@@ -241,24 +241,46 @@
 <blockquote>
 <p>屏幕高度 = 应用域高度 + 状态栏高度<br>应用域高度 = 标题栏高度 + 内容栏高度</p>
 </blockquote>
-<h3 id="获取屏幕的宽度和高度"><a href="#获取屏幕的宽度和高度" class="headerlink" title="获取屏幕的宽度和高度"></a>获取屏幕的宽度和高度</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">WindowManager manager = <span class="hljs-keyword">this</span>.getWindowManager();<br>DisplayMetrics outMetrics = <span class="hljs-keyword">new</span> DisplayMetrics();<br>manager.getDefaultDisplay().getMetrics(outMetrics);<br><span class="hljs-keyword">int</span> width = outMetrics.widthPixels;<br><span class="hljs-keyword">int</span> height = outMetrics.heightPixels;<br></code></pre></td></tr></table></figure>
+<h3 id="获取屏幕的宽度和高度"><a href="#获取屏幕的宽度和高度" class="headerlink" title="获取屏幕的宽度和高度"></a>获取屏幕的宽度和高度</h3><div class="code-wrapper"><pre><code class="hljs java">WindowManager manager = <span class="hljs-keyword">this</span>.getWindowManager();
+DisplayMetrics outMetrics = <span class="hljs-keyword">new</span> DisplayMetrics();
+manager.getDefaultDisplay().getMetrics(outMetrics);
+<span class="hljs-keyword">int</span> width = outMetrics.widthPixels;
+<span class="hljs-keyword">int</span> height = outMetrics.heightPixels;</code></pre></div>
 <p>或者是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">DisplayMetrics dm = <span class="hljs-keyword">this</span>.getResources().getDisplayMetrics();<br><span class="hljs-keyword">float</span> density = dm.density;<br><span class="hljs-keyword">int</span> width = dm.widthPixels;<br><span class="hljs-keyword">int</span> height = dm.heightPixels;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">DisplayMetrics dm = <span class="hljs-keyword">this</span>.getResources().getDisplayMetrics();
+<span class="hljs-keyword">float</span> density = dm.density;
+<span class="hljs-keyword">int</span> width = dm.widthPixels;
+<span class="hljs-keyword">int</span> height = dm.heightPixels;</code></pre></div>
 
 <p><strong>注：这两种方法都可以在Activity的任何生命周期函数中使用。</strong></p>
-<h3 id="获取状态栏的高度"><a href="#获取状态栏的高度" class="headerlink" title="获取状态栏的高度"></a>获取状态栏的高度</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getStatusBarHeight</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> height = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">int</span> resourceId = getResources().getIdentifier(<span class="hljs-string">&quot;status_bar_height&quot;</span>, <span class="hljs-string">&quot;dimen&quot;</span>, <span class="hljs-string">&quot;android&quot;</span>);<br>    <span class="hljs-keyword">if</span> (resourceId &gt; <span class="hljs-number">0</span>) &#123;<br>		height = getResources().getDimensionPixelSize(resourceId);<br>    &#125;<br>    <span class="hljs-keyword">return</span> height;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="获取状态栏的高度"><a href="#获取状态栏的高度" class="headerlink" title="获取状态栏的高度"></a>获取状态栏的高度</h3><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getStatusBarHeight</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-keyword">int</span> height = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">int</span> resourceId = getResources().getIdentifier(<span class="hljs-string">&quot;status_bar_height&quot;</span>, <span class="hljs-string">&quot;dimen&quot;</span>, <span class="hljs-string">&quot;android&quot;</span>);
+    <span class="hljs-keyword">if</span> (resourceId &gt; <span class="hljs-number">0</span>) &#123;
+		height = getResources().getDimensionPixelSize(resourceId);
+    &#125;
+    <span class="hljs-keyword">return</span> height;
+&#125;</code></pre></div>
 
 <p><strong>注：这个方法可以在Activity的任何生命周期函数中使用。</strong></p>
 <p>或者是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">Rect outRect = <span class="hljs-keyword">new</span> Rect();<br>getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect);<br><span class="hljs-keyword">int</span> height = outRect.top;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">Rect outRect = <span class="hljs-keyword">new</span> Rect();
+getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect);
+<span class="hljs-keyword">int</span> height = outRect.top;</code></pre></div>
 
 <p>这种方法的思想正式使用了<code>屏幕高度 = 应用域高度 + 状态栏高度</code>这种关系，状态栏的高度正好等于应用区域上边界的横坐标。</p>
 <p><strong>注：这种方法只有确保View已经绘制完成后才能使用。</strong></p>
 <h3 id="获取应用区域的高度"><a href="#获取应用区域的高度" class="headerlink" title="获取应用区域的高度"></a>获取应用区域的高度</h3><p>根据上面的数学关系，这个时候可以使用代数减法求的应用区域的高度，即使用屏幕的高度减去状态栏的高度。</p>
 <p>另外一种方法值先获取到应用区域，然后上下边界纵坐标的差值就是整个应用区域的高度：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">Rect rect = <span class="hljs-keyword">new</span> Rect();<br>getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);<br><span class="hljs-keyword">int</span> height = rect.bottom - rect.top;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">Rect rect = <span class="hljs-keyword">new</span> Rect();
+getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+<span class="hljs-keyword">int</span> height = rect.bottom - rect.top;</code></pre></div>
 <p><strong>注：这种方法只有确保 View 已经绘制完成后才能使用。</strong></p>
-<h3 id="获取内容栏的高度"><a href="#获取内容栏的高度" class="headerlink" title="获取内容栏的高度"></a>获取内容栏的高度</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">ViewGroup content = (ViewGroup) findViewById(android.R.id.content);  <span class="hljs-comment">// 内容栏</span><br>ViewGroup rootView = (ViewGroup) content.getChildAt(<span class="hljs-number">0</span>);    <span class="hljs-comment">// 布局文件对应的 View</span><br><span class="hljs-keyword">int</span> height = content.getHeight();<br>或者<br><span class="hljs-keyword">int</span> height = rootView.getHeight();<br></code></pre></td></tr></table></figure>
+<h3 id="获取内容栏的高度"><a href="#获取内容栏的高度" class="headerlink" title="获取内容栏的高度"></a>获取内容栏的高度</h3><div class="code-wrapper"><pre><code class="hljs java">ViewGroup content = (ViewGroup) findViewById(android.R.id.content);  <span class="hljs-comment">// 内容栏</span>
+ViewGroup rootView = (ViewGroup) content.getChildAt(<span class="hljs-number">0</span>);    <span class="hljs-comment">// 布局文件对应的 View</span>
+<span class="hljs-keyword">int</span> height = content.getHeight();
+或者
+<span class="hljs-keyword">int</span> height = rootView.getHeight();</code></pre></div>
 <p><strong>注：这种方法只有确保 View 已经绘制完成后才能使用。</strong></p>
 <h3 id="获取标题栏的高度"><a href="#获取标题栏的高度" class="headerlink" title="获取标题栏的高度"></a>获取标题栏的高度</h3><p>根据上面我们的数学关系可以的得到一些标题栏高度的求法，过程中需要用得到的值上面我们已经介绍了求的方法，直接套用就好了，知识需要注意一下使用的条件。</p>
 <blockquote>

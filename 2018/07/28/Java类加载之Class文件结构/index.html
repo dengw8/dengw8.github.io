@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      70
+      71
        分钟
     </span>
   
@@ -236,7 +236,24 @@
 <p><strong>NOTE</strong>: 注意：Big-Endian 顺序是指按高位字节在地址最低位，最低字节在地址最高位来存储数据，它是 SPARC、PowerPC等处理器的默认多字节存储顺序，而x86等处理器则是使用了相反的Little-Endian顺序来存储数据。</p>
 <p>Class文件格式采用类似C语言结构体的伪结构来描述Class文件格式。在这种结构体只有两种数据类型：无符号数和表。</p>
 <p>其中无符号数属于基本的数据类型，以u1、u2、u4、u8来分别表示1个字节、2个字节、4个字节、8个字节的无符号数，无符号数可以用来描述数字、索引引用、数量值或者按照UTF-8编码构成的字符串值。表是由多个无符号或者其他表作为数据项构成的复合数据类型，习惯性地以”_info”结尾，这样来看，整个Class文件本质上也就是一张表。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ClassFile &#123; <br>    u4 magic; <br>    u2 minor_version; <br>    u2 major_version; <br>    u2 constant_pool_count; <br>    cp_info constant_pool[constant_pool_count<span class="hljs-number">-1</span>]; <br>    u2 access_flags; <br>    u2 this_class; <br>    u2 super_class; <br>    u2 interfaces_count; <br>    u2 interfaces[interfaces_count]; <br>    u2 fields_count; <br>    field_info fields[fields_count]; <br>    u2 methods_count; <br>    method_info methods[methods_count]; <br>    u2 attributes_count; <br>    attribute_info attributes[attributes_count]; <br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp">ClassFile &#123; 
+    u4 magic; 
+    u2 minor_version; 
+    u2 major_version; 
+    u2 constant_pool_count; 
+    cp_info constant_pool[constant_pool_count<span class="hljs-number">-1</span>]; 
+    u2 access_flags; 
+    u2 this_class; 
+    u2 super_class; 
+    u2 interfaces_count; 
+    u2 interfaces[interfaces_count]; 
+    u2 fields_count; 
+    field_info fields[fields_count]; 
+    u2 methods_count; 
+    method_info methods[methods_count]; 
+    u2 attributes_count; 
+    attribute_info attributes[attributes_count]; 
+&#125;</code></pre></div>
 <p>我们使用表格的形式表示一下：</p>
 <table>
 <thead>
@@ -345,10 +362,94 @@
 </tr>
 </tbody></table>
 <p>而我们接下要做的就是结合一个实际的Class文件字节码来逐个理解这些字段。</p>
-<h5 id="测试类代码："><a href="#测试类代码：" class="headerlink" title="测试类代码："></a>测试类代码：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> m;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calcM</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> m + <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="测试类代码："><a href="#测试类代码：" class="headerlink" title="测试类代码："></a>测试类代码：</h5><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;
+    <span class="hljs-keyword">private</span> String name;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> m;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calcM</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> m + <span class="hljs-number">1</span>;
+    &#125;
+&#125;</code></pre></div>
 
 <h5 id="Test-class对应的二进制流（使用WinHex软件打开）"><a href="#Test-class对应的二进制流（使用WinHex软件打开）" class="headerlink" title="Test.class对应的二进制流（使用WinHex软件打开）"></a>Test.class对应的二进制流（使用WinHex软件打开）</h5><p><img src="http://dengw.xyz/blog/180728/K9c9Lef045.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
-<h4 id="使用javap反汇编命令生成的字节码："><a href="#使用javap反汇编命令生成的字节码：" class="headerlink" title="使用javap反汇编命令生成的字节码："></a>使用<code>javap</code>反汇编命令生成的字节码：</h4><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><code class="hljs lasso">PS C:\Users\Administrator\Desktop&gt; Javap <span class="hljs-params">-verbose</span> Test<br>Classfile /C:/Users/Administrator/Desktop/Test.class<br>  Last modified <span class="hljs-number">2018</span><span class="hljs-number">-7</span><span class="hljs-number">-28</span>; size <span class="hljs-number">395</span> <span class="hljs-built_in">bytes</span><br>  MD5 checksum edee74c07502d68f5e7aea198366f496<br>  Compiled from <span class="hljs-string">&quot;Test.java&quot;</span><br><span class="hljs-keyword">public</span> class Test<br>  minor version: <span class="hljs-number">0</span><br>  major version: <span class="hljs-number">52</span><br>  flags: ACC_PUBLIC, ACC_SUPER<br>Constant pool:<br>   #1 = Methodref          #5.#20         <span class="hljs-comment">// java/lang/Object.&quot;&lt;init&gt;&quot;:()V</span><br>   #2 = Fieldref           #4.#21         <span class="hljs-comment">// Test.name:Ljava/lang/String;</span><br>   #3 = Fieldref           #4.#22         <span class="hljs-comment">// Test.m:I</span><br>   #4 = Class              #23            <span class="hljs-comment">// Test</span><br>   #5 = Class              #24            <span class="hljs-comment">// java/lang/Object</span><br>   #6 = Utf8               name<br>   #7 = Utf8               Ljava/lang/<span class="hljs-built_in">String</span>;<br>   #8 = Utf8               m<br>   #9 = Utf8               I<br>  #10 = Utf8               &lt;init&gt;<br>  #11 = Utf8               ()V<br>  #12 = Utf8               Code<br>  #13 = Utf8               LineNumberTable<br>  #14 = Utf8               setName<br>  #15 = Utf8               (Ljava/lang/<span class="hljs-built_in">String</span>;)V<br>  #16 = Utf8               calcM<br>  #17 = Utf8               ()I<br>  #18 = Utf8               SourceFile<br>  #19 = Utf8               Test.java<br>  #20 = NameAndType        #10:#11        <span class="hljs-comment">// &quot;&lt;init&gt;&quot;:()V</span><br>  #21 = NameAndType        #6:#7          <span class="hljs-comment">// name:Ljava/lang/String;</span><br>  #22 = NameAndType        #8:#9          <span class="hljs-comment">// m:I</span><br>  #23 = Utf8               Test<br>  #24 = Utf8               java/lang/Object<br>&#123;<br>  <span class="hljs-keyword">public</span> Test();<br>    descriptor: ()V<br>    flags: ACC_PUBLIC<br>    Code:<br>      <span class="hljs-built_in">stack</span>=<span class="hljs-number">1</span>, locals=<span class="hljs-number">1</span>, args_size=<span class="hljs-number">1</span><br>         <span class="hljs-number">0</span>: aload_0<br>         <span class="hljs-number">1</span>: invokespecial #1                  <span class="hljs-comment">// Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V</span><br>         <span class="hljs-number">4</span>: <span class="hljs-keyword">return</span><br>      LineNumberTable:<br>        line <span class="hljs-number">1</span>: <span class="hljs-number">0</span><br><br>  <span class="hljs-keyword">public</span> <span class="hljs-literal">void</span> setName(java.lang.<span class="hljs-built_in">String</span>);<br>    descriptor: (Ljava/lang/<span class="hljs-built_in">String</span>;)V<br>    flags: ACC_PUBLIC<br>    Code:<br>      <span class="hljs-built_in">stack</span>=<span class="hljs-number">2</span>, locals=<span class="hljs-number">2</span>, args_size=<span class="hljs-number">2</span><br>         <span class="hljs-number">0</span>: aload_0<br>         <span class="hljs-number">1</span>: aload_1<br>         <span class="hljs-number">2</span>: putfield      #2                  <span class="hljs-comment">// Field name:Ljava/lang/String;</span><br>         <span class="hljs-number">5</span>: <span class="hljs-keyword">return</span><br>      LineNumberTable:<br>        line <span class="hljs-number">7</span>: <span class="hljs-number">0</span><br>        line <span class="hljs-number">8</span>: <span class="hljs-number">5</span><br><br>  <span class="hljs-keyword">public</span> int calcM();<br>    descriptor: ()I<br>    flags: ACC_PUBLIC<br>    Code:<br>      <span class="hljs-built_in">stack</span>=<span class="hljs-number">2</span>, locals=<span class="hljs-number">1</span>, args_size=<span class="hljs-number">1</span><br>         <span class="hljs-number">0</span>: aload_0<br>         <span class="hljs-number">1</span>: getfield      #3                  <span class="hljs-comment">// Field m:I</span><br>         <span class="hljs-number">4</span>: iconst_1<br>         <span class="hljs-number">5</span>: iadd<br>         <span class="hljs-number">6</span>: ireturn<br>      LineNumberTable:<br>        line <span class="hljs-number">11</span>: <span class="hljs-number">0</span><br>&#125;<br>SourceFile: <span class="hljs-string">&quot;Test.java&quot;</span><br></code></pre></td></tr></table></figure>
+<h4 id="使用javap反汇编命令生成的字节码："><a href="#使用javap反汇编命令生成的字节码：" class="headerlink" title="使用javap反汇编命令生成的字节码："></a>使用<code>javap</code>反汇编命令生成的字节码：</h4><div class="code-wrapper"><pre><code class="hljs lasso">PS C:\Users\Administrator\Desktop&gt; Javap <span class="hljs-params">-verbose</span> Test
+Classfile /C:/Users/Administrator/Desktop/Test.class
+  Last modified <span class="hljs-number">2018</span><span class="hljs-number">-7</span><span class="hljs-number">-28</span>; size <span class="hljs-number">395</span> <span class="hljs-built_in">bytes</span>
+  MD5 checksum edee74c07502d68f5e7aea198366f496
+  Compiled from <span class="hljs-string">&quot;Test.java&quot;</span>
+<span class="hljs-keyword">public</span> class Test
+  minor version: <span class="hljs-number">0</span>
+  major version: <span class="hljs-number">52</span>
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #5.#20         <span class="hljs-comment">// java/lang/Object.&quot;&lt;init&gt;&quot;:()V</span>
+   #2 = Fieldref           #4.#21         <span class="hljs-comment">// Test.name:Ljava/lang/String;</span>
+   #3 = Fieldref           #4.#22         <span class="hljs-comment">// Test.m:I</span>
+   #4 = Class              #23            <span class="hljs-comment">// Test</span>
+   #5 = Class              #24            <span class="hljs-comment">// java/lang/Object</span>
+   #6 = Utf8               name
+   #7 = Utf8               Ljava/lang/<span class="hljs-built_in">String</span>;
+   #8 = Utf8               m
+   #9 = Utf8               I
+  #10 = Utf8               &lt;init&gt;
+  #11 = Utf8               ()V
+  #12 = Utf8               Code
+  #13 = Utf8               LineNumberTable
+  #14 = Utf8               setName
+  #15 = Utf8               (Ljava/lang/<span class="hljs-built_in">String</span>;)V
+  #16 = Utf8               calcM
+  #17 = Utf8               ()I
+  #18 = Utf8               SourceFile
+  #19 = Utf8               Test.java
+  #20 = NameAndType        #10:#11        <span class="hljs-comment">// &quot;&lt;init&gt;&quot;:()V</span>
+  #21 = NameAndType        #6:#7          <span class="hljs-comment">// name:Ljava/lang/String;</span>
+  #22 = NameAndType        #8:#9          <span class="hljs-comment">// m:I</span>
+  #23 = Utf8               Test
+  #24 = Utf8               java/lang/Object
+&#123;
+  <span class="hljs-keyword">public</span> Test();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      <span class="hljs-built_in">stack</span>=<span class="hljs-number">1</span>, locals=<span class="hljs-number">1</span>, args_size=<span class="hljs-number">1</span>
+         <span class="hljs-number">0</span>: aload_0
+         <span class="hljs-number">1</span>: invokespecial #1                  <span class="hljs-comment">// Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V</span>
+         <span class="hljs-number">4</span>: <span class="hljs-keyword">return</span>
+      LineNumberTable:
+        line <span class="hljs-number">1</span>: <span class="hljs-number">0</span>
+
+  <span class="hljs-keyword">public</span> <span class="hljs-literal">void</span> setName(java.lang.<span class="hljs-built_in">String</span>);
+    descriptor: (Ljava/lang/<span class="hljs-built_in">String</span>;)V
+    flags: ACC_PUBLIC
+    Code:
+      <span class="hljs-built_in">stack</span>=<span class="hljs-number">2</span>, locals=<span class="hljs-number">2</span>, args_size=<span class="hljs-number">2</span>
+         <span class="hljs-number">0</span>: aload_0
+         <span class="hljs-number">1</span>: aload_1
+         <span class="hljs-number">2</span>: putfield      #2                  <span class="hljs-comment">// Field name:Ljava/lang/String;</span>
+         <span class="hljs-number">5</span>: <span class="hljs-keyword">return</span>
+      LineNumberTable:
+        line <span class="hljs-number">7</span>: <span class="hljs-number">0</span>
+        line <span class="hljs-number">8</span>: <span class="hljs-number">5</span>
+
+  <span class="hljs-keyword">public</span> int calcM();
+    descriptor: ()I
+    flags: ACC_PUBLIC
+    Code:
+      <span class="hljs-built_in">stack</span>=<span class="hljs-number">2</span>, locals=<span class="hljs-number">1</span>, args_size=<span class="hljs-number">1</span>
+         <span class="hljs-number">0</span>: aload_0
+         <span class="hljs-number">1</span>: getfield      #3                  <span class="hljs-comment">// Field m:I</span>
+         <span class="hljs-number">4</span>: iconst_1
+         <span class="hljs-number">5</span>: iadd
+         <span class="hljs-number">6</span>: ireturn
+      LineNumberTable:
+        line <span class="hljs-number">11</span>: <span class="hljs-number">0</span>
+&#125;
+SourceFile: <span class="hljs-string">&quot;Test.java&quot;</span></code></pre></div>
 <p>准备工作做完了下面就开始解析了：</p>
 <h4 id="魔数"><a href="#魔数" class="headerlink" title="魔数"></a>魔数</h4><p>class文件的头4个字节称为魔数，它的唯一作用就是确定这个文件时候是一个能被虚拟机接受的class文件。使用魔数而不是用文件扩展名来区别Class文件的原因在于魔数不可更改，而文件扩展名可以随意更改。在java中魔数为一个常量: 0xCAFEBABE</p>
 <p><img src="http://dengw.xyz/blog/180728/K2dl8FG5D7.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
@@ -365,7 +466,30 @@
 <p>常量池中的每一项都是一个表，现在的 JDK 版本中一共有14种表。这14个表都有一个特点，第一项均为 u1 类型的 tag，代表常量池项目的类型，这14种常量类型所代表的具体含义如下：<br><img src="http://dengw.xyz/blog/180728/A3Lkidc9Hm.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"><br><img src="http://dengw.xyz/blog/180728/391KEbGbkg.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <p>下面来根据我们的字节码来分析常量池（蓝色背景部分）。<br><img src="http://dengw.xyz/blog/180728/EI0BH4JFim.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <p>然后把每个常量的字节流截取出来，显示如下(实际上字节之间是不存在空格的，这里方便查看)：</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta">#1: 0A 00 05 00 14</span><br><span class="hljs-meta">#2: O9 00 04 00 15</span><br><span class="hljs-meta">#3: 09 00 04 00 16</span><br><span class="hljs-meta">#4: 07 00 17</span><br><span class="hljs-meta">#5: 07 00 18</span><br><span class="hljs-meta">#6: 01 00 04 6E 61 6D 65</span><br><span class="hljs-meta">#7: 01 00 12 4C 6A 61 76 61 2F 6C 61 6E 67 2F 53 74 72 69 6E 67 3B</span><br><span class="hljs-meta">#8: 01 00 01 6D</span><br><span class="hljs-meta">#9: 01 00 01 49</span><br><span class="hljs-meta">#10: 01 00 06 3C 69 6E 69 74 3E</span><br><span class="hljs-meta">#11: 01 00 03 28 29 56</span><br><span class="hljs-meta">#12: 01 00 04 43 6F 64 65</span><br><span class="hljs-meta">#13: 01 00 0F 4C 69 6E 65 4E 75 6D 62 65 72 54 61 62 6C 65</span><br><span class="hljs-meta">#14: 01 00 07 73 65 74 4E 61 6D 65</span><br><span class="hljs-meta">#15: 01 00 15 28 4C 6A 61 76 61 2F 6C 61 6E 67 2F 53 74 72 69 6E 67 3B 29 56</span><br><span class="hljs-meta">#16: 01 00 05 63 61 6C 63 4D</span><br><span class="hljs-meta">#17: 01 00 03 28 29 49 </span><br><span class="hljs-meta">#18: 01 00 0A 53 6F 75 72 63 65 46 69 6C 65</span><br><span class="hljs-meta">#19: 01 00 09 54 65 73 74 2E 6A 61 76 61</span><br><span class="hljs-meta">#20: 0C 00 0A 00 0B</span><br><span class="hljs-meta">#21: 0C 00 06 00 07</span><br><span class="hljs-meta">#22: 0C 00 08 00 09</span><br><span class="hljs-meta">#23: 01 00 04 54 65 73 74</span><br><span class="hljs-meta">#24: 01 00 10 6A 61 76 61 2F 6C 61 6E 67 2F 4F 62 6A 65 63 74</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs vala"><span class="hljs-meta">#1: 0A 00 05 00 14</span>
+<span class="hljs-meta">#2: O9 00 04 00 15</span>
+<span class="hljs-meta">#3: 09 00 04 00 16</span>
+<span class="hljs-meta">#4: 07 00 17</span>
+<span class="hljs-meta">#5: 07 00 18</span>
+<span class="hljs-meta">#6: 01 00 04 6E 61 6D 65</span>
+<span class="hljs-meta">#7: 01 00 12 4C 6A 61 76 61 2F 6C 61 6E 67 2F 53 74 72 69 6E 67 3B</span>
+<span class="hljs-meta">#8: 01 00 01 6D</span>
+<span class="hljs-meta">#9: 01 00 01 49</span>
+<span class="hljs-meta">#10: 01 00 06 3C 69 6E 69 74 3E</span>
+<span class="hljs-meta">#11: 01 00 03 28 29 56</span>
+<span class="hljs-meta">#12: 01 00 04 43 6F 64 65</span>
+<span class="hljs-meta">#13: 01 00 0F 4C 69 6E 65 4E 75 6D 62 65 72 54 61 62 6C 65</span>
+<span class="hljs-meta">#14: 01 00 07 73 65 74 4E 61 6D 65</span>
+<span class="hljs-meta">#15: 01 00 15 28 4C 6A 61 76 61 2F 6C 61 6E 67 2F 53 74 72 69 6E 67 3B 29 56</span>
+<span class="hljs-meta">#16: 01 00 05 63 61 6C 63 4D</span>
+<span class="hljs-meta">#17: 01 00 03 28 29 49 </span>
+<span class="hljs-meta">#18: 01 00 0A 53 6F 75 72 63 65 46 69 6C 65</span>
+<span class="hljs-meta">#19: 01 00 09 54 65 73 74 2E 6A 61 76 61</span>
+<span class="hljs-meta">#20: 0C 00 0A 00 0B</span>
+<span class="hljs-meta">#21: 0C 00 06 00 07</span>
+<span class="hljs-meta">#22: 0C 00 08 00 09</span>
+<span class="hljs-meta">#23: 01 00 04 54 65 73 74</span>
+<span class="hljs-meta">#24: 01 00 10 6A 61 76 61 2F 6C 61 6E 67 2F 4F 62 6A 65 63 74</span></code></pre></div>
 
 <p>可以看到第一项常量的 tag 为 0x0A，即十进制的10，查表得知这个常量属于 CONSTANT_Methordref_info 类型，表示对一个类中方法的符号引用，该项常量占用的字节流为 0x0A(tag)、 0x0005(index)、0x0014(index)，即分别指向第5个常量和第20个常量，对应的字节流分别为 0x07 00 18 和 0x0C 00 0A 00 0B，然后通过 tag 又知道了这两个常量的类型分别为CONSTANT_Class_info 和 CONSTANT_NameAndType_info 类型，这样第一个常量就解析完成了。而我们再看一下反编译结果中的常量表发现确实也是这样。</p>
 <h4 id="访问标志"><a href="#访问标志" class="headerlink" title="访问标志"></a>访问标志</h4><p>在常量池结束之后，紧接着的两个字节代表访问标志，用于识别类或接口层次的访问信息，包括这个 Class 是类还是接口，是否定义为 public 类型、abstract 类型等等。具体的标志位以及标志的含义见下表：</p>
@@ -423,7 +547,8 @@
 <p>类索引用来确定这个类的全限定名，父类索引确定这个类的父类的全限定名，除了 Object 之外，所有的类都有父类，接口索引集合存储了implements 语句后面按照从左到右的顺序的接口。</p>
 <p><img src="http://dengw.xyz/blog/180728/KBda0EIfjj.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <p>从上图可以看出3个 u2 类型的值分别为 0x0004、0x0005、0x0000。也就是类索引指向常量表的第4个常量，父类索引指向常量表的第5个常量，接口索引为0，也就是没有实现接口。</p>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs delphi"><span class="hljs-string">#4</span> = <span class="hljs-keyword">Class</span>              <span class="hljs-string">#23</span>            <span class="hljs-comment">// Test</span><br><span class="hljs-string">#5</span> = <span class="hljs-keyword">Class</span>              <span class="hljs-string">#24</span>            <span class="hljs-comment">// java/lang/Object</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs delphi"><span class="hljs-string">#4</span> = <span class="hljs-keyword">Class</span>              <span class="hljs-string">#23</span>            <span class="hljs-comment">// Test</span>
+<span class="hljs-string">#5</span> = <span class="hljs-keyword">Class</span>              <span class="hljs-string">#24</span>            <span class="hljs-comment">// java/lang/Object</span></code></pre></div>
 
 <h4 id="字段表集合"><a href="#字段表集合" class="headerlink" title="字段表集合"></a>字段表集合</h4><p>字段表用来描述接口或类中声明的变量。字段包括类级变量和实例级变量，但不包括方法内变量，也就是局部变量。所谓的类级变量就是静态变量，这个变量不属于这个类的任何实例，可以不用定义类实例就可以使用；实例级变量不是静态变量，是和类实例相关联的，需要定义类实例才能使用。</p>
 <p>我们可以先想一下一个字段包含有哪些信息呢？</p>
@@ -529,14 +654,29 @@
 <p>当描述符用来描述方法时，按照先参数列表，后返回值的顺序描述，参数列表按照参数的严格顺序放在一组小括号<code>()</code>内。比如方法<code>void setName(String name)</code>的描述符是<code>(S)V</code>。方法<code>java.lang.String toString()</code>的描述符是<code>()Ljava/lang/String</code>；方法<code>int indexOf(char[] source,int sourceOffset,int sourceCount,char[] target,int targetOffset,int targetCount,int fromIndex)</code>的描述符是<code>([CII[CIII)I</code>。</p>
 <p>descriptor_info后面是属性信息，对于字段，可以使用属性表描述一下额外信息，比如如果将字段<code>m</code>的声明改为<code>final static int m = 123;</code>，那就会存在一个项名称为<code>ConstantValue</code>的属性，值指向常量123。关于属性表后面还会详细介绍。</p>
 <p>我们回到字节流中再详细地分析一下：<br><img src="http://dengw.xyz/blog/180728/dJ6hijm4am.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-number">00</span> <span class="hljs-number">02</span>  <span class="hljs-regexp">//</span> fileds_count:代表有两个字段<br><span class="hljs-regexp">//</span> 第一个字段，下同<br><span class="hljs-number">00</span> <span class="hljs-number">02</span>  <span class="hljs-regexp">//</span> access_flag: 具备的所有访问权限按位或运算的结果<br><span class="hljs-number">00</span> <span class="hljs-number">06</span>  <span class="hljs-regexp">//</span> name_index: 指向常量池的第<span class="hljs-number">6</span>个常量<br><span class="hljs-number">00</span> <span class="hljs-number">07</span>  <span class="hljs-regexp">//</span> description_index: 指向常量池的第<span class="hljs-number">7</span>个常量<br><span class="hljs-number">00</span> <span class="hljs-number">00</span>  <span class="hljs-regexp">//</span> attribute_count: 属性数量<br><span class="hljs-regexp">//</span> 第二个字段<br><span class="hljs-number">00</span> <span class="hljs-number">02</span> <br><span class="hljs-number">00</span> <span class="hljs-number">08</span> <br><span class="hljs-number">00</span> <span class="hljs-number">09</span><br><span class="hljs-number">00</span> <span class="hljs-number">00</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs awk"><span class="hljs-number">00</span> <span class="hljs-number">02</span>  <span class="hljs-regexp">//</span> fileds_count:代表有两个字段
+<span class="hljs-regexp">//</span> 第一个字段，下同
+<span class="hljs-number">00</span> <span class="hljs-number">02</span>  <span class="hljs-regexp">//</span> access_flag: 具备的所有访问权限按位或运算的结果
+<span class="hljs-number">00</span> <span class="hljs-number">06</span>  <span class="hljs-regexp">//</span> name_index: 指向常量池的第<span class="hljs-number">6</span>个常量
+<span class="hljs-number">00</span> <span class="hljs-number">07</span>  <span class="hljs-regexp">//</span> description_index: 指向常量池的第<span class="hljs-number">7</span>个常量
+<span class="hljs-number">00</span> <span class="hljs-number">00</span>  <span class="hljs-regexp">//</span> attribute_count: 属性数量
+<span class="hljs-regexp">//</span> 第二个字段
+<span class="hljs-number">00</span> <span class="hljs-number">02</span> 
+<span class="hljs-number">00</span> <span class="hljs-number">08</span> 
+<span class="hljs-number">00</span> <span class="hljs-number">09</span>
+<span class="hljs-number">00</span> <span class="hljs-number">00</span></code></pre></div>
 <p>这里需要注意的是字段表集合中不会列出从父类或接口中继承来的字段，但有可能会出现原本Java程序中没有的字段。比较典型的例子是内部类，为了在内部类中保持对外部类的访问性，会增加一个指向外部类实例的字段<code>this</code>。另外，在Java语言中字段无法重载，也就是字段名不能重复，即使两个字段的数据类型、修饰符都不相同。不过对于字节码来说，如果两个字段的描述符不一致，那么就可以有重复的字段名。</p>
 <h4 id="方法集合"><a href="#方法集合" class="headerlink" title="方法集合"></a>方法集合</h4><p>class文件存储格式中对方法的描述和对字段的描述几乎相同，方法表的结构也和字段表相同。</p>
 <p>不过因为 volatile 和 transient 关键字不能修饰方法，而synchronized、native、strictfp 和 abstract 关键字可以修饰方法，所以方法表的标志位及其取值如下：<br><img src="http://dengw.xyz/blog/180728/B96a8GAgig.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <p>另外一点方法肯定就包括代码了，如果方法表和字段表的结构相同，那代码去哪儿了呢？答案是经过编译器编译成字节码指令后，存放在方法属性表集合中一个名为<code>Code</code>的属性里面，关于属性表后面再详细介绍。</p>
 <p>我们再结合字节流详细了解一下：</p>
 <p><img src="http://dengw.xyz/blog/180728/c3c6G06F40.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">00 </span><span class="hljs-number">03</span> //表示有三个方法，这里只介绍第一个方法<br><span class="hljs-symbol">00 </span><span class="hljs-number">01</span> // 访问标志： 具备的所有访问权限按位或运算的结果<br><span class="hljs-symbol">00 </span><span class="hljs-number">0</span>A // 名称索引：指向第<span class="hljs-number">10</span>个常量<br><span class="hljs-symbol">00 </span><span class="hljs-number">0</span>B // 描述符索引：指向第<span class="hljs-number">11</span>个常量<br><span class="hljs-symbol">00 </span><span class="hljs-number">01</span> // 有一项属性<br><span class="hljs-symbol">00 </span><span class="hljs-number">0</span>C //属性名称索引，指向第<span class="hljs-number">12</span>个常量，值为<span class="hljs-string">&quot;Code&quot;</span>,即方法的字节码描述<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs basic"><span class="hljs-symbol">00 </span><span class="hljs-number">03</span> //表示有三个方法，这里只介绍第一个方法
+<span class="hljs-symbol">00 </span><span class="hljs-number">01</span> // 访问标志： 具备的所有访问权限按位或运算的结果
+<span class="hljs-symbol">00 </span><span class="hljs-number">0</span>A // 名称索引：指向第<span class="hljs-number">10</span>个常量
+<span class="hljs-symbol">00 </span><span class="hljs-number">0</span>B // 描述符索引：指向第<span class="hljs-number">11</span>个常量
+<span class="hljs-symbol">00 </span><span class="hljs-number">01</span> // 有一项属性
+<span class="hljs-symbol">00 </span><span class="hljs-number">0</span>C //属性名称索引，指向第<span class="hljs-number">12</span>个常量，值为<span class="hljs-string">&quot;Code&quot;</span>,即方法的字节码描述</code></pre></div>
 
 <p>在Java中，要重载一个方法，除了要与原方法具有相同的方法名称之外，还要求必须拥有一个与原方法不同的特征签名，特征签名就是一个方法中各个参数在常量池中的字段符号引用的集合，也就是特征签名只包含参数个数和类型，并不包含返回值类型，所以Java语言中是无法仅仅依靠返回值的不同来对一个方法重载的。但是在class文件格式中，特征签名还包括返回值类型，也就是说只有返回值类型不同的两个方法也可以存在。这一点在泛型中编译后类型擦除后生成的桥接方法上有所体现。不过这里就不过多介绍了。</p>
 <h4 id="属性表集合"><a href="#属性表集合" class="headerlink" title="属性表集合"></a>属性表集合</h4><p>属性表在前面出现了多次，在class文件、字段表和方法表都可以携带自己的属性表集合，来描述某些场景专有的信息。</p>
@@ -554,7 +694,13 @@
 <p>因为 code_length 是一个 u4 类型，所以理论上每个方法的字节长度不能超过2^23-1，但是虚拟机规范中明确限定了一个方法不能超过65535条字节码指令，即实际只用到了u2的长度，如果超过这个限制，Javac 编译器会拒绝编译。</p>
 <p>最后我们再结合 Test.Class 文件的二进制流来具体分析一下。</p>
 <p>上面我们分析方法表的时候，看到有一个指向常量池中值为 Code 的索引值，这就是该方法 Code 表的 attribute_name_index 属性，下面我们接着那儿分析吧：<br><img src="http://dengw.xyz/blog/180730/Df4Ck86AAC.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">00 </span><span class="hljs-number">0</span>C // attribute_name_index<br><span class="hljs-symbol">00 </span><span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">1</span>D // attribute_length<br><span class="hljs-symbol">00 </span><span class="hljs-number">01</span> // max_stack<br><span class="hljs-symbol">00 </span><span class="hljs-number">01</span> // max_locals<br><span class="hljs-symbol">00 </span><span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">05</span> // code_length<br><span class="hljs-number">2</span>A B7 <span class="hljs-number">00</span> <span class="hljs-number">01</span> B1 // code(对应指令)<br><span class="hljs-number">00000001000D00000006000100000001</span>  // 剩下的部分<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs basic"><span class="hljs-symbol">00 </span><span class="hljs-number">0</span>C // attribute_name_index
+<span class="hljs-symbol">00 </span><span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">1</span>D // attribute_length
+<span class="hljs-symbol">00 </span><span class="hljs-number">01</span> // max_stack
+<span class="hljs-symbol">00 </span><span class="hljs-number">01</span> // max_locals
+<span class="hljs-symbol">00 </span><span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">05</span> // code_length
+<span class="hljs-number">2</span>A B7 <span class="hljs-number">00</span> <span class="hljs-number">01</span> B1 // code(对应指令)
+<span class="hljs-number">00000001000D00000006000100000001</span>  // 剩下的部分</code></pre></div>
             </div>
             <hr>
             <div>

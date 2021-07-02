@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22
+      23
        分钟
     </span>
   
@@ -232,12 +232,23 @@
 <h3 id="三维坐标系"><a href="#三维坐标系" class="headerlink" title="三维坐标系"></a>三维坐标系</h3><p>首先要明确的一点是Android的坐标系是一个<strong>三维坐标系</strong>，包括X轴、Y轴、Z轴，其中X轴向右，Y轴向下、Z轴向上。Z轴到现在为止我都还没有接触过，这方面的总结以后再补上。</p>
 <h3 id="Android屏幕区域划分"><a href="#Android屏幕区域划分" class="headerlink" title="Android屏幕区域划分"></a>Android屏幕区域划分</h3><p>这里参考了CSDN博主<strong>工匠若水</strong>的一篇博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yanbober/article/details/50419117">Android屏幕区域划分</a><br>对于一个Android屏幕，我们可见的部分包括以下几个范围：<br><img src="http://dengw.xyz/blog/180720/aJh6GDiD2j.jpg?imageslim" srcset="/img/loading.gif" lazyload alt="mark"></p>
 <p>我觉得这个张图真的总结的非常好，可以解决很多开发中的问题，我们可以很直观的看到Android对于屏幕的划分定义。下面我们就给出这些区域里常用区域的一些坐标或者度量方式。如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//获取整个屏幕区域宽度和高度，单位是px</span><br>DisplayMetrics metrics = <span class="hljs-keyword">new</span> DisplayMetrics();<br>getWindowManager().getDefaultDisplay().getMetrics(metrics);<br><span class="hljs-keyword">int</span> widthPixels = metrics.widthPixels;<br><span class="hljs-keyword">int</span> heightPixels = metrics.heightPixels;<br></code></pre></td></tr></table></figure>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">//获取应用程序App区域的宽度和高度，单位是px</span><br>Rect rect = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Rect()</span>;<br>get<span class="hljs-constructor">Window()</span>.get<span class="hljs-constructor">DecorView()</span>.get<span class="hljs-constructor">WindowVisibleDisplayFrame(<span class="hljs-params">rect</span>)</span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//获取整个屏幕区域宽度和高度，单位是px</span>
+DisplayMetrics metrics = <span class="hljs-keyword">new</span> DisplayMetrics();
+getWindowManager().getDefaultDisplay().getMetrics(metrics);
+<span class="hljs-keyword">int</span> widthPixels = metrics.widthPixels;
+<span class="hljs-keyword">int</span> heightPixels = metrics.heightPixels;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs reasonml"><span class="hljs-comment">//获取应用程序App区域的宽度和高度，单位是px</span>
+Rect rect = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Rect()</span>;
+get<span class="hljs-constructor">Window()</span>.get<span class="hljs-constructor">DecorView()</span>.get<span class="hljs-constructor">WindowVisibleDisplayFrame(<span class="hljs-params">rect</span>)</span>;</code></pre></div>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//获取状态栏的高度，单位是px</span><br>Rect rect= <span class="hljs-keyword">new</span> Rect();<br>getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);<br><span class="hljs-keyword">int</span> statusBarHeight = rectangle.top;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//获取状态栏的高度，单位是px</span>
+Rect rect= <span class="hljs-keyword">new</span> Rect();
+getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+<span class="hljs-keyword">int</span> statusBarHeight = rectangle.top;</code></pre></div>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//获取布局区域的宽度和高度，单位是px</span><br>Rect rect = <span class="hljs-keyword">new</span> Rect();  <br>getWindow().findViewById(Window.ID_ANDROID_CONTENT).getDrawingRect(rect);  <br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//获取布局区域的宽度和高度，单位是px</span>
+Rect rect = <span class="hljs-keyword">new</span> Rect();  
+getWindow().findViewById(Window.ID_ANDROID_CONTENT).getDrawingRect(rect);</code></pre></div>
 
 <h3 id="View区域的坐标系"><a href="#View区域的坐标系" class="headerlink" title="View区域的坐标系"></a>View区域的坐标系</h3><p>平时我们进行开发的时候主要就是集中在这个区域，这儿就再借鉴一下<strong>工匠若水</strong>的这篇博客，这篇博客真的是做到了授人以渔！<br><img src="http://dengw.xyz/blog/180720/fJGLjIcjI7.jpg?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <p>通过上图我们可以很直观的给出View一些坐标相关的方法解释，不过必须要明确的是上面这些方法必须要在layout之后才有效，另外呢，我们经常可以看见很多getXXX()之类的函数来获取坐标，上面这张图片也给出解释。</p>
@@ -313,18 +324,38 @@
 <li>getLocationOnScreenX：view相对于整个屏幕的X坐标</li>
 </ul>
 <p>好下面我们就开始，先输初始时的参数：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Left</span>: <span class="hljs-number">150</span><br><span class="hljs-attribute">X</span>:<span class="hljs-number">150</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">TranslationX</span>: <span class="hljs-number">0</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">LocationOnScreenX</span>: <span class="hljs-number">150</span><br><span class="hljs-attribute">LocationInWindowX</span>: <span class="hljs-number">150</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">Left</span>: <span class="hljs-number">150</span>
+<span class="hljs-attribute">X</span>:<span class="hljs-number">150</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">TranslationX</span>: <span class="hljs-number">0</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">LocationOnScreenX</span>: <span class="hljs-number">150</span>
+<span class="hljs-attribute">LocationInWindowX</span>: <span class="hljs-number">150</span></code></pre></div>
 <h4 id="使用view动画向右移动150px，过程如下，然后输出参数"><a href="#使用view动画向右移动150px，过程如下，然后输出参数" class="headerlink" title="使用view动画向右移动150px，过程如下，然后输出参数"></a>使用view动画向右移动150px，过程如下，然后输出参数</h4><p><img src="http://dengw.xyz/blog/180618/k1A1jcKj03.gif" srcset="/img/loading.gif" lazyload></p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">getLeft</span>: <span class="hljs-number">150</span><br><span class="hljs-attribute">getX</span>: <span class="hljs-number">150</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">getTranslationX</span>: <span class="hljs-number">0</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">getscollX</span>: <span class="hljs-number">0</span><br><span class="hljs-attribute">getLocationOnScreenX</span>: <span class="hljs-number">150</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">getLeft</span>: <span class="hljs-number">150</span>
+<span class="hljs-attribute">getX</span>: <span class="hljs-number">150</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">getTranslationX</span>: <span class="hljs-number">0</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">getscollX</span>: <span class="hljs-number">0</span>
+<span class="hljs-attribute">getLocationOnScreenX</span>: <span class="hljs-number">150</span></code></pre></div>
 
 <h4 id="使用ScollTo向右移动150px，过程如下，然后输出参数"><a href="#使用ScollTo向右移动150px，过程如下，然后输出参数" class="headerlink" title="使用ScollTo向右移动150px，过程如下，然后输出参数"></a>使用ScollTo向右移动150px，过程如下，然后输出参数</h4><p><img src="http://dengw.xyz/blog/180618/84K2A25EKl.gif" srcset="/img/loading.gif" lazyload></p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">getLeft</span>: <span class="hljs-number">150</span><br><span class="hljs-attribute">getX</span>: <span class="hljs-number">150</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">getTranslationX</span>: <span class="hljs-number">0</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">getscollX</span>: -<span class="hljs-number">150</span><br><span class="hljs-attribute">getLocationOnScreenX</span>: <span class="hljs-number">150</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">getLeft</span>: <span class="hljs-number">150</span>
+<span class="hljs-attribute">getX</span>: <span class="hljs-number">150</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">getTranslationX</span>: <span class="hljs-number">0</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">getscollX</span>: -<span class="hljs-number">150</span>
+<span class="hljs-attribute">getLocationOnScreenX</span>: <span class="hljs-number">150</span></code></pre></div>
 
 <h4 id="使用属性动画向右移动150px，过程如下，然后输出参数"><a href="#使用属性动画向右移动150px，过程如下，然后输出参数" class="headerlink" title="使用属性动画向右移动150px，过程如下，然后输出参数"></a>使用属性动画向右移动150px，过程如下，然后输出参数</h4><p><img src="http://dengw.xyz/blog/180618/26gKdbFfLl.gif" srcset="/img/loading.gif" lazyload></p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">getLeft</span>: <span class="hljs-number">150</span><br><span class="hljs-attribute">getX</span>: <span class="hljs-number">300</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">getTranslationX</span>: <span class="hljs-number">150</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">getscollX</span>: <span class="hljs-number">0</span><br><span class="hljs-attribute">getLocationOnScreenX</span>: <span class="hljs-number">300</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">getLeft</span>: <span class="hljs-number">150</span>
+<span class="hljs-attribute">getX</span>: <span class="hljs-number">300</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">getTranslationX</span>: <span class="hljs-number">150</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">getscollX</span>: <span class="hljs-number">0</span>
+<span class="hljs-attribute">getLocationOnScreenX</span>: <span class="hljs-number">300</span></code></pre></div>
 
 <h4 id="修改位置参数向右移动150px，过程如下，然后输出参数"><a href="#修改位置参数向右移动150px，过程如下，然后输出参数" class="headerlink" title="修改位置参数向右移动150px，过程如下，然后输出参数"></a>修改位置参数向右移动150px，过程如下，然后输出参数</h4><p><img src="http://dengw.xyz/blog/180618/L104ID2BC3.gif" srcset="/img/loading.gif" lazyload></p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">getLeft</span>: <span class="hljs-number">300</span><br><span class="hljs-attribute">getX</span>: <span class="hljs-number">300</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">getTranslationX</span>: <span class="hljs-number">0</span>.<span class="hljs-number">0</span><br><span class="hljs-attribute">sgetscollX</span>: <span class="hljs-number">0</span><br><span class="hljs-attribute">getLocationOnScreenX</span>: <span class="hljs-number">300</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">getLeft</span>: <span class="hljs-number">300</span>
+<span class="hljs-attribute">getX</span>: <span class="hljs-number">300</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">getTranslationX</span>: <span class="hljs-number">0</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">sgetscollX</span>: <span class="hljs-number">0</span>
+<span class="hljs-attribute">getLocationOnScreenX</span>: <span class="hljs-number">300</span></code></pre></div>
 <p>总结一下：</p>
 <table>
 <thead>

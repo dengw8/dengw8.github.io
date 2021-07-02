@@ -242,33 +242,132 @@
 <p>下面我们就结合实例一步一步的实现:</p>
 <p><strong>实例</strong>：使用Retrofit 2.0获取Github用户信息，输入uesername返回该用户的个人信息。<br><strong>相关API：</strong> <a target="_blank" rel="noopener" href="https://api.github.com/users/username">https://api.github.com/users/username</a></p>
 <h4 id="step1：添加Retrofit库的依赖"><a href="#step1：添加Retrofit库的依赖" class="headerlink" title="step1：添加Retrofit库的依赖"></a>step1：添加Retrofit库的依赖</h4><p>在<code>src</code>目录下的<code>build.gradle</code>中添加Retrofit库的依赖，一般也把RxJava和Gson的依赖也加上，因为基本上都会用到。</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs clean">dependencies &#123;<br>	...<br><br>    <span class="hljs-keyword">implementation</span> <span class="hljs-string">&#x27;com.squareup.retrofit2:retrofit:2.3.0&#x27;</span><br>    <span class="hljs-keyword">implementation</span> <span class="hljs-string">&#x27;com.squareup.retrofit2:adapter-rxjava:2.3.0&#x27;</span><br>    <span class="hljs-keyword">implementation</span> <span class="hljs-string">&#x27;com.squareup.retrofit2:converter-gson:2.3.0&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs clean">dependencies &#123;
+	...
+
+    <span class="hljs-keyword">implementation</span> <span class="hljs-string">&#x27;com.squareup.retrofit2:retrofit:2.3.0&#x27;</span>
+    <span class="hljs-keyword">implementation</span> <span class="hljs-string">&#x27;com.squareup.retrofit2:adapter-rxjava:2.3.0&#x27;</span>
+    <span class="hljs-keyword">implementation</span> <span class="hljs-string">&#x27;com.squareup.retrofit2:converter-gson:2.3.0&#x27;</span>
+&#125;</code></pre></div>
 
 <p>添加网络权限 ，因为涉及到网络访问，肯定要添加网络的权限。</p>
 <p>在AndroidManifest.xml文件中</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">&lt;uses-permission android:name=<span class="hljs-string">&quot;android.permission.INTERNET&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs stylus">&lt;uses-permission android:name=<span class="hljs-string">&quot;android.permission.INTERNET&quot;</span>/&gt;</code></pre></div>
 
 
 <h4 id="step2-定义接收服务器返回数据的Model类"><a href="#step2-定义接收服务器返回数据的Model类" class="headerlink" title="step2 定义接收服务器返回数据的Model类"></a>step2 定义接收服务器返回数据的Model类</h4><p>在定义Model类之前，需要先确定的希望获取的数据格式。<br>比如我们访问 <a target="_blank" rel="noopener" href="https://api.github.com/users/duang0626">https://api.github.com/users/duang0626</a> ，返回的信息如下：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs stylus">&#123;<br>  <span class="hljs-string">&quot;login&quot;</span>: <span class="hljs-string">&quot;duang0626&quot;</span>,<br>  <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">15682310</span>,<br>  <span class="hljs-string">&quot;avatar_url&quot;</span>: <span class="hljs-string">&quot;https://avatars3.githubusercontent.com/u/15682310?v=4&quot;</span>,<br>  <span class="hljs-string">&quot;gravatar_id&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>  <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626&quot;</span>,<br>  <span class="hljs-string">&quot;html_url&quot;</span>: <span class="hljs-string">&quot;https://github.com/duang0626&quot;</span>,<br>  <span class="hljs-string">&quot;followers_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/followers&quot;</span>,<br>  <span class="hljs-string">&quot;following_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/following&#123;/other_user&#125;&quot;</span>,<br>  <span class="hljs-string">&quot;gists_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/gists&#123;/gist_id&#125;&quot;</span>,<br>  <span class="hljs-string">&quot;starred_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/starred&#123;/owner&#125;&#123;/repo&#125;&quot;</span>,<br>  <span class="hljs-string">&quot;subscriptions_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/subscriptions&quot;</span>,<br>  <span class="hljs-string">&quot;organizations_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/orgs&quot;</span>,<br>  <span class="hljs-string">&quot;repos_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/repos&quot;</span>,<br>  <span class="hljs-string">&quot;events_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/events&#123;/privacy&#125;&quot;</span>,<br>  <span class="hljs-string">&quot;received_events_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/received_events&quot;</span>,<br>  <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;User&quot;</span>,<br>  <span class="hljs-string">&quot;site_admin&quot;</span>: false,<br>  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Dengw&quot;</span>,<br>  <span class="hljs-string">&quot;company&quot;</span>: null,<br>  <span class="hljs-string">&quot;blog&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>  <span class="hljs-string">&quot;location&quot;</span>: <span class="hljs-string">&quot;GuangZhou China&quot;</span>,<br>  <span class="hljs-string">&quot;email&quot;</span>: null,<br>  <span class="hljs-string">&quot;hireable&quot;</span>: null,<br>  <span class="hljs-string">&quot;bio&quot;</span>: <span class="hljs-string">&quot;A software engineering student&quot;</span>,<br>  <span class="hljs-string">&quot;public_repos&quot;</span>: <span class="hljs-number">27</span>,<br>  <span class="hljs-string">&quot;public_gists&quot;</span>: <span class="hljs-number">0</span>,<br>  <span class="hljs-string">&quot;followers&quot;</span>: <span class="hljs-number">2</span>,<br>  <span class="hljs-string">&quot;following&quot;</span>: <span class="hljs-number">4</span>,<br>  <span class="hljs-string">&quot;created_at&quot;</span>: <span class="hljs-string">&quot;2015-11-06T03:17:19Z&quot;</span>,<br>  <span class="hljs-string">&quot;updated_at&quot;</span>: <span class="hljs-string">&quot;2018-03-09T17:15:32Z&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs stylus">&#123;
+  <span class="hljs-string">&quot;login&quot;</span>: <span class="hljs-string">&quot;duang0626&quot;</span>,
+  <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">15682310</span>,
+  <span class="hljs-string">&quot;avatar_url&quot;</span>: <span class="hljs-string">&quot;https://avatars3.githubusercontent.com/u/15682310?v=4&quot;</span>,
+  <span class="hljs-string">&quot;gravatar_id&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+  <span class="hljs-string">&quot;url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626&quot;</span>,
+  <span class="hljs-string">&quot;html_url&quot;</span>: <span class="hljs-string">&quot;https://github.com/duang0626&quot;</span>,
+  <span class="hljs-string">&quot;followers_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/followers&quot;</span>,
+  <span class="hljs-string">&quot;following_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/following&#123;/other_user&#125;&quot;</span>,
+  <span class="hljs-string">&quot;gists_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/gists&#123;/gist_id&#125;&quot;</span>,
+  <span class="hljs-string">&quot;starred_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/starred&#123;/owner&#125;&#123;/repo&#125;&quot;</span>,
+  <span class="hljs-string">&quot;subscriptions_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/subscriptions&quot;</span>,
+  <span class="hljs-string">&quot;organizations_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/orgs&quot;</span>,
+  <span class="hljs-string">&quot;repos_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/repos&quot;</span>,
+  <span class="hljs-string">&quot;events_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/events&#123;/privacy&#125;&quot;</span>,
+  <span class="hljs-string">&quot;received_events_url&quot;</span>: <span class="hljs-string">&quot;https://api.github.com/users/duang0626/received_events&quot;</span>,
+  <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;User&quot;</span>,
+  <span class="hljs-string">&quot;site_admin&quot;</span>: false,
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Dengw&quot;</span>,
+  <span class="hljs-string">&quot;company&quot;</span>: null,
+  <span class="hljs-string">&quot;blog&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+  <span class="hljs-string">&quot;location&quot;</span>: <span class="hljs-string">&quot;GuangZhou China&quot;</span>,
+  <span class="hljs-string">&quot;email&quot;</span>: null,
+  <span class="hljs-string">&quot;hireable&quot;</span>: null,
+  <span class="hljs-string">&quot;bio&quot;</span>: <span class="hljs-string">&quot;A software engineering student&quot;</span>,
+  <span class="hljs-string">&quot;public_repos&quot;</span>: <span class="hljs-number">27</span>,
+  <span class="hljs-string">&quot;public_gists&quot;</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-string">&quot;followers&quot;</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-string">&quot;following&quot;</span>: <span class="hljs-number">4</span>,
+  <span class="hljs-string">&quot;created_at&quot;</span>: <span class="hljs-string">&quot;2015-11-06T03:17:19Z&quot;</span>,
+  <span class="hljs-string">&quot;updated_at&quot;</span>: <span class="hljs-string">&quot;2018-03-09T17:15:32Z&quot;</span>
+&#125;</code></pre></div>
 <p>假如我们只需要显示查询user的login, id, name这三个字段的话，那我们就可以像下面这样定义Model类，根据自己的需要设置就好。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> String login;<br>    <span class="hljs-keyword">private</span> String id;<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getLogin</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> login;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setLogin</span><span class="hljs-params">(String login)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.login = login;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> id;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(String id)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.id = id;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> name;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;
+    <span class="hljs-keyword">private</span> String login;
+    <span class="hljs-keyword">private</span> String id;
+    <span class="hljs-keyword">private</span> String name;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getLogin</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> login;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setLogin</span><span class="hljs-params">(String login)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.login = login;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> id;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(String id)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.id = id;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+    &#125;
+&#125;</code></pre></div>
 
 <h3 id="step3-创建-用于描述网络请求-的接口"><a href="#step3-创建-用于描述网络请求-的接口" class="headerlink" title="step3 创建 用于描述网络请求 的接口"></a>step3 创建 用于描述网络请求 的接口</h3><p>Retrofit将 Http请求 抽象成 Java接口：采用 注解 描述网络请求参数 和配置网络请求参数 。</p>
 <blockquote>
 <p>用动态代理动态将该接口的注解“翻译”成一个 Http 请求，最后再执行 Http 请求<br>接口中的每个方法的参数都需要使用注解标注，否则会报错</p>
 </blockquote>
 <p>自定义接口，根据Retrofit 2.0规范定义方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GitHubService</span> </span>&#123;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">     *@GET注解的作用:采用Get方法发送网络请求</span><br><span class="hljs-comment">     * getUser() 接收网络请求数据的方法</span><br><span class="hljs-comment">     * 其中返回类型为Call&lt;*&gt;，*是接收数据的类（即上面定义的User类）</span><br><span class="hljs-comment">     *  @Path(&quot;user&quot;) String user 方法参数</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@GET(&quot;users/&#123;user&#125;&quot;)</span><br>    <span class="hljs-function">Call&lt;User&gt; <span class="hljs-title">getUser</span><span class="hljs-params">(<span class="hljs-meta">@Path(&quot;user&quot;)</span> String user)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GitHubService</span> </span>&#123;
+    <span class="hljs-comment">/*</span>
+<span class="hljs-comment">     *@GET注解的作用:采用Get方法发送网络请求</span>
+<span class="hljs-comment">     * getUser() 接收网络请求数据的方法</span>
+<span class="hljs-comment">     * 其中返回类型为Call&lt;*&gt;，*是接收数据的类（即上面定义的User类）</span>
+<span class="hljs-comment">     *  @Path(&quot;user&quot;) String user 方法参数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-meta">@GET(&quot;users/&#123;user&#125;&quot;)</span>
+    <span class="hljs-function">Call&lt;User&gt; <span class="hljs-title">getUser</span><span class="hljs-params">(<span class="hljs-meta">@Path(&quot;user&quot;)</span> String user)</span></span>;
+&#125;</code></pre></div>
 
-<h3 id="step4-创建-Retrofit-实例"><a href="#step4-创建-Retrofit-实例" class="headerlink" title="step4 创建 Retrofit 实例"></a>step4 创建 Retrofit 实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">String baseUrl = <span class="hljs-string">&quot;https://api.github.com/&quot;</span>;<br>Retrofit retrofit = <span class="hljs-keyword">new</span> Retrofit.Builder()<br>    .baseUrl(baseUrl)   <span class="hljs-comment">//Url的base地址</span><br>    .addConverterFactory(GsonConverterFactory.create())  <span class="hljs-comment">// 设置数据解析器</span><br>    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())  <span class="hljs-comment">// 支持RxJava</span><br>    .build();<br></code></pre></td></tr></table></figure>
+<h3 id="step4-创建-Retrofit-实例"><a href="#step4-创建-Retrofit-实例" class="headerlink" title="step4 创建 Retrofit 实例"></a>step4 创建 Retrofit 实例</h3><div class="code-wrapper"><pre><code class="hljs java">String baseUrl = <span class="hljs-string">&quot;https://api.github.com/&quot;</span>;
+Retrofit retrofit = <span class="hljs-keyword">new</span> Retrofit.Builder()
+    .baseUrl(baseUrl)   <span class="hljs-comment">//Url的base地址</span>
+    .addConverterFactory(GsonConverterFactory.create())  <span class="hljs-comment">// 设置数据解析器</span>
+    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())  <span class="hljs-comment">// 支持RxJava</span>
+    .build();</code></pre></div>
 
-<h3 id="step5-创建网络请求接口实例"><a href="#step5-创建网络请求接口实例" class="headerlink" title="step5 创建网络请求接口实例"></a>step5 创建网络请求接口实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">GitHubService request = retrofit.create(GitHubService.class);<br></code></pre></td></tr></table></figure>
+<h3 id="step5-创建网络请求接口实例"><a href="#step5-创建网络请求接口实例" class="headerlink" title="step5 创建网络请求接口实例"></a>step5 创建网络请求接口实例</h3><div class="code-wrapper"><pre><code class="hljs java">GitHubService request = retrofit.create(GitHubService.class);</code></pre></div>
 
-<h3 id="step6-发送网络请求"><a href="#step6-发送网络请求" class="headerlink" title="step6 发送网络请求"></a>step6 发送网络请求</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">Call&lt;User&gt; call = request.getUser();<br>call.enqueue(<span class="hljs-keyword">new</span> Callback&lt;User&gt;() &#123;<br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(Call&lt;User&gt; call, Response&lt;User&gt; response)</span> </span>&#123;<br>	<br>		<span class="hljs-comment">//请求成功,处理返回结果</span><br>	&#125;<br>	<br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(Call&lt;User&gt; call, Throwable t)</span> </span>&#123;<br>	<br>		<span class="hljs-comment">//请求失败时调用</span><br>	&#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<h3 id="step6-发送网络请求"><a href="#step6-发送网络请求" class="headerlink" title="step6 发送网络请求"></a>step6 发送网络请求</h3><div class="code-wrapper"><pre><code class="hljs java">Call&lt;User&gt; call = request.getUser();
+call.enqueue(<span class="hljs-keyword">new</span> Callback&lt;User&gt;() &#123;
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(Call&lt;User&gt; call, Response&lt;User&gt; response)</span> </span>&#123;
+	
+		<span class="hljs-comment">//请求成功,处理返回结果</span>
+	&#125;
+	
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(Call&lt;User&gt; call, Throwable t)</span> </span>&#123;
+	
+		<span class="hljs-comment">//请求失败时调用</span>
+	&#125;
+&#125;);</code></pre></div>
 
 <h3 id="step7-处理返回数据"><a href="#step7-处理返回数据" class="headerlink" title="step7 处理返回数据"></a>step7 处理返回数据</h3><p>处理数据的步骤就根据自己的需要在 reponse 提取返回的数据，如果按照我们上面那样方式发送请求。在onResponse函数返回的参数reponse.Body()就是一个我们之前自己定义User类，要读取User信息直接使用相应的get函数即可获取。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(Call&lt;User&gt; call, Response&lt;User&gt; response)</span> </span>&#123;<br> Map&lt;String, Object&gt; tem = <span class="hljs-keyword">new</span> LinkedHashMap&lt;&gt;();<br> tem.put(<span class="hljs-string">&quot;name&quot;</span>, response.body().getLogin());<br> tem.put(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;id: &quot;</span> + response.body().getId());<br> tem.put(<span class="hljs-string">&quot;name&quot;</span>,<span class="hljs-string">&quot;name: &quot;</span> + response.body().getName());<br> userList.add(tem);<br> cardAdapter.notifyItemInserted(userList.size() - <span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(Call&lt;User&gt; call, Response&lt;User&gt; response)</span> </span>&#123;
+ Map&lt;String, Object&gt; tem = <span class="hljs-keyword">new</span> LinkedHashMap&lt;&gt;();
+ tem.put(<span class="hljs-string">&quot;name&quot;</span>, response.body().getLogin());
+ tem.put(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;id: &quot;</span> + response.body().getId());
+ tem.put(<span class="hljs-string">&quot;name&quot;</span>,<span class="hljs-string">&quot;name: &quot;</span> + response.body().getName());
+ userList.add(tem);
+ cardAdapter.notifyItemInserted(userList.size() - <span class="hljs-number">1</span>);
+&#125;</code></pre></div>
 <p>结果显示如下：</p>
 <p><img src="http://dengw.xyz/hexo-blog/180323/d0HdE5Eh7k.png" srcset="/img/loading.gif" lazyload></p>
 <p>Retrofit 2.0的快速使用就介绍到这儿了，通过上面介绍的方法就可以使用Retrofit 2.0访问网络了。相信你也看到了，这个过程中的一些参数可能重来都没有见过，下一篇文章就将介绍Retrofit 2.0使用的一些细节，参数的设置，具体的含义。</p>

@@ -197,8 +197,8 @@
 具体到请求报文和响应报文如下：
 请求报文结构
 请求行请求行由请求方法，URL字段和HTTP协议的版本组成，格式如下：
-1Method Request-URI HTTP-Version CRLF
-其中 Method表示请求方法；Request-URI是一个统一资源标识
+Method Request-URI HTTP-Version CRLF
+其中 Method表示请求方法；Request-URI是一个统一资源标识符
         </a>
       </p>
 
@@ -357,7 +357,7 @@ ANR背后体现了大部分的GUI应用机制;
           
           今天在看代码的时候看到了layout_weight属性的时候突然想到了一个问题，一直都知道它是让剩余空间按比例划分后再划分给每个View，但是具体是怎么划分的却不是很清楚，参考这篇博客Android知识点剖析系列：深入了解layout_weight属性的时候也没有明确说，所以就想自己来验证一下。
 开始验证
-使用layout_weight属性前的代码1234567891011121314151617
+使用layout_weight属性前的代码&lt;?xml version=&quot;1.
         </a>
       </p>
 
@@ -522,7 +522,11 @@ Alfred
             
           
           之前在看 Handler#dispatchMessage方法时，发现有几个判断条件，查询资料得知这是用来匹配不同的 handler 的实例化方式以及使用方式的，下面就详细理解一下。
-123456789101112131415/** * Handle system messages here. */public void dispatchMessage(Message msg) &#123;   
+/**
+ * Handle system messages here.
+ */
+public void dispatchMessage(Message msg) &#123;
+    if (msg.callback
         </a>
       </p>
 

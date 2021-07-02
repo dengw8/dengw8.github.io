@@ -260,7 +260,7 @@
 <p>然后定义一个线程池，并且这个线程池的等待队列使用具有优先级的队列，优先级的逻辑根据自己的需要写，然后用这个线程池来代替okhttp本来的线程池</p>
 <h3 id="2018-12-1"><a href="#2018-12-1" class="headerlink" title="2018/12/1"></a>2018/12/1</h3><p>升级gradle版本的方法 </p>
 <h4 id="mac下java多版本控制"><a href="#mac下java多版本控制" class="headerlink" title="mac下java多版本控制"></a>mac下java多版本控制</h4><ul>
-<li>查看java安装路径：<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>libexec/java_home -V<br></code></pre></td></tr></table></figure>
+<li>查看java安装路径：<div class="code-wrapper"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>libexec/java_home -V</code></pre></div>
 注意：输入命令参数区分大小写(-v是不对的，必须是-V)</li>
 </ul>
 <p><img src="http://dengw.xyz/20181201153407.png" srcset="/img/loading.gif" lazyload></p>
@@ -270,7 +270,17 @@
 </ul>
 <p>这里需要注意的是，当mac上安装了zsh后，修改环境变量就需要在<code>~/.zshrc</code>文件中修改，修改后执行命令<code>source ~/.zshrc</code>使刚才的修改生效。</p>
 <p>像上面这样打开对应的配置文件，添加如下代码：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># 设置 JDK 8  </span><br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">JAVA_8_HOME</span>=`/usr/libexec/java_home -v1.8`  <br><span class="hljs-comment"># 设置 JDK 11  </span><br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">JAVA_11_HOME</span>=`/usr/libexec/java_home -v11`  <br>  <br><span class="hljs-comment">#默认JDK 8  </span><br><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">JAVA_HOME</span>=<span class="hljs-variable">$JAVA_8_HOME</span>  <br>  <br><span class="hljs-comment">#alias命令动态切换JDK版本    </span><br>alias <span class="hljs-attribute">jdk8</span>=<span class="hljs-string">&quot;export JAVA_HOME=<span class="hljs-variable">$JAVA_8_HOME</span>&quot;</span><br>alias <span class="hljs-attribute">jdk11</span>=<span class="hljs-string">&quot;export JAVA_HOME=<span class="hljs-variable">$JAVA_11_HOME</span>&quot;</span> <br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs routeros"><span class="hljs-comment"># 设置 JDK 8  </span>
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">JAVA_8_HOME</span>=`/usr/libexec/java_home -v1.8`  
+<span class="hljs-comment"># 设置 JDK 11  </span>
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">JAVA_11_HOME</span>=`/usr/libexec/java_home -v11`  
+  
+<span class="hljs-comment">#默认JDK 8  </span>
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">JAVA_HOME</span>=<span class="hljs-variable">$JAVA_8_HOME</span>  
+  
+<span class="hljs-comment">#alias命令动态切换JDK版本    </span>
+alias <span class="hljs-attribute">jdk8</span>=<span class="hljs-string">&quot;export JAVA_HOME=<span class="hljs-variable">$JAVA_8_HOME</span>&quot;</span>
+alias <span class="hljs-attribute">jdk11</span>=<span class="hljs-string">&quot;export JAVA_HOME=<span class="hljs-variable">$JAVA_11_HOME</span>&quot;</span></code></pre></div>
 <p>我添加了jdk8和jdk11，按照需要添加对应的JDK版本。</p>
 <p>生效之后，当你需要切换jdk版本，比如当我需要切换到 jdk8 的之后只需要在命令行里面输入 <code>jdk8</code> 就可以切换成功了,<code>jdk11</code>同理。</p>
 <h3 id="2018-12-5"><a href="#2018-12-5" class="headerlink" title="2018/12/5"></a>2018/12/5</h3><h4 id="tinker"><a href="#tinker" class="headerlink" title="tinker"></a>tinker</h4><h3 id="2018-12-6"><a href="#2018-12-6" class="headerlink" title="2018/12/6"></a>2018/12/6</h3><h4 id="位运算总结"><a href="#位运算总结" class="headerlink" title="位运算总结"></a>位运算总结</h4><ul>
@@ -303,20 +313,172 @@
 <p>右移，将一个数的各二进制位右移N位，移到右端的低位被舍弃，对于无符号数， 高位补0</p>
 <h3 id="2018-12-9"><a href="#2018-12-9" class="headerlink" title="2018/12/9"></a>2018/12/9</h3><h4 id="Preference的使用"><a href="#Preference的使用" class="headerlink" title="Preference的使用"></a>Preference的使用</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/land_litao/article/details/23998579">隐藏PreferenceCategory和Preference的方法</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/valenhua/archive/2017/10/03/7624640.html">Android Preference 设置偏好全攻略</a></p>
-<h3 id="2018-12-13"><a href="#2018-12-13" class="headerlink" title="2018/12/13"></a>2018/12/13</h3><h4 id="使用java代码获取apk的md5值"><a href="#使用java代码获取apk的md5值" class="headerlink" title="使用java代码获取apk的md5值"></a>使用java代码获取apk的md5值</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 获取apk的md5值</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> path apk的路径</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getMD5FromApk</span><span class="hljs-params">(String path)</span> </span>&#123;<br>    BigInteger bi = <span class="hljs-keyword">null</span>;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">8192</span>];<br>        <span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>;<br>        MessageDigest md = MessageDigest.getInstance(<span class="hljs-string">&quot;MD5&quot;</span>);<br>        File f = <span class="hljs-keyword">new</span> File(path);<br>        FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(f);<br>        <span class="hljs-keyword">while</span> ((len = fis.read(buffer)) != -<span class="hljs-number">1</span>) &#123;<br>            md.update(buffer, <span class="hljs-number">0</span>, len);<br>        &#125;<br>        fis.close();<br>        <span class="hljs-keyword">byte</span>[] b = md.digest();<br>        bi = <span class="hljs-keyword">new</span> BigInteger(<span class="hljs-number">1</span>, b);<br>    &#125; <span class="hljs-keyword">catch</span> (NoSuchAlgorithmException e) &#123;<br>        e.printStackTrace();<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>    <span class="hljs-keyword">return</span> bi.toString(<span class="hljs-number">16</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="2018-12-13"><a href="#2018-12-13" class="headerlink" title="2018/12/13"></a>2018/12/13</h3><h4 id="使用java代码获取apk的md5值"><a href="#使用java代码获取apk的md5值" class="headerlink" title="使用java代码获取apk的md5值"></a>使用java代码获取apk的md5值</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 获取apk的md5值</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> path apk的路径</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getMD5FromApk</span><span class="hljs-params">(String path)</span> </span>&#123;
+    BigInteger bi = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">try</span> &#123;
+        <span class="hljs-keyword">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">8192</span>];
+        <span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>;
+        MessageDigest md = MessageDigest.getInstance(<span class="hljs-string">&quot;MD5&quot;</span>);
+        File f = <span class="hljs-keyword">new</span> File(path);
+        FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(f);
+        <span class="hljs-keyword">while</span> ((len = fis.read(buffer)) != -<span class="hljs-number">1</span>) &#123;
+            md.update(buffer, <span class="hljs-number">0</span>, len);
+        &#125;
+        fis.close();
+        <span class="hljs-keyword">byte</span>[] b = md.digest();
+        bi = <span class="hljs-keyword">new</span> BigInteger(<span class="hljs-number">1</span>, b);
+    &#125; <span class="hljs-keyword">catch</span> (NoSuchAlgorithmException e) &#123;
+        e.printStackTrace();
+    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+    <span class="hljs-keyword">return</span> bi.toString(<span class="hljs-number">16</span>);
+&#125;</code></pre></div>
 
-<h4 id="使用java代码获取apk的签名信息"><a href="#使用java代码获取apk的签名信息" class="headerlink" title="使用java代码获取apk的签名信息"></a>使用java代码获取apk的签名信息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 从APK中读取签名</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> apkPath apk路径</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> IOException</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getSignaturesFromApk</span><span class="hljs-params">(String apkPath)</span> </span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">byte</span>[] bytes = getSignatureBytes(apkPath);<br>        <span class="hljs-keyword">return</span> hexDigest(bytes);<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">hexDigest</span><span class="hljs-params">(<span class="hljs-keyword">byte</span>[] bytes)</span> </span>&#123;<br>    MessageDigest md5;<br>    <span class="hljs-keyword">try</span> &#123;<br>        md5 = MessageDigest.getInstance(<span class="hljs-string">&quot;MD5&quot;</span>);<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>    &#125;<br>    <span class="hljs-keyword">byte</span>[] md5Bytes = md5.digest(bytes);<br>    StringBuffer hexValue = <span class="hljs-keyword">new</span> StringBuffer();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; md5Bytes.length; i++) &#123;<br>        <span class="hljs-keyword">int</span> val = ((<span class="hljs-keyword">int</span>) md5Bytes[i]) &amp; <span class="hljs-number">0xff</span>;<br>        <span class="hljs-keyword">if</span> (val &lt; <span class="hljs-number">16</span>)<br>            hexValue.append(<span class="hljs-string">&quot;0&quot;</span>);<br>        hexValue.append(Integer.toHexString(val));<br>    &#125;<br>    <span class="hljs-keyword">return</span> hexValue.toString();<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 从APK中读取签名</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> apkPath apk路径</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> IOException</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">byte</span>[] getSignatureBytes(String apkPath) <span class="hljs-keyword">throws</span> IOException &#123;<br>    JarFile jarFile = <span class="hljs-keyword">new</span> JarFile(apkPath);<br>    <span class="hljs-keyword">try</span> &#123;<br>        JarEntry je = jarFile.getJarEntry(<span class="hljs-string">&quot;AndroidManifest.xml&quot;</span>);<br>        <span class="hljs-keyword">byte</span>[] readBuffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">8192</span>];<br>        Certificate[] certs = loadCertificates(jarFile, je, readBuffer);<br>        <span class="hljs-keyword">if</span> (certs != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">for</span> (Certificate c : certs) &#123;<br>                <span class="hljs-keyword">return</span> c.getEncoded();<br>            &#125;<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (Exception ex) &#123;<br>        ex.printStackTrace();<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 加载签名</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> jarFile</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> je</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> readBuffer</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Certificate[] loadCertificates(JarFile jarFile, JarEntry je, <span class="hljs-keyword">byte</span>[] readBuffer) &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        InputStream is = jarFile.getInputStream(je);<br>        <span class="hljs-keyword">while</span> (is.read(readBuffer, <span class="hljs-number">0</span>, readBuffer.length) != -<span class="hljs-number">1</span>) &#123;&#125;<br>        is.close();<br>        <span class="hljs-keyword">return</span> je != <span class="hljs-keyword">null</span> ? je.getCertificates() : <span class="hljs-keyword">null</span>;<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="使用java代码获取apk的签名信息"><a href="#使用java代码获取apk的签名信息" class="headerlink" title="使用java代码获取apk的签名信息"></a>使用java代码获取apk的签名信息</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 从APK中读取签名</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> apkPath apk路径</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> IOException</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getSignaturesFromApk</span><span class="hljs-params">(String apkPath)</span> </span>&#123;
+    <span class="hljs-keyword">try</span> &#123;
+        <span class="hljs-keyword">byte</span>[] bytes = getSignatureBytes(apkPath);
+        <span class="hljs-keyword">return</span> hexDigest(bytes);
+    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+&#125;
 
-<h4 id="获取当前应用的versionCode"><a href="#获取当前应用的versionCode" class="headerlink" title="获取当前应用的versionCode"></a>获取当前应用的versionCode</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 获取当前应用的versionCode</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context context</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAppVersionCode</span><span class="hljs-params">(Context context)</span> </span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        PackageManager pm = context.getPackageManager();<br>        PackageInfo pi = pm.getPackageInfo(context.getPackageName(), <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> pi == <span class="hljs-keyword">null</span> ? -<span class="hljs-number">1</span> : pi.versionCode;<br>    &#125; <span class="hljs-keyword">catch</span> (PackageManager.NameNotFoundException e) &#123;<br>        <span class="hljs-comment">//e.printStackTrace();</span><br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">hexDigest</span><span class="hljs-params">(<span class="hljs-keyword">byte</span>[] bytes)</span> </span>&#123;
+    MessageDigest md5;
+    <span class="hljs-keyword">try</span> &#123;
+        md5 = MessageDigest.getInstance(<span class="hljs-string">&quot;MD5&quot;</span>);
+    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+        e.printStackTrace();
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;
+    &#125;
+    <span class="hljs-keyword">byte</span>[] md5Bytes = md5.digest(bytes);
+    StringBuffer hexValue = <span class="hljs-keyword">new</span> StringBuffer();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; md5Bytes.length; i++) &#123;
+        <span class="hljs-keyword">int</span> val = ((<span class="hljs-keyword">int</span>) md5Bytes[i]) &amp; <span class="hljs-number">0xff</span>;
+        <span class="hljs-keyword">if</span> (val &lt; <span class="hljs-number">16</span>)
+            hexValue.append(<span class="hljs-string">&quot;0&quot;</span>);
+        hexValue.append(Integer.toHexString(val));
+    &#125;
+    <span class="hljs-keyword">return</span> hexValue.toString();
+&#125;
 
-<h4 id="获取apk的versionCode"><a href="#获取apk的versionCode" class="headerlink" title="获取apk的versionCode"></a>获取apk的versionCode</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 获取apk的versionCode</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context  context</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> filePath apk file path</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getApkVersionCode</span><span class="hljs-params">(Context context, <span class="hljs-keyword">final</span> String filePath)</span> </span>&#123;<br>    PackageManager packageManager = context.getPackageManager();<br>    PackageInfo packageInfo = packageManager.getPackageArchiveInfo(filePath, PackageManager.GET_ACTIVITIES);<br>    <span class="hljs-keyword">return</span> packageInfo.versionCode;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 从APK中读取签名</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> apkPath apk路径</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> IOException</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">byte</span>[] getSignatureBytes(String apkPath) <span class="hljs-keyword">throws</span> IOException &#123;
+    JarFile jarFile = <span class="hljs-keyword">new</span> JarFile(apkPath);
+    <span class="hljs-keyword">try</span> &#123;
+        JarEntry je = jarFile.getJarEntry(<span class="hljs-string">&quot;AndroidManifest.xml&quot;</span>);
+        <span class="hljs-keyword">byte</span>[] readBuffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">8192</span>];
+        Certificate[] certs = loadCertificates(jarFile, je, readBuffer);
+        <span class="hljs-keyword">if</span> (certs != <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">for</span> (Certificate c : certs) &#123;
+                <span class="hljs-keyword">return</span> c.getEncoded();
+            &#125;
+        &#125;
+    &#125; <span class="hljs-keyword">catch</span> (Exception ex) &#123;
+        ex.printStackTrace();
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+&#125;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 加载签名</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> jarFile</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> je</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> readBuffer</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Certificate[] loadCertificates(JarFile jarFile, JarEntry je, <span class="hljs-keyword">byte</span>[] readBuffer) &#123;
+    <span class="hljs-keyword">try</span> &#123;
+        InputStream is = jarFile.getInputStream(je);
+        <span class="hljs-keyword">while</span> (is.read(readBuffer, <span class="hljs-number">0</span>, readBuffer.length) != -<span class="hljs-number">1</span>) &#123;&#125;
+        is.close();
+        <span class="hljs-keyword">return</span> je != <span class="hljs-keyword">null</span> ? je.getCertificates() : <span class="hljs-keyword">null</span>;
+    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+&#125;</code></pre></div>
+
+<h4 id="获取当前应用的versionCode"><a href="#获取当前应用的versionCode" class="headerlink" title="获取当前应用的versionCode"></a>获取当前应用的versionCode</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 获取当前应用的versionCode</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context context</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAppVersionCode</span><span class="hljs-params">(Context context)</span> </span>&#123;
+    <span class="hljs-keyword">try</span> &#123;
+        PackageManager pm = context.getPackageManager();
+        PackageInfo pi = pm.getPackageInfo(context.getPackageName(), <span class="hljs-number">0</span>);
+        <span class="hljs-keyword">return</span> pi == <span class="hljs-keyword">null</span> ? -<span class="hljs-number">1</span> : pi.versionCode;
+    &#125; <span class="hljs-keyword">catch</span> (PackageManager.NameNotFoundException e) &#123;
+        <span class="hljs-comment">//e.printStackTrace();</span>
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    &#125;
+&#125;
+</code></pre></div>
+
+<h4 id="获取apk的versionCode"><a href="#获取apk的versionCode" class="headerlink" title="获取apk的versionCode"></a>获取apk的versionCode</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 获取apk的versionCode</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context  context</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> filePath apk file path</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getApkVersionCode</span><span class="hljs-params">(Context context, <span class="hljs-keyword">final</span> String filePath)</span> </span>&#123;
+    PackageManager packageManager = context.getPackageManager();
+    PackageInfo packageInfo = packageManager.getPackageArchiveInfo(filePath, PackageManager.GET_ACTIVITIES);
+    <span class="hljs-keyword">return</span> packageInfo.versionCode;
+&#125;
+</code></pre></div>
 
 <h4 id="OKHttp的学习"><a href="#OKHttp的学习" class="headerlink" title="OKHttp的学习"></a>OKHttp的学习</h4><h3 id="2018-12-15"><a href="#2018-12-15" class="headerlink" title="2018/12/15"></a>2018/12/15</h3><h4 id="socket编程"><a href="#socket编程" class="headerlink" title="socket编程"></a>socket编程</h4><h3 id="2018-12-16"><a href="#2018-12-16" class="headerlink" title="2018/12/16"></a>2018/12/16</h3><h4 id="实现只有当主线程消息队列空闲时才处理耗时事件"><a href="#实现只有当主线程消息队列空闲时才处理耗时事件" class="headerlink" title="实现只有当主线程消息队列空闲时才处理耗时事件"></a>实现只有当主线程消息队列空闲时才处理耗时事件</h4><p>达到的效果：<strong>在UI显示完成后，再进行耗时操作</strong></p>
 <p>官方源码解释如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Callback interface for discovering when a thread is going to block</span><br><span class="hljs-comment"> * waiting for more messages.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IdleHandler</span> </span>&#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * Called when the message queue has run out of messages and will now</span><br><span class="hljs-comment">     * wait for more.  Return true to keep your idle handler active, false</span><br><span class="hljs-comment">     * to have it removed.  This may be called if there are still messages</span><br><span class="hljs-comment">     * pending in the queue, but they are all scheduled to be dispatched</span><br><span class="hljs-comment">     * after the current time.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">queueIdle</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Callback interface for discovering when a thread is going to block</span>
+<span class="hljs-comment"> * waiting for more messages.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IdleHandler</span> </span>&#123;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * Called when the message queue has run out of messages and will now</span>
+<span class="hljs-comment">     * wait for more.  Return true to keep your idle handler active, false</span>
+<span class="hljs-comment">     * to have it removed.  This may be called if there are still messages</span>
+<span class="hljs-comment">     * pending in the queue, but they are all scheduled to be dispatched</span>
+<span class="hljs-comment">     * after the current time.</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">queueIdle</span><span class="hljs-params">()</span></span>;
+&#125;</code></pre></div>
 
 <p>这样假如我们想要定义一个只有当主线程消息队列为空的时候才处理的事件的话，就可以继承<code>IdleHandler</code>然后重写<code>queueIdle()</code>方法，用法示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">MessageQueue.IdleHandler idleHandler = <span class="hljs-keyword">new</span> MessageQueue.IdleHandler() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">queueIdle</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// 耗时操作</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>&#125;;<br><br><br>Looper.myQueue().addIdleHandler(idleHandler);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">MessageQueue.IdleHandler idleHandler = <span class="hljs-keyword">new</span> MessageQueue.IdleHandler() &#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">queueIdle</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-comment">// 耗时操作</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    &#125;
+&#125;;
+
+
+Looper.myQueue().addIdleHandler(idleHandler);</code></pre></div>
 
 <p>对<code>queueIdle()</code>方法返回值的一些补充：</p>
 <ul>

@@ -303,7 +303,16 @@
 </blockquote>
 <p>相关：任务栈，onNewIntent方法的调用</p>
 <h3 id="Android怎样退出终止App"><a href="#Android怎样退出终止App" class="headerlink" title="Android怎样退出终止App"></a>Android怎样退出终止App</h3><p>使用单例模式创建一个Activity管理对象ActivityManager，该对象中有一个Activity容器，可以使用LinkedList实现（一个容器代表一个app实例）专门负责存储新开启的每一个Activity。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ActivityManager instance;<br><br>    <span class="hljs-comment">//单例模式中获取唯一的app实例</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ActivityManager <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">null</span> == instance) &#123;<br>            instance = <span class="hljs-keyword">new</span> ActivityManager();<br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ActivityManager instance;
+
+    <span class="hljs-comment">//单例模式中获取唯一的app实例</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ActivityManager <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">null</span> == instance) &#123;
+            instance = <span class="hljs-keyword">new</span> ActivityManager();
+        &#125;
+        <span class="hljs-keyword">return</span> instance;
+    &#125;
+</code></pre></div>
 
 <p>使用：</p>
 <blockquote>
@@ -352,9 +361,31 @@
 <p>使用startService()方法启动IntentService时，不会重新创建一个服务，会调用ServiceHandler对象发送包含该Intent的Message对象，该对象通过HandlerThread处理后交给ServiceHandler重写的handleMessage方法进行处理，处理的方式是调用IntentService的onHandleIntent（Intent）方法，所以使用的方式就是创建一个继承自IntentService类的子类，并重写onHandleIntent方法，在该方法中处理startService时传递的Intent。Intent中包含有要交给Service处理的信息。</p>
 <p>Service缺点：不是专门的一个新的线程，因此不能够在里面执行耗时操作。<br>IntentService： IntentService封装了HandlerThread和Handler，内部创建一个HandlerThread开辟新的线程。</p>
 <p>重写继承的handler</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServiceHandler</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Handler</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ServiceHandler</span><span class="hljs-params">(Looper looper)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>(looper);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(Message msg)</span> </span>&#123;<br>        onHandleIntent((Intent)msg.obj);<br>        stopSelf(msg.arg1);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServiceHandler</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Handler</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ServiceHandler</span><span class="hljs-params">(Looper looper)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>(looper);
+    &#125;
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> It would be nice to have an option to hold a partial wakelock</span><br>    <span class="hljs-comment">// during processing, and to have a static startService(Context, Intent)</span><br>    <span class="hljs-comment">// method that would launch the service &amp; hand off a wakelock.</span><br><br>    <span class="hljs-keyword">super</span>.onCreate();<br>    HandlerThread thread = <span class="hljs-keyword">new</span> HandlerThread(<span class="hljs-string">&quot;IntentService[&quot;</span> + mName + <span class="hljs-string">&quot;]&quot;</span>);<br>    thread.start();<br><br>    mServiceLooper = thread.getLooper();<br>    mServiceHandler = <span class="hljs-keyword">new</span> ServiceHandler(mServiceLooper);<br>&#125;<br></code></pre></td></tr></table></figure>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(Message msg)</span> </span>&#123;
+        onHandleIntent((Intent)msg.obj);
+        stopSelf(msg.arg1);
+    &#125;
+&#125;</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> It would be nice to have an option to hold a partial wakelock</span>
+    <span class="hljs-comment">// during processing, and to have a static startService(Context, Intent)</span>
+    <span class="hljs-comment">// method that would launch the service &amp; hand off a wakelock.</span>
+
+    <span class="hljs-keyword">super</span>.onCreate();
+    HandlerThread thread = <span class="hljs-keyword">new</span> HandlerThread(<span class="hljs-string">&quot;IntentService[&quot;</span> + mName + <span class="hljs-string">&quot;]&quot;</span>);
+    thread.start();
+
+    mServiceLooper = thread.getLooper();
+    mServiceHandler = <span class="hljs-keyword">new</span> ServiceHandler(mServiceLooper);
+&#125;</code></pre></div>
 
 <p>是通过Handler、looper、message的方式实现了一个多线程的操作，同时耗时操作也可以被这个线程管理和执行<br>（1）IntentService会创建单独的worker线程来处理所有的intent请求。<br>（2）IntentService会创建单独的worker线程来处理onHandleIntent（）方法实现的代码。<br>     继承类重写IntentService的onHandleIntent（）方法，处理具体的业务逻辑<br>（3）当所有的请求处理完之后，IntentService会自动停止。<br>（4）为Service的OnBind（）方法提供了默认的实现，返回null。<br>（5）为service的onStartCommand（）方法提供了默认的实现，该实现会将请求intent添加到队列中。<br>所以对IntentService的使用就是：继承IntentService，重写onHandleIntent()方法即可。</p>
 <h3 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h3><p>设计的初衷：提供线程内部的局部变量，在本线程内随时随地可取，并且在多线程环境下每个线程里的变量独立于其他线程内的变量。</p>
@@ -456,7 +487,10 @@
 <li>   ASYNC</li>
 </ul>
 <p>使用方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Subscribe(threadMode = ThreadMode.MAIN)</span><br> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onMoonEvent</span><span class="hljs-params">(MessageEvent messageEvent)</span></span>&#123;<br>     tv_message.setText(messageEvent.getMessage());<br> &#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Subscribe(threadMode = ThreadMode.MAIN)</span>
+ <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onMoonEvent</span><span class="hljs-params">(MessageEvent messageEvent)</span></span>&#123;
+     tv_message.setText(messageEvent.getMessage());
+ &#125;</code></pre></div>
 
 <p>使用步骤：<br>（1）    添加依赖<br>（2）    在自定义一个类<br>（3）    要接收消息的页面注册<br>（4）    发送消息<br>（5）    接受消息的页面实现订阅函数（有四种类型的函数）<br>（6）    解除注册</p>
 <p>支持粘性事件：发送事件之后才订阅该事件，依然能够接收该事件</p>
@@ -474,12 +508,12 @@
 <p>onEventAsync：无论事件在哪个线程发布，都会创建新的子线程在执行onEventAsync</p>
 </blockquote>
 <h3 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h3><p>是一个abstract类，底层是对Handler与线程池的封装，使用线程池的主要原因是避免不必要的创建及销毁线程的开销。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncTask</span>&lt;<span class="hljs-title">Params</span>, <span class="hljs-title">Progress</span>, <span class="hljs-title">Result</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncTask</span>&lt;<span class="hljs-title">Params</span>, <span class="hljs-title">Progress</span>, <span class="hljs-title">Result</span>&gt;</span></code></pre></div>
 
 <ul>
 <li>Params：doInBackground方法的参数类型；</li>
-<li><pre><code>Progress：AsyncTask所执行的后台任务的进度类型；
-</code></pre>
+<li><div class="code-wrapper"><pre><code>Progress：AsyncTask所执行的后台任务的进度类型；
+</code></pre></div>
 </li>
 <li>   Result：后台任务的返回结果类型。</li>
 </ul>
@@ -497,8 +531,8 @@
 <p>onPostExecute(Result result) //后台任务执行完毕后，此方法会被调用，参数即为后台任务的返回结果</p>
 </blockquote>
 <blockquote>
-<pre><code> onCancelled() //此方法会在后台任务被取消时被调用
-</code></pre>
+<div class="code-wrapper"><pre><code> onCancelled() //此方法会在后台任务被取消时被调用
+</code></pre></div>
 </blockquote>
 <p><strong>存在的不足：</strong></p>
 <ul>
@@ -527,7 +561,9 @@
 <li>好用的API</li>
 </ul>
 <p>定义一个OkHttpClient， 定义一个Request,将url添加到Request,</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">mHttpClient = <span class="hljs-keyword">new</span> OkHttpClient();<br>Request request = <span class="hljs-keyword">new</span> Request.Builder().url(url).build();<br>response = mHttpClient.newCall(request).execute();<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">mHttpClient = <span class="hljs-keyword">new</span> OkHttpClient();
+Request request = <span class="hljs-keyword">new</span> Request.Builder().url(url).build();
+response = mHttpClient.newCall(request).execute();</code></pre></div>
 
 <p>执行函数：同步请求execute或者异步请求enqueue（new Callback（））</p>
 <h3 id="Retrofit原理："><a href="#Retrofit原理：" class="headerlink" title="Retrofit原理："></a>Retrofit原理：</h3><p>使用 Retrofit 的步骤共有7个：<br>步骤1：添加Retrofit库的依赖<br>步骤2：创建 接收服务器返回数据 的类<br>步骤3：创建 用于描述网络请求 的接口<br>步骤4：创建 Retrofit 实例<br>步骤5：创建 网络请求接口实例 并 配置网络请求参数<br>步骤6：发送网络请求（异步 / 同步）</p>
@@ -542,21 +578,47 @@
 <li>并不发送这个 Observable, 而是将它激活，于是它开始发送事件；</li>
 <li>每一个创建出来的 Observable 发送的事件，都被汇入同一个 Observable ，而这个 Observable 负责将这些事件统一交给 Subscriber 的回调方法。<br>这三个步骤，把事件拆成了两级，通过一组新创建的 Observable 将初始的对象『铺平』之后通过统一路径分发了下去。<br>ObserveOn（）可以使用多次，一个observeOn() 指定的是 一个特性Observable 所对应的 Subscriber所在的线程，即Observable的直接下级Subscriber， 但是当我们使用lift（）函数的时候，过程中会出现对个Observable，然后对应多个observer,因此这个使用就会使用到多个observeOn()，然后在代码上体现在observeOn() 指定的是紧跟着它之后的操作所在的线程：</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">Observable.just(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// IO 线程，由 subscribeOn() 指定</span><br>    .subscribeOn(Schedulers.io())<br>    .observeOn(Schedulers.newThread())<br>    .map(mapOperator) <span class="hljs-comment">// 新线程，由 observeOn() 指定</span><br>    .observeOn(Schedulers.io())<br>    .map(mapOperator2) <span class="hljs-comment">// IO 线程，由 observeOn() 指定</span><br>    .observeOn(AndroidSchedulers.mainThread) <br>    .subscribe(subscriber);  <span class="hljs-comment">// Android 主线程，由 observeOn() 指定</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">Observable.just(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// IO 线程，由 subscribeOn() 指定</span>
+    .subscribeOn(Schedulers.io())
+    .observeOn(Schedulers.newThread())
+    .map(mapOperator) <span class="hljs-comment">// 新线程，由 observeOn() 指定</span>
+    .observeOn(Schedulers.io())
+    .map(mapOperator2) <span class="hljs-comment">// IO 线程，由 observeOn() 指定</span>
+    .observeOn(AndroidSchedulers.mainThread) 
+    .subscribe(subscriber);  <span class="hljs-comment">// Android 主线程，由 observeOn() 指定</span></code></pre></div>
 
 <p>subscribeOn()是不可以使用多次的，因为起作用的只有一个原始被订阅源所在的那个subscribeOn()，所以使用多次也没什么意义。</p>
 <p>Observable (可观察者，即被观察者)、 Observer (观察者)/subscriber (订阅者)、subscriber (订阅)事件。Observable 和 Observer 通过 subscribe() 方法实现订阅关系，从而 Observable 可以在需要的时候发出事件来通知 Observer。</p>
 <p>Observer/ subscriber的创建方法，注意带上参数类型，解除订阅的方法</p>
 <p>创建 Observable，三种方法，Observable 的OnSubscribe 对象：会被存储在返回的 Observable 对象中，它的作用相当于一个计划表，当 Observable 被订阅的时候，OnSubscribe 中定义好的 call() 方法会自动调用，执行一些具体的逻辑</p>
 <p>重点是Create函数的写法：参数，参数类型等</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">Observable.create(<span class="hljs-keyword">new</span> OnSubscribe&lt;Drawable&gt;() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">call</span><span class="hljs-params">(Subscriber&lt;? <span class="hljs-keyword">super</span> Drawable&gt; subscriber)</span> </span>&#123;<br>        Drawable drawable = getTheme().getDrawable(drawableRes));<br>        subscriber.onNext(drawable);<br>        subscriber.onCompleted();<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">Observable.create(<span class="hljs-keyword">new</span> OnSubscribe&lt;Drawable&gt;() &#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">call</span><span class="hljs-params">(Subscriber&lt;? <span class="hljs-keyword">super</span> Drawable&gt; subscriber)</span> </span>&#123;
+        Drawable drawable = getTheme().getDrawable(drawableRes));
+        subscriber.onNext(drawable);
+        subscriber.onCompleted();
+    &#125;
+&#125;)</code></pre></div>
 
 <p>订阅函数：observable.subscribe(subscriber);</p>
 <p>内部核心代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Subscription <span class="hljs-title">subscribe</span><span class="hljs-params">(Subscriber subscriber)</span> </span>&#123;<br>    subscriber.onStart();<br>    onSubscribe.call(subscriber);    <span class="hljs-comment">//事件发送的逻辑开始运行</span><br>    <span class="hljs-keyword">return</span> subscriber; <br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Subscription <span class="hljs-title">subscribe</span><span class="hljs-params">(Subscriber subscriber)</span> </span>&#123;
+    subscriber.onStart();
+    onSubscribe.call(subscriber);    <span class="hljs-comment">//事件发送的逻辑开始运行</span>
+    <span class="hljs-keyword">return</span> subscriber; 
+&#125;</code></pre></div>
 
 <p>subscribe() 还支持不完整定义的回调</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">Action1&lt;String&gt; onNextAction = <span class="hljs-keyword">new</span> Action1&lt;String&gt;() &#123;   <span class="hljs-comment">//注意Action1的含义</span><br>    <span class="hljs-comment">// onNext()</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">call</span><span class="hljs-params">(String s)</span> </span>&#123;<br>        Log.d(tag, s);<br>    &#125;<br>&#125;;<br><span class="hljs-comment">// 自动创建 Subscriber ，并使用 onNextAction 来定义 onNext()</span><br>observable.subscribe(onNextAction);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">Action1&lt;String&gt; onNextAction = <span class="hljs-keyword">new</span> Action1&lt;String&gt;() &#123;   <span class="hljs-comment">//注意Action1的含义</span>
+    <span class="hljs-comment">// onNext()</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">call</span><span class="hljs-params">(String s)</span> </span>&#123;
+        Log.d(tag, s);
+    &#125;
+&#125;;
+<span class="hljs-comment">// 自动创建 Subscriber ，并使用 onNextAction 来定义 onNext()</span>
+observable.subscribe(onNextAction);</code></pre></div>
 
 <blockquote>
 <p>Schedulers.immediate(): 直接在当前线程运行，相当于不指定线程。这是默认的 Scheduler。</p>
@@ -574,10 +636,36 @@
 <p>另外， Android 还有一个专用的 AndroidSchedulers.mainThread()，它指定的操作将在 Android 主线程运行。</p>
 </blockquote>
 <p><strong>map()</strong> ：用于对象的转换，转换参数类型<br>注意Func1的含义与用法：一个参数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java">Observable.just(<span class="hljs-string">&quot;images/logo.png&quot;</span>) <span class="hljs-comment">// 输入类型 String</span><br>    .map(<span class="hljs-keyword">new</span> Func1&lt;String, Bitmap&gt;() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> Bitmap <span class="hljs-title">call</span><span class="hljs-params">(String filePath)</span> </span>&#123; <span class="hljs-comment">// 参数类型 String</span><br>            <span class="hljs-keyword">return</span> getBitmapFromPath(filePath); <span class="hljs-comment">// 返回类型 Bitmap</span><br>        &#125;<br>    &#125;)<br>    .subscribe(<span class="hljs-keyword">new</span> Action1&lt;Bitmap&gt;() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">call</span><span class="hljs-params">(Bitmap bitmap)</span> </span>&#123; <span class="hljs-comment">// 参数类型 Bitmap</span><br>            showBitmap(bitmap);<br>        &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">Observable.just(<span class="hljs-string">&quot;images/logo.png&quot;</span>) <span class="hljs-comment">// 输入类型 String</span>
+    .map(<span class="hljs-keyword">new</span> Func1&lt;String, Bitmap&gt;() &#123;
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Bitmap <span class="hljs-title">call</span><span class="hljs-params">(String filePath)</span> </span>&#123; <span class="hljs-comment">// 参数类型 String</span>
+            <span class="hljs-keyword">return</span> getBitmapFromPath(filePath); <span class="hljs-comment">// 返回类型 Bitmap</span>
+        &#125;
+    &#125;)
+    .subscribe(<span class="hljs-keyword">new</span> Action1&lt;Bitmap&gt;() &#123;
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">call</span><span class="hljs-params">(Bitmap bitmap)</span> </span>&#123; <span class="hljs-comment">// 参数类型 Bitmap</span>
+            showBitmap(bitmap);
+        &#125;
+&#125;);</code></pre></div>
 
 <p>**flatMap()**：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java">Subscriber&lt;Course&gt; subscriber = <span class="hljs-keyword">new</span> Subscriber&lt;Course&gt;() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNext</span><span class="hljs-params">(Course course)</span> </span>&#123;<br>        Log.d(tag, course.getName());<br>    &#125;<br>    ...<br>&#125;;<br>Observable.from(students)<br>    .flatMap(<span class="hljs-keyword">new</span> Func1&lt;Student, Observable&lt;Course&gt;&gt;() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> Observable&lt;Course&gt; <span class="hljs-title">call</span><span class="hljs-params">(Student student)</span> </span>&#123;<br>            <span class="hljs-keyword">return</span> Observable.from(student.getCourses());<br>        &#125;<br>    &#125;)<br>    .subscribe(subscriber);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">Subscriber&lt;Course&gt; subscriber = <span class="hljs-keyword">new</span> Subscriber&lt;Course&gt;() &#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNext</span><span class="hljs-params">(Course course)</span> </span>&#123;
+        Log.d(tag, course.getName());
+    &#125;
+    ...
+&#125;;
+Observable.from(students)
+    .flatMap(<span class="hljs-keyword">new</span> Func1&lt;Student, Observable&lt;Course&gt;&gt;() &#123;
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Observable&lt;Course&gt; <span class="hljs-title">call</span><span class="hljs-params">(Student student)</span> </span>&#123;
+            <span class="hljs-keyword">return</span> Observable.from(student.getCourses());
+        &#125;
+    &#125;)
+    .subscribe(subscriber);</code></pre></div>
 
 <h3 id="Glide"><a href="#Glide" class="headerlink" title="Glide"></a>Glide</h3><h3 id="解析xml文件的两种方法：Pull和SAX"><a href="#解析xml文件的两种方法：Pull和SAX" class="headerlink" title="解析xml文件的两种方法：Pull和SAX"></a>解析xml文件的两种方法：Pull和SAX</h3><p>Pull解析方式：<br>基于事件的模式，需要自己获取产生的事件然后做相应的操作。<br>特点：PULL解析器小巧轻便，解析速度快，简单易用，非常适合在Android移动设备中使用，Android系统内部在解析各种XML时也是用PULL解析器。<br>五种事件类型：</p>
 <ul>
@@ -636,11 +724,12 @@
 <li>endDocument()：文档解析结束后调用，该方法只会调用一次</li>
 </ul>
 <p>最后在需要解析的地方调用：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">String responseData = response.body().string();<br>parseXMLWithSAX(responseData);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">String responseData = response.body().string();
+parseXMLWithSAX(responseData);</code></pre></div>
 <p>解析Json数据的两种可行方式：JSONObject和GSON</p>
 <p><strong>JSONObject的方式：</strong><br>结合JSONObject这个对象，结合JSONArray，可以将简单的Json字符串， 嵌套的json字符串，Bean对象，json数组转化为JSONObject<br>从JSONObject对象中获取值的方法：obj.get(属性名)；<br>Obj.put(“level”, “A”);</p>
 <p><strong>GSON解析：</strong><br>通过Java Bean的方式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;App&gt; applist = gson.fromJson(jsonData. New TypeToken&lt;List&lt;App&gt;&gt;) ()&#123;&#125;.getType());<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">List&lt;App&gt; applist = gson.fromJson(jsonData. New TypeToken&lt;List&lt;App&gt;&gt;) ()&#123;&#125;.getType());</code></pre></div>
 <p>其中，jsonData为reponse.Body();App为自定义的java Bean;</p>
 <h3 id="Json有什么优劣势"><a href="#Json有什么优劣势" class="headerlink" title="Json有什么优劣势"></a>Json有什么优劣势</h3><p>优点：</p>
 <ul>
@@ -719,7 +808,7 @@
 <p><strong>局部内部类</strong>：类定义在外部类的方法中，并且有自己的类名。局部内部类相当于一个局部变量，所以不能有访问控制符以及static等修饰符。局部内部类的访问（包括对象的创建、方法的调用）局限在外部类的方法内部。</p>
 <p><strong>匿名内部类</strong>：匿名内部类继承自一个类或者实现一个接口，使用方法是直接使用new 父类名称或者接口名称就可以创建自己匿名内部类的对象。</p>
 <p>静态内部类的设计意图<br>主要的思想是，不需要保存引用，直接使用方法或者变量</p>
-<h3 id="public等四个权限关键字的区别"><a href="#public等四个权限关键字的区别" class="headerlink" title="public等四个权限关键字的区别"></a>public等四个权限关键字的区别</h3><pre><code>访问权限   类   包  子类  其他包
+<h3 id="public等四个权限关键字的区别"><a href="#public等四个权限关键字的区别" class="headerlink" title="public等四个权限关键字的区别"></a>public等四个权限关键字的区别</h3><div class="code-wrapper"><pre><code>访问权限   类   包  子类  其他包
 
 public     ∨   ∨   ∨     ∨
 
@@ -728,7 +817,7 @@ protect    ∨   ∨   ∨     ×
 default    ∨   ∨   ×     ×
 
 private    ∨   ×   ×     ×
-</code></pre>
+</code></pre></div>
 <h3 id="final作用："><a href="#final作用：" class="headerlink" title="final作用："></a>final作用：</h3><p>当用final修饰一个类时，表明这个类不能被继承，final类中的所有成员方法都会被隐式地指定为final方法<br>当用final修饰方法时，把方法锁定，以防任何继承类修改它的含义<br>当用final修饰变量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改；如果是引用类型的变量，则在对其初始化之后便不能再让其指向另一个对象（地址不可以改变，值可以改变）<br>当用final作用于类的成员变量时，成员变量必须在定义时或者构造器中进行初始化赋值，而且final变量一旦被初始化赋值之后，就不能再被赋值了。</p>
 <h3 id="static的作用："><a href="#static的作用：" class="headerlink" title="static的作用："></a>static的作用：</h3><p>修饰类成员变量，来让此变量变成类的所属，而不是类的对象所属（多个实例具有相同的值）<br>修饰类成员方法，可以使用”类名.方法名”的方式操作方法，不需要先new一个对象<br>修饰对象类的对象时，static修饰的成员会首先被初始化<br>修饰静态导包用法，将类的方法直接导入到当前类中，从而直接使用“方法名”即可调用类方法，更加方便。</p>
 <h3 id="try-里面return了finally还会执行吗"><a href="#try-里面return了finally还会执行吗" class="headerlink" title="try 里面return了finally还会执行吗"></a>try 里面return了finally还会执行吗</h3><p>1)、不管有木有出现异常，finally块中代码都会执行；<br>2)、当try和catch中有return时，finally仍然会执行；<br>3)、finally是在return后面的表达式运算后执行的（此时并没有返回运算后的值，而是先把要返回的值保存起来，管finally中的代码怎么样，返回的值都不会改变，任然是之前保存的值），所以函数返回值是在finally执行前确定的；<br>4)、finally中最好不要包含return，否则程序会提前退出，返回值不是try或catch中保存的返回值。</p>
@@ -763,13 +852,16 @@ private    ∨   ×   ×     ×
 <li>修改一个类，其作用的范围是synchronized后面括号括起来的部分，作用主的对象是这个类的所有对象。</li>
 </ol>
 <h3 id="Volatile的用法："><a href="#Volatile的用法：" class="headerlink" title="Volatile的用法："></a>Volatile的用法：</h3><h3 id="wait和sleep的区别，应用场景"><a href="#wait和sleep的区别，应用场景" class="headerlink" title="wait和sleep的区别，应用场景"></a>wait和sleep的区别，应用场景</h3><p>一般wait()和notify()方法使用于线程间的通信；sleep()方法用于暂停当前线程的执行。<br>sleep 是线程类（Thread）的静态方法，导致此线程暂停执行指定时间（阻塞当前线程），给执行机会给其他线程，但是监控状态依然保持，到时后会自动恢复，并且调用sleep不会释放对象锁。由于没有释放对象锁（锁还是存在），所以不能调用里面的同步方法。sleep必须捕获异常，可以自动唤醒<br>wait()方法是Object类里的方法；当一个线程执行到wait()方法时，它就进入到一个和该对象相关的等待池中，同时失去（释放）了对象的机锁（暂时失去机锁，wait(long timeout)超时时间到后还需要返还对象锁）；可以调用里面的同步方法，其他线程可以访问；必须要采用notify()和notifyAll()方法唤醒，<br>1，这两个方法来自不同的类分别是Thread和Object<br>2，最主要是sleep方法没有释放锁，而wait方法释放了锁，使得其他线程可以使用同步控制块或者方法。<br>3，wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">synchronized</span>(x) &#123;<br>    x.notify()<br>    <span class="hljs-comment">//或者wait()</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">synchronized</span>(x) &#123;
+    x.notify()
+    <span class="hljs-comment">//或者wait()</span>
+&#125;</code></pre></div>
 
 <p>4, sleep必须捕获异常，而wait，notify和notifyAll不需要捕获异常</p>
 <h3 id="死锁："><a href="#死锁：" class="headerlink" title="死锁："></a>死锁：</h3><p>死锁是指两个或两个以上的进程进在执行过程中，由于资源竞争或由于相互通信而造成的一种阻塞式现象，如果没有外力影响。那么它们将永远的持续下去， 此事称系统产生死锁现象，这种永远互相在等待的进程成为死锁。</p>
 <p><strong>死锁的四个产生必要条件：</strong></p>
 <p>1、（互斥）互斥条件：进程对所分配到的资源具有排他性使用，一段时间内某资源只由一个进程所占有。若此时还有其他请求资源，则请求者只能等待，知道占有资源的进程使用完毕释放。<br>2、（占有并等待）请求和保持条件：进程已经保持至少一个资源，但是又提出心得资源请求，而该资源已经被其他进程所占有，此时请求进程阻塞，但又对自己已经获得的其他资源保持不变。<br>3、（非抢占）不可剥夺条件：进程获得的资源，在未使用完之前，不能被剥夺，只能在使用完时有自己释放。<br>4、（循环等待）环路等待条件：在发生死锁时，必然存在一个进程–资源的环形链。</p>
-<h2 id="算法与数据结构相关"><a href="#算法与数据结构相关" class="headerlink" title="算法与数据结构相关"></a>算法与数据结构相关</h2><h3 id="链表和数组比较"><a href="#链表和数组比较" class="headerlink" title="链表和数组比较"></a>链表和数组比较</h3><pre><code>    数组静态分配内存，链表动态分配内存；
+<h2 id="算法与数据结构相关"><a href="#算法与数据结构相关" class="headerlink" title="算法与数据结构相关"></a>算法与数据结构相关</h2><h3 id="链表和数组比较"><a href="#链表和数组比较" class="headerlink" title="链表和数组比较"></a>链表和数组比较</h3><div class="code-wrapper"><pre><code>    数组静态分配内存，链表动态分配内存；
 
     数组在内存中连续，链表不一定连续；
 
@@ -780,10 +872,37 @@ private    ∨   ×   ×     ×
     数组插入或删除元素的时间复杂度O(n)，链表的时间复杂度O(1)。
     
     
-</code></pre>
+</code></pre></div>
 <h3 id="Hashmap的原理（很重要）"><a href="#Hashmap的原理（很重要）" class="headerlink" title="Hashmap的原理（很重要）"></a>Hashmap的原理（很重要）</h3><p>在另外一篇介绍容器的博客</p>
 <p><img src="http://dengw.xyz/hexo-blog/180426/ljG5K6bB9D.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="Hashmap和hashtable比较"><a href="#Hashmap和hashtable比较" class="headerlink" title="Hashmap和hashtable比较"></a>Hashmap和hashtable比较</h3><h3 id="TreeMap、HashMap、LindedHashMap的区别"><a href="#TreeMap、HashMap、LindedHashMap的区别" class="headerlink" title="TreeMap、HashMap、LindedHashMap的区别"></a>TreeMap、HashMap、LindedHashMap的区别</h3><h3 id="ArrayList和LinkedList的实现和区别"><a href="#ArrayList和LinkedList的实现和区别" class="headerlink" title="ArrayList和LinkedList的实现和区别"></a>ArrayList和LinkedList的实现和区别</h3><h3 id="List与Set、Map"><a href="#List与Set、Map" class="headerlink" title="List与Set、Map"></a>List与Set、Map</h3><h3 id="Map、Set、List、Queue、Stack的特点与用法。"><a href="#Map、Set、List、Queue、Stack的特点与用法。" class="headerlink" title="Map、Set、List、Queue、Stack的特点与用法。"></a>Map、Set、List、Queue、Stack的特点与用法。</h3><h3 id="HashSet和TreeSet"><a href="#HashSet和TreeSet" class="headerlink" title="HashSet和TreeSet"></a>HashSet和TreeSet</h3><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">smap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []a, <span class="hljs-keyword">int</span> index1, <span class="hljs-keyword">int</span> index2)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> tem = a[index1];<br>    a[index1] = a[index2];<br>    a[index2] = tem;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">partion</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []a, <span class="hljs-keyword">int</span> low, <span class="hljs-keyword">int</span> high)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> num = a[low];<br>    <span class="hljs-keyword">while</span>(low &lt; high) &#123;<br>        <span class="hljs-keyword">while</span>(low &lt; high &amp;&amp; num &lt; a[high]) &#123;<br>            high--;<br>        &#125;<br>        smap(a, low, high);<br>        <span class="hljs-keyword">while</span>(low &lt; high &amp;&amp; num &gt;= a[low]) &#123;<br>            low++;<br>        &#125;<br>        smap(a, low, high);            <br>    &#125;<br>    <span class="hljs-keyword">return</span> low;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []a, <span class="hljs-keyword">int</span> low, <span class="hljs-keyword">int</span> high)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(low &lt; high) &#123;<br>        <span class="hljs-keyword">int</span> index = partion(a, low, high);<br>        quickSort(a, low, index - <span class="hljs-number">1</span>);<br>        quickSort(a, index + <span class="hljs-number">1</span>, high);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="Hashmap和hashtable比较"><a href="#Hashmap和hashtable比较" class="headerlink" title="Hashmap和hashtable比较"></a>Hashmap和hashtable比较</h3><h3 id="TreeMap、HashMap、LindedHashMap的区别"><a href="#TreeMap、HashMap、LindedHashMap的区别" class="headerlink" title="TreeMap、HashMap、LindedHashMap的区别"></a>TreeMap、HashMap、LindedHashMap的区别</h3><h3 id="ArrayList和LinkedList的实现和区别"><a href="#ArrayList和LinkedList的实现和区别" class="headerlink" title="ArrayList和LinkedList的实现和区别"></a>ArrayList和LinkedList的实现和区别</h3><h3 id="List与Set、Map"><a href="#List与Set、Map" class="headerlink" title="List与Set、Map"></a>List与Set、Map</h3><h3 id="Map、Set、List、Queue、Stack的特点与用法。"><a href="#Map、Set、List、Queue、Stack的特点与用法。" class="headerlink" title="Map、Set、List、Queue、Stack的特点与用法。"></a>Map、Set、List、Queue、Stack的特点与用法。</h3><h3 id="HashSet和TreeSet"><a href="#HashSet和TreeSet" class="headerlink" title="HashSet和TreeSet"></a>HashSet和TreeSet</h3><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">smap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []a, <span class="hljs-keyword">int</span> index1, <span class="hljs-keyword">int</span> index2)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> tem = a[index1];
+    a[index1] = a[index2];
+    a[index2] = tem;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">partion</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []a, <span class="hljs-keyword">int</span> low, <span class="hljs-keyword">int</span> high)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> num = a[low];
+    <span class="hljs-keyword">while</span>(low &lt; high) &#123;
+        <span class="hljs-keyword">while</span>(low &lt; high &amp;&amp; num &lt; a[high]) &#123;
+            high--;
+        &#125;
+        smap(a, low, high);
+        <span class="hljs-keyword">while</span>(low &lt; high &amp;&amp; num &gt;= a[low]) &#123;
+            low++;
+        &#125;
+        smap(a, low, high);            
+    &#125;
+    <span class="hljs-keyword">return</span> low;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []a, <span class="hljs-keyword">int</span> low, <span class="hljs-keyword">int</span> high)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(low &lt; high) &#123;
+        <span class="hljs-keyword">int</span> index = partion(a, low, high);
+        quickSort(a, low, index - <span class="hljs-number">1</span>);
+        quickSort(a, index + <span class="hljs-number">1</span>, high);
+    &#125;
+&#125;</code></pre></div>
 
 <h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><h3 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h3><h3 id="AVL树-平衡二叉树"><a href="#AVL树-平衡二叉树" class="headerlink" title="AVL树(平衡二叉树)"></a>AVL树(平衡二叉树)</h3><ul>
 <li>左子树和右子树的高度之差的绝对值不超过1</li>

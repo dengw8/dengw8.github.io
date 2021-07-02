@@ -245,10 +245,33 @@
 <li>释放相机资源，相机是一个共享资源，当相机使用完毕后，必须正确地将其释放，以免其它程序访问使用时发生冲突。</li>
 </ol>
 <h4 id="资源权限和权限申请"><a href="#资源权限和权限申请" class="headerlink" title="资源权限和权限申请"></a>资源权限和权限申请</h4><p>首先要检查相机资源，获取系统相机的相关信息。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 判断是否有相机</span><br>context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);<br><br><span class="hljs-comment">// 判断是否有前置相机</span><br>context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 判断是否有相机</span>
+context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
+
+<span class="hljs-comment">// 判断是否有前置相机</span>
+context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT);</code></pre></div>
 
 <p>或者</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//有多少个摄像头</span><br>numberOfCameras = Camera.getNumberOfCameras();<br><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; numberOfCameras; ++i) &#123;<br>    <span class="hljs-keyword">final</span> Camera.CameraInfo cameraInfo = <span class="hljs-keyword">new</span> Camera.CameraInfo();<br><br>    Camera.getCameraInfo(i, cameraInfo);<br>    <span class="hljs-comment">//后置摄像头</span><br>    <span class="hljs-keyword">if</span> (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK)<br>    &#123;<br>        faceBackCameraId = i;<br>        faceBackCameraOrientation = cameraInfo.orientation;<br>    &#125; <br>    <span class="hljs-comment">//前置摄像头</span><br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) <br>    &#123;<br>        faceFrontCameraId = i;<br>        faceFrontCameraOrientation = cameraInfo.orientation;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//有多少个摄像头</span>
+numberOfCameras = Camera.getNumberOfCameras();
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; numberOfCameras; ++i) &#123;
+    <span class="hljs-keyword">final</span> Camera.CameraInfo cameraInfo = <span class="hljs-keyword">new</span> Camera.CameraInfo();
+
+    Camera.getCameraInfo(i, cameraInfo);
+    <span class="hljs-comment">//后置摄像头</span>
+    <span class="hljs-keyword">if</span> (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK)
+    &#123;
+        faceBackCameraId = i;
+        faceBackCameraOrientation = cameraInfo.orientation;
+    &#125; 
+    <span class="hljs-comment">//前置摄像头</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) 
+    &#123;
+        faceFrontCameraId = i;
+        faceFrontCameraOrientation = cameraInfo.orientation;
+    &#125;
+&#125;</code></pre></div>
 
 
 <p>另外，相机开发还会设计及到一些权限操作，比如，调用相机拍摄图片的权限，读、写文件的权限等，在demo中需要申请3个权限：</p>
@@ -260,18 +283,61 @@
 <p>这里学习到了一种同时申请多个权限的方法</p>
 <ul>
 <li><p>首先用一个字符串数组保存要申请的权限：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 需要申请的权限数组</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String[] permissions = <span class="hljs-keyword">new</span> String[]&#123;<br>        Manifest.permission.WRITE_EXTERNAL_STORAGE,<br>        Manifest.permission.READ_EXTERNAL_STORAGE,<br>        Manifest.permission.CAMERA<br>&#125;;<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 需要申请的权限数组</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String[] permissions = <span class="hljs-keyword">new</span> String[]&#123;
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.CAMERA
+&#125;;</code></pre></div></li>
 <li><p>检查应用是否已经具有某个权限，如果没有的话就申请这个权限；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 检查权限，检查应用所需要的某个权限</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> requestCode  请求码</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> permission  权限</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">*/</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">checkSinglePermission</span><span class="hljs-params">(Context context,<span class="hljs-keyword">int</span> requestCode, String permission)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> permissionCode = ActivityCompat.checkSelfPermission(context, permission);<br>	<span class="hljs-comment">// PackageManager.PERMISSION_GRANTED 表示应用已经具有的权限</span><br>	<span class="hljs-keyword">if</span>(permissionCode != PackageManager.PERMISSION_GRANTED) &#123;<br>		ActivityCompat.requestPermissions((Activity) context, <span class="hljs-keyword">new</span> String[]&#123;permission&#125;, requestCode);<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 检查权限，检查应用所需要的某个权限</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> requestCode  请求码</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> permission  权限</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">checkSinglePermission</span><span class="hljs-params">(Context context,<span class="hljs-keyword">int</span> requestCode, String permission)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> permissionCode = ActivityCompat.checkSelfPermission(context, permission);
+	<span class="hljs-comment">// PackageManager.PERMISSION_GRANTED 表示应用已经具有的权限</span>
+	<span class="hljs-keyword">if</span>(permissionCode != PackageManager.PERMISSION_GRANTED) &#123;
+		ActivityCompat.requestPermissions((Activity) context, <span class="hljs-keyword">new</span> String[]&#123;permission&#125;, requestCode);
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+&#125;</code></pre></div></li>
 </ul>
 <p>或者说同时检查应用是否已经具有多个权限，如果没有的话就申请其中应用还不具备权限；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 检查权限，检查应用所需要的所有权限</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> requestCode  请求码</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> permissions  权限数组</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">checkMultiPermissions</span><span class="hljs-params">(Context context, <span class="hljs-keyword">int</span> requestCode, String []permissions)</span> </span>&#123;<br>	rejectedPermissions.clear();<br>	<span class="hljs-keyword">for</span>(String per : permissions) &#123;<br>		<span class="hljs-keyword">int</span> permissionCode = ActivityCompat.checkSelfPermission(context, per);<br>		<span class="hljs-keyword">if</span>(permissionCode != PackageManager.PERMISSION_GRANTED) &#123;<br>	        rejectedPermissions.add(per);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(rejectedPermissions.isEmpty()) &#123;<br>	    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>	    String[] permissionList = rejectedPermissions.toArray(<span class="hljs-keyword">new</span> String[rejectedPermissions.size()]);<br>        ActivityCompat.requestPermissions((Activity)context, permissionList, requestCode);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 检查权限，检查应用所需要的所有权限</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> requestCode  请求码</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> permissions  权限数组</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">checkMultiPermissions</span><span class="hljs-params">(Context context, <span class="hljs-keyword">int</span> requestCode, String []permissions)</span> </span>&#123;
+	rejectedPermissions.clear();
+	<span class="hljs-keyword">for</span>(String per : permissions) &#123;
+		<span class="hljs-keyword">int</span> permissionCode = ActivityCompat.checkSelfPermission(context, per);
+		<span class="hljs-keyword">if</span>(permissionCode != PackageManager.PERMISSION_GRANTED) &#123;
+	        rejectedPermissions.add(per);
+        &#125;
+    &#125;
+    <span class="hljs-keyword">if</span>(rejectedPermissions.isEmpty()) &#123;
+	    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+	    String[] permissionList = rejectedPermissions.toArray(<span class="hljs-keyword">new</span> String[rejectedPermissions.size()]);
+        ActivityCompat.requestPermissions((Activity)context, permissionList, requestCode);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    &#125;
+&#125;</code></pre></div>
 <p>思路就是用一个数组保存还不具备的权限，如果数组不为空的话说明就需要申请这些权限。</p>
 <ul>
 <li>申请需要的权限</li>
 </ul>
 <p>申请一个权限的时候使用的是 <code>ActivityCompat</code> 的 <code>requestPermissions</code> 方法，该方法的声明为：</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">public</span> <span class="hljs-selector-tag">static</span> <span class="hljs-selector-tag">void</span> <span class="hljs-selector-tag">requestPermissions</span>(final <span class="hljs-variable">@NonNull</span> Activity activity,<br>            final <span class="hljs-variable">@NonNull</span> String[] permissions, final <span class="hljs-variable">@IntRange</span>(from = <span class="hljs-number">0</span>) int requestCode)<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs less"><span class="hljs-selector-tag">public</span> <span class="hljs-selector-tag">static</span> <span class="hljs-selector-tag">void</span> <span class="hljs-selector-tag">requestPermissions</span>(final <span class="hljs-variable">@NonNull</span> Activity activity,
+            final <span class="hljs-variable">@NonNull</span> String[] permissions, final <span class="hljs-variable">@IntRange</span>(from = <span class="hljs-number">0</span>) int requestCode)</code></pre></div>
 <p>其中：</p>
 <ul>
 <li>activity：上下文，</li>
@@ -279,12 +345,19 @@
 <li>requestCode：请求码</li>
 </ul>
 <p>并且该方法请求完之后会有一个回调接口，需要在上面传入的上下文中重写该方法，该回调接口的作用就是权限请求的结果：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onRequestPermissionsResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-meta">@NonNull</span> String[] permissions, <span class="hljs-meta">@NonNull</span> <span class="hljs-keyword">int</span>[] grantResults)</span> </span>&#123;<br><span class="hljs-comment">/* callback - no nothing */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onRequestPermissionsResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-meta">@NonNull</span> String[] permissions, <span class="hljs-meta">@NonNull</span> <span class="hljs-keyword">int</span>[] grantResults)</span> </span>&#123;
+<span class="hljs-comment">/* callback - no nothing */</span>
+&#125;</code></pre></div>
 
 <p>所以，比如当我们  requestPermissions 方法传入的 context 是 CameraActivity ，那么我们就需要在 CameraActivity 中重写 onRequestPermissionsResult 方法，详细见下面链接中给出的项目代码。</p>
-<h4 id="打开相机"><a href="#打开相机" class="headerlink" title="打开相机"></a>打开相机</h4><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 默认开启后置相机</span><br>camera = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Camera</span>.</span></span><span class="hljs-keyword">open</span><span class="hljs-literal">()</span>;<br><br><span class="hljs-comment">// 当知道某个相机具体的id，参考上面检查是否有相机资源的第二种方法</span><br>camera = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Camera</span>.</span></span><span class="hljs-keyword">open</span>(cameraId);<br></code></pre></td></tr></table></figure>
+<h4 id="打开相机"><a href="#打开相机" class="headerlink" title="打开相机"></a>打开相机</h4><div class="code-wrapper"><pre><code class="hljs reasonml"><span class="hljs-comment">// 默认开启后置相机</span>
+camera = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Camera</span>.</span></span><span class="hljs-keyword">open</span><span class="hljs-literal">()</span>;
 
-<h4 id="获取相机参数"><a href="#获取相机参数" class="headerlink" title="获取相机参数"></a>获取相机参数</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>获取相机参数<br>Camera.Parameters parameters = camera.getParameters();<br></code></pre></td></tr></table></figure>
+<span class="hljs-comment">// 当知道某个相机具体的id，参考上面检查是否有相机资源的第二种方法</span>
+camera = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Camera</span>.</span></span><span class="hljs-keyword">open</span>(cameraId);</code></pre></div>
+
+<h4 id="获取相机参数"><a href="#获取相机参数" class="headerlink" title="获取相机参数"></a>获取相机参数</h4><div class="code-wrapper"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>获取相机参数
+Camera.Parameters parameters = camera.getParameters();</code></pre></div>
 
 <p>常见的参数有以下几种:</p>
 <p>闪光灯配置参数，可以通过Parameters.getFlashMode()接口获取:</p>
@@ -326,23 +399,203 @@
 <li>surfaceDestroyed(SurfaceHolder holder); 当Surface被销毁的时候调用</li>
 </ul>
 <p>介绍完上面这些可以写我们用于预览的控件了，下面是我们demo中的预览控件：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-comment">// 继承自 SurfaceView 并实现 SurfaceHolder.Callback 接口</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CameraPreview</span> <span class="hljs-title">extends</span> <span class="hljs-title">SurfaceView</span> <span class="hljs-title">implements</span> <span class="hljs-title">SurfaceHolder</span>.<span class="hljs-title">Callback</span>&#123;</span><br>	<span class="hljs-comment">// camera实例</span><br>    <span class="hljs-keyword">private</span> Camera mCamera;<br>	<br>	<span class="hljs-comment">// 自定义View的三个构造函数</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CameraPreview</span><span class="hljs-params">(Context context)</span> </span>&#123;<br>        <span class="hljs-built_in">super</span>(context);<br>        <span class="hljs-built_in">init</span>(context);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CameraPreview</span><span class="hljs-params">(Context context, AttributeSet attrs)</span> </span>&#123;<br>        <span class="hljs-built_in">super</span>(context, attrs);<br>        <span class="hljs-built_in">init</span>(context);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CameraPreview</span><span class="hljs-params">(Context context, AttributeSet attrs, <span class="hljs-keyword">int</span> defStyleAttr)</span> </span>&#123;<br>        <span class="hljs-built_in">super</span>(context, attrs, defStyleAttr);<br>        <span class="hljs-built_in">init</span>(context);<br>    &#125;<br><br>	<span class="hljs-comment">/**</span><br><span class="hljs-comment">	 * 依次为重写的 SurfaceHolder.Callback 的三个函数</span><br><span class="hljs-comment">	 */</span> <br><br>	<span class="hljs-comment">// 在这个函数中一般设置预览界面的一些参数，然后开启预览</span><br>    @<span class="hljs-function">Override</span><br><span class="hljs-function">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">surfaceCreated</span><span class="hljs-params">(SurfaceHolder holder)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(mCamera != null) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                Camera.Parameters parameters = mCamera.<span class="hljs-built_in">getParameters</span>();<br>                <span class="hljs-keyword">if</span>(<span class="hljs-built_in">getResources</span>().<span class="hljs-built_in">getConfiguration</span>().orientation == Configuration.ORIENTATION_PORTRAIT) &#123;<br>                    <span class="hljs-comment">//竖屏拍照时，需要设置旋转90度，否者看到的相机预览方向和界面方向不相同</span><br>                    mCamera.<span class="hljs-built_in">setDisplayOrientation</span>(<span class="hljs-number">90</span>);<br>                    parameters.<span class="hljs-built_in">setRotation</span>(<span class="hljs-number">90</span>);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    mCamera.<span class="hljs-built_in">setDisplayOrientation</span>(<span class="hljs-number">0</span>);<br>                    parameters.<span class="hljs-built_in">setRotation</span>(<span class="hljs-number">0</span>);<br>                &#125;<br><br>                <span class="hljs-comment">// 设置预览的尺寸</span><br>                Camera.Size size = <span class="hljs-built_in">getBestSize</span>(parameters.<span class="hljs-built_in">getSupportedPreviewSizes</span>());<br>                <span class="hljs-keyword">if</span>(size != null) &#123;<br>                    parameters.<span class="hljs-built_in">setPreviewSize</span>(size.width, size.height);<br>                    parameters.<span class="hljs-built_in">setPictureSize</span>(size.width, size.height);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    parameters.<span class="hljs-built_in">setPreviewSize</span>(<span class="hljs-number">1920</span>, <span class="hljs-number">1080</span>);<br>                    parameters.<span class="hljs-built_in">setPictureSize</span>(<span class="hljs-number">1920</span>, <span class="hljs-number">1080</span>);<br>                &#125;<br>                <span class="hljs-comment">//设置surfaceHolder</span><br>                mCamera.<span class="hljs-built_in">setPreviewDisplay</span>(holder);<br>                <span class="hljs-comment">//设置相机参数</span><br>                mCamera.<span class="hljs-built_in">setParameters</span>(parameters);<br>                <span class="hljs-comment">// 开启预览</span><br>                mCamera.<span class="hljs-built_in">startPreview</span>();<br>                <span class="hljs-comment">//首次对焦</span><br>                CameraUtil.<span class="hljs-built_in">focus</span>();<br>            &#125; <span class="hljs-built_in"><span class="hljs-keyword">catch</span></span> (IOException e) &#123;<br>                e.<span class="hljs-built_in">printStackTrace</span>();<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    @<span class="hljs-function">Override</span><br><span class="hljs-function">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">surfaceChanged</span><span class="hljs-params">(SurfaceHolder holder, <span class="hljs-keyword">int</span> format, <span class="hljs-keyword">int</span> width,</span></span><br><span class="hljs-params"><span class="hljs-function">                               <span class="hljs-keyword">int</span> height)</span> </span>&#123;<br>        <span class="hljs-comment">//因为设置了固定屏幕方向，所以在实际使用中不会触发这个方法</span><br>    &#125;<br><br>	<span class="hljs-comment">// 这个函数中一般用来回收资源</span><br>    @<span class="hljs-function">Override</span><br><span class="hljs-function">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">surfaceDestroyed</span><span class="hljs-params">(SurfaceHolder holder)</span> </span>&#123;<br>        <span class="hljs-comment">//回收释放资源</span><br>        <span class="hljs-built_in">release</span>();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(Context context)</span> </span>&#123;<br>        SurfaceHolder surfaceHolder = <span class="hljs-built_in">getHolder</span>();<br>        surfaceHolder.<span class="hljs-built_in">addCallback</span>(<span class="hljs-keyword">this</span>);<br>        surfaceHolder.<span class="hljs-built_in">setKeepScreenOn</span>(<span class="hljs-literal">true</span>);<br>        surfaceHolder.<span class="hljs-built_in">setType</span>(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);<br>        mCamera = CameraUtil.<span class="hljs-built_in">getCameraInstance</span>(context);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * Android相机的预览尺寸都是4:3或者16:9，这里遍历所有支持的预览尺寸，得到16:9的最大尺寸，保证成像清晰度</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * @param sizes</span><br><span class="hljs-comment">     * @return 最佳尺寸</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Camera.<span class="hljs-function">Size <span class="hljs-title">getBestSize</span><span class="hljs-params">(List&lt;Camera.Size&gt; sizes)</span> </span>&#123;<br>        Camera.Size bestSize = null;<br>        <span class="hljs-keyword">for</span> (Camera.Size size : sizes) &#123;<br>            <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">float</span>) size.width / (<span class="hljs-keyword">float</span>) size.height == <span class="hljs-number">16.0f</span> / <span class="hljs-number">9.0f</span>) &#123;<br>                <span class="hljs-keyword">if</span> (bestSize == null) &#123;<br>                    bestSize = size;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">if</span> (size.width &gt; bestSize.width) &#123;<br>                        bestSize = size;<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> bestSize;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 释放资源</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">release</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (mCamera != null) &#123;<br>            mCamera.<span class="hljs-built_in">stopPreview</span>();<br>            CameraUtil.<span class="hljs-built_in">release</span>();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 开启预览</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startPreview</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (mCamera != null) &#123;<br>            mCamera.<span class="hljs-built_in">startPreview</span>();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h4 id="关闭预览"><a href="#关闭预览" class="headerlink" title="关闭预览"></a>关闭预览</h4><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">camera.stopPreview()<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
-<h4 id="开启闪关灯"><a href="#开启闪关灯" class="headerlink" title="开启闪关灯"></a>开启闪关灯</h4><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 开关闪光灯</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * @return 闪光灯是否开启</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">boolean</span> switchFlashLight() &#123;<br>	<span class="hljs-keyword">if</span> (<span class="hljs-built_in">camera</span> != <span class="hljs-keyword">null</span>) &#123;<br>		Camera.Parameters parameters = <span class="hljs-built_in">camera</span>.getParameters();<br>		<span class="hljs-keyword">if</span> (parameters.getFlashMode().equals(Camera.Parameters.FLASH_MODE_OFF))<br>		&#123;<br>	        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);<br>            <span class="hljs-built_in">camera</span>.setParameters(parameters);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);<br>            <span class="hljs-built_in">camera</span>.setParameters(parameters);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs arduino"><span class="hljs-comment">// 继承自 SurfaceView 并实现 SurfaceHolder.Callback 接口</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CameraPreview</span> <span class="hljs-title">extends</span> <span class="hljs-title">SurfaceView</span> <span class="hljs-title">implements</span> <span class="hljs-title">SurfaceHolder</span>.<span class="hljs-title">Callback</span>&#123;</span>
+	<span class="hljs-comment">// camera实例</span>
+    <span class="hljs-keyword">private</span> Camera mCamera;
+	
+	<span class="hljs-comment">// 自定义View的三个构造函数</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CameraPreview</span><span class="hljs-params">(Context context)</span> </span>&#123;
+        <span class="hljs-built_in">super</span>(context);
+        <span class="hljs-built_in">init</span>(context);
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CameraPreview</span><span class="hljs-params">(Context context, AttributeSet attrs)</span> </span>&#123;
+        <span class="hljs-built_in">super</span>(context, attrs);
+        <span class="hljs-built_in">init</span>(context);
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CameraPreview</span><span class="hljs-params">(Context context, AttributeSet attrs, <span class="hljs-keyword">int</span> defStyleAttr)</span> </span>&#123;
+        <span class="hljs-built_in">super</span>(context, attrs, defStyleAttr);
+        <span class="hljs-built_in">init</span>(context);
+    &#125;
+
+	<span class="hljs-comment">/**</span>
+<span class="hljs-comment">	 * 依次为重写的 SurfaceHolder.Callback 的三个函数</span>
+<span class="hljs-comment">	 */</span> 
+
+	<span class="hljs-comment">// 在这个函数中一般设置预览界面的一些参数，然后开启预览</span>
+    @<span class="hljs-function">Override</span>
+<span class="hljs-function">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">surfaceCreated</span><span class="hljs-params">(SurfaceHolder holder)</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(mCamera != null) &#123;
+            <span class="hljs-keyword">try</span> &#123;
+                Camera.Parameters parameters = mCamera.<span class="hljs-built_in">getParameters</span>();
+                <span class="hljs-keyword">if</span>(<span class="hljs-built_in">getResources</span>().<span class="hljs-built_in">getConfiguration</span>().orientation == Configuration.ORIENTATION_PORTRAIT) &#123;
+                    <span class="hljs-comment">//竖屏拍照时，需要设置旋转90度，否者看到的相机预览方向和界面方向不相同</span>
+                    mCamera.<span class="hljs-built_in">setDisplayOrientation</span>(<span class="hljs-number">90</span>);
+                    parameters.<span class="hljs-built_in">setRotation</span>(<span class="hljs-number">90</span>);
+                &#125; <span class="hljs-keyword">else</span> &#123;
+                    mCamera.<span class="hljs-built_in">setDisplayOrientation</span>(<span class="hljs-number">0</span>);
+                    parameters.<span class="hljs-built_in">setRotation</span>(<span class="hljs-number">0</span>);
+                &#125;
+
+                <span class="hljs-comment">// 设置预览的尺寸</span>
+                Camera.Size size = <span class="hljs-built_in">getBestSize</span>(parameters.<span class="hljs-built_in">getSupportedPreviewSizes</span>());
+                <span class="hljs-keyword">if</span>(size != null) &#123;
+                    parameters.<span class="hljs-built_in">setPreviewSize</span>(size.width, size.height);
+                    parameters.<span class="hljs-built_in">setPictureSize</span>(size.width, size.height);
+                &#125; <span class="hljs-keyword">else</span> &#123;
+                    parameters.<span class="hljs-built_in">setPreviewSize</span>(<span class="hljs-number">1920</span>, <span class="hljs-number">1080</span>);
+                    parameters.<span class="hljs-built_in">setPictureSize</span>(<span class="hljs-number">1920</span>, <span class="hljs-number">1080</span>);
+                &#125;
+                <span class="hljs-comment">//设置surfaceHolder</span>
+                mCamera.<span class="hljs-built_in">setPreviewDisplay</span>(holder);
+                <span class="hljs-comment">//设置相机参数</span>
+                mCamera.<span class="hljs-built_in">setParameters</span>(parameters);
+                <span class="hljs-comment">// 开启预览</span>
+                mCamera.<span class="hljs-built_in">startPreview</span>();
+                <span class="hljs-comment">//首次对焦</span>
+                CameraUtil.<span class="hljs-built_in">focus</span>();
+            &#125; <span class="hljs-built_in"><span class="hljs-keyword">catch</span></span> (IOException e) &#123;
+                e.<span class="hljs-built_in">printStackTrace</span>();
+            &#125;
+        &#125;
+    &#125;
+
+    @<span class="hljs-function">Override</span>
+<span class="hljs-function">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">surfaceChanged</span><span class="hljs-params">(SurfaceHolder holder, <span class="hljs-keyword">int</span> format, <span class="hljs-keyword">int</span> width,</span></span>
+<span class="hljs-params"><span class="hljs-function">                               <span class="hljs-keyword">int</span> height)</span> </span>&#123;
+        <span class="hljs-comment">//因为设置了固定屏幕方向，所以在实际使用中不会触发这个方法</span>
+    &#125;
+
+	<span class="hljs-comment">// 这个函数中一般用来回收资源</span>
+    @<span class="hljs-function">Override</span>
+<span class="hljs-function">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">surfaceDestroyed</span><span class="hljs-params">(SurfaceHolder holder)</span> </span>&#123;
+        <span class="hljs-comment">//回收释放资源</span>
+        <span class="hljs-built_in">release</span>();
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(Context context)</span> </span>&#123;
+        SurfaceHolder surfaceHolder = <span class="hljs-built_in">getHolder</span>();
+        surfaceHolder.<span class="hljs-built_in">addCallback</span>(<span class="hljs-keyword">this</span>);
+        surfaceHolder.<span class="hljs-built_in">setKeepScreenOn</span>(<span class="hljs-literal">true</span>);
+        surfaceHolder.<span class="hljs-built_in">setType</span>(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        mCamera = CameraUtil.<span class="hljs-built_in">getCameraInstance</span>(context);
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * Android相机的预览尺寸都是4:3或者16:9，这里遍历所有支持的预览尺寸，得到16:9的最大尺寸，保证成像清晰度</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * @param sizes</span>
+<span class="hljs-comment">     * @return 最佳尺寸</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> Camera.<span class="hljs-function">Size <span class="hljs-title">getBestSize</span><span class="hljs-params">(List&lt;Camera.Size&gt; sizes)</span> </span>&#123;
+        Camera.Size bestSize = null;
+        <span class="hljs-keyword">for</span> (Camera.Size size : sizes) &#123;
+            <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">float</span>) size.width / (<span class="hljs-keyword">float</span>) size.height == <span class="hljs-number">16.0f</span> / <span class="hljs-number">9.0f</span>) &#123;
+                <span class="hljs-keyword">if</span> (bestSize == null) &#123;
+                    bestSize = size;
+                &#125; <span class="hljs-keyword">else</span> &#123;
+                    <span class="hljs-keyword">if</span> (size.width &gt; bestSize.width) &#123;
+                        bestSize = size;
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> bestSize;
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 释放资源</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">release</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (mCamera != null) &#123;
+            mCamera.<span class="hljs-built_in">stopPreview</span>();
+            CameraUtil.<span class="hljs-built_in">release</span>();
+        &#125;
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 开启预览</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startPreview</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (mCamera != null) &#123;
+            mCamera.<span class="hljs-built_in">startPreview</span>();
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<h4 id="关闭预览"><a href="#关闭预览" class="headerlink" title="关闭预览"></a>关闭预览</h4><div class="code-wrapper"><pre><code class="hljs abnf">camera.stopPreview()<span class="hljs-comment">;</span></code></pre></div>
+<h4 id="开启闪关灯"><a href="#开启闪关灯" class="headerlink" title="开启闪关灯"></a>开启闪关灯</h4><div class="code-wrapper"><pre><code class="hljs processing"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 开关闪光灯</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * @return 闪光灯是否开启</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">boolean</span> switchFlashLight() &#123;
+	<span class="hljs-keyword">if</span> (<span class="hljs-built_in">camera</span> != <span class="hljs-keyword">null</span>) &#123;
+		Camera.Parameters parameters = <span class="hljs-built_in">camera</span>.getParameters();
+		<span class="hljs-keyword">if</span> (parameters.getFlashMode().equals(Camera.Parameters.FLASH_MODE_OFF))
+		&#123;
+	        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            <span class="hljs-built_in">camera</span>.setParameters(parameters);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            <span class="hljs-built_in">camera</span>.setParameters(parameters);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+&#125;</code></pre></div>
 <p>这里需要注意的是严谨的话开启闪光灯之前还需要判断是否具有闪光灯，虽然现在没有手机闪光灯的手机基本上没有了。</p>
-<h4 id="开启对焦"><a href="#开启对焦" class="headerlink" title="开启对焦"></a>开启对焦</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">camera.<span class="hljs-built_in">auto</span>Focus(<span class="hljs-literal">null</span>);<br></code></pre></td></tr></table></figure>
+<h4 id="开启对焦"><a href="#开启对焦" class="headerlink" title="开启对焦"></a>开启对焦</h4><div class="code-wrapper"><pre><code class="hljs angelscript">camera.<span class="hljs-built_in">auto</span>Focus(<span class="hljs-literal">null</span>);</code></pre></div>
 
 <h4 id="拍照"><a href="#拍照" class="headerlink" title="拍照"></a>拍照</h4><p>拍照时通过调用Camera的takePicture()方法来完成的，</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">takePicture(<span class="hljs-keyword">ShutterCallback </span><span class="hljs-keyword">shutter, </span>PictureCallback raw,<br>            PictureCallback <span class="hljs-keyword">jpeg)</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs mipsasm">takePicture(<span class="hljs-keyword">ShutterCallback </span><span class="hljs-keyword">shutter, </span>PictureCallback raw,
+            PictureCallback <span class="hljs-keyword">jpeg)</span></code></pre></div>
 <p>该方法有三个参数：</p>
 <ul>
 <li>ShutterCallback shutter：在拍照的瞬间被回调，这里通常可以播放”咔嚓”这样的拍照音效。</li>
 <li>PictureCallback raw：返回未经压缩的图像数据。<br>PictureCallback jpeg：返回经过JPEG压缩的图像数据。</li>
 </ul>
 <p>我们一般用的就是最后一个，实现最后一个PictureCallback即可，在本demo中主要是在 PictureCallback 中进行图片的剪切。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">new</span> Camera.PictureCallback() &#123;<br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPictureTaken</span><span class="hljs-params">(<span class="hljs-keyword">final</span> <span class="hljs-keyword">byte</span>[] data, Camera camera)</span> </span>&#123;<br>		camera.stopPreview();<br>		<span class="hljs-comment">//子线程处理图片，防止ANR</span><br>		<span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() &#123;<br>			<span class="hljs-meta">@Override</span><br>			<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>				Bitmap bitmap = BitmapFactory.decodeByteArray(data, <span class="hljs-number">0</span>, data.length);<br><br>				<span class="hljs-comment">// 计算裁剪位置</span><br>				<span class="hljs-keyword">float</span> left, top, right, bottom;<br>                left = ((<span class="hljs-keyword">float</span>) mLlCameraCropContainer.getLeft() - (<span class="hljs-keyword">float</span>)mCameraPreview.getLeft()) / (<span class="hljs-keyword">float</span>) mCameraPreview.getWidth();<br>                top = (<span class="hljs-keyword">float</span>) mIvCameraCrop.getTop() / (<span class="hljs-keyword">float</span>) mCameraPreview.getHeight();<br>                right = (<span class="hljs-keyword">float</span>) mLlCameraCropContainer.getRight() / (<span class="hljs-keyword">float</span>) mCameraPreview.getWidth();<br>                bottom = (<span class="hljs-keyword">float</span>) mIvCameraCrop.getBottom() / (<span class="hljs-keyword">float</span>) mCameraPreview.getHeight();<br><br>                <span class="hljs-comment">// 自动裁剪</span><br>                mCropBitmap = Bitmap.createBitmap(bitmap,<br>                (<span class="hljs-keyword">int</span>) (left * (<span class="hljs-keyword">float</span>) bitmap.getWidth()),<br>                (<span class="hljs-keyword">int</span>) (top * (<span class="hljs-keyword">float</span>) bitmap.getHeight()),<br>                (<span class="hljs-keyword">int</span>) ((right - left) * (<span class="hljs-keyword">float</span>) bitmap.getWidth()),<br>                (<span class="hljs-keyword">int</span>) ((bottom - top) * (<span class="hljs-keyword">float</span>) bitmap.getHeight()));<br><br>                <span class="hljs-comment">// 手动裁剪</span><br>                runOnUiThread(<span class="hljs-keyword">new</span> Runnable() &#123;<br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>	                <span class="hljs-comment">//将裁剪区域设置成与扫描框一样大</span><br>                    mCropImageView.setLayoutParams(<span class="hljs-keyword">new</span> LinearLayout.LayoutParams(mIvCameraCrop.getWidth(), mIvCameraCrop.getHeight()));<br>                    setCropLayout();<br>                    mCropImageView.setImageBitmap(mCropBitmap);<br>                &#125;<br>            &#125;);<br>         &#125;<br>     &#125;).start();<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">new</span> Camera.PictureCallback() &#123;
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPictureTaken</span><span class="hljs-params">(<span class="hljs-keyword">final</span> <span class="hljs-keyword">byte</span>[] data, Camera camera)</span> </span>&#123;
+		camera.stopPreview();
+		<span class="hljs-comment">//子线程处理图片，防止ANR</span>
+		<span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() &#123;
+			<span class="hljs-meta">@Override</span>
+			<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
+				Bitmap bitmap = BitmapFactory.decodeByteArray(data, <span class="hljs-number">0</span>, data.length);
 
-<h4 id="释放资源"><a href="#释放资源" class="headerlink" title="释放资源"></a>释放资源</h4><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">camera.release()<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+				<span class="hljs-comment">// 计算裁剪位置</span>
+				<span class="hljs-keyword">float</span> left, top, right, bottom;
+                left = ((<span class="hljs-keyword">float</span>) mLlCameraCropContainer.getLeft() - (<span class="hljs-keyword">float</span>)mCameraPreview.getLeft()) / (<span class="hljs-keyword">float</span>) mCameraPreview.getWidth();
+                top = (<span class="hljs-keyword">float</span>) mIvCameraCrop.getTop() / (<span class="hljs-keyword">float</span>) mCameraPreview.getHeight();
+                right = (<span class="hljs-keyword">float</span>) mLlCameraCropContainer.getRight() / (<span class="hljs-keyword">float</span>) mCameraPreview.getWidth();
+                bottom = (<span class="hljs-keyword">float</span>) mIvCameraCrop.getBottom() / (<span class="hljs-keyword">float</span>) mCameraPreview.getHeight();
+
+                <span class="hljs-comment">// 自动裁剪</span>
+                mCropBitmap = Bitmap.createBitmap(bitmap,
+                (<span class="hljs-keyword">int</span>) (left * (<span class="hljs-keyword">float</span>) bitmap.getWidth()),
+                (<span class="hljs-keyword">int</span>) (top * (<span class="hljs-keyword">float</span>) bitmap.getHeight()),
+                (<span class="hljs-keyword">int</span>) ((right - left) * (<span class="hljs-keyword">float</span>) bitmap.getWidth()),
+                (<span class="hljs-keyword">int</span>) ((bottom - top) * (<span class="hljs-keyword">float</span>) bitmap.getHeight()));
+
+                <span class="hljs-comment">// 手动裁剪</span>
+                runOnUiThread(<span class="hljs-keyword">new</span> Runnable() &#123;
+                <span class="hljs-meta">@Override</span>
+                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
+	                <span class="hljs-comment">//将裁剪区域设置成与扫描框一样大</span>
+                    mCropImageView.setLayoutParams(<span class="hljs-keyword">new</span> LinearLayout.LayoutParams(mIvCameraCrop.getWidth(), mIvCameraCrop.getHeight()));
+                    setCropLayout();
+                    mCropImageView.setImageBitmap(mCropBitmap);
+                &#125;
+            &#125;);
+         &#125;
+     &#125;).start();
+  &#125;
+&#125;</code></pre></div>
+
+<h4 id="释放资源"><a href="#释放资源" class="headerlink" title="释放资源"></a>释放资源</h4><div class="code-wrapper"><pre><code class="hljs abnf">camera.release()<span class="hljs-comment">;</span></code></pre></div>
 
 <h3 id="图片截取"><a href="#图片截取" class="headerlink" title="图片截取"></a>图片截取</h3><p>上面的部分只是 Camera API的一些使用，基本上跟着文档走就可以了，也主要是为了帮助学习和熟悉 Camera API 。</p>
 <p>下面回到Demo的需求，获取省份证正反两面的图片，很多时候就需要对一张现成的图片进行截取，这个时候就需要自己定义一个支持图片截图的控件了。</p>
@@ -356,44 +609,158 @@
 <li>canvas.drawLine(top.x, top.y, bottom.x, bottom.y, paint);</li>
 </ul>
 <p>这样，对于截取，重要的就是确定截取后四个顶点的位置，然后再重新绘图</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>图片裁剪的核心功能<br>Bitmap.createBitmap(originalBitmap,<span class="hljs-regexp">//</span>原图<br>                 cropX,<span class="hljs-regexp">//</span>图片裁剪横坐标开始位置<br>                 cropY,<span class="hljs-regexp">//</span>图片裁剪纵坐标开始位置<br>                 cropWidth,<span class="hljs-regexp">//</span>要裁剪的宽度<br>                 cropHeight);<span class="hljs-regexp">//</span>要裁剪的高度<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>图片裁剪的核心功能
+Bitmap.createBitmap(originalBitmap,<span class="hljs-regexp">//</span>原图
+                 cropX,<span class="hljs-regexp">//</span>图片裁剪横坐标开始位置
+                 cropY,<span class="hljs-regexp">//</span>图片裁剪纵坐标开始位置
+                 cropWidth,<span class="hljs-regexp">//</span>要裁剪的宽度
+                 cropHeight);<span class="hljs-regexp">//</span>要裁剪的高度</code></pre></div>
 
 <h4 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h4><ul>
-<li>四个顶点(左上，左下，右上，右下)<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">private</span> Point topLeft, topRight, bottomLeft, bottomRight;<br></code></pre></td></tr></table></figure></li>
-<li>原图 Bitmap<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-comment">// 确定要截取的范围后在原Bitmap的基础上创建一个新的Bitmap</span><br><span class="hljs-keyword">private</span> Bitmap bitmap;<br></code></pre></td></tr></table></figure></li>
+<li>四个顶点(左上，左下，右上，右下)<div class="code-wrapper"><pre><code class="hljs actionscript"><span class="hljs-keyword">private</span> Point topLeft, topRight, bottomLeft, bottomRight;</code></pre></div></li>
+<li>原图 Bitmap<div class="code-wrapper"><pre><code class="hljs actionscript"><span class="hljs-comment">// 确定要截取的范围后在原Bitmap的基础上创建一个新的Bitmap</span>
+<span class="hljs-keyword">private</span> Bitmap bitmap;</code></pre></div></li>
 <li>绘制背景</li>
 </ul>
 <p>Paint + Path + Canvas</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void draw<span class="hljs-constructor">Background(Canvas <span class="hljs-params">canvas</span>)</span> &#123;<br>	Paint paint = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Paint()</span>;<br>    paint.set<span class="hljs-constructor">Color(Color.<span class="hljs-params">parseColor</span>(<span class="hljs-string">&quot;#66000000&quot;</span>)</span>);<br>    paint.set<span class="hljs-constructor">Style(Paint.Style.FILL)</span>;<br>    Path path = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Path()</span>;<br>    path.move<span class="hljs-constructor">To(<span class="hljs-params">topLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topLeft</span>.<span class="hljs-params">y</span>)</span>;<br>    path.line<span class="hljs-constructor">To(<span class="hljs-params">topRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">y</span>)</span>;<br>    path.line<span class="hljs-constructor">To(<span class="hljs-params">bottomRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomRight</span>.<span class="hljs-params">y</span>)</span>;<br>    path.line<span class="hljs-constructor">To(<span class="hljs-params">bottomLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">y</span>)</span>;<br>    path.close<span class="hljs-literal">()</span>;<br>    canvas.save<span class="hljs-literal">()</span>;<br>    canvas.clip<span class="hljs-constructor">Path(<span class="hljs-params">path</span>, Region.Op.DIFFERENCE)</span>;<br>    canvas.draw<span class="hljs-constructor">Color(Color.<span class="hljs-params">parseColor</span>(<span class="hljs-string">&quot;#66000000&quot;</span>)</span>);<br>    canvas.restore<span class="hljs-literal">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void draw<span class="hljs-constructor">Background(Canvas <span class="hljs-params">canvas</span>)</span> &#123;
+	Paint paint = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Paint()</span>;
+    paint.set<span class="hljs-constructor">Color(Color.<span class="hljs-params">parseColor</span>(<span class="hljs-string">&quot;#66000000&quot;</span>)</span>);
+    paint.set<span class="hljs-constructor">Style(Paint.Style.FILL)</span>;
+    Path path = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Path()</span>;
+    path.move<span class="hljs-constructor">To(<span class="hljs-params">topLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topLeft</span>.<span class="hljs-params">y</span>)</span>;
+    path.line<span class="hljs-constructor">To(<span class="hljs-params">topRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">y</span>)</span>;
+    path.line<span class="hljs-constructor">To(<span class="hljs-params">bottomRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomRight</span>.<span class="hljs-params">y</span>)</span>;
+    path.line<span class="hljs-constructor">To(<span class="hljs-params">bottomLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">y</span>)</span>;
+    path.close<span class="hljs-literal">()</span>;
+    canvas.save<span class="hljs-literal">()</span>;
+    canvas.clip<span class="hljs-constructor">Path(<span class="hljs-params">path</span>, Region.Op.DIFFERENCE)</span>;
+    canvas.draw<span class="hljs-constructor">Color(Color.<span class="hljs-params">parseColor</span>(<span class="hljs-string">&quot;#66000000&quot;</span>)</span>);
+    canvas.restore<span class="hljs-literal">()</span>;
+&#125;</code></pre></div>
 <ul>
 <li>绘制顶点</li>
 </ul>
 <p>Paint + Canvas</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void draw<span class="hljs-constructor">Vertex(Canvas <span class="hljs-params">canvas</span>)</span> &#123;<br>    Paint paint = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Paint()</span>;<br>    paint.set<span class="hljs-constructor">Color(Color.WHITE)</span>;<br>    paint.set<span class="hljs-constructor">Style(Paint.Style.FILL)</span>;<br><br>    canvas.draw<span class="hljs-constructor">Circle(<span class="hljs-params">topLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">vertexSize</span>, <span class="hljs-params">paint</span>)</span>;<br>    canvas.draw<span class="hljs-constructor">Circle(<span class="hljs-params">topRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">vertexSize</span>, <span class="hljs-params">paint</span>)</span>;<br>    canvas.draw<span class="hljs-constructor">Circle(<span class="hljs-params">bottomLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">vertexSize</span>, <span class="hljs-params">paint</span>)</span>;<br>    canvas.draw<span class="hljs-constructor">Circle(<span class="hljs-params">bottomRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">vertexSize</span>, <span class="hljs-params">paint</span>)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void draw<span class="hljs-constructor">Vertex(Canvas <span class="hljs-params">canvas</span>)</span> &#123;
+    Paint paint = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Paint()</span>;
+    paint.set<span class="hljs-constructor">Color(Color.WHITE)</span>;
+    paint.set<span class="hljs-constructor">Style(Paint.Style.FILL)</span>;
+
+    canvas.draw<span class="hljs-constructor">Circle(<span class="hljs-params">topLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">vertexSize</span>, <span class="hljs-params">paint</span>)</span>;
+    canvas.draw<span class="hljs-constructor">Circle(<span class="hljs-params">topRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">vertexSize</span>, <span class="hljs-params">paint</span>)</span>;
+    canvas.draw<span class="hljs-constructor">Circle(<span class="hljs-params">bottomLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">vertexSize</span>, <span class="hljs-params">paint</span>)</span>;
+    canvas.draw<span class="hljs-constructor">Circle(<span class="hljs-params">bottomRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">vertexSize</span>, <span class="hljs-params">paint</span>)</span>;
+&#125;</code></pre></div>
 
 <ul>
 <li>绘制顶点间的连线从而构成矩形</li>
 </ul>
 <p>Paint + Canvas</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void draw<span class="hljs-constructor">Edge(Canvas <span class="hljs-params">canvas</span>)</span> &#123;<br>    Paint paint = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Paint()</span>;<br>    paint.set<span class="hljs-constructor">Color(Color.WHITE)</span>;<br>    paint.set<span class="hljs-constructor">StrokeWidth(3)</span>;<br>    paint.set<span class="hljs-constructor">AntiAlias(<span class="hljs-params">true</span>)</span>;<br><br>    canvas.draw<span class="hljs-constructor">Line(<span class="hljs-params">topLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">paint</span>)</span>;<br>    canvas.draw<span class="hljs-constructor">Line(<span class="hljs-params">topLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">paint</span>)</span>;<br>    canvas.draw<span class="hljs-constructor">Line(<span class="hljs-params">bottomRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">paint</span>)</span>;<br>    canvas.draw<span class="hljs-constructor">Line(<span class="hljs-params">bottomRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">paint</span>)</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void draw<span class="hljs-constructor">Edge(Canvas <span class="hljs-params">canvas</span>)</span> &#123;
+    Paint paint = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Paint()</span>;
+    paint.set<span class="hljs-constructor">Color(Color.WHITE)</span>;
+    paint.set<span class="hljs-constructor">StrokeWidth(3)</span>;
+    paint.set<span class="hljs-constructor">AntiAlias(<span class="hljs-params">true</span>)</span>;
+
+    canvas.draw<span class="hljs-constructor">Line(<span class="hljs-params">topLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">paint</span>)</span>;
+    canvas.draw<span class="hljs-constructor">Line(<span class="hljs-params">topLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">paint</span>)</span>;
+    canvas.draw<span class="hljs-constructor">Line(<span class="hljs-params">bottomRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">paint</span>)</span>;
+    canvas.draw<span class="hljs-constructor">Line(<span class="hljs-params">bottomRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">paint</span>)</span>;
+&#125;
+</code></pre></div>
 
 <ul>
 <li>touchEvevt 处理</li>
 </ul>
 <p>处理 MotionEvent.ACTION_DOWN + MotionEvent.ACTION_MOVE事件，并拦截事件</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs csharp">@Override<br><span class="hljs-function"><span class="hljs-keyword">public</span> boolean <span class="hljs-title">onTouchEvent</span>(<span class="hljs-params">MotionEvent <span class="hljs-keyword">event</span></span>)</span> &#123;<br>    <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">event</span>.getAction()) &#123;<br>        <span class="hljs-keyword">case</span> MotionEvent.ACTION_UP:<br>            getParent().requestDisallowInterceptTouchEvent(<span class="hljs-literal">false</span>);<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> MotionEvent.ACTION_DOWN:<br>            getParent().requestDisallowInterceptTouchEvent(<span class="hljs-literal">false</span>);<br>            onActionDown(<span class="hljs-keyword">event</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">case</span> MotionEvent.ACTION_MOVE:<br>            getParent().requestDisallowInterceptTouchEvent(<span class="hljs-literal">true</span>);<br>            onActionMove(<span class="hljs-keyword">event</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs csharp">@Override
+<span class="hljs-function"><span class="hljs-keyword">public</span> boolean <span class="hljs-title">onTouchEvent</span>(<span class="hljs-params">MotionEvent <span class="hljs-keyword">event</span></span>)</span> &#123;
+    <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">event</span>.getAction()) &#123;
+        <span class="hljs-keyword">case</span> MotionEvent.ACTION_UP:
+            getParent().requestDisallowInterceptTouchEvent(<span class="hljs-literal">false</span>);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> MotionEvent.ACTION_DOWN:
+            getParent().requestDisallowInterceptTouchEvent(<span class="hljs-literal">false</span>);
+            onActionDown(<span class="hljs-keyword">event</span>);
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">case</span> MotionEvent.ACTION_MOVE:
+            getParent().requestDisallowInterceptTouchEvent(<span class="hljs-literal">true</span>);
+            onActionMove(<span class="hljs-keyword">event</span>);
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+&#125;
+</code></pre></div>
 
 <ul>
 <li>MotionEvent.ACTION_DOWN事件的逻辑</li>
 </ul>
 <p>根据touchPoint确定作用的顶点</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">private</span> void <span class="hljs-literal">on</span>ActionDown(MotionEvent event) &#123;<br>    <span class="hljs-attribute">touchDownX</span> = event.getX();<br>    <span class="hljs-attribute">touchDownY</span> = event.getY();<br>    <span class="hljs-attribute">Point</span> touchPoint = new Point((int) event.getX(), (int) event.getY());<br>    <span class="hljs-attribute">int</span> minDistance = distance(touchPoint, topLeft);<br>    <span class="hljs-attribute">cropPosition</span> = CropPosition.TOP_LEFT;<br>    <span class="hljs-attribute">if</span> (minDistance &gt; distance(touchPoint, topRight)) &#123;<br>        <span class="hljs-attribute">minDistance</span> = distance(touchPoint, topRight);<br>        <span class="hljs-attribute">cropPosition</span> = CropPosition.TOP_RIGHT;<br>    &#125;<br>    <span class="hljs-attribute">if</span> (minDistance &gt; distance(touchPoint, bottomLeft)) &#123;<br>        <span class="hljs-attribute">minDistance</span> = distance(touchPoint, bottomLeft);<br>        <span class="hljs-attribute">cropPosition</span> = CropPosition.BOTTOM_LEFT;<br>    &#125;<br>    <span class="hljs-attribute">if</span> (minDistance &gt; distance(touchPoint, bottomRight)) &#123;<br>        <span class="hljs-attribute">cropPosition</span> = CropPosition.BOTTOM_RIGHT;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nginx"><span class="hljs-attribute">private</span> void <span class="hljs-literal">on</span>ActionDown(MotionEvent event) &#123;
+    <span class="hljs-attribute">touchDownX</span> = event.getX();
+    <span class="hljs-attribute">touchDownY</span> = event.getY();
+    <span class="hljs-attribute">Point</span> touchPoint = new Point((int) event.getX(), (int) event.getY());
+    <span class="hljs-attribute">int</span> minDistance = distance(touchPoint, topLeft);
+    <span class="hljs-attribute">cropPosition</span> = CropPosition.TOP_LEFT;
+    <span class="hljs-attribute">if</span> (minDistance &gt; distance(touchPoint, topRight)) &#123;
+        <span class="hljs-attribute">minDistance</span> = distance(touchPoint, topRight);
+        <span class="hljs-attribute">cropPosition</span> = CropPosition.TOP_RIGHT;
+    &#125;
+    <span class="hljs-attribute">if</span> (minDistance &gt; distance(touchPoint, bottomLeft)) &#123;
+        <span class="hljs-attribute">minDistance</span> = distance(touchPoint, bottomLeft);
+        <span class="hljs-attribute">cropPosition</span> = CropPosition.BOTTOM_LEFT;
+    &#125;
+    <span class="hljs-attribute">if</span> (minDistance &gt; distance(touchPoint, bottomRight)) &#123;
+        <span class="hljs-attribute">cropPosition</span> = CropPosition.BOTTOM_RIGHT;
+    &#125;
+&#125;</code></pre></div>
 
 <ul>
 <li>MotionEvent.ACTION_MOV</li>
 </ul>
 <p>根据上面确定的顶点，计算touchPoint的移动在 x 和 y方向的偏移量，然后调整作用顶点的坐标，最后调用 invalidate() 方法重新绘制View</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">private</span> void onActionMove(MotionEvent event) &#123;<br>    int deltaX = (int) (event.getX() - touchDownX);<br>    int deltaY = (int) (event.getY() - touchDownY);<br><br>    <span class="hljs-keyword">switch</span> (cropPosition) &#123;<br>        <span class="hljs-keyword">case</span> TOP_LEFT:<span class="hljs-type"></span><br>            adjustPointCoordinate(topLeft, deltaX, deltaY);<br>            invalidate();<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> TOP_RIGHT:<span class="hljs-type"></span><br>            adjustPointCoordinate(topRight, deltaX, deltaY);<br>            invalidate();<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> BOTTOM_LEFT:<span class="hljs-type"></span><br>            adjustPointCoordinate(bottomLeft, deltaX, deltaY);<br>            invalidate();<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> BOTTOM_RIGHT:<span class="hljs-type"></span><br>            adjustPointCoordinate(bottomRight, deltaX, deltaY);<br>            invalidate();<br>            <span class="hljs-keyword">break</span>;<br>    &#125;<br>    touchDownX = event.getX();<br>    touchDownY = event.getY();<br>&#125;<br><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 移动中调整作用顶点的坐标</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> void adjustPointCoordinate(Point point, int deltaX, int deltaY) &#123;<br>    int <span class="hljs-keyword">new</span><span class="hljs-type">X</span> = point.x + deltaX;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span><span class="hljs-type">X</span> &lt; minX) <span class="hljs-keyword">new</span><span class="hljs-type">X</span> = minX;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span><span class="hljs-type">X</span> &gt; maxX) <span class="hljs-keyword">new</span><span class="hljs-type">X</span> = maxX;<br><br>    int <span class="hljs-keyword">new</span><span class="hljs-type">Y</span> = point.y + deltaY;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span><span class="hljs-type">Y</span> &lt; minY) <span class="hljs-keyword">new</span><span class="hljs-type">Y</span> = minY;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span><span class="hljs-type">Y</span> &gt; maxY) <span class="hljs-keyword">new</span><span class="hljs-type">Y</span> = maxY;<br><br>    point.<span class="hljs-keyword">set</span>(<span class="hljs-keyword">new</span><span class="hljs-type">X</span>, <span class="hljs-keyword">new</span><span class="hljs-type">Y</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs haxe"><span class="hljs-keyword">private</span> void onActionMove(MotionEvent event) &#123;
+    int deltaX = (int) (event.getX() - touchDownX);
+    int deltaY = (int) (event.getY() - touchDownY);
+
+    <span class="hljs-keyword">switch</span> (cropPosition) &#123;
+        <span class="hljs-keyword">case</span> TOP_LEFT:<span class="hljs-type"></span>
+            adjustPointCoordinate(topLeft, deltaX, deltaY);
+            invalidate();
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> TOP_RIGHT:<span class="hljs-type"></span>
+            adjustPointCoordinate(topRight, deltaX, deltaY);
+            invalidate();
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> BOTTOM_LEFT:<span class="hljs-type"></span>
+            adjustPointCoordinate(bottomLeft, deltaX, deltaY);
+            invalidate();
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> BOTTOM_RIGHT:<span class="hljs-type"></span>
+            adjustPointCoordinate(bottomRight, deltaX, deltaY);
+            invalidate();
+            <span class="hljs-keyword">break</span>;
+    &#125;
+    touchDownX = event.getX();
+    touchDownY = event.getY();
+&#125;
+
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 移动中调整作用顶点的坐标</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">private</span> void adjustPointCoordinate(Point point, int deltaX, int deltaY) &#123;
+    int <span class="hljs-keyword">new</span><span class="hljs-type">X</span> = point.x + deltaX;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span><span class="hljs-type">X</span> &lt; minX) <span class="hljs-keyword">new</span><span class="hljs-type">X</span> = minX;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span><span class="hljs-type">X</span> &gt; maxX) <span class="hljs-keyword">new</span><span class="hljs-type">X</span> = maxX;
+
+    int <span class="hljs-keyword">new</span><span class="hljs-type">Y</span> = point.y + deltaY;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span><span class="hljs-type">Y</span> &lt; minY) <span class="hljs-keyword">new</span><span class="hljs-type">Y</span> = minY;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span><span class="hljs-type">Y</span> &gt; maxY) <span class="hljs-keyword">new</span><span class="hljs-type">Y</span> = maxY;
+
+    point.<span class="hljs-keyword">set</span>(<span class="hljs-keyword">new</span><span class="hljs-type">X</span>, <span class="hljs-keyword">new</span><span class="hljs-type">Y</span>);
+&#125;</code></pre></div>
 
 
 <ul>

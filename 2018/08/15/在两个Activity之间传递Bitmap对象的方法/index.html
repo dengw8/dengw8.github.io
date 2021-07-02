@@ -240,10 +240,17 @@
 <p>试了一下这种方法，确实可以，但是后来仔细想想，觉得还是有点疑问：将Bitmap 转化为一个 byte 数组在大小上应该不会有非常大的变化，这样按道理说还是会因为传递的数据太大而导致传输失败。或者说传递一个数组的话实际数据传递的次数增加了，这样单次传递的数据大小就更小，而一次性传递一个Bitmap对象单次传递到的数据太大？</p>
 <h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><p>这里主要提供一下思路2的代码</p>
 <p>传递方：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">Intent intent = <span class="hljs-keyword">new</span> Intent(FirstActivity.<span class="hljs-keyword">this</span>, SecondActivity.class);<br>ByteArrayOutputStream outStream = <span class="hljs-keyword">new</span> ByteArrayOutputStream();<br>bitmap.compress(Bitmap.CompressFormat.PNG, <span class="hljs-number">100</span>, outStream);<br><span class="hljs-keyword">byte</span> [] bitmapByte = outStream.toByteArray();<br>intent.putExtra(IMAGE_PATH, bitmapByte);<br>startActivity(intent);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">Intent intent = <span class="hljs-keyword">new</span> Intent(FirstActivity.<span class="hljs-keyword">this</span>, SecondActivity.class);
+ByteArrayOutputStream outStream = <span class="hljs-keyword">new</span> ByteArrayOutputStream();
+bitmap.compress(Bitmap.CompressFormat.PNG, <span class="hljs-number">100</span>, outStream);
+<span class="hljs-keyword">byte</span> [] bitmapByte = outStream.toByteArray();
+intent.putExtra(IMAGE_PATH, bitmapByte);
+startActivity(intent);</code></pre></div>
 
 <p>接收方：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">byte</span> [] bis=intent.getByteArrayExtra(IMAGE_PATH);<br>Bitmap bitmap=BitmapFactory.decodeByteArray(bis, <span class="hljs-number">0</span>, bis.length);<br>imageView.setImageBitmap(bitmap);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">byte</span> [] bis=intent.getByteArrayExtra(IMAGE_PATH);
+Bitmap bitmap=BitmapFactory.decodeByteArray(bis, <span class="hljs-number">0</span>, bis.length);
+imageView.setImageBitmap(bitmap);</code></pre></div>
             </div>
             <hr>
             <div>

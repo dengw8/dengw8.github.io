@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      949 字
+      950 字
     </span>
   
 
@@ -247,7 +247,8 @@
 <p>发生ANR的时候，用户只能选择等待或者结束进程；</p>
 <h4 id="从时间角度看ANR"><a href="#从时间角度看ANR" class="headerlink" title="从时间角度看ANR"></a>从时间角度看ANR</h4><p><img src="http://dengw.xyz/blog/180720/LB8e8abi2l.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <h4 id="从引发角度看ANR"><a href="#从引发角度看ANR" class="headerlink" title="从引发角度看ANR"></a>从引发角度看ANR</h4><p><img src="http://dengw.xyz/blog/180720/0D9CEHga6E.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
-<h3 id="发现ANR"><a href="#发现ANR" class="headerlink" title="发现ANR"></a>发现ANR</h3><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">04</span>-<span class="hljs-number">06</span> <span class="hljs-number">15</span>:<span class="hljs-number">58</span>:<span class="hljs-number">46</span>.<span class="hljs-number">215</span> <span class="hljs-number">23480</span>-<span class="hljs-number">23483</span>/com.example.testanr I/art: Thread[<span class="hljs-number">2</span>,tid=<span class="hljs-number">23483</span>,WaitingInMainSignalCatcherLoop,Thread*=<span class="hljs-number">0</span>x<span class="hljs-number">7</span>fa<span class="hljs-number">2307000</span>,peer=<span class="hljs-number">0</span>x<span class="hljs-number">12</span>cb<span class="hljs-number">40</span>a<span class="hljs-number">0</span>,<span class="hljs-string">&quot;Signal Catcher&quot;</span>]: reacting to signal <span class="hljs-number">3</span><br><span class="hljs-attribute">04</span>-<span class="hljs-number">06</span> <span class="hljs-number">15</span>:<span class="hljs-number">58</span>:<span class="hljs-number">46</span>.<span class="hljs-number">364</span> <span class="hljs-number">23480</span>-<span class="hljs-number">23483</span>/com.example.testanr I/art: Wrote stack traces to &#x27;/data/anr/traces.txt‘<br></code></pre></td></tr></table></figure>
+<h3 id="发现ANR"><a href="#发现ANR" class="headerlink" title="发现ANR"></a>发现ANR</h3><div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">04</span>-<span class="hljs-number">06</span> <span class="hljs-number">15</span>:<span class="hljs-number">58</span>:<span class="hljs-number">46</span>.<span class="hljs-number">215</span> <span class="hljs-number">23480</span>-<span class="hljs-number">23483</span>/com.example.testanr I/art: Thread[<span class="hljs-number">2</span>,tid=<span class="hljs-number">23483</span>,WaitingInMainSignalCatcherLoop,Thread*=<span class="hljs-number">0</span>x<span class="hljs-number">7</span>fa<span class="hljs-number">2307000</span>,peer=<span class="hljs-number">0</span>x<span class="hljs-number">12</span>cb<span class="hljs-number">40</span>a<span class="hljs-number">0</span>,<span class="hljs-string">&quot;Signal Catcher&quot;</span>]: reacting to signal <span class="hljs-number">3</span>
+<span class="hljs-attribute">04</span>-<span class="hljs-number">06</span> <span class="hljs-number">15</span>:<span class="hljs-number">58</span>:<span class="hljs-number">46</span>.<span class="hljs-number">364</span> <span class="hljs-number">23480</span>-<span class="hljs-number">23483</span>/com.example.testanr I/art: Wrote stack traces to &#x27;/data/anr/traces.txt‘</code></pre></div>
 <p>应用发生ANR的时候<br>1、Logcat中会抛出日志<br>2、系统会向指定路径写入日志，路径为/data/anr/traces.txt</p>
 <p>特别注意：<br>正常情况下，每一次新的ANR日志，会把之前的ANR信息覆盖掉；比如微信产生的ANR和QQ产生的ANR可能会在同一个ANR日志文件中生成，后生成的会把先生成的覆盖掉。</p>
 <p>因此ANR日志的处理和收集，要及时，即包括了Logcat日志，也包括了ANR的traces.txt文件；</p>

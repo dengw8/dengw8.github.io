@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      450 字
+      449 字
     </span>
   
 
@@ -229,19 +229,51 @@
             
             <div class="markdown-body">
               <p>之前在看 <code>Handler#dispatchMessage</code>方法时，发现有几个判断条件，查询资料得知这是用来匹配不同的 handler 的实例化方式以及使用方式的，下面就详细理解一下。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Handle system messages here.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dispatchMessage</span><span class="hljs-params">(Message msg)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (msg.callback != <span class="hljs-keyword">null</span>) &#123;    <span class="hljs-comment">// a</span><br>        handleCallback(msg);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">if</span> (mCallback != <span class="hljs-keyword">null</span>) &#123; <br>            <span class="hljs-keyword">if</span> (mCallback.handleMessage(msg)) &#123;    <span class="hljs-comment">// b</span><br>                <span class="hljs-keyword">return</span>;<br>            &#125;<br>        &#125;<br>        handleMessage(msg);    <span class="hljs-comment">// c</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Handle system messages here.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dispatchMessage</span><span class="hljs-params">(Message msg)</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (msg.callback != <span class="hljs-keyword">null</span>) &#123;    <span class="hljs-comment">// a</span>
+        handleCallback(msg);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-keyword">if</span> (mCallback != <span class="hljs-keyword">null</span>) &#123; 
+            <span class="hljs-keyword">if</span> (mCallback.handleMessage(msg)) &#123;    <span class="hljs-comment">// b</span>
+                <span class="hljs-keyword">return</span>;
+            &#125;
+        &#125;
+        handleMessage(msg);    <span class="hljs-comment">// c</span>
+    &#125;
+&#125;</code></pre></div>
 
 <p>从上面的源码可以看到，在<code>dispatchMessage</code>方法内部有三种情况，我分别标注为a、b、c.</p>
 <p>对于 a 情况，callback 是 msg 中的一个字段，本身是一个 Runnable 对象，当通过handler.post方法发送一个runnable的时候就会被封装到这个msg中，平时我们的使用方法一般如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">handler.post(<span class="hljs-keyword">new</span> Runnable() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// todo</span><br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">handler.post(<span class="hljs-keyword">new</span> Runnable() &#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-comment">// todo</span>
+    &#125;
+&#125;);</code></pre></div>
 <p>进入判断后执行的<code>handleCallback</code>方法是Handler中的一个静态方法，方法体如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleCallback</span><span class="hljs-params">(Message message)</span> </span>&#123;<br>    message.callback.run();<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleCallback</span><span class="hljs-params">(Message message)</span> </span>&#123;
+    message.callback.run();
+&#125;</code></pre></div>
 <p>可以看出是直接调用的<code>callback</code>的<code>run</code>方法，而<code>callback</code>是一个<code>Runnable</code>对象，也就是直接执行上面我们实例化这个<code>Runnable</code>对象时定义的<code>todo</code>部分。另外需要注意的一点就是这里的<code>todo</code>部分是在定义handler所在的的线程里面执行的，并没有新开一个新的线程。</p>
 <p>对于b这种情况，是用下面的方式实例化 handler 的，也就是在传入了一个 Handler 的回调 <code>Handler.Callback()</code>进行实例化。并且如果返回值为 true 的话，就不再调用 handler 中的<code>handleMessage</code>方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">Handler mHandler = <span class="hljs-keyword">new</span> Handler(<span class="hljs-keyword">new</span> Handler.Callback() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(Message msg)</span> </span>&#123;<br>        <span class="hljs-comment">// todo</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">Handler mHandler = <span class="hljs-keyword">new</span> Handler(<span class="hljs-keyword">new</span> Handler.Callback() &#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(Message msg)</span> </span>&#123;
+        <span class="hljs-comment">// todo</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    &#125;
+&#125;);</code></pre></div>
 
 <p>对于c这种情况就是我们常见的实例化 handler 的方法，对于不同的 message.what 进行处理。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">Handler mHandler = <span class="hljs-keyword">new</span> Handler() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(Message msg)</span> </span>&#123;<br>        <span class="hljs-comment">// todo</span><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">Handler mHandler = <span class="hljs-keyword">new</span> Handler() &#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleMessage</span><span class="hljs-params">(Message msg)</span> </span>&#123;
+        <span class="hljs-comment">// todo</span>
+    &#125;
+&#125;;</code></pre></div>
 
             </div>
             <hr>

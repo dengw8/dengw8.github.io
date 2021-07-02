@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      991 字
+      996 字
     </span>
   
 
@@ -254,11 +254,20 @@
 <p>在从报文的角度认识一下这个过程：</p>
 <ol>
 <li><p>请求报文（没有Cookie信息的状态）</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">GET <span class="hljs-regexp">/reader/</span> HTTP/<span class="hljs-number">1.1</span><br>Host: hackr.jp<br>*首部字段内没有Cookie的相关信息<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre><code class="hljs awk">GET <span class="hljs-regexp">/reader/</span> HTTP/<span class="hljs-number">1.1</span>
+Host: hackr.jp
+*首部字段内没有Cookie的相关信息</code></pre></div></li>
 <li><p>响应报文（客户端生成Cookie信息）</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros">HTTP/1.1 200 OK<br>Date: Thu, 12 Jul 2012 07:12:20 GMT<br>Server: Apache<br>＜Set-Cookie: <span class="hljs-attribute">sid</span>=1342077140226724; <span class="hljs-attribute">path</span>=/; <span class="hljs-attribute">expires</span>=Wed,<br>10-Oct-12 07:12:20 GMT＞<br>Content-Type: text/plain; <span class="hljs-attribute">charset</span>=UTF-8<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre><code class="hljs routeros">HTTP/1.1 200 OK
+Date: Thu, 12 Jul 2012 07:12:20 GMT
+Server: Apache
+＜Set-Cookie: <span class="hljs-attribute">sid</span>=1342077140226724; <span class="hljs-attribute">path</span>=/; <span class="hljs-attribute">expires</span>=Wed,
+10-Oct-12 07:12:20 GMT＞
+Content-Type: text/plain; <span class="hljs-attribute">charset</span>=UTF-8</code></pre></div></li>
 <li><p>请求报文（自动发送保存着的Cookie信息）</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/image/</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>hackr.jp<br><span class="hljs-attribute">Cookie</span><span class="hljs-punctuation">: </span>sid=1342077140226724<br></code></pre></td></tr></table></figure></li>
+<div class="code-wrapper"><pre><code class="hljs http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/image/</span> <span class="hljs-meta">HTTP/1.1</span>
+<span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>hackr.jp
+<span class="hljs-attribute">Cookie</span><span class="hljs-punctuation">: </span>sid=1342077140226724</code></pre></div></li>
 </ol>
 
             </div>

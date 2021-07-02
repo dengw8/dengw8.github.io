@@ -245,15 +245,64 @@
 <ul>
 <li>loadClass(String)<br>该方法加载指定名称（包括包名）的二进制类型，该方法在JDK1.2之后不再建议用户重写但用户可以直接调用该方法，loadClass()方法是ClassLoader类自己实现的，该方法中的逻辑就是双亲委派模式的实现，其源码如下，loadClass(String name, boolean resolve)是一个重载方法，resolve参数代表是否生成class对象的同时进行解析相关操作。</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="hljs-keyword">boolean</span> resolve)<br>      <span class="hljs-keyword">throws</span> ClassNotFoundException<br>  &#123;<br>    <span class="hljs-keyword">synchronized</span> (getClassLoadingLock(name)) &#123;<br>        <span class="hljs-comment">// 先从缓存查找该class对象，找到就不用重新加载</span><br>        Class&lt;?&gt; c = findLoadedClass(name);<br>        <span class="hljs-keyword">if</span> (c == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">long</span> t0 = System.nanoTime();<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-keyword">if</span> (parent != <span class="hljs-keyword">null</span>) &#123;<br>                    <span class="hljs-comment">//如果找不到，则委托给父类加载器去加载</span><br>                    c = parent.loadClass(name, <span class="hljs-keyword">false</span>);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-comment">//如果没有父类，则委托给启动加载器去加载</span><br>                    c = findBootstrapClassOrNull(name);<br>                &#125;<br>            &#125; <span class="hljs-keyword">catch</span> (ClassNotFoundException e) &#123;<br>                <span class="hljs-comment">// ClassNotFoundException thrown if class not found</span><br>                <span class="hljs-comment">// from the non-null parent class loader</span><br>            &#125;<br><br>            <span class="hljs-keyword">if</span> (c == <span class="hljs-keyword">null</span>) &#123;<br>                <span class="hljs-comment">// If still not found, then invoke findClass in order</span><br>                <span class="hljs-comment">// 如果都没有找到，则通过自定义实现的findClass去查找并加载</span><br>                c = findClass(name);<br><br>                <span class="hljs-comment">// this is the defining class loader; record the stats</span><br>                sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);<br>                sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);<br>                sun.misc.PerfCounter.getFindClasses().increment();<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (resolve) &#123;<span class="hljs-comment">//是否需要在加载时进行解析</span><br>            resolveClass(c);<br>        &#125;<br>        <span class="hljs-keyword">return</span> c;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="hljs-keyword">boolean</span> resolve)
+      <span class="hljs-keyword">throws</span> ClassNotFoundException
+  &#123;
+    <span class="hljs-keyword">synchronized</span> (getClassLoadingLock(name)) &#123;
+        <span class="hljs-comment">// 先从缓存查找该class对象，找到就不用重新加载</span>
+        Class&lt;?&gt; c = findLoadedClass(name);
+        <span class="hljs-keyword">if</span> (c == <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">long</span> t0 = System.nanoTime();
+            <span class="hljs-keyword">try</span> &#123;
+                <span class="hljs-keyword">if</span> (parent != <span class="hljs-keyword">null</span>) &#123;
+                    <span class="hljs-comment">//如果找不到，则委托给父类加载器去加载</span>
+                    c = parent.loadClass(name, <span class="hljs-keyword">false</span>);
+                &#125; <span class="hljs-keyword">else</span> &#123;
+                    <span class="hljs-comment">//如果没有父类，则委托给启动加载器去加载</span>
+                    c = findBootstrapClassOrNull(name);
+                &#125;
+            &#125; <span class="hljs-keyword">catch</span> (ClassNotFoundException e) &#123;
+                <span class="hljs-comment">// ClassNotFoundException thrown if class not found</span>
+                <span class="hljs-comment">// from the non-null parent class loader</span>
+            &#125;
+
+            <span class="hljs-keyword">if</span> (c == <span class="hljs-keyword">null</span>) &#123;
+                <span class="hljs-comment">// If still not found, then invoke findClass in order</span>
+                <span class="hljs-comment">// 如果都没有找到，则通过自定义实现的findClass去查找并加载</span>
+                c = findClass(name);
+
+                <span class="hljs-comment">// this is the defining class loader; record the stats</span>
+                sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);
+                sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
+                sun.misc.PerfCounter.getFindClasses().increment();
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span> (resolve) &#123;<span class="hljs-comment">//是否需要在加载时进行解析</span>
+            resolveClass(c);
+        &#125;
+        <span class="hljs-keyword">return</span> c;
+    &#125;
+&#125;</code></pre></div>
 <ul>
 <li>findClass(String)<br>在JDK1.2之前，在自定义类加载时，总会去继承 ClassLoader 类并重写 loadClass 方法，从而实现自定义的类加载类，但是在JDK1.2之后已不再建议用户去覆盖 loadClass() 方法，而是建议<strong>把自定义的类加载逻辑写在 findClass() 方法中</strong>，从前面的分析可知，findClass() 方法是在 loadClass() 方法中被调用的，当 loadClass() 方法中父加载器加载失败后，则会调用自己的 findClass() 方法来完成类加载，这样就可以保证自定义的类加载器也符合双亲委托模式。需要注意的是 ClassLoader 类中并没有实现 findClass() 方法的具体代码逻辑，取而代之的是抛出 ClassNotFoundException 异常，同时应该知道的是 findClass 方法通常是和 defineClass 方法一起使用的，ClassLoader类中findClass()方法源码如下：</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//直接抛出异常</span><br><span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ClassNotFoundException(name);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//直接抛出异常</span>
+<span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException &#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ClassNotFoundException(name);
+&#125;</code></pre></div>
 
 <ul>
 <li><p>defineClass(byte[] b, int off, int len)<br>defineClass() 方法是用来将 byte 字节流解析成 JVM 能够识别的 Class 对象**(ClassLoader中已实现该方法逻辑)**，通过这个方法不仅能够通过 class 文件实例化 class 对象，也可以通过其他方式实例化 class 对象，如通过网络接收一个类的字节码，然后转换为 byte 字节流创建对应的 Class 对象，defineClass() 方法通常与 findClass() 方法一起使用，一般情况下，在自定义类加载器时，会直接覆盖 ClassLoader 的 findClass() 方法并编写加载规则，取得要加载类的字节码后转换成流，然后调用 defineClass()方法生成类的Class对象，简单例子如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException &#123;<br>      <span class="hljs-comment">// 获取类的字节数组</span><br>      <span class="hljs-keyword">byte</span>[] classData = getClassData(name);  <br>      <span class="hljs-keyword">if</span> (classData == <span class="hljs-keyword">null</span>) &#123;<br>          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ClassNotFoundException();<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>          <span class="hljs-comment">//使用defineClass生成class对象</span><br>          <span class="hljs-keyword">return</span> defineClass(name, classData, <span class="hljs-number">0</span>, classData.length);<br>      &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) <span class="hljs-keyword">throws</span> ClassNotFoundException &#123;
+      <span class="hljs-comment">// 获取类的字节数组</span>
+      <span class="hljs-keyword">byte</span>[] classData = getClassData(name);  
+      <span class="hljs-keyword">if</span> (classData == <span class="hljs-keyword">null</span>) &#123;
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ClassNotFoundException();
+      &#125; <span class="hljs-keyword">else</span> &#123;
+          <span class="hljs-comment">//使用defineClass生成class对象</span>
+          <span class="hljs-keyword">return</span> defineClass(name, classData, <span class="hljs-number">0</span>, classData.length);
+      &#125;
+&#125;</code></pre></div>
 <p>需要注意的是，如果直接调用defineClass()方法生成类的Class对象，这个类的Class对象并没有解析(也可以理解为链接阶段，毕竟解析是链接的最后一步)，其解析操作需要等待初始化阶段进行。</p>
 </li>
 <li><p>resolveClass(Class≺?≻ c)<br>使用该方法可以使用类的Class对象创建完成也同时被解析。前面我们说链接阶段主要是对字节码进行验证，为类变量分配内存并设置初始值同时将字节码文件中的符号引用转换为直接引用。</p>

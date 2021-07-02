@@ -246,14 +246,43 @@
 <p>$$ M_{max} = 3n(n - 1) / 2  = O(n^2) $$</p>
 <p>冒泡排序的最坏时间复杂度为 $O(n^2)$。<br>综上，因此冒泡排序总的平均时间复杂度为$ O(n^2) $ 。</p>
 <h4 id="算法稳定性"><a href="#算法稳定性" class="headerlink" title="算法稳定性"></a>算法稳定性</h4><p>冒泡排序就是把小的元素往前调或者把大的元素往后调。比较是相邻的两个元素比较，交换也发生在这两个元素之间。所以，如果两个元素相等，是不会再交换的；如果两个相等的元素没有相邻，那么即使通过前面的两两交换把两个相邻起来，这时候也不会交换，所以相同元素的前后顺序并没有改变，所以冒泡排序是一种稳定排序算法。（这儿看一下下面代码中的注释）</p>
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 冒泡排序</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bubble_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> len = array.length;<br>    <span class="hljs-keyword">int</span> temp;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; len - i; j++) &#123;<br>            <span class="hljs-comment">// 这里使用&gt;符号而不是&gt;=符号可以保证冒泡排序的稳定性</span><br>            <span class="hljs-keyword">if</span>(array[j] &gt; array[j + <span class="hljs-number">1</span>]) &#123;<br>                temp = array[j];<br>                array[j] = array[j+<span class="hljs-number">1</span>];<br>                array[j+<span class="hljs-number">1</span>] = temp;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 冒泡排序</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bubble_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> len = array.length;
+    <span class="hljs-keyword">int</span> temp;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) &#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; len - i; j++) &#123;
+            <span class="hljs-comment">// 这里使用&gt;符号而不是&gt;=符号可以保证冒泡排序的稳定性</span>
+            <span class="hljs-keyword">if</span>(array[j] &gt; array[j + <span class="hljs-number">1</span>]) &#123;
+                temp = array[j];
+                array[j] = array[j+<span class="hljs-number">1</span>];
+                array[j+<span class="hljs-number">1</span>] = temp;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre></div>
 
 <h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>选择排序的工作原理：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。 （或者说就简单理解为每一次都从原数组中挑选出剩余部分最小的元素插入到一个新的数组中）</p>
 <p>用一个图来表示一下这个过程：</p>
 <p><img src="http://dengw.xyz/blog/180816/EdFiLk3f1L.gif" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <h4 id="时间复杂度-1"><a href="#时间复杂度-1" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>选择排序的交换操作介于 0 和 (n - 1) 次之间。选择排序的比较操作为 n (n - 1) / 2 次之间。选择排序的赋值操作介于 0 和 3 (n - 1) 次之间。<br>比较次数 O(n^2)，比较次数与关键字的初始状态无关，总的比较次数 $N=(n-1)+(n-2)+…+1=n*(n-1) / 2$ 交换次数 O(n)，最好情况是，已经有序，交换0次；最坏情况交换n-1次，逆序交换n/2次。交换次数比冒泡排序少多了，由于交换所需CPU时间比比较所需的CPU时间多，n值较小时，选择排序比冒泡排序快。</p>
 <h4 id="算法稳定性-1"><a href="#算法稳定性-1" class="headerlink" title="算法稳定性"></a>算法稳定性</h4><p>选择排序是稳定的排序算法，举个例子说明它不是稳定的，有一个序列5 8 5 2 9，我们知道第一遍选择第1个元素5会和2交换，那么原序列中两个5的相对前后顺序就被破坏了，所以选择排序是一个不稳定的排序算法。</p>
-<h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 选择排序</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">select_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> len = array.length, temp;<br>    <span class="hljs-keyword">int</span> index;   <span class="hljs-comment">// 记录当前轮最小数的下标</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span>; i++) &#123;<br>        index = i;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>; j &lt; len; j++) &#123;<br>            <span class="hljs-keyword">if</span>(array[j] &lt; array[index]) &#123;<br>                index = j;<br>            &#125;<br>            temp = array[i];<br>            array[i] = array[index];<br>            array[index] = temp;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 选择排序</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">select_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> len = array.length, temp;
+    <span class="hljs-keyword">int</span> index;   <span class="hljs-comment">// 记录当前轮最小数的下标</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span>; i++) &#123;
+        index = i;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>; j &lt; len; j++) &#123;
+            <span class="hljs-keyword">if</span>(array[j] &lt; array[index]) &#123;
+                index = j;
+            &#125;
+            temp = array[i];
+            array[i] = array[index];
+            array[index] = temp;
+        &#125;
+    &#125;
+&#125;</code></pre></div>
 
 <h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序工作的时候将一个数组分为两个部分：已排序序列和未排序序列，插入排序基本操作就是将一个数据插入到已经排好序的有序数据中，从而得到一个新的、个数加一的有序数据序列。</p>
 <p>具体算法描述如下：</p>
@@ -271,7 +300,20 @@
 <p>最好情况就是，序列已经是升序排列了，在这种情况下，需要进行的比较操作需 (n-1) 次即可。<br>最坏情况就是，序列是降序排列，那么此时需要进行的比较共有 n(n-1)/2 次。插入排序的赋值操作是比较操作的次数加上 (n-1) 次。</p>
 <p>平均来说插入排序算法的时间复杂度为O(n^2)。因而，插入排序不适合对于数据量比较大的排序应用。但是，如果需要排序的数据量很小，例如，量级小于千，那么插入排序还是一个不错的选择。</p>
 <h4 id="算法稳定性-2"><a href="#算法稳定性-2" class="headerlink" title="算法稳定性"></a>算法稳定性</h4><p>插入排序是在一个已经有序的小序列的基础上，一次插入一个元素。当然，刚开始这个有序的小序列只有1个元素，就是第一个元素。比较是从有序序列的末尾开始，也就是想要插入的元素和已经有序的最大者开始比起，如果比它大则直接插入在其后面，否则一直往前找直到找到它该插入的位置。如果碰见一个和插入元素相等的，那么插入元素把想插入的元素放在相等元素的后面。所以，相等元素的前后顺序没有改变，从原无序序列出去的顺序就是排好序后的顺序，所以插入排序是稳定的。</p>
-<h4 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 插入排序</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insert_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> len = array.length, temp;<br>    <span class="hljs-keyword">int</span> index;  <span class="hljs-comment">//记录已排序部分最右边的下标</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) &#123;<br>        index = i - <span class="hljs-number">1</span>;<br>        temp = array[i];<br>        <span class="hljs-keyword">while</span>(index &gt;= <span class="hljs-number">0</span> &amp;&amp; array[index] &gt; temp) &#123;<br>            array[index + <span class="hljs-number">1</span>] = array[index];<br>            index--;<br>        &#125;<br>        array[index + <span class="hljs-number">1</span>] = temp;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 插入排序</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insert_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> len = array.length, temp;
+    <span class="hljs-keyword">int</span> index;  <span class="hljs-comment">//记录已排序部分最右边的下标</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) &#123;
+        index = i - <span class="hljs-number">1</span>;
+        temp = array[i];
+        <span class="hljs-keyword">while</span>(index &gt;= <span class="hljs-number">0</span> &amp;&amp; array[index] &gt; temp) &#123;
+            array[index + <span class="hljs-number">1</span>] = array[index];
+            index--;
+        &#125;
+        array[index + <span class="hljs-number">1</span>] = temp;
+    &#125;
+&#125;</code></pre></div>
 
 <h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>希尔排序(Shell’s Sort)是插入排序的一种又称“缩小增量排序”（Diminishing Increment Sort），是直接插入排序算法的一种更高效的改进版本。</p>
 <p>希尔排序是基于插入排序的以下两点性质而提出改进方法的：</p>
@@ -291,7 +333,28 @@
 </ol>
 <p>所以当刚开始元素很无序的时候，步长最大，所以插入排序的元素个数很少，速度很快；当元素基本有序了，步长很小，插入排序对于有序的序列效率很高。所以，希尔排序的时间复杂度会比 o(n^2) 好一些。</p>
 <h4 id="算法稳定性-3"><a href="#算法稳定性-3" class="headerlink" title="算法稳定性"></a>算法稳定性</h4><p>希尔排序是非稳定排序算法，因为最开始 gap 的值是大于1的，那么就很可能让两个相等数的相对位置发生改变。</p>
-<h4 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 希尔排序</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">shell_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> len = array.length, tem;<br>    <span class="hljs-keyword">int</span> gap = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">int</span> index;<br>    <span class="hljs-keyword">while</span>(gap &lt; len) &#123;<br>        gap = gap * <span class="hljs-number">3</span> + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">while</span>(gap &gt;= <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = gap; i &lt; len; i++) &#123;<br>            index = i - gap;<br>            tem = array[i];<br>            <span class="hljs-keyword">while</span>(index &gt;= <span class="hljs-number">0</span> &amp;&amp; array[index] &gt; tem) &#123;<br>                array[index + gap] = array[index];<br>                index -= gap;<br>            &#125;<br>            array[index + gap] = tem;<br>        &#125;<br>        gap = (gap - <span class="hljs-number">1</span>) / <span class="hljs-number">3</span>;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 希尔排序</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">shell_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> len = array.length, tem;
+    <span class="hljs-keyword">int</span> gap = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">int</span> index;
+    <span class="hljs-keyword">while</span>(gap &lt; len) &#123;
+        gap = gap * <span class="hljs-number">3</span> + <span class="hljs-number">1</span>;
+    &#125;
+    <span class="hljs-keyword">while</span>(gap &gt;= <span class="hljs-number">1</span>) &#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = gap; i &lt; len; i++) &#123;
+            index = i - gap;
+            tem = array[i];
+            <span class="hljs-keyword">while</span>(index &gt;= <span class="hljs-number">0</span> &amp;&amp; array[index] &gt; tem) &#123;
+                array[index + gap] = array[index];
+                index -= gap;
+            &#125;
+            array[index + gap] = tem;
+        &#125;
+        gap = (gap - <span class="hljs-number">1</span>) / <span class="hljs-number">3</span>;
+    &#125;
+
+&#125;</code></pre></div>
 
 <h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</p>
 <p>快速排序使用分治法来把一个串（list）分为两个子串（sub-lists）。具体算法描述如下：</p>
@@ -304,16 +367,56 @@
 <p><img src="http://dengw.xyz/blog/180816/KB7c48Lh2m.gif" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <h4 id="时间复杂度-4"><a href="#时间复杂度-4" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>当基数值不能很好地分割数组，即基准值将数组分成一个子数组中有一个记录，而另一个子组组有 n -1 个记录时，下一次的子数组只比原来数组小 1，这是快速排序的最差的情况。如果这种情况发生在每次划分过程中，那么快速排序就退化成了冒泡排序，其时间复杂度为 O(n2)。</p>
 <p>如果基准值都能讲数组分成相等的两部分，则出现快速排序的最佳情况。在这种情况下，我们还要对每个大小约为 n/2 的两个子数组进行排序。在一个大小为 n 的记录中确定一个记录的位置所需要的时间为 O(n)。 若T(n)为对n个记录进行排序所需要的时间，则每当一个记录得到其正确位置，整组大致分成两个相等的两部分时，我们得到快速排序算法的最佳时间复杂性。</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-constructor">T(<span class="hljs-params">n</span>)</span> &lt;= cn + <span class="hljs-number">2</span><span class="hljs-constructor">T(<span class="hljs-params">n</span><span class="hljs-operator">/</span>2)</span><br>　　 &lt;= cn + <span class="hljs-number">2</span>(cn/<span class="hljs-number">2</span>+<span class="hljs-number">2</span><span class="hljs-constructor">T(<span class="hljs-params">n</span><span class="hljs-operator">/</span>4)</span>) = <span class="hljs-number">2</span>cn+ <span class="hljs-number">4</span><span class="hljs-constructor">T(<span class="hljs-params">n</span><span class="hljs-operator">/</span>4)</span><br>　　 &lt;= <span class="hljs-number">2</span>cn + <span class="hljs-number">4</span>(cn/<span class="hljs-number">4</span>+ <span class="hljs-number">2</span><span class="hljs-constructor">T(<span class="hljs-params">n</span><span class="hljs-operator">/</span>8)</span>) = <span class="hljs-number">3</span>cn + <span class="hljs-number">8</span><span class="hljs-constructor">T(<span class="hljs-params">n</span><span class="hljs-operator">/</span>8)</span><br>    …… ……<br>　　 &lt;= cnlogn + n<span class="hljs-constructor">T(1)</span> = <span class="hljs-constructor">O(<span class="hljs-params">nlogn</span>)</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs reasonml"><span class="hljs-constructor">T(<span class="hljs-params">n</span>)</span> &lt;= cn + <span class="hljs-number">2</span><span class="hljs-constructor">T(<span class="hljs-params">n</span><span class="hljs-operator">/</span>2)</span>
+　　 &lt;= cn + <span class="hljs-number">2</span>(cn/<span class="hljs-number">2</span>+<span class="hljs-number">2</span><span class="hljs-constructor">T(<span class="hljs-params">n</span><span class="hljs-operator">/</span>4)</span>) = <span class="hljs-number">2</span>cn+ <span class="hljs-number">4</span><span class="hljs-constructor">T(<span class="hljs-params">n</span><span class="hljs-operator">/</span>4)</span>
+　　 &lt;= <span class="hljs-number">2</span>cn + <span class="hljs-number">4</span>(cn/<span class="hljs-number">4</span>+ <span class="hljs-number">2</span><span class="hljs-constructor">T(<span class="hljs-params">n</span><span class="hljs-operator">/</span>8)</span>) = <span class="hljs-number">3</span>cn + <span class="hljs-number">8</span><span class="hljs-constructor">T(<span class="hljs-params">n</span><span class="hljs-operator">/</span>8)</span>
+    …… ……
+　　 &lt;= cnlogn + n<span class="hljs-constructor">T(1)</span> = <span class="hljs-constructor">O(<span class="hljs-params">nlogn</span>)</span></code></pre></div>
 <p>其中cn 是一次划分所用的时间，c是一个常数.</p>
 <p>最坏的情况，每次划分都得到一个子序列，时间复杂度为：</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs excel"><span class="hljs-built_in">T</span>(<span class="hljs-built_in">n</span>) = cn + <span class="hljs-built_in">T</span>(<span class="hljs-built_in">n</span>-<span class="hljs-number">1</span>)<br>     = cn + c(<span class="hljs-built_in">n</span>-<span class="hljs-number">1</span>) + <span class="hljs-built_in">T</span>(<span class="hljs-built_in">n</span> - <span class="hljs-number">2</span>) = <span class="hljs-number">2</span>cn -c + <span class="hljs-built_in">T</span>(<span class="hljs-built_in">n</span>-<span class="hljs-number">2</span>)<br>     = <span class="hljs-number">2</span>cn -c + c(<span class="hljs-built_in">n</span> - <span class="hljs-number">2</span>) + <span class="hljs-built_in">T</span>(<span class="hljs-built_in">n</span>-<span class="hljs-number">3</span>) = <span class="hljs-number">3</span>cn -<span class="hljs-number">3</span>c + <span class="hljs-built_in">T</span>(<span class="hljs-built_in">n</span>-<span class="hljs-number">3</span>)<br>     ……<br>     = c[<span class="hljs-built_in">n</span>(<span class="hljs-comment">n+1</span>)/<span class="hljs-number">2</span>-<span class="hljs-number">1</span>] + <span class="hljs-built_in">T</span>(<span class="hljs-number">1</span>) =  O(<span class="hljs-built_in">n</span>^<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs excel"><span class="hljs-built_in">T</span>(<span class="hljs-built_in">n</span>) = cn + <span class="hljs-built_in">T</span>(<span class="hljs-built_in">n</span>-<span class="hljs-number">1</span>)
+     = cn + c(<span class="hljs-built_in">n</span>-<span class="hljs-number">1</span>) + <span class="hljs-built_in">T</span>(<span class="hljs-built_in">n</span> - <span class="hljs-number">2</span>) = <span class="hljs-number">2</span>cn -c + <span class="hljs-built_in">T</span>(<span class="hljs-built_in">n</span>-<span class="hljs-number">2</span>)
+     = <span class="hljs-number">2</span>cn -c + c(<span class="hljs-built_in">n</span> - <span class="hljs-number">2</span>) + <span class="hljs-built_in">T</span>(<span class="hljs-built_in">n</span>-<span class="hljs-number">3</span>) = <span class="hljs-number">3</span>cn -<span class="hljs-number">3</span>c + <span class="hljs-built_in">T</span>(<span class="hljs-built_in">n</span>-<span class="hljs-number">3</span>)
+     ……
+     = c[<span class="hljs-built_in">n</span>(<span class="hljs-comment">n+1</span>)/<span class="hljs-number">2</span>-<span class="hljs-number">1</span>] + <span class="hljs-built_in">T</span>(<span class="hljs-number">1</span>) =  O(<span class="hljs-built_in">n</span>^<span class="hljs-number">2</span>)</code></pre></div>
 <p>快速排序的时间复杂度在平均情况下介于最佳与最差情况之间，假设每一次分割时，基准值处于最终排序好的位置的概率是一样的，基准值将数组分成长度为0 和 n-1，1 和 n-2，…… 的概率都是 1/n。在这种假设下，快速排序的平均时间复杂性为：</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-constructor">T(<span class="hljs-params">n</span>)</span> = cn + <span class="hljs-number">1</span>/n(<span class="hljs-constructor">T(<span class="hljs-params">k</span>)</span>+ <span class="hljs-constructor">T(<span class="hljs-params">n</span>-<span class="hljs-params">k</span>-1)</span>) <br><br><span class="hljs-constructor">T(1)</span> = c<br><br><span class="hljs-constructor">T(0)</span> = c<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs reasonml"><span class="hljs-constructor">T(<span class="hljs-params">n</span>)</span> = cn + <span class="hljs-number">1</span>/n(<span class="hljs-constructor">T(<span class="hljs-params">k</span>)</span>+ <span class="hljs-constructor">T(<span class="hljs-params">n</span>-<span class="hljs-params">k</span>-1)</span>) 
+
+<span class="hljs-constructor">T(1)</span> = c
+
+<span class="hljs-constructor">T(0)</span> = c</code></pre></div>
 
 <p>这是一个递推公式，T(k)和T(n-k-1)是指处理长度为 k 和 n-k-1 数组是快速排序算法所花费的时间， 根据公式所推算出来的时间为 O(nlogn)。因此快速排序的平均时间复杂性为O(nlogn)。</p>
 <h4 id="算法稳定性-4"><a href="#算法稳定性-4" class="headerlink" title="算法稳定性"></a>算法稳定性</h4><p>因为快速排序在进行交换时，只是根据比较基数值判断是否交换，且不是相邻元素来交换，在交换过程中可能改变相同元素的顺序，因此是一种不稳定的排序算法</p>
-<h4 id="代码实现-4"><a href="#代码实现-4" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 快速排序函数</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">quick_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span> </span>&#123;<br>    sort(array, <span class="hljs-number">0</span>, array.length - <span class="hljs-number">1</span>);<br>&#125;<br><span class="hljs-comment">// 快速排序递归部分</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(left &lt; right) &#123;<br>        <span class="hljs-keyword">int</span> pivot = partition(array, left, right);<br>        sort(array, left, pivot - <span class="hljs-number">1</span>);<br>        sort(array, pivot + <span class="hljs-number">1</span>, right);<br>    &#125;<br>&#125;<br><span class="hljs-comment">//以下标为l的元素为基准对数组进行分区并返回其在新数组中对应的位置下标</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">partition</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] array, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> num = array[l];<br>    <span class="hljs-keyword">while</span>(l &lt; r) &#123;<br>        <span class="hljs-keyword">while</span>(l &lt; r &amp;&amp; array[r] &gt; num) r--;<br>        swap(array, l, r);<br>        <span class="hljs-keyword">while</span>(l &lt; r &amp;&amp; num &gt;= array[l]) l++;<br>        swap(array, l ,r);<br>    &#125;<br>    <span class="hljs-keyword">return</span> l;<br>&#125;<br><span class="hljs-comment">// 将特定下标的元素交换</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] array, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> tem = array[l];<br>    array[l] = array[r];<br>    array[r] = tem;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="代码实现-4"><a href="#代码实现-4" class="headerlink" title="代码实现"></a>代码实现</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 快速排序函数</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">quick_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span> </span>&#123;
+    sort(array, <span class="hljs-number">0</span>, array.length - <span class="hljs-number">1</span>);
+&#125;
+<span class="hljs-comment">// 快速排序递归部分</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(left &lt; right) &#123;
+        <span class="hljs-keyword">int</span> pivot = partition(array, left, right);
+        sort(array, left, pivot - <span class="hljs-number">1</span>);
+        sort(array, pivot + <span class="hljs-number">1</span>, right);
+    &#125;
+&#125;
+<span class="hljs-comment">//以下标为l的元素为基准对数组进行分区并返回其在新数组中对应的位置下标</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">partition</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] array, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> num = array[l];
+    <span class="hljs-keyword">while</span>(l &lt; r) &#123;
+        <span class="hljs-keyword">while</span>(l &lt; r &amp;&amp; array[r] &gt; num) r--;
+        swap(array, l, r);
+        <span class="hljs-keyword">while</span>(l &lt; r &amp;&amp; num &gt;= array[l]) l++;
+        swap(array, l ,r);
+    &#125;
+    <span class="hljs-keyword">return</span> l;
+&#125;
+<span class="hljs-comment">// 将特定下标的元素交换</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] array, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> tem = array[l];
+    array[l] = array[r];
+    array[r] = tem;
+&#125;</code></pre></div>
 
 <h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>归并排序（MERGE-SORT）是利用归并的思想实现的排序方法，该算法采用经典的分治（divide-and-conquer）策略（分治法将问题分(divide)成一些小的问题然后递归求解，而治(conquer)的阶段则将分的阶段得到的各答案”修补”在一起，即分而治之)。</p>
 <p>用一个图来表示一下这个过程：<br><img src="http://dengw.xyz/blog/180816/I0D6cjDgf8.gif" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
@@ -321,11 +424,97 @@
 <h4 id="时间复杂度-5"><a href="#时间复杂度-5" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>归并排序的时间复杂度是O(N*lgN)。</p>
 <p>假设被排序的数列中有N个数。遍历一趟的时间复杂度是O(N)，需要遍历多少次呢？<br>归并排序的形式就是一棵二叉树，它需要遍历的次数就是二叉树的深度，而根据完全二叉树的特点可以得到遍历次数为 O(logN)<br>可以得出它的时间复杂度是 O(N*logN)。</p>
 <h4 id="稳定分析"><a href="#稳定分析" class="headerlink" title="稳定分析"></a>稳定分析</h4><p>归并排序是稳定的算法，当两个元素相等时，进行相等比较不会改变他们之间的相对位置。</p>
-<h4 id="代码实现-5"><a href="#代码实现-5" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 归并排序（分治的思想）</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">merge_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span>  </span>&#123;<br>    <span class="hljs-keyword">int</span> len = array.length;<br>    <span class="hljs-comment">//在排序前，先建好一个长度等于原数组长度的临时数组，避免递归中频繁开辟空间</span><br>    <span class="hljs-keyword">int</span> []temp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[len];<br>    sort(array, <span class="hljs-number">0</span>, len - <span class="hljs-number">1</span>, temp);<br>&#125;<br><span class="hljs-comment">// “分”的部分</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right, <span class="hljs-keyword">int</span> []temp)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(left &lt; right) &#123;<br>        <span class="hljs-keyword">int</span> mid = (left + right) / <span class="hljs-number">2</span>;<br>        <span class="hljs-comment">// 左边归并排序，使得左子序列有序</span><br>        sort(array, left, mid, temp);<br>        <span class="hljs-comment">// 右边归并排序，使得右子序列有序</span><br>        sort(array, mid + <span class="hljs-number">1</span>, right, temp);<br>        <span class="hljs-comment">// 将两个有序子数组合并操作</span><br>        merge(array, left, mid, right, temp);<br>    &#125;<br>&#125;<br><span class="hljs-comment">// “治”的部分</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> mid, <span class="hljs-keyword">int</span> right, <span class="hljs-keyword">int</span> []temp)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> i = left, j = mid + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">// 依次将两个子数组中的较小值填入新数组</span><br>    <span class="hljs-keyword">while</span>(i &lt;= mid &amp;&amp; j &lt;= right) &#123;<br>        <span class="hljs-keyword">if</span>(array[i] &lt;= array[j]) &#123;<br>            temp[index++] = array[i++];<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            temp[index++] = array[j++];<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 当其中一个子数组已经将所有数填入新数组后</span><br>    <span class="hljs-keyword">while</span>(i &lt;= mid) &#123;<br>        temp[index++] = array[i++];<br>    &#125;<br>    <span class="hljs-keyword">while</span>(j &lt;= right) &#123;<br>        temp[index++] = array[j++];<br>    &#125;<br><br>    <span class="hljs-comment">// 长度为right - left</span><br>    index = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(left &lt;= right) &#123;<br>        array[left++] = temp[index++];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="代码实现-5"><a href="#代码实现-5" class="headerlink" title="代码实现"></a>代码实现</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 归并排序（分治的思想）</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">merge_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span>  </span>&#123;
+    <span class="hljs-keyword">int</span> len = array.length;
+    <span class="hljs-comment">//在排序前，先建好一个长度等于原数组长度的临时数组，避免递归中频繁开辟空间</span>
+    <span class="hljs-keyword">int</span> []temp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[len];
+    sort(array, <span class="hljs-number">0</span>, len - <span class="hljs-number">1</span>, temp);
+&#125;
+<span class="hljs-comment">// “分”的部分</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right, <span class="hljs-keyword">int</span> []temp)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(left &lt; right) &#123;
+        <span class="hljs-keyword">int</span> mid = (left + right) / <span class="hljs-number">2</span>;
+        <span class="hljs-comment">// 左边归并排序，使得左子序列有序</span>
+        sort(array, left, mid, temp);
+        <span class="hljs-comment">// 右边归并排序，使得右子序列有序</span>
+        sort(array, mid + <span class="hljs-number">1</span>, right, temp);
+        <span class="hljs-comment">// 将两个有序子数组合并操作</span>
+        merge(array, left, mid, right, temp);
+    &#125;
+&#125;
+<span class="hljs-comment">// “治”的部分</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> mid, <span class="hljs-keyword">int</span> right, <span class="hljs-keyword">int</span> []temp)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> i = left, j = mid + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// 依次将两个子数组中的较小值填入新数组</span>
+    <span class="hljs-keyword">while</span>(i &lt;= mid &amp;&amp; j &lt;= right) &#123;
+        <span class="hljs-keyword">if</span>(array[i] &lt;= array[j]) &#123;
+            temp[index++] = array[i++];
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            temp[index++] = array[j++];
+        &#125;
+    &#125;
+
+    <span class="hljs-comment">// 当其中一个子数组已经将所有数填入新数组后</span>
+    <span class="hljs-keyword">while</span>(i &lt;= mid) &#123;
+        temp[index++] = array[i++];
+    &#125;
+    <span class="hljs-keyword">while</span>(j &lt;= right) &#123;
+        temp[index++] = array[j++];
+    &#125;
+
+    <span class="hljs-comment">// 长度为right - left</span>
+    index = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>(left &lt;= right) &#123;
+        array[left++] = temp[index++];
+    &#125;
+&#125;</code></pre></div>
 
 <h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>堆排序也是第一次接触，贴一下自己的学习博客吧；<br><a target="_blank" rel="noopener" href="http://www.cnblogs.com/MOBIN/p/5374217.html">参考文章1</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chengxiao/p/6129630.html">参考文章2</a></p>
 <p>用一张图片来表示一下这个过程：<br><img src="http://dengw.xyz/blog/180816/Gji4ajH90E.gif" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
-<h4 id="代码实现-6"><a href="#代码实现-6" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 堆排序</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">heap_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> tail = array.length - <span class="hljs-number">1</span>;  <span class="hljs-comment">//当前尾部元素的下标</span><br><br>    <span class="hljs-comment">// 从tail / 2 - 1到0的下标对应的元素才有子节点</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = tail / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>        headAdjust(array, i, tail);<br>    &#125;<br>    <span class="hljs-keyword">while</span>(tail &gt;= <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">// 堆顶元素和tail下标对应的元素交换(堆顶元素为当前0~tail中的最大值)</span><br>        swap(array, <span class="hljs-number">0</span>, tail--);<br>        headAdjust(array, <span class="hljs-number">0</span>, tail);<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">headAdjust</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array, <span class="hljs-keyword">int</span> index, <span class="hljs-keyword">int</span> tail)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> left, right, i;  <span class="hljs-comment">//left表示index下标对应元素的左子节点的下标，right同理</span><br>    <span class="hljs-keyword">while</span>((left = <span class="hljs-number">2</span> * index + <span class="hljs-number">1</span>) &lt;= tail) &#123;<br>        right = left + <span class="hljs-number">1</span>;<br>        i = left;<br>        <span class="hljs-keyword">if</span>(i &lt; tail &amp;&amp; array[left] &lt; array[right]) i++;  <span class="hljs-comment">// 此时i表示两个子节点的较大值的下标</span><br>        <span class="hljs-keyword">if</span>(array[index] &lt; array[i]) &#123;   <span class="hljs-comment">// 保证父节点的值大于两个子节点的值</span><br>            swap(array, index, i);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 如果父节点已经大于两个子节点直接跳出循环</span><br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">         * 交换后的子节点还有父节点的情况</span><br><span class="hljs-comment">         * 这种情况发生在整个树的根节点发生一下交换后</span><br><span class="hljs-comment">         * 继续执行while循环</span><br><span class="hljs-comment">         */</span><br>        index = i;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 将特定下标的元素交换</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] array, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> tem = array[i];<br>    array[i] = array[j];<br>    array[j] = tem;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="代码实现-6"><a href="#代码实现-6" class="headerlink" title="代码实现"></a>代码实现</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 堆排序</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">heap_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> tail = array.length - <span class="hljs-number">1</span>;  <span class="hljs-comment">//当前尾部元素的下标</span>
+
+    <span class="hljs-comment">// 从tail / 2 - 1到0的下标对应的元素才有子节点</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = tail / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;
+        headAdjust(array, i, tail);
+    &#125;
+    <span class="hljs-keyword">while</span>(tail &gt;= <span class="hljs-number">0</span>) &#123;
+        <span class="hljs-comment">// 堆顶元素和tail下标对应的元素交换(堆顶元素为当前0~tail中的最大值)</span>
+        swap(array, <span class="hljs-number">0</span>, tail--);
+        headAdjust(array, <span class="hljs-number">0</span>, tail);
+    &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">headAdjust</span><span class="hljs-params">(<span class="hljs-keyword">int</span> []array, <span class="hljs-keyword">int</span> index, <span class="hljs-keyword">int</span> tail)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> left, right, i;  <span class="hljs-comment">//left表示index下标对应元素的左子节点的下标，right同理</span>
+    <span class="hljs-keyword">while</span>((left = <span class="hljs-number">2</span> * index + <span class="hljs-number">1</span>) &lt;= tail) &#123;
+        right = left + <span class="hljs-number">1</span>;
+        i = left;
+        <span class="hljs-keyword">if</span>(i &lt; tail &amp;&amp; array[left] &lt; array[right]) i++;  <span class="hljs-comment">// 此时i表示两个子节点的较大值的下标</span>
+        <span class="hljs-keyword">if</span>(array[index] &lt; array[i]) &#123;   <span class="hljs-comment">// 保证父节点的值大于两个子节点的值</span>
+            swap(array, index, i);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            <span class="hljs-comment">// 如果父节点已经大于两个子节点直接跳出循环</span>
+            <span class="hljs-keyword">break</span>;
+        &#125;
+        <span class="hljs-comment">/**</span>
+<span class="hljs-comment">         * 交换后的子节点还有父节点的情况</span>
+<span class="hljs-comment">         * 这种情况发生在整个树的根节点发生一下交换后</span>
+<span class="hljs-comment">         * 继续执行while循环</span>
+<span class="hljs-comment">         */</span>
+        index = i;
+    &#125;
+&#125;
+
+<span class="hljs-comment">// 将特定下标的元素交换</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] array, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> tem = array[i];
+    array[i] = array[j];
+    array[j] = tem;
+&#125;</code></pre></div>
             </div>
             <hr>
             <div>

@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      824 字
+      823 字
     </span>
   
 
@@ -246,7 +246,21 @@
 <p>ldpi 文件夹下对应的密度为120dpi, 对应的分辨率为240<em>320；<br>mdpi 文件夹下对应的密度为160dpi, 对应的分辨率为320</em>480；<br>hdpi 文件夹下对应的密度为240dpi, 对应的分辨率为480<em>800；<br>xhdpi 文件夹下对应的密度为320dpi, 对应的分辨率为720</em>1280；<br>xxhdpi 文件夹下对应的密度为480dpi, 对应的分辨率为1080*1920；</p>
 </blockquote>
 <h3 id="转化关系："><a href="#转化关系：" class="headerlink" title="转化关系："></a>转化关系：</h3><p>给出一个两者的转化函数：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 根据手机的分辨率从 dp 的单位 转成为 px(像素)</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">dp2px</span><span class="hljs-params">(Context context, <span class="hljs-keyword">float</span> dpValue)</span> </span>&#123;<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> scale = context.getResources().getDisplayMetrics().density;<br>    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>) (dpValue * scale + <span class="hljs-number">0.5f</span>);<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 根据手机的分辨率从 px(像素) 的单位 转成为 dp</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">px2dp</span><span class="hljs-params">(Context context, <span class="hljs-keyword">float</span> pxValue)</span> </span>&#123;<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> scale = context.getResources().getDisplayMetrics().density;<br>    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>) (pxValue / scale + <span class="hljs-number">0.5f</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 根据手机的分辨率从 dp 的单位 转成为 px(像素)</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">dp2px</span><span class="hljs-params">(Context context, <span class="hljs-keyword">float</span> dpValue)</span> </span>&#123;
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> scale = context.getResources().getDisplayMetrics().density;
+    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>) (dpValue * scale + <span class="hljs-number">0.5f</span>);
+&#125;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 根据手机的分辨率从 px(像素) 的单位 转成为 dp</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">px2dp</span><span class="hljs-params">(Context context, <span class="hljs-keyword">float</span> pxValue)</span> </span>&#123;
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> scale = context.getResources().getDisplayMetrics().density;
+    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>) (pxValue / scale + <span class="hljs-number">0.5f</span>);
+&#125;</code></pre></div>
 
 <h3 id="关于-sp"><a href="#关于-sp" class="headerlink" title="关于 sp"></a>关于 sp</h3><p>sp 与缩放无关的抽象像素（Scale-independent Pixel）。sp 和 dp 很类似但唯一的区别是，sp 还会根据用户的字体大小偏好来缩放。Android系统允许用户自定义文字尺寸大小（小、正常、大、超大等等），当文字尺寸是“正常”时 1sp=1dp=0.00625 英寸，而当文字尺寸是“大”或“超大”时，1sp&gt;1dp=0.00625英寸。类似我们在windows里调整字体尺寸以后的效果——窗口大小不变，只有文字大小改变。</p>
 

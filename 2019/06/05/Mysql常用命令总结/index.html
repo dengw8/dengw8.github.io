@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      774 字
+      777 字
     </span>
   
 
@@ -228,45 +228,101 @@
             <h1 style="display: none">Mysql常用命令总结</h1>
             
             <div class="markdown-body">
-              <h3 id="登录数据库"><a href="#登录数据库" class="headerlink" title="登录数据库"></a>登录数据库</h3><h4 id="登录本地数据库"><a href="#登录本地数据库" class="headerlink" title="登录本地数据库"></a>登录本地数据库</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">mysql -u root -<span class="hljs-selector-tag">p</span><br></code></pre></td></tr></table></figure>
+              <h3 id="登录数据库"><a href="#登录数据库" class="headerlink" title="登录数据库"></a>登录数据库</h3><h4 id="登录本地数据库"><a href="#登录本地数据库" class="headerlink" title="登录本地数据库"></a>登录本地数据库</h4><div class="code-wrapper"><pre><code class="hljs css">mysql -u root -<span class="hljs-selector-tag">p</span></code></pre></div>
 <p>回车后输入密码; 也可以p后不加空格，直接加密码，回车登录。</p>
-<h4 id="登录远程数据库"><a href="#登录远程数据库" class="headerlink" title="登录远程数据库"></a>登录远程数据库</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">mysql -uusername -ppwd -Pport -hhost</span><br></code></pre></td></tr></table></figure>
+<h4 id="登录远程数据库"><a href="#登录远程数据库" class="headerlink" title="登录远程数据库"></a>登录远程数据库</h4><div class="code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">mysql -uusername -ppwd -Pport -hhost</span></code></pre></div>
 <p>例如，要登陆一个host为172.18.182.21，端口为8080，username为admin、密码为admin123的远程数据库：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">mysql</span> -uadmin -padmin<span class="hljs-number">123</span> -P<span class="hljs-number">8080</span> -h<span class="hljs-number">172.18.182.21</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">mysql</span> -uadmin -padmin<span class="hljs-number">123</span> -P<span class="hljs-number">8080</span> -h<span class="hljs-number">172.18.182.21</span></code></pre></div>
 
-<h2 id="查询类"><a href="#查询类" class="headerlink" title="查询类"></a>查询类</h2><h3 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h3><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">show databases<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+<h2 id="查询类"><a href="#查询类" class="headerlink" title="查询类"></a>查询类</h2><h3 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h3><div class="code-wrapper"><pre><code class="hljs abnf">show databases<span class="hljs-comment">;</span></code></pre></div>
 <p>注意命令后面有一个英语的分号；</p>
 <p><img src="http://dengw.xyz/20190606094548.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h3><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">use db_name<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+<h3 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h3><div class="code-wrapper"><pre><code class="hljs abnf">use db_name<span class="hljs-comment">;</span></code></pre></div>
 <p>查看<code>db_name</code>为 <code>db_olime</code>的数据库；<br><img src="http://dengw.xyz/20190606094846.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="查看当前使用的数据库"><a href="#查看当前使用的数据库" class="headerlink" title="查看当前使用的数据库"></a>查看当前使用的数据库</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">database</span>(<span class="hljs-params"></span>)</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="查看当前使用的数据库"><a href="#查看当前使用的数据库" class="headerlink" title="查看当前使用的数据库"></a>查看当前使用的数据库</h3><div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">database</span>(<span class="hljs-params"></span>)</span>;</code></pre></div>
 <p><img src="http://dengw.xyz/20190606100921.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="查看数据表"><a href="#查看数据表" class="headerlink" title="查看数据表"></a>查看数据表</h3><p>查看当前数据库的所有table;</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">tables</span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">tables</span>;</code></pre></div>
 <p><img src="http://dengw.xyz/20190606095236.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h3><p>显示表结构，字段类型，主键，是否为空等属性，但不显示外键。</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">desc tabl_name<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs abnf">desc tabl_name<span class="hljs-comment">;</span></code></pre></div>
 <p><img src="http://dengw.xyz/20190606095535.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="查看建表语句、表注释"><a href="#查看建表语句、表注释" class="headerlink" title="查看建表语句、表注释"></a>查看建表语句、表注释</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> <span class="hljs-built_in">table_name</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="查看建表语句、表注释"><a href="#查看建表语句、表注释" class="headerlink" title="查看建表语句、表注释"></a>查看建表语句、表注释</h3><div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> <span class="hljs-built_in">table_name</span>;</code></pre></div>
 <p><img src="http://dengw.xyz/20190606100313.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="查看数据库的连接情况"><a href="#查看数据库的连接情况" class="headerlink" title="查看数据库的连接情况"></a>查看数据库的连接情况</h3><p>会显示前100个连接；</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">full</span> processlist;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">full</span> processlist;</code></pre></div>
 <p><img src="http://dengw.xyz/20190606100701.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="查看数据库状态"><a href="#查看数据库状态" class="headerlink" title="查看数据库状态"></a>查看数据库状态</h3><p>参考链接：<a target="_blank" rel="noopener" href="https://codeplayer.vip/p/j7sc4">使用show status查看MySQL服务器状态信息</a></p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-built_in">show</span> <span class="hljs-built_in">status</span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs maxima"><span class="hljs-built_in">show</span> <span class="hljs-built_in">status</span>;</code></pre></div>
 <p>列出所连接的mysql服务器的状态信息，信息会有很多条，具体的含义等以后来理解。</p>
 <p><img src="http://dengw.xyz/20190606103403.png" srcset="/img/loading.gif" lazyload></p>
 <p>如果你只想查看某一条具体的状态，可以使用以下命令：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;Variable_name&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;Variable_name&#x27;</span>;</code></pre></div>
 <p>比如要查看当前MySQL本次启动后的运行统计时间；</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;uptime&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;uptime&#x27;</span>;</code></pre></div>
 <p><img src="http://dengw.xyz/20190606103737.png" srcset="/img/loading.gif" lazyload></p>
 <p>此外，与WHERE子句中的LIKE关键字类似，show status后的LIKE关键字也可以使用’_’ 或’%’等通配符来进行模糊匹配。例如我们可以执行如下语句来查看MySQL服务器的线程信息：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;Thread_%&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;Thread_%&#x27;</span>;</code></pre></div>
 <p><img src="http://dengw.xyz/20190606104040.png" srcset="/img/loading.gif" lazyload></p>
 <p>下面列一些常用的show status命令：<br>常用的:</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">--查看查询时间超过long_query_time秒的查询的个数。</span><br><br><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;slow_queries&#x27;</span>;<br><br><span class="hljs-comment">--查看创建时间超过slow_launch_time秒的线程数。</span><br><br><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;slow_launch_threads&#x27;</span>;<br><br><span class="hljs-comment">--查看不能立即获得的表的锁的次数。如果该值较高，并且有性能问题，你应首先优化查询，然后拆分表或使用复制。</span><br><br><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;table_locks_waited&#x27;</span>;<br><br><span class="hljs-comment">--查看立即获得的表的锁的次数。</span><br><br><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;table_locks_immediate&#x27;</span>;<br><br><span class="hljs-comment">--查看激活的(非睡眠状态)线程数。</span><br><br><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;threads_running&#x27;</span>;<br><br><span class="hljs-comment">--查看创建用来处理连接的线程数。如果Threads_created较大，你可能要增加thread_cache_size值。</span><br><br><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;threads_created&#x27;</span>;<br><br><span class="hljs-comment">--查看当前打开的连接的数量。</span><br><br><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;threads_connected&#x27;</span>;<br><br><span class="hljs-comment">--查看线程缓存内的线程的数量。</span><br><br><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;threads_cached&#x27;</span>;<br><br><span class="hljs-comment">--查看试图连接到MySQL(不管是否连接成功)的连接数</span><br><br><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;connections&#x27;</span>;<br><br><span class="hljs-comment">--查看delete语句的执行数</span><br><br><span class="hljs-keyword">show</span> [<span class="hljs-keyword">global</span>] status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;com_delete&#x27;</span>;<br><br><span class="hljs-comment">--查看update语句的执行数</span><br><br><span class="hljs-keyword">show</span> [<span class="hljs-keyword">global</span>] status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;com_update&#x27;</span>;<br><br><span class="hljs-comment">--查看insert语句的执行数</span><br><br><span class="hljs-keyword">show</span> [<span class="hljs-keyword">global</span>] status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;com_insert&#x27;</span>;<br><br><span class="hljs-comment">--查看select语句的执行数</span><br><br><span class="hljs-keyword">show</span> [<span class="hljs-keyword">global</span>] status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;com_select&#x27;</span>;<br><br><span class="hljs-comment">--查看MySQL本次启动后的运行时间(单位：秒)</span><br><br><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;uptime&#x27;</span>;<br></code></pre></td></tr></table></figure>
-<h3 id="打印当前时间"><a href="#打印当前时间" class="headerlink" title="打印当前时间"></a>打印当前时间</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">now</span>(<span class="hljs-params"></span>)</span>;<br>或<br><span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">current_timestamp</span>(<span class="hljs-params"></span>)</span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-comment">--查看查询时间超过long_query_time秒的查询的个数。</span>
+
+<span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;slow_queries&#x27;</span>;
+
+<span class="hljs-comment">--查看创建时间超过slow_launch_time秒的线程数。</span>
+
+<span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;slow_launch_threads&#x27;</span>;
+
+<span class="hljs-comment">--查看不能立即获得的表的锁的次数。如果该值较高，并且有性能问题，你应首先优化查询，然后拆分表或使用复制。</span>
+
+<span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;table_locks_waited&#x27;</span>;
+
+<span class="hljs-comment">--查看立即获得的表的锁的次数。</span>
+
+<span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;table_locks_immediate&#x27;</span>;
+
+<span class="hljs-comment">--查看激活的(非睡眠状态)线程数。</span>
+
+<span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;threads_running&#x27;</span>;
+
+<span class="hljs-comment">--查看创建用来处理连接的线程数。如果Threads_created较大，你可能要增加thread_cache_size值。</span>
+
+<span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;threads_created&#x27;</span>;
+
+<span class="hljs-comment">--查看当前打开的连接的数量。</span>
+
+<span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;threads_connected&#x27;</span>;
+
+<span class="hljs-comment">--查看线程缓存内的线程的数量。</span>
+
+<span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;threads_cached&#x27;</span>;
+
+<span class="hljs-comment">--查看试图连接到MySQL(不管是否连接成功)的连接数</span>
+
+<span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;connections&#x27;</span>;
+
+<span class="hljs-comment">--查看delete语句的执行数</span>
+
+<span class="hljs-keyword">show</span> [<span class="hljs-keyword">global</span>] status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;com_delete&#x27;</span>;
+
+<span class="hljs-comment">--查看update语句的执行数</span>
+
+<span class="hljs-keyword">show</span> [<span class="hljs-keyword">global</span>] status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;com_update&#x27;</span>;
+
+<span class="hljs-comment">--查看insert语句的执行数</span>
+
+<span class="hljs-keyword">show</span> [<span class="hljs-keyword">global</span>] status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;com_insert&#x27;</span>;
+
+<span class="hljs-comment">--查看select语句的执行数</span>
+
+<span class="hljs-keyword">show</span> [<span class="hljs-keyword">global</span>] status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;com_select&#x27;</span>;
+
+<span class="hljs-comment">--查看MySQL本次启动后的运行时间(单位：秒)</span>
+
+<span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;uptime&#x27;</span>;</code></pre></div>
+<h3 id="打印当前时间"><a href="#打印当前时间" class="headerlink" title="打印当前时间"></a>打印当前时间</h3><div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">now</span>(<span class="hljs-params"></span>)</span>;
+或
+<span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">current_timestamp</span>(<span class="hljs-params"></span>)</span>;</code></pre></div>
 <p><img src="http://dengw.xyz/20190606102015.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="alter命令"><a href="#alter命令" class="headerlink" title="alter命令"></a>alter命令</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zsg88/p/7818684">https://www.cnblogs.com/zsg88/p/7818684</a>.<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013063153/article/details/53304325">https://blog.csdn.net/u013063153/article/details/53304325</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kuillldan/p/5865339.html">https://www.cnblogs.com/kuillldan/p/5865339.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/devcjq/articles/6021338.html">https://www.cnblogs.com/devcjq/articles/6021338.html</a></p>
 

@@ -231,32 +231,195 @@
               <p>之前学习数据结构的时候使用过 C++ 实现过二叉树的三种遍历方法，其中包括递归实现和非递归实现。现在在准备秋招，感觉这部分还是非常重要的，就想用 java 再实现一下。</p>
 <p>这里就不再对什么是现需、中序和后序遍历解释了，着重代码实现，一些重要的代码会给出注释。</p>
 <p>树的节点定义：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TreeNode</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> val = <span class="hljs-number">0</span>;<br>	TreeNode left = <span class="hljs-keyword">null</span>;<br>	TreeNode right = <span class="hljs-keyword">null</span>;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TreeNode</span><span class="hljs-params">(<span class="hljs-keyword">int</span> val)</span> </span>&#123;<br>		<span class="hljs-keyword">this</span>.val = val;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TreeNode</span> </span>&#123;
+	<span class="hljs-keyword">int</span> val = <span class="hljs-number">0</span>;
+	TreeNode left = <span class="hljs-keyword">null</span>;
+	TreeNode right = <span class="hljs-keyword">null</span>;
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TreeNode</span><span class="hljs-params">(<span class="hljs-keyword">int</span> val)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.val = val;
+	&#125;
+&#125;</code></pre></div>
 <h3 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h3><h4 id="非递归实现"><a href="#非递归实现" class="headerlink" title="非递归实现"></a>非递归实现</h4><h5 id="实现方法1"><a href="#实现方法1" class="headerlink" title="实现方法1"></a>实现方法1</h5><p>　　根据前序遍历访问的顺序，优先访问根结点，然后再分别访问左孩子和右孩子。即对于任一结点，其可看做是根结点，因此可以直接访问，访问完之后，若其左孩子不为空，按相同规则访问它的左子树；当访问其左子树时，再访问它的右子树。因此其处理过程如下：</p>
 <p>　　对于任一结点P：</p>
 <ol>
 <li>访问结点P，并将结点P入栈;</li>
 <li>判断结点P的左孩子是否为空，若为空，则取栈顶结点并进行出栈操作，并将栈顶结点的右孩子置为当前的结点P，循环至1);若不为空，则将P的左孩子置为当前的结点P;</li>
 <li>直到P为NULL并且栈为空，则遍历结束。</li>
-<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">preOrder1</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;<br><br>    Stack&lt;TreeNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>    TreeNode tem = root;<br>    <span class="hljs-keyword">while</span>(tem != <span class="hljs-keyword">null</span> || !stack.empty()) &#123;<br>        <span class="hljs-keyword">while</span>( tem != <span class="hljs-keyword">null</span>) &#123;<br>            res.add(tem.val);<br>            stack.push(tem);<br>            tem = tem.left;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(!stack.empty()) &#123;<br>            tem = stack.pop();<br>            tem = tem.right;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h5 id="实现方法2"><a href="#实现方法2" class="headerlink" title="实现方法2"></a>实现方法2</h5>这就是充分利用栈的特点了，体会一下先进后出的体现。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 前序遍历的非递归实现</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">preOrder2</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;<br><br>    Stack&lt;TreeNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>    stack.push(root);<br>    TreeNode tem;<br>    <span class="hljs-keyword">while</span>(!stack.empty()) &#123;    <span class="hljs-comment">// 进入循环的条件是栈不为空</span><br>        tem = stack.pop();     <span class="hljs-comment">// 获取并弹出栈顶元素</span><br>        res.add(tem.val);<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">         * 注意因为使用的是栈结构，先入后出,</span><br><span class="hljs-comment">         * 所以先把右边的节点入栈</span><br><span class="hljs-comment">         */</span><br>        <span class="hljs-keyword">if</span> (tem.right != <span class="hljs-keyword">null</span>) &#123;<br>            stack.push(tem.right);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (tem.left != <span class="hljs-keyword">null</span>) &#123;<br>            stack.push(tem.left);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">preOrder1</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;
+    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;
+
+    Stack&lt;TreeNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();
+    TreeNode tem = root;
+    <span class="hljs-keyword">while</span>(tem != <span class="hljs-keyword">null</span> || !stack.empty()) &#123;
+        <span class="hljs-keyword">while</span>( tem != <span class="hljs-keyword">null</span>) &#123;
+            res.add(tem.val);
+            stack.push(tem);
+            tem = tem.left;
+        &#125;
+        <span class="hljs-keyword">if</span>(!stack.empty()) &#123;
+            tem = stack.pop();
+            tem = tem.right;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> res;
+&#125;</code></pre></div>
+<h5 id="实现方法2"><a href="#实现方法2" class="headerlink" title="实现方法2"></a>实现方法2</h5>这就是充分利用栈的特点了，体会一下先进后出的体现。<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 前序遍历的非递归实现</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">preOrder2</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;
+    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;
+
+    Stack&lt;TreeNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();
+    stack.push(root);
+    TreeNode tem;
+    <span class="hljs-keyword">while</span>(!stack.empty()) &#123;    <span class="hljs-comment">// 进入循环的条件是栈不为空</span>
+        tem = stack.pop();     <span class="hljs-comment">// 获取并弹出栈顶元素</span>
+        res.add(tem.val);
+        <span class="hljs-comment">/*</span>
+<span class="hljs-comment">         * 注意因为使用的是栈结构，先入后出,</span>
+<span class="hljs-comment">         * 所以先把右边的节点入栈</span>
+<span class="hljs-comment">         */</span>
+        <span class="hljs-keyword">if</span> (tem.right != <span class="hljs-keyword">null</span>) &#123;
+            stack.push(tem.right);
+        &#125;
+        <span class="hljs-keyword">if</span> (tem.left != <span class="hljs-keyword">null</span>) &#123;
+            stack.push(tem.left);
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> res;
+&#125;</code></pre></div></li>
 </ol>
 <h4 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h4><p>递归就很简单了，直接在代码层面就可以体现出前序遍历的特点。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 前序遍历的递归实现</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">preOrder_recursion</span><span class="hljs-params">(TreeNode root)</span>  </span>&#123;<br>    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;<br><br>    <span class="hljs-comment">// 开始递归调用</span><br>    preOrder_recursion_body(root, res);<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">preOrder_recursion_body</span><span class="hljs-params">(TreeNode root, ArrayList&lt;Integer&gt; res)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(root != <span class="hljs-keyword">null</span>) &#123;<br>        res.add(root.val);<br>        preOrder_recursion_body(root.left, res);<br>        preOrder_recursion_body(root.right, res);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 前序遍历的递归实现</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">preOrder_recursion</span><span class="hljs-params">(TreeNode root)</span>  </span>&#123;
+    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;
+
+    <span class="hljs-comment">// 开始递归调用</span>
+    preOrder_recursion_body(root, res);
+    <span class="hljs-keyword">return</span> res;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">preOrder_recursion_body</span><span class="hljs-params">(TreeNode root, ArrayList&lt;Integer&gt; res)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(root != <span class="hljs-keyword">null</span>) &#123;
+        res.add(root.val);
+        preOrder_recursion_body(root.left, res);
+        preOrder_recursion_body(root.right, res);
+    &#125;
+&#125;</code></pre></div>
 
 <h3 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h3><h4 id="非递归实现-1"><a href="#非递归实现-1" class="headerlink" title="非递归实现"></a>非递归实现</h4><h5 id="实现方法1-1"><a href="#实现方法1-1" class="headerlink" title="实现方法1"></a>实现方法1</h5><p>　　根据中序遍历的顺序，对于任一结点，优先访问其左孩子，而左孩子结点又可以看做一根结点，然后继续访问其左孩子结点，直到遇到左孩子结点为空的结点才进行访问，然后按相同的规则访问其右子树。因此其处理过程如下：</p>
 <p>　　对于任一结点P: </p>
 <ol>
 <li>若其左孩子不为空，则将P入栈并将P的左孩子置为当前的P，然后对当前结点P再进行相同的处理；</li>
 <li>若其左孩子为空，则取栈顶元素并进行出栈操作，访问该栈顶结点，然后将当前的P置为栈顶结点的右孩子；</li>
-<li>直到P为NULL并且栈为空则遍历结束。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">inOrder1</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;<br><br>    Stack&lt;TreeNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>    TreeNode tem = root;<br>    <span class="hljs-keyword">while</span>(tem != <span class="hljs-keyword">null</span> || !stack.empty()) &#123;<br>        <span class="hljs-keyword">while</span>(tem != <span class="hljs-keyword">null</span>) &#123;<br>            stack.push(tem);<br>            tem = tem.left;<br>        &#125;<br>        <br>        <span class="hljs-keyword">if</span>(!stack.empty()) &#123;<br>            tem = stack.pop();<br>            res.add(tem.val);<br>            tem = tem.right;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h5 id="实现方法2-1"><a href="#实现方法2-1" class="headerlink" title="实现方法2"></a>实现方法2</h5>跟上面的思路类似，只是实现方式有点区别。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 中序遍历的非递归实现</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">inOrder2</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;<br><br>    Stack&lt;TreeNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>    stack.push(root);<br>    TreeNode temp;<br>    <span class="hljs-keyword">while</span> (!stack.empty())<br>    &#123;<br>        temp = stack.peek();<br>        <span class="hljs-keyword">if</span> (temp.left != <span class="hljs-keyword">null</span>) &#123;    <span class="hljs-comment">//一直遍历左节点</span><br>            stack.push(temp.left);<br>            temp.left = <span class="hljs-keyword">null</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            TreeNode p = stack.pop();<br>            res.add(p.val);<br>            <span class="hljs-keyword">if</span> (p.right != <span class="hljs-keyword">null</span>) &#123;<br>                stack.push(p.right);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h4 id="递归实现-1"><a href="#递归实现-1" class="headerlink" title="递归实现"></a>递归实现</h4>很形象了。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 中序遍历的递归实现</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">inOrder_recursion</span><span class="hljs-params">(TreeNode root)</span>  </span>&#123;<br>    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;();<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;<br><br>    inOrder_recursion_body(root, res);<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">inOrder_recursion_body</span><span class="hljs-params">(TreeNode root, ArrayList&lt;Integer&gt; res)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(root != <span class="hljs-keyword">null</span>) &#123;<br>        inOrder_recursion_body(root.left, res);<br>        res.add(root.val);<br>        inOrder_recursion_body(root.right, res);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>直到P为NULL并且栈为空则遍历结束。<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">inOrder1</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;
+    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;
+
+    Stack&lt;TreeNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();
+    TreeNode tem = root;
+    <span class="hljs-keyword">while</span>(tem != <span class="hljs-keyword">null</span> || !stack.empty()) &#123;
+        <span class="hljs-keyword">while</span>(tem != <span class="hljs-keyword">null</span>) &#123;
+            stack.push(tem);
+            tem = tem.left;
+        &#125;
+        
+        <span class="hljs-keyword">if</span>(!stack.empty()) &#123;
+            tem = stack.pop();
+            res.add(tem.val);
+            tem = tem.right;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> res;
+&#125;</code></pre></div>
+<h5 id="实现方法2-1"><a href="#实现方法2-1" class="headerlink" title="实现方法2"></a>实现方法2</h5>跟上面的思路类似，只是实现方式有点区别。<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 中序遍历的非递归实现</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">inOrder2</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;
+    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    <span class="hljs-keyword">if</span> (root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;
+
+    Stack&lt;TreeNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();
+    stack.push(root);
+    TreeNode temp;
+    <span class="hljs-keyword">while</span> (!stack.empty())
+    &#123;
+        temp = stack.peek();
+        <span class="hljs-keyword">if</span> (temp.left != <span class="hljs-keyword">null</span>) &#123;    <span class="hljs-comment">//一直遍历左节点</span>
+            stack.push(temp.left);
+            temp.left = <span class="hljs-keyword">null</span>;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            TreeNode p = stack.pop();
+            res.add(p.val);
+            <span class="hljs-keyword">if</span> (p.right != <span class="hljs-keyword">null</span>) &#123;
+                stack.push(p.right);
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> res;
+&#125;</code></pre></div>
+<h4 id="递归实现-1"><a href="#递归实现-1" class="headerlink" title="递归实现"></a>递归实现</h4>很形象了。<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 中序遍历的递归实现</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">inOrder_recursion</span><span class="hljs-params">(TreeNode root)</span>  </span>&#123;
+    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;();
+    <span class="hljs-keyword">if</span> (root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;
+
+    inOrder_recursion_body(root, res);
+    <span class="hljs-keyword">return</span> res;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">inOrder_recursion_body</span><span class="hljs-params">(TreeNode root, ArrayList&lt;Integer&gt; res)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(root != <span class="hljs-keyword">null</span>) &#123;
+        inOrder_recursion_body(root.left, res);
+        res.add(root.val);
+        inOrder_recursion_body(root.right, res);
+    &#125;
+&#125;</code></pre></div></li>
 </ol>
 <h3 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h3><h4 id="非递归实现-2"><a href="#非递归实现-2" class="headerlink" title="非递归实现"></a>非递归实现</h4><p>思路: 要保证根结点在其左孩子和右孩子访问之后才能访问，因此对于任一结点p，先将其入栈。如果 p 不存在左孩子和右孩子（左子树和右子树都指向空的时候），则可直接访问；否则将 p 的右孩子和左孩子依次入栈然后把 p 的左右孩子结点赋值null，这样就保证了每次取栈顶的元素的时候左孩子在右孩子前面被访问, 左孩子和右孩子都在根结点前面被访问。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 后序遍历的非递归实现</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">postOrder</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;<br><br>    Stack&lt;TreeNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;TreeNode&gt;();<br>    stack.push(root);<br>    TreeNode temp;<br>    <span class="hljs-keyword">while</span> (!stack.isEmpty())<br>    &#123;<br>        temp = stack.peek();<br>        <span class="hljs-keyword">if</span> (temp.left == <span class="hljs-keyword">null</span> &amp;&amp; temp.right == <span class="hljs-keyword">null</span>)<br>        &#123;<br>            TreeNode pop = stack.pop();<br>            res.add(pop.val);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">if</span> (temp.right != <span class="hljs-keyword">null</span>) &#123;<br>                stack.push(temp.right);<br>                temp.right = <span class="hljs-keyword">null</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (temp.left != <span class="hljs-keyword">null</span>) &#123;<br>                stack.push(temp.left);<br>                temp.left = <span class="hljs-keyword">null</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 后序遍历的非递归实现</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">postOrder</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;
+    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;
 
-<h4 id="递归实现-2"><a href="#递归实现-2" class="headerlink" title="递归实现"></a>递归实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 后序遍历的递归实现</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">postOrder_recursion</span><span class="hljs-params">(TreeNode root)</span>  </span>&#123;<br>    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;();<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;<br><br>    postOrder_recursion_body(root, res);<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">postOrder_recursion_body</span><span class="hljs-params">(TreeNode root, ArrayList&lt;Integer&gt; res)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(root != <span class="hljs-keyword">null</span>) &#123;<br>        postOrder_recursion_body(root.left, res);<br>        postOrder_recursion_body(root.right, res);<br>        res.add(root.val);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+    Stack&lt;TreeNode&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;TreeNode&gt;();
+    stack.push(root);
+    TreeNode temp;
+    <span class="hljs-keyword">while</span> (!stack.isEmpty())
+    &#123;
+        temp = stack.peek();
+        <span class="hljs-keyword">if</span> (temp.left == <span class="hljs-keyword">null</span> &amp;&amp; temp.right == <span class="hljs-keyword">null</span>)
+        &#123;
+            TreeNode pop = stack.pop();
+            res.add(pop.val);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            <span class="hljs-keyword">if</span> (temp.right != <span class="hljs-keyword">null</span>) &#123;
+                stack.push(temp.right);
+                temp.right = <span class="hljs-keyword">null</span>;
+            &#125;
+            <span class="hljs-keyword">if</span> (temp.left != <span class="hljs-keyword">null</span>) &#123;
+                stack.push(temp.left);
+                temp.left = <span class="hljs-keyword">null</span>;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> res;
+&#125;</code></pre></div>
+
+<h4 id="递归实现-2"><a href="#递归实现-2" class="headerlink" title="递归实现"></a>递归实现</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 后序遍历的递归实现</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;Integer&gt; <span class="hljs-title">postOrder_recursion</span><span class="hljs-params">(TreeNode root)</span>  </span>&#123;
+    ArrayList&lt;Integer&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;();
+    <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> res;
+
+    postOrder_recursion_body(root, res);
+    <span class="hljs-keyword">return</span> res;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">postOrder_recursion_body</span><span class="hljs-params">(TreeNode root, ArrayList&lt;Integer&gt; res)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(root != <span class="hljs-keyword">null</span>) &#123;
+        postOrder_recursion_body(root.left, res);
+        postOrder_recursion_body(root.right, res);
+        res.add(root.val);
+    &#125;
+&#125;</code></pre></div>
 
             </div>
             <hr>

@@ -286,8 +286,8 @@
 <h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>准备阶段是正式为类变量分配内存并设置类变量初始值的阶段，这些变量所使用的内存都将在方法区中进行分配。有两点需要注意：</p>
 <ul>
 <li>这阶段进行内存分配的仅包括类变量（即被 static 修饰的变量），不包括实例变量，实例变量会在对象实例化时随着对象一起分配在 Java 堆中；</li>
-<li>这里所说的初始值“通常情况”下是数据类型的零值，假设一个类变量的定义如下：  <pre> public static int value = 123;</pre>
-那变量 value 在准备阶段过后的零值为 0 而不是 123，因为这时候并未执行任何Java方法，把 value 赋值为123的动作是在初始化阶段才会进行。对于“非通常情况”，是指定义为常量的那些变量（即final修饰的），会在这一阶段就被赋值，如：  <pre> public static final int value = 123;</pre>
+<li>这里所说的初始值“通常情况”下是数据类型的零值，假设一个类变量的定义如下：  <div class="code-wrapper"><pre> public static int value = 123;</pre></div>
+那变量 value 在准备阶段过后的零值为 0 而不是 123，因为这时候并未执行任何Java方法，把 value 赋值为123的动作是在初始化阶段才会进行。对于“非通常情况”，是指定义为常量的那些变量（即final修饰的），会在这一阶段就被赋值，如：  <div class="code-wrapper"><pre> public static final int value = 123;</pre></div>
 此时在准备阶段过后，value的值将会被赋值为123。</li>
 </ul>
 <h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><p>解析阶段是虚拟机将常量池中的符号引用转化为直接引用的过程。在 Class 文件结构中多次提到过符号引用，它以CONSTANT_Class_info、CONSTANT_Fieldref_info、CONSTANT_Methodref_info 等类型的常量出现。在解析阶段的符号引用和直接引用的区别如下：</p>
@@ -348,7 +348,14 @@
 <li>接口中不能使用静态语句块，但仍然有变量初始化的赋值操作，因此接口与类一样都会生成<code>&lt;clinit&gt;()</code>方法。但接口与类不同的是，执行接口的<code>&lt;clinit&gt;()</code>方法不需要先执行父接口的<code>&lt;clinit&gt;()</code>方法。即，只有使用一个接口中的变量时，才会执行这个接口的<code>&lt;clinit&gt;()</code>方法。</li>
 <li>虚拟机会保证一个类的<code>&lt;clinit&gt;()</code>方法在多线程环境下中被正确的加锁、同步，如果多个线程同时去初始化一个类，那么只有一个线程会去执行这个类的<code>&lt;clinit&gt;()</code>方法，其他线程都需要阻塞等待，直到活动线程执行<code>&lt;clinit&gt;()</code>方法完毕。</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"># 代码清单#<span class="hljs-number">1</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-keyword">static</span> &#123;<br>        i = <span class="hljs-number">0</span>;                  <span class="hljs-comment">// 给变量的赋值可以正常编译过</span><br>        System.out.println(i);  <span class="hljs-comment">// 访问编辑器会报“非法向前引用”的错误</span><br>    &#125;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;           <span class="hljs-comment">// 静态语句块之后的变量</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"># 代码清单#<span class="hljs-number">1</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;
+    <span class="hljs-keyword">static</span> &#123;
+        i = <span class="hljs-number">0</span>;                  <span class="hljs-comment">// 给变量的赋值可以正常编译过</span>
+        System.out.println(i);  <span class="hljs-comment">// 访问编辑器会报“非法向前引用”的错误</span>
+    &#125;
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;           <span class="hljs-comment">// 静态语句块之后的变量</span>
+&#125;</code></pre></div>
             </div>
             <hr>
             <div>

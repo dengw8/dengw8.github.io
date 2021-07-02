@@ -229,7 +229,9 @@
             
             <div class="markdown-body">
               <h3 id="隐藏标题栏"><a href="#隐藏标题栏" class="headerlink" title="隐藏标题栏"></a>隐藏标题栏</h3><p>去掉AppcompaActivity的标题栏方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span> (getSupportActionBar()!=<span class="hljs-keyword">null</span>)&#123; <br>    getSupportActionBar().hide(); <br>&#125; <br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">if</span> (getSupportActionBar()!=<span class="hljs-keyword">null</span>)&#123; 
+    getSupportActionBar().hide(); 
+&#125;</code></pre></div>
 
 <p>总结一下：AppCompatActivity相对于Activity的主要的两点变化； </p>
 <ol>
@@ -237,34 +239,84 @@
 <li>theme主题只能用android:theme=”@style/AppTheme （appTheme主题或者其子类），而不能用android:style，即附录中的系统自带样式。 否则会提示错误：<code>Caused by: java.lang.IllegalStateException: You need to use a Theme.AppCompat theme (or descendant) with this activity.</code></li>
 </ol>
 <h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>给要消除标题栏的Activity所使用的Theme中添加以下属性：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></code></pre></div>
 
 <p>例如：让默认使用的 AppTheme 隐藏掉标题栏，</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;AppTheme&quot;</span> <span class="hljs-attr">parent</span>=<span class="hljs-string">&quot;Theme.AppCompat.Light.DarkActionBar&quot;</span>&gt;</span><span class="xml"></span><br><span class="xml">    <span class="hljs-comment">&lt;!-- Customize your theme here. --&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;colorPrimary&quot;</span>&gt;</span>@color/colorPrimary<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;colorPrimaryDark&quot;</span>&gt;</span>@color/colorPrimaryDark<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;colorAccent&quot;</span>&gt;</span>@color/colorAccent<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;AppTheme&quot;</span> <span class="hljs-attr">parent</span>=<span class="hljs-string">&quot;Theme.AppCompat.Light.DarkActionBar&quot;</span>&gt;</span><span class="xml"></span>
+<span class="xml">    <span class="hljs-comment">&lt;!-- Customize your theme here. --&gt;</span></span>
+<span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span>
+<span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;colorPrimary&quot;</span>&gt;</span>@color/colorPrimary<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span>
+<span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;colorPrimaryDark&quot;</span>&gt;</span>@color/colorPrimaryDark<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span>
+<span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;colorAccent&quot;</span>&gt;</span>@color/colorAccent<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span>
+<span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre></div>
 
 <p>这儿需要注意的使用这种方法会讲所有使用该主题的 Activity 都设置为隐藏标题栏，所以你只是想让某一个具体的 Activity 实现该效果就只修改该 Activity 的 theme 属性的值。</p>
 <h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>在清单文件AndroidManifest.xml中修改theme,使用系统自带的无标题样式，：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">activity</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:theme</span> = <span class="hljs-string">&quot;@android:style/Theme.NoTitleBar&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">category</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">activity</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:theme</span> = <span class="hljs-string">&quot;@android:style/Theme.NoTitleBar&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">category</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span></code></pre></div>
 <p>但是设置好运行之后程序有可能会直接崩掉，根据错误提示发现原因是使用这种方法的Activity不能是<code>AppCompatActivity</code>的子类，而必须是<code>Activity</code>的子类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span></code></pre></div>
 
 <h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p>上面两种方法都有一些局限，下面介绍一种更加灵活的方法，自定义Theme:</p>
 <p>在<code>res/values/styles.xml</code>文件中，添加一个自定义的主题，比如名字就叫做<code>NoTitle</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;NoTitle&quot;</span> <span class="hljs-attr">parent</span>=<span class="hljs-string">&quot;Theme.AppCompat.DayNight.NoActionBar&quot;</span>&gt;</span><span class="xml"></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;colorPrimary&quot;</span>&gt;</span>@color/colorPrimary<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;colorPrimaryDark&quot;</span>&gt;</span>@color/colorPrimaryDark<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;colorAccent&quot;</span>&gt;</span>@color/colorAccent<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span><br><span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;NoTitle&quot;</span> <span class="hljs-attr">parent</span>=<span class="hljs-string">&quot;Theme.AppCompat.DayNight.NoActionBar&quot;</span>&gt;</span><span class="xml"></span>
+<span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;windowNoTitle&quot;</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span>
+<span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;colorPrimary&quot;</span>&gt;</span>@color/colorPrimary<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span>
+<span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;colorPrimaryDark&quot;</span>&gt;</span>@color/colorPrimaryDark<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span>
+<span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">item</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;colorAccent&quot;</span>&gt;</span>@color/colorAccent<span class="hljs-tag">&lt;/<span class="hljs-name">item</span>&gt;</span></span>
+<span class="xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre></div>
 <p>然后修改你想作用于的Activity的Theme属性：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">activity</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:theme</span>=<span class="hljs-string">&quot;@style/NoTitle&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">category</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">activity</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:theme</span>=<span class="hljs-string">&quot;@style/NoTitle&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">category</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span></code></pre></div>
 
 <h4 id="方法四"><a href="#方法四" class="headerlink" title="方法四"></a>方法四</h4><p>上面介绍的这些方法都是修改xml文件实现的，下面介绍一种在java代码中修改的方法，在 <code>Activity</code>的<code>OnCreate</code>方法中的 setContentView(R.layout.activity_main); 语句前面添加如下代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);<br>    requestWindowFeature(Window.FEATURE_NO_TITLE);<br>    setContentView(R.layout.activity_main);<br>    <span class="hljs-comment">//...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;
+    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
+    setContentView(R.layout.activity_main);
+    <span class="hljs-comment">//...</span>
+&#125;</code></pre></div>
 <p>这里需要注意的是 requestWindowFeature(Window.FEATURE_NO_TITLE) 必须要在 setContentView(R.layout.activity_main) 前面，另外有一点需要注意的就是该 Activity 必须继承于 <code>Activity</code>，不能是<code>AppCompatActivity</code>，不然会没有效果。</p>
 <h3 id="隐藏状态栏"><a href="#隐藏状态栏" class="headerlink" title="隐藏状态栏"></a>隐藏状态栏</h3><h4 id="方法一-1"><a href="#方法一-1" class="headerlink" title="方法一"></a>方法一</h4><p>在<code>AndroidManifest.xml</code>文件中修改 theme 为<code>android:theme=&quot;@android:style/Theme.NoTitleBar.Fullscreen&quot;</code>, 使用这种方法的Activity的必须继承于Activity，不能是<code>AppCompatActivity</code>。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">activity</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:theme</span>=<span class="hljs-string">&quot;@android:style/Theme.NoTitleBar.Fullscreen&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">category</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">activity</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:theme</span>=<span class="hljs-string">&quot;@android:style/Theme.NoTitleBar.Fullscreen&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">category</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span></code></pre></div>
 
 <h4 id="方法二-1"><a href="#方法二-1" class="headerlink" title="方法二"></a>方法二</h4><p>在 <code>Activity</code>的<code>OnCreate</code>方法中的 setContentView(R.layout.activity_main); 语句前面添加如下代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);<br>    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,<br>            WindowManager.LayoutParams.FLAG_FULLSCREEN);<br>    setContentView(R.layout.activity_main);<br>    <span class="hljs-comment">//...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;
+    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    setContentView(R.layout.activity_main);
+    <span class="hljs-comment">//...</span>
+&#125;</code></pre></div>
 <p>这里需要注意的是这段代码必须要在 setContentView(R.layout.activity_main) 前面。</p>
 <h4 id="方法三-1"><a href="#方法三-1" class="headerlink" title="方法三"></a>方法三</h4><p>通过View的setSystemUiVisibility方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Window window = getWindow();<br>View decorView = window.getDecorView();<br>decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN<br>        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">Window window = getWindow();
+View decorView = window.getDecorView();
+decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);</code></pre></div>
 <p>其中该方法传入的参数可以为：</p>
 <ul>
 <li>View.SYSTEM_UI_FLAG_VISIBLE：显示状态栏，Activity不全屏显示(恢复到有状态的正常情况)。</li>
@@ -280,12 +332,69 @@
 <li>View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY：它的效果跟View.SYSTEM_UI_FLAG_IMMERSIVE一样。但是，它在全屏模式下，用户上下拉状态栏或者导航栏时，这些系统栏只是以半透明的状态显示出来，并且在一定时间后会自动消失。</li>
 </ul>
 <p>具体的效果参考:<a target="_blank" rel="noopener" href="https://blog.csdn.net/QQxiaoqiang1573/article/details/79867127">Android setSystemUiVisibility详解</a></p>
-<h4 id="方法四-1"><a href="#方法四-1" class="headerlink" title="方法四"></a>方法四</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/* 隐藏状态栏 */</span><br>getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN) <br><span class="hljs-comment">/* 显示状态栏 */</span><br>getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN) <br></code></pre></td></tr></table></figure>
+<h4 id="方法四-1"><a href="#方法四-1" class="headerlink" title="方法四"></a>方法四</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/* 隐藏状态栏 */</span>
+getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN) 
+<span class="hljs-comment">/* 显示状态栏 */</span>
+getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)</code></pre></div>
 
-<h3 id="实现沉浸式状态栏"><a href="#实现沉浸式状态栏" class="headerlink" title="实现沉浸式状态栏"></a>实现沉浸式状态栏</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 设置沉浸式状态栏</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setImmersiveStatebar</span><span class="hljs-params">()</span> </span>&#123;<br>    Window window = getWindow();<br>    View decorView = window.getDecorView();<br>    decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN<br>            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);<br>    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);<br>    window.setStatusBarColor(Color.TRANSPARENT);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="实现沉浸式状态栏"><a href="#实现沉浸式状态栏" class="headerlink" title="实现沉浸式状态栏"></a>实现沉浸式状态栏</h3><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 设置沉浸式状态栏</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setImmersiveStatebar</span><span class="hljs-params">()</span> </span>&#123;
+    Window window = getWindow();
+    View decorView = window.getDecorView();
+    decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+    window.setStatusBarColor(Color.TRANSPARENT);
+&#125;</code></pre></div>
 <p>上面这个方法在OnCreate中调用，并且不能够再调用隐藏状态栏的方法。</p>
 <p>我觉得这个方法是一个用来适配刘海屏的方法，当你写布局的时候就按照正常的屏幕来写布局，然后在<code>setContenView</code>的时候检测该手机是否是刘海屏，如果是的话就在所写布局的顶部添加一个刘海屏高度的透明view，这样嵌入到刘海屏的就是我们添加的这个view，防止刘海屏遮住我们实际想要显示的内容。</p>
-<h3 id="附录——Android系统自带样式-android-style"><a href="#附录——Android系统自带样式-android-style" class="headerlink" title="附录——Android系统自带样式(@android:style/)"></a>附录——Android系统自带样式(@android:style/)</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs xml">// 默认状态，即如果theme这里不填任何属性的时候，默认为Theme<br>android:theme=&quot;@android:style/Theme&quot;<br>// 背景主题的没有标题栏的样式，默认如果没有设置的话，显示黑背景<br>android:theme = &quot;@android:style/Theme.NoTitleBar&quot;<br>// 背景主题的没有标题栏且全屏的样式，默认为黑背景<br>android:theme = &quot;@android:style/Theme.NoTitleBar.Fullscreen&quot; <br>// 任何都不显示。比较适用于只是运行了activity，但未显示任何东西<br>android:theme=&quot;@android:style/Theme.NoDisplay&quot;<br>// 将一个Activity显示为对话框模式<br>android:theme = &quot;@android:style/Theme.Dialog&quot; <br> <br>//布局页面最上面不会显示 android:icon=&quot;@drawable/ic_launcher&quot;中的值和android:label=&quot;@string/app_name&quot;的值<br>android:theme=&quot;@android:style/Theme.Holo.Light.NoActionBar.Fullscreen&quot;<br><br>// 背景为白色<br>android:theme = &quot;@android:style/Theme.Light&quot; <br>// 白色背景并无标题栏<br>andorid:theme = &quot;@android:style/Theme.Light.NoTitleBar&quot; <br>// 白色背景，无标题栏，全屏<br>android:theme=&quot;@android:style/Theme.Light.NoTitleBar.Fullscreen&quot;<br>// 删除掉所有多余的窗口装饰，在一个空的矩形框中填充内容，作用范围相当于把dialog中的所有元素全部去掉，只是一个空的矩形框，且默认是light的样式<br>android:theme = &quot;@android:style/Theme.Light.Panel&quot; <br><br>// 背景为黑色<br>android:theme = &quot;@android:style/Theme.Black&quot; <br>// 黑色背景并无标题栏<br>android:theme = &quot;@android:style/Theme.Black.NoTitleBar&quot; <br>// 黑色背景，无标题栏，全屏<br>android:theme = &quot;@android:style/Theme.Black.NoTitleBar.Fullscreen&quot; <br><br>// 用系统桌面为应用程序背景<br>android:theme = &quot;@android:style/Theme.Wallpaper&quot; <br>// 使用墙纸做主题，默认是使用将上一个界面调暗之后作为主题<br>android:theme=&quot;@android:style/Theme.WallpaperSettings&quot;<br>// 用系统桌面为应用程序背景，且无标题栏<br>android:theme = &quot;@android:style/Theme.Wallpaper.NoTitleBar&quot; <br>// 用系统桌面为应用程序背景，无标题栏，全屏<br>android:theme = &quot;@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen&quot; <br><br>// 透明状态下的背景，将运行此activity之前的屏幕作为半透明状态作为此activity运行时的样式。<br>android:theme = &quot;@android:style/Theme.Translucent&quot; <br>// 透明背景并无标题<br>android:theme = &quot;@android:style/Theme.Translucent.NoTitleBar&quot; <br>// 透明背景并无标题，全屏<br>android:theme = &quot;@android:style/Theme.Translucent.NoTitleBar.Fullscreen&quot; <br>// 删除掉所有多余的窗口装饰，在一个空的矩形框中填充内容，作用范围相当于把dialog中的所有元素全部去掉，只是一个空的矩形框，且此为默认的样式<br>android:theme = &quot;@android:style/Theme.Panel&quot; <br></code></pre></td></tr></table></figure>
+<h3 id="附录——Android系统自带样式-android-style"><a href="#附录——Android系统自带样式-android-style" class="headerlink" title="附录——Android系统自带样式(@android:style/)"></a>附录——Android系统自带样式(@android:style/)</h3><div class="code-wrapper"><pre><code class="hljs xml">// 默认状态，即如果theme这里不填任何属性的时候，默认为Theme
+android:theme=&quot;@android:style/Theme&quot;
+// 背景主题的没有标题栏的样式，默认如果没有设置的话，显示黑背景
+android:theme = &quot;@android:style/Theme.NoTitleBar&quot;
+// 背景主题的没有标题栏且全屏的样式，默认为黑背景
+android:theme = &quot;@android:style/Theme.NoTitleBar.Fullscreen&quot; 
+// 任何都不显示。比较适用于只是运行了activity，但未显示任何东西
+android:theme=&quot;@android:style/Theme.NoDisplay&quot;
+// 将一个Activity显示为对话框模式
+android:theme = &quot;@android:style/Theme.Dialog&quot; 
+ 
+//布局页面最上面不会显示 android:icon=&quot;@drawable/ic_launcher&quot;中的值和android:label=&quot;@string/app_name&quot;的值
+android:theme=&quot;@android:style/Theme.Holo.Light.NoActionBar.Fullscreen&quot;
+
+// 背景为白色
+android:theme = &quot;@android:style/Theme.Light&quot; 
+// 白色背景并无标题栏
+andorid:theme = &quot;@android:style/Theme.Light.NoTitleBar&quot; 
+// 白色背景，无标题栏，全屏
+android:theme=&quot;@android:style/Theme.Light.NoTitleBar.Fullscreen&quot;
+// 删除掉所有多余的窗口装饰，在一个空的矩形框中填充内容，作用范围相当于把dialog中的所有元素全部去掉，只是一个空的矩形框，且默认是light的样式
+android:theme = &quot;@android:style/Theme.Light.Panel&quot; 
+
+// 背景为黑色
+android:theme = &quot;@android:style/Theme.Black&quot; 
+// 黑色背景并无标题栏
+android:theme = &quot;@android:style/Theme.Black.NoTitleBar&quot; 
+// 黑色背景，无标题栏，全屏
+android:theme = &quot;@android:style/Theme.Black.NoTitleBar.Fullscreen&quot; 
+
+// 用系统桌面为应用程序背景
+android:theme = &quot;@android:style/Theme.Wallpaper&quot; 
+// 使用墙纸做主题，默认是使用将上一个界面调暗之后作为主题
+android:theme=&quot;@android:style/Theme.WallpaperSettings&quot;
+// 用系统桌面为应用程序背景，且无标题栏
+android:theme = &quot;@android:style/Theme.Wallpaper.NoTitleBar&quot; 
+// 用系统桌面为应用程序背景，无标题栏，全屏
+android:theme = &quot;@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen&quot; 
+
+// 透明状态下的背景，将运行此activity之前的屏幕作为半透明状态作为此activity运行时的样式。
+android:theme = &quot;@android:style/Theme.Translucent&quot; 
+// 透明背景并无标题
+android:theme = &quot;@android:style/Theme.Translucent.NoTitleBar&quot; 
+// 透明背景并无标题，全屏
+android:theme = &quot;@android:style/Theme.Translucent.NoTitleBar.Fullscreen&quot; 
+// 删除掉所有多余的窗口装饰，在一个空的矩形框中填充内容，作用范围相当于把dialog中的所有元素全部去掉，只是一个空的矩形框，且此为默认的样式
+android:theme = &quot;@android:style/Theme.Panel&quot;</code></pre></div>
             </div>
             <hr>
             <div>

@@ -236,28 +236,226 @@
 <p>我最开始以为model层就放一些bean类就好了，后来发现其实不是。我认为model层更准确的叫法叫data层，是用来和数据打交道的，比如请求数据，处理数据的。当你确定好有哪些和数据相关的方法之后，就可以在model层接口中声明相应的函数，然后根据函数的返回情况设置好相应的回调函数。然后在Presenter层会获得当前model接口的一个引用，这样就能调用接口的方法进行数据处理了。</p>
 <p>一个访问网络请求数据的接口实现如下：</p>
 <p>根据用户名访问网络请求数据，回调函数接口为GetUserInfoCallback</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.duang1996.githubfetcher.Main.model;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Created by duang1996 on 2018/4/17.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IMainModel</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getUserInfo</span><span class="hljs-params">(String userName, GetUserInfoCallback getUserInfoCallback)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.duang1996.githubfetcher.Main.model;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Created by duang1996 on 2018/4/17.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IMainModel</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getUserInfo</span><span class="hljs-params">(String userName, GetUserInfoCallback getUserInfoCallback)</span></span>;
+&#125;</code></pre></div>
 
 <p>回调函数的实现，因为我是使用Retrofit请求数据的，这里返回情况有三种</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.duang1996.githubfetcher.Main.model;<br><br><span class="hljs-keyword">import</span> java.util.Map;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Created by duang1996 on 2018/4/17.</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GetUserInfoCallback</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GetSuccess</span><span class="hljs-params">(Map&lt;String, Object&gt; tem)</span></span>;    <span class="hljs-comment">// 对应于onSuccess()</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GetComplete</span><span class="hljs-params">()</span></span>;                          <span class="hljs-comment">// 对应于onNext</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GetFailed</span><span class="hljs-params">()</span></span>;                            <span class="hljs-comment">//对应于onError</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.duang1996.githubfetcher.Main.model;
+
+<span class="hljs-keyword">import</span> java.util.Map;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Created by duang1996 on 2018/4/17.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GetUserInfoCallback</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GetSuccess</span><span class="hljs-params">(Map&lt;String, Object&gt; tem)</span></span>;    <span class="hljs-comment">// 对应于onSuccess()</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GetComplete</span><span class="hljs-params">()</span></span>;                          <span class="hljs-comment">// 对应于onNext</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GetFailed</span><span class="hljs-params">()</span></span>;                            <span class="hljs-comment">//对应于onError</span>
+&#125;</code></pre></div>
 
 <p>实现model接口，实现了具体的方法，用来实例化接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainModel</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IMainModel</span></span>&#123;<br>    <span class="hljs-keyword">private</span> GitHubService gitHubService = <span class="hljs-keyword">new</span> ServiceFactory().getGitHubService();;<br>    <span class="hljs-keyword">private</span> Subscriber&lt;User&gt; subscriber;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getUserInfo</span><span class="hljs-params">(String userName, <span class="hljs-keyword">final</span> GetUserInfoCallback getUserInfoCallback)</span> </span>&#123;<br>        subscriber = <span class="hljs-keyword">new</span> Subscriber&lt;User&gt;() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCompleted</span><span class="hljs-params">()</span> </span>&#123;<br>                getUserInfoCallback.GetComplete();   <span class="hljs-comment">//调动回调函数接口中的方法，下同</span><br>            &#125;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onError</span><span class="hljs-params">(Throwable e)</span> </span>&#123;<br>                getUserInfoCallback.GetFailed();<br>            &#125;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNext</span><span class="hljs-params">(User user)</span> </span>&#123;<br>                Map&lt;String, Object&gt; tem = <span class="hljs-keyword">new</span> LinkedHashMap&lt;&gt;();<br>                tem.put(<span class="hljs-string">&quot;name&quot;</span>, user.getLogin());<br>                tem.put(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;id: &quot;</span> + user.getId());<br>                tem.put(<span class="hljs-string">&quot;blog&quot;</span>, <span class="hljs-string">&quot;blog: &quot;</span> + user.getBlog());<br>                getUserInfoCallback.GetSuccess(tem);<br>            &#125;<br>        &#125;;<br>        gitHubService.getUser(userName)<br>                .subscribeOn(Schedulers.io())<br>                .observeOn(AndroidSchedulers.mainThread())<br>                .subscribe(subscriber);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainModel</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IMainModel</span></span>&#123;
+    <span class="hljs-keyword">private</span> GitHubService gitHubService = <span class="hljs-keyword">new</span> ServiceFactory().getGitHubService();;
+    <span class="hljs-keyword">private</span> Subscriber&lt;User&gt; subscriber;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getUserInfo</span><span class="hljs-params">(String userName, <span class="hljs-keyword">final</span> GetUserInfoCallback getUserInfoCallback)</span> </span>&#123;
+        subscriber = <span class="hljs-keyword">new</span> Subscriber&lt;User&gt;() &#123;
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCompleted</span><span class="hljs-params">()</span> </span>&#123;
+                getUserInfoCallback.GetComplete();   <span class="hljs-comment">//调动回调函数接口中的方法，下同</span>
+            &#125;
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onError</span><span class="hljs-params">(Throwable e)</span> </span>&#123;
+                getUserInfoCallback.GetFailed();
+            &#125;
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNext</span><span class="hljs-params">(User user)</span> </span>&#123;
+                Map&lt;String, Object&gt; tem = <span class="hljs-keyword">new</span> LinkedHashMap&lt;&gt;();
+                tem.put(<span class="hljs-string">&quot;name&quot;</span>, user.getLogin());
+                tem.put(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;id: &quot;</span> + user.getId());
+                tem.put(<span class="hljs-string">&quot;blog&quot;</span>, <span class="hljs-string">&quot;blog: &quot;</span> + user.getBlog());
+                getUserInfoCallback.GetSuccess(tem);
+            &#125;
+        &#125;;
+        gitHubService.getUser(userName)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    &#125;
+&#125;</code></pre></div>
 
 <p><strong>View层</strong><br>View层用来处理UI界面相关的逻辑，作用效果是改变UI视图，一般这个接口的方法最开始不太好定义，因为不知道具体有哪些地方需要更改UI，不过不用着急，有个笨办法，当你需要一个就定义一个。不过这种方法对于接口的复用不太友好，而复用又是MVP很重要的一个特性。当你水平够高了，项目经验足够丰富的时候就可以一眼看穿，事先定义好啦~</p>
 <p>继续来样例，View接口的定义</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.duang1996.githubfetcher.Main.view;<br><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Created by duang1996 on 2018/4/17.</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IMainView</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">showProcessBar</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">hideProcessBar</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">toRepoActivity</span><span class="hljs-params">(String userName)</span></span>;   <span class="hljs-comment">//其实这个方法是否放在这儿还有待考虑</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">notifyItemInserted</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.duang1996.githubfetcher.Main.view;
+
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Created by duang1996 on 2018/4/17.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IMainView</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">showProcessBar</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">hideProcessBar</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">toRepoActivity</span><span class="hljs-params">(String userName)</span></span>;   <span class="hljs-comment">//其实这个方法是否放在这儿还有待考虑</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">notifyItemInserted</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;
+&#125;</code></pre></div>
 
 <p>View接口的实现：<br>看网上相关的教程不难发现。View接口的具体实现是在Activity中操作，我刚开始看到的时候还在想，为什么View接口的不单独新建一个类来实现View接口中的方法呢，凭什么其他两种接口就可以有单独的类来实现就View就没有呢？你们先想一下能够想到答案吗？</p>
 <p>哈哈，机智的你应该已经想到了。我的理解是这样的。首先，View层是用来干嘛的，是用来更新UI的，准确的说是用来改变布局控件的外观的，那这些控件是在哪儿实例化的呢，就是在Activity中，所以View接口是在activity中实现的，方便方法直接访问这些控件。</p>
 <p>说完了就看一下view接口的具体实现吧</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IMainView</span></span>&#123;<br>    <span class="hljs-keyword">private</span> EditText input;<br>    <span class="hljs-keyword">private</span> Button clearBtn;<br>    <span class="hljs-keyword">private</span> Button fetchBtn;<br>    <span class="hljs-keyword">private</span> ProgressBar progressBar;<br><br>    <span class="hljs-keyword">private</span> RecyclerView usersView;<br>    <span class="hljs-keyword">private</span> CardAdapter cardAdapter;<br><br>    <span class="hljs-keyword">private</span> MainPresenterCompl mainPresenterCompl;  <span class="hljs-comment">//获取一个继承自presenter接口的实例</span><br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br><br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">         *初始化元素</span><br><span class="hljs-comment">         */</span><br>        initViews();<br>    &#125;<br>	<br>	......<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showProcessBar</span><span class="hljs-params">()</span> </span>&#123;<br>        progressBar.setVisibility(View.VISIBLE);<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">hideProcessBar</span><span class="hljs-params">()</span> </span>&#123;<br>        progressBar.setVisibility(View.GONE);<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">toRepoActivity</span><span class="hljs-params">(String userName)</span></span>&#123;<br>        Intent intent = <span class="hljs-keyword">new</span> Intent(MainActivity.<span class="hljs-keyword">this</span>, RepoActivity.class);<br>        intent.putExtra(<span class="hljs-string">&quot;login&quot;</span>, userName);<br>        startActivity(intent);<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">notifyItemInserted</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;<br>        cardAdapter.notifyItemInserted(i);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IMainView</span></span>&#123;
+    <span class="hljs-keyword">private</span> EditText input;
+    <span class="hljs-keyword">private</span> Button clearBtn;
+    <span class="hljs-keyword">private</span> Button fetchBtn;
+    <span class="hljs-keyword">private</span> ProgressBar progressBar;
+
+    <span class="hljs-keyword">private</span> RecyclerView usersView;
+    <span class="hljs-keyword">private</span> CardAdapter cardAdapter;
+
+    <span class="hljs-keyword">private</span> MainPresenterCompl mainPresenterCompl;  <span class="hljs-comment">//获取一个继承自presenter接口的实例</span>
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        <span class="hljs-comment">/*</span>
+<span class="hljs-comment">         *初始化元素</span>
+<span class="hljs-comment">         */</span>
+        initViews();
+    &#125;
+	
+	......
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showProcessBar</span><span class="hljs-params">()</span> </span>&#123;
+        progressBar.setVisibility(View.VISIBLE);
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">hideProcessBar</span><span class="hljs-params">()</span> </span>&#123;
+        progressBar.setVisibility(View.GONE);
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">toRepoActivity</span><span class="hljs-params">(String userName)</span></span>&#123;
+        Intent intent = <span class="hljs-keyword">new</span> Intent(MainActivity.<span class="hljs-keyword">this</span>, RepoActivity.class);
+        intent.putExtra(<span class="hljs-string">&quot;login&quot;</span>, userName);
+        startActivity(intent);
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">notifyItemInserted</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;
+        cardAdapter.notifyItemInserted(i);
+    &#125;
+&#125;</code></pre></div>
 
 <h3 id="Presenter层"><a href="#Presenter层" class="headerlink" title="Presenter层"></a>Presenter层</h3><p>Presenter是Model和View之间交互的桥梁，我的理解是将model层返回的数据传递给View层，然后更新UI界面，此外还可以收到view层UI上的反馈命令后分发处理逻辑，充当一个业务逻辑层的额角色</p>
 <p>一个Presenter接口定义如下，里面的函数包括一些业务逻辑函数以及对model层函数的包装</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.duang1996.githubfetcher.Main.presenter;<br><br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.Map;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Created by duang1996 on 2018/4/17.</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IMainPresenter</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getUserInfo</span><span class="hljs-params">(String str)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setLongClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">destorySubscription</span><span class="hljs-params">()</span></span>;<br>    List&lt;Map&lt;String, Object&gt;&gt; getUserList();<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.duang1996.githubfetcher.Main.presenter;
+
+<span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.Map;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Created by duang1996 on 2018/4/17.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IMainPresenter</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getUserInfo</span><span class="hljs-params">(String str)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setLongClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">destorySubscription</span><span class="hljs-params">()</span></span>;
+    List&lt;Map&lt;String, Object&gt;&gt; getUserList();
+&#125;</code></pre></div>
 <p>presenter接口的具体实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//view 与model之间的桥梁</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainPresenterCompl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IMainPresenter</span></span>&#123;<br>    <span class="hljs-keyword">private</span> IMainModel iMainModel;  <span class="hljs-comment">// 获取model接口的引用</span><br>    <span class="hljs-keyword">private</span> IMainView iMainView;  <span class="hljs-comment">// 获取view接口的引用</span><br><br>    <span class="hljs-keyword">private</span> List&lt;Map&lt;String, Object&gt;&gt; userList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MainPresenterCompl</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.iMainModel = <span class="hljs-keyword">new</span> MainModel();<br>    &#125;<br><br>     <span class="hljs-comment">//因为要获取Activity的引用，结合下面的方法可以防止引用空指针</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attachView</span><span class="hljs-params">(IMainView iMainView)</span> </span>&#123;  <br>        <span class="hljs-keyword">this</span>.iMainView = iMainView;<br>    &#125;<br>	<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isViewAttached</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> iMainView != <span class="hljs-keyword">null</span>;<br>    &#125;<br>	<span class="hljs-comment">// 解除引用，防止内存泄漏</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">detachView</span><span class="hljs-params">()</span> </span>&#123; <br>        <span class="hljs-keyword">this</span>.iMainView= <span class="hljs-keyword">null</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getUserInfo</span><span class="hljs-params">(String str)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;<br>            iMainView.showProcessBar();<br>            iMainModel.getUserInfo(str, <span class="hljs-keyword">new</span> GetUserInfoCallback() &#123;  <br>			    <span class="hljs-comment">//model 层中回调接口的具体实现</span><br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GetSuccess</span><span class="hljs-params">(Map&lt;String, Object&gt; tem)</span> </span>&#123;<br>                    userList.add(tem);<br>                    iMainView.notifyItemInserted(userList.size() - <span class="hljs-number">1</span>);<br>                &#125;<br><br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GetComplete</span><span class="hljs-params">()</span> </span>&#123;<br>                    iMainView.hideProcessBar();<br>                &#125;<br><br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GetFailed</span><span class="hljs-params">()</span> </span>&#123;<br><br>                &#125;<br>            &#125;);<br>        &#125;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;<br>            Map&lt;String, Object&gt; tem = userList.get(i);<br>            String login = tem.get(<span class="hljs-string">&quot;name&quot;</span>).toString();<br>            iMainView.toRepoActivity(login);<br>        &#125;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setLongClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;<br>            userList.remove(i);<br>        &#125;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;<br>            userList.clear();<br>        &#125;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> List&lt;Map&lt;String, Object&gt;&gt; getUserList() &#123;<br>        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;<br>            <span class="hljs-keyword">return</span> userList;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destorySubscription</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;<br>            iMainModel.destorySubscription();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//view 与model之间的桥梁</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainPresenterCompl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IMainPresenter</span></span>&#123;
+    <span class="hljs-keyword">private</span> IMainModel iMainModel;  <span class="hljs-comment">// 获取model接口的引用</span>
+    <span class="hljs-keyword">private</span> IMainView iMainView;  <span class="hljs-comment">// 获取view接口的引用</span>
+
+    <span class="hljs-keyword">private</span> List&lt;Map&lt;String, Object&gt;&gt; userList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MainPresenterCompl</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">this</span>.iMainModel = <span class="hljs-keyword">new</span> MainModel();
+    &#125;
+
+     <span class="hljs-comment">//因为要获取Activity的引用，结合下面的方法可以防止引用空指针</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attachView</span><span class="hljs-params">(IMainView iMainView)</span> </span>&#123;  
+        <span class="hljs-keyword">this</span>.iMainView = iMainView;
+    &#125;
+	
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isViewAttached</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">return</span> iMainView != <span class="hljs-keyword">null</span>;
+    &#125;
+	<span class="hljs-comment">// 解除引用，防止内存泄漏</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">detachView</span><span class="hljs-params">()</span> </span>&#123; 
+        <span class="hljs-keyword">this</span>.iMainView= <span class="hljs-keyword">null</span>;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getUserInfo</span><span class="hljs-params">(String str)</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;
+            iMainView.showProcessBar();
+            iMainModel.getUserInfo(str, <span class="hljs-keyword">new</span> GetUserInfoCallback() &#123;  
+			    <span class="hljs-comment">//model 层中回调接口的具体实现</span>
+                <span class="hljs-meta">@Override</span>
+                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GetSuccess</span><span class="hljs-params">(Map&lt;String, Object&gt; tem)</span> </span>&#123;
+                    userList.add(tem);
+                    iMainView.notifyItemInserted(userList.size() - <span class="hljs-number">1</span>);
+                &#125;
+
+                <span class="hljs-meta">@Override</span>
+                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GetComplete</span><span class="hljs-params">()</span> </span>&#123;
+                    iMainView.hideProcessBar();
+                &#125;
+
+                <span class="hljs-meta">@Override</span>
+                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GetFailed</span><span class="hljs-params">()</span> </span>&#123;
+
+                &#125;
+            &#125;);
+        &#125;
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;
+            Map&lt;String, Object&gt; tem = userList.get(i);
+            String login = tem.get(<span class="hljs-string">&quot;name&quot;</span>).toString();
+            iMainView.toRepoActivity(login);
+        &#125;
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setLongClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;
+            userList.remove(i);
+        &#125;
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;
+            userList.clear();
+        &#125;
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> List&lt;Map&lt;String, Object&gt;&gt; getUserList() &#123;
+        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;
+            <span class="hljs-keyword">return</span> userList;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destorySubscription</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;
+            iMainModel.destorySubscription();
+        &#125;
+    &#125;
+&#125;</code></pre></div>
 
 <h3 id="MVP各层之间的引用关系"><a href="#MVP各层之间的引用关系" class="headerlink" title="MVP各层之间的引用关系"></a>MVP各层之间的引用关系</h3><p><img src="http://dengw.xyz/hexo-blog/180420/HGCGE61a88.png" srcset="/img/loading.gif" lazyload alt="层关系引用图"><br><strong>Presenterc层</strong><br>Presenter持有model接口和view接口的引用，这样也很好理解，Presenter充当一个桥梁的角色，肯定要能够使用到两个接口中的方法</p>
 <p><strong>View层</strong><br>View层持有presenter层的接口，presenter层需要处理一些UI界面上的业务逻辑，因此将presenter接口暴露给view层方便调用。</p>

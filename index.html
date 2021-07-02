@@ -194,7 +194,10 @@
             
           
           Mac shell常用快捷键作为一个服务端开发，经常和命令行打交道，觉得还是有必要了解以下在终端中一些常用的快捷键，今天就趁着周末总结学习一下。
-12345678910111213141516171819202122command + t               新建标签command + n               新建窗口command + d               新建标签并垂
+command + t               新建标签
+command + n               新建窗口
+command + d               新建标签并垂直分隔当前窗口
+command + Shift + d      
         </a>
       </p>
 
@@ -246,7 +249,8 @@
           
           最近在学习php的时候发现在php中进行判空操作的时候使用的是一个empty()函数。刚看的时候觉得这个方法很简单，就是判断变量对应类型的空值，后来在使用的时候发现自己想的太简单了，这个方法还是很有学问的，这里记录一下这个方法的详细用法，以及准备对比整理两个相似的方法isset()以及is_null()方法。
 empty()函数empty()方法的定义以及注释如下：
-123456789101112
+/**
+ * Determin
         </a>
       </p>
 
@@ -401,11 +405,11 @@ empty()函数empty()方法的定义以及注释如下：
           
             
           
-          登录数据库登录本地数据库1mysql -u root -p
+          登录数据库登录本地数据库mysql -u root -p
 回车后输入密码; 也可以p后不加空格，直接加密码，回车登录。
-登录远程数据库1mysql -uusername -ppwd -Pport -hhost
+登录远程数据库mysql -uusername -ppwd -Pport -hhost
 例如，要登陆一个host为172.18.182.21，端口为8080，username为admin、密码为admin123的远程数据库：
-1mysql -uadmin -padmin123
+mysql -uadmin -padmin123 -P
         </a>
       </p>
 
@@ -611,12 +615,14 @@ empty()函数empty()方法的定义以及注释如下：
             
           
           隐藏标题栏去掉AppcompaActivity的标题栏方法：
-123if (getSupportActionBar()!=null)&#123;     getSupportActionBar().hide(); &#125; 
+if (getSupportActionBar()!=null)&#123; 
+    getSupportActionBar().hide(); 
+&#125;
 
 总结一下：AppCompatActivity相对于Activity的主要的两点变化； 
 
 主界面带有toolbar的标题栏； 
-theme主题只能用android:th
+theme主题只能用android:them
         </a>
       </p>
 

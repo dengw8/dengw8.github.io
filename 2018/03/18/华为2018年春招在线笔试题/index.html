@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      974 字
+      973 字
     </span>
   
 
@@ -232,10 +232,90 @@
 <h3 id="大数乘法"><a href="#大数乘法" class="headerlink" title="大数乘法"></a>大数乘法</h3><blockquote>
 <p>问题的描述很简单，就是实现两个带符号大数的乘法。具体的思路如下：<br>因为涉及到大数，所以肯定不能够使用常规的运算方法，即使使用 long long类型的数据还是会超出其表示范围。一种可行的方法就是使用字符串来表示一串数字，然后自己来通过字符操作来实现乘法的具体的过程：一个数的每一位分别乘以另外一个数，在乘的过程中注意移位的变化，最后再将所有的中间结果按照正确的位置相加得到最后的结果。其实就是我们将我们小学数学乘法的过程化，hahaha……但是这样算法的事件复杂度比较高，刚刚看网上有时间复杂度为O(lgn)的方法.</p>
 </blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span>                                                                                                                          </span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function">string  <span class="hljs-title">Large_Multiplication</span><span class="hljs-params">(string str1, string str2)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> len1 = str1.<span class="hljs-built_in">length</span>();<br>    <span class="hljs-keyword">int</span> len2 = str2.<span class="hljs-built_in">length</span>();<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">     *两个数A和B，A的位数为m，B的位数为n，</span><br><span class="hljs-comment">     *则乘积结果要么为 m+n-1位（最高位无进位）或者为 m+n位（最高位有进位）</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function">string <span class="hljs-title">re</span><span class="hljs-params">(len1 + len2, <span class="hljs-string">&#x27;0&#x27;</span>)</span></span>;<br>    <span class="hljs-comment">//使用第二个数的每一位乘以第一个数得到中间结果</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = len2 - <span class="hljs-number">1</span>;  i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>        <span class="hljs-keyword">int</span> carry_pre = <span class="hljs-number">0</span>;  <span class="hljs-comment">//每一位的乘法中向下一位的进位</span><br>        <span class="hljs-keyword">int</span> carry_add = <span class="hljs-number">0</span>;  <span class="hljs-comment">//计算中间和时向下一位的进位</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = len1 - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span>; j--) &#123;<br>            <span class="hljs-keyword">int</span> num = (str2[i] - <span class="hljs-string">&#x27;0&#x27;</span>) * (str1[j] - <span class="hljs-string">&#x27;0&#x27;</span>) + carry_pre;<br>            carry_pre = num / <span class="hljs-number">10</span>;<br>            num %= <span class="hljs-number">10</span>;<br>            <br>            <span class="hljs-comment">//计算竖向中间和，填充结果的i+j+1位</span><br>            <span class="hljs-keyword">int</span> sum = (re[i+j+<span class="hljs-number">1</span>] - <span class="hljs-string">&#x27;0&#x27;</span>) + num + carry_add;<br>            re[i+j+<span class="hljs-number">1</span>] = sum % <span class="hljs-number">10</span> + <span class="hljs-string">&#x27;0&#x27;</span>;<br>            carry_add = sum / <span class="hljs-number">10</span>;<br>        &#125;<br>        re[i] += carry_add + carry_pre;  <span class="hljs-comment">//处理进位</span><br>    &#125;<br>    <br>    <span class="hljs-keyword">if</span>(re[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;0&#x27;</span>) &#123;  <span class="hljs-comment">//判断乘积的位数</span><br>        re = re.<span class="hljs-built_in">substr</span>(<span class="hljs-number">1</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> re;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    string num1, num2;<br>    cin&gt;&gt;num1&gt;&gt;num2;<br>    <span class="hljs-keyword">if</span>(num1[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;0&#x27;</span> || num2[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;0&#x27;</span>) &#123;<br>        cout&lt;&lt;<span class="hljs-number">0</span>&lt;&lt;endl;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">int</span> sign1 = <span class="hljs-number">1</span>, sign2 = <span class="hljs-number">1</span>;  <span class="hljs-comment">//记录两个数的正负号</span><br>        string a, b;   <span class="hljs-comment">//a, b参数用于去符号乘法</span><br>        <span class="hljs-keyword">if</span>(num1[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;-&#x27;</span>) &#123;<br>            sign1 = <span class="hljs-number">-1</span>;<br>            a = num1.<span class="hljs-built_in">substr</span>(<span class="hljs-number">1</span>);<br>        &#125; <span class="hljs-keyword">else</span>  &#123;<br>            a = num1;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(num2[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;-&#x27;</span>) &#123;<br>            sign2 = <span class="hljs-number">-1</span>;<br>            b = num2.<span class="hljs-built_in">substr</span>(<span class="hljs-number">1</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            b= num2;<br>        &#125;<br><br>        string product = <span class="hljs-built_in">Large_Multiplication</span>(a, b);<br><br>        <span class="hljs-keyword">if</span>(sign1 * sign2 == <span class="hljs-number">-1</span>) product = <span class="hljs-string">&quot;-&quot;</span> + product;<br>        cout&lt;&lt;product&lt;&lt;endl;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span>                                                                                                                          </span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function">string  <span class="hljs-title">Large_Multiplication</span><span class="hljs-params">(string str1, string str2)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> len1 = str1.<span class="hljs-built_in">length</span>();
+    <span class="hljs-keyword">int</span> len2 = str2.<span class="hljs-built_in">length</span>();
+    <span class="hljs-comment">/*</span>
+<span class="hljs-comment">     *两个数A和B，A的位数为m，B的位数为n，</span>
+<span class="hljs-comment">     *则乘积结果要么为 m+n-1位（最高位无进位）或者为 m+n位（最高位有进位）</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function">string <span class="hljs-title">re</span><span class="hljs-params">(len1 + len2, <span class="hljs-string">&#x27;0&#x27;</span>)</span></span>;
+    <span class="hljs-comment">//使用第二个数的每一位乘以第一个数得到中间结果</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = len2 - <span class="hljs-number">1</span>;  i &gt;= <span class="hljs-number">0</span>; i--) &#123;
+        <span class="hljs-keyword">int</span> carry_pre = <span class="hljs-number">0</span>;  <span class="hljs-comment">//每一位的乘法中向下一位的进位</span>
+        <span class="hljs-keyword">int</span> carry_add = <span class="hljs-number">0</span>;  <span class="hljs-comment">//计算中间和时向下一位的进位</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = len1 - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span>; j--) &#123;
+            <span class="hljs-keyword">int</span> num = (str2[i] - <span class="hljs-string">&#x27;0&#x27;</span>) * (str1[j] - <span class="hljs-string">&#x27;0&#x27;</span>) + carry_pre;
+            carry_pre = num / <span class="hljs-number">10</span>;
+            num %= <span class="hljs-number">10</span>;
+            
+            <span class="hljs-comment">//计算竖向中间和，填充结果的i+j+1位</span>
+            <span class="hljs-keyword">int</span> sum = (re[i+j+<span class="hljs-number">1</span>] - <span class="hljs-string">&#x27;0&#x27;</span>) + num + carry_add;
+            re[i+j+<span class="hljs-number">1</span>] = sum % <span class="hljs-number">10</span> + <span class="hljs-string">&#x27;0&#x27;</span>;
+            carry_add = sum / <span class="hljs-number">10</span>;
+        &#125;
+        re[i] += carry_add + carry_pre;  <span class="hljs-comment">//处理进位</span>
+    &#125;
+    
+    <span class="hljs-keyword">if</span>(re[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;0&#x27;</span>) &#123;  <span class="hljs-comment">//判断乘积的位数</span>
+        re = re.<span class="hljs-built_in">substr</span>(<span class="hljs-number">1</span>);
+    &#125;
+    <span class="hljs-keyword">return</span> re;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+    string num1, num2;
+    cin&gt;&gt;num1&gt;&gt;num2;
+    <span class="hljs-keyword">if</span>(num1[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;0&#x27;</span> || num2[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;0&#x27;</span>) &#123;
+        cout&lt;&lt;<span class="hljs-number">0</span>&lt;&lt;endl;
+    &#125;
+    <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-keyword">int</span> sign1 = <span class="hljs-number">1</span>, sign2 = <span class="hljs-number">1</span>;  <span class="hljs-comment">//记录两个数的正负号</span>
+        string a, b;   <span class="hljs-comment">//a, b参数用于去符号乘法</span>
+        <span class="hljs-keyword">if</span>(num1[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;-&#x27;</span>) &#123;
+            sign1 = <span class="hljs-number">-1</span>;
+            a = num1.<span class="hljs-built_in">substr</span>(<span class="hljs-number">1</span>);
+        &#125; <span class="hljs-keyword">else</span>  &#123;
+            a = num1;
+        &#125;
+        <span class="hljs-keyword">if</span>(num2[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;-&#x27;</span>) &#123;
+            sign2 = <span class="hljs-number">-1</span>;
+            b = num2.<span class="hljs-built_in">substr</span>(<span class="hljs-number">1</span>);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            b= num2;
+        &#125;
+
+        string product = <span class="hljs-built_in">Large_Multiplication</span>(a, b);
+
+        <span class="hljs-keyword">if</span>(sign1 * sign2 == <span class="hljs-number">-1</span>) product = <span class="hljs-string">&quot;-&quot;</span> + product;
+        cout&lt;&lt;product&lt;&lt;endl;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
 
 <p>另外一种思路：上面一种思路主要是面上过程化，需要注意的细节更多。下面这种思路更过的是面向结果，不要考虑那么多细节，要更简单一点，传入的参数还是要先把符号处理了。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">Large_Multiplication</span><span class="hljs-params">(string num1, string num2)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> len1 = num1.<span class="hljs-built_in">length</span>();<br>    <span class="hljs-keyword">int</span> len2 = num2.<span class="hljs-built_in">length</span>();<br>    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">re</span> <span class="hljs-params">(len1 + len2, <span class="hljs-number">0</span>)</span></span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = len2 - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = len1 - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span>; j--) &#123;<br>			re[i + j + <span class="hljs-number">1</span>] += (num2[i] - <span class="hljs-string">&#x27;0&#x27;</span>) * (num1[j] - <span class="hljs-string">&#x27;0&#x27;</span>);<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">int</span> carry = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = re.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>		<span class="hljs-keyword">int</span> sum = re[i] + carry;<br>		carry = sum / <span class="hljs-number">10</span>;<br>		re[i] = sum % <span class="hljs-number">10</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> re;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">Large_Multiplication</span><span class="hljs-params">(string num1, string num2)</span> </span>&#123;
+    <span class="hljs-keyword">int</span> len1 = num1.<span class="hljs-built_in">length</span>();
+    <span class="hljs-keyword">int</span> len2 = num2.<span class="hljs-built_in">length</span>();
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">re</span> <span class="hljs-params">(len1 + len2, <span class="hljs-number">0</span>)</span></span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = len2 - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = len1 - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span>; j--) &#123;
+			re[i + j + <span class="hljs-number">1</span>] += (num2[i] - <span class="hljs-string">&#x27;0&#x27;</span>) * (num1[j] - <span class="hljs-string">&#x27;0&#x27;</span>);
+		&#125;
+	&#125;
+	<span class="hljs-keyword">int</span> carry = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = re.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;
+		<span class="hljs-keyword">int</span> sum = re[i] + carry;
+		carry = sum / <span class="hljs-number">10</span>;
+		re[i] = sum % <span class="hljs-number">10</span>;
+	&#125;
+	<span class="hljs-keyword">return</span> re;
+&#125;</code></pre></div>
 <p>这道题按到来说应该不难，但是上次做大数的运算应该还是大一的时候了，在那之后就没遇到过了，在准备数据结构和算法的时候也没注意到这个部分，完全没有准备，所以还是花了挺多时间的。这也说明了一个问题，还是自己做的题太少了，对于知识点的掌握不好，再加上理解的不够深刻，所以很难想到解决方法。后来在自己试了一下大数加法之后才摸索+回忆起大数乘法的算法。</p>
 
             </div>

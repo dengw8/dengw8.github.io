@@ -231,20 +231,67 @@
               <p>Retrofit 是Square公司生产的一款基于OkHttp的，遵循RESTful API设计风格的开源网络请求库，目前也是Android领域最热门请求库。<br>Retrofit 通过注解配置网络请求参数，包括请求参数，请求方法，请求头以及返回参数等。并且支持同步、异步的网络请求方式。通过搭配多种多种Converter支持多种数据解析方式 &amp; 序列化方式，包括：Gson, Json, XML, Protobuf。此外还提供对RxJava的支持。功能可以说是十分的强大。<br>现在自己正在学习Retrofit 2.0，再加上为面试准备一下，所以希望通过总结一下Retrofit 2.0来加深自己的理解，更加深入地学习一下。如果这系列文章能够帮助他人来理解Retrofit 2.0的话，那就可以说是很开心了，超额完成任务。</p>
 <h2 id="Retrofit-1-0-和-Retrofit-2-0的差别"><a href="#Retrofit-1-0-和-Retrofit-2-0的差别" class="headerlink" title="Retrofit 1.0 和 Retrofit 2.0的差别"></a>Retrofit 1.0 和 Retrofit 2.0的差别</h2><p>在介绍Retrofit 2.0之前呢，不知道大家有没有这样的疑问。在网上搜索Retrofit几乎都是关于Retrofit2.0的介绍，关于Retrofit之前的版本1.0介绍的很少。我这个人有这样的习惯，在接触一个新的东西，如果对你之前先关的一无所知的话，心里会很不踏实。新的版本一般都是对之前版本的一个改进优化，了解一下老版本就很够很好的帮助我们理解新版本的一些特性，影响也更深刻。如果你也没有这样的想法的话，那么希望这篇文章能够给你解除部分疑惑，做到心里有底。</p>
 <h3 id="包的引用方式"><a href="#包的引用方式" class="headerlink" title="包的引用方式"></a>包的引用方式</h3><p>包的引用方式没变，只是需要改变了一下版本号，使用哪个版本就添加哪一个版本号。将你项目中app目录下的build文件中Retrofit依赖一行的版本号改为对应的版本，然后点击右上角的 <code>sync now</code>同步一下就可以使用了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">compile <span class="hljs-string">&#x27;com.squareup.retrofit2:retrofit:2.0.0&#x27;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java">compile <span class="hljs-string">&#x27;com.squareup.retrofit2:retrofit:2.0.0&#x27;</span></code></pre></div>
 
 <h3 id="同步和异步定义以及执行方式"><a href="#同步和异步定义以及执行方式" class="headerlink" title="同步和异步定义以及执行方式"></a>同步和异步定义以及执行方式</h3><p>Retrofit1.0版本中，如果你想定义一个同步或者异步函数，你应该这样定义：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 具有返回值的函数为同步执行的。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@GET(&quot;/user/&#123;id&#125;/photo&quot;)</span><br><span class="hljs-function">Photo <span class="hljs-title">listUsers</span><span class="hljs-params">(<span class="hljs-meta">@Path(&quot;id&quot;)</span>  <span class="hljs-keyword">int</span> id)</span></span>;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">* 而异步执行函数没有返回值并且要求函数最后一个参数为Callback对象</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@GET(&quot;/user/&#123;id&#125;/photo&quot;)</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">listUsers</span><span class="hljs-params">(<span class="hljs-meta">@Path(&quot;id&quot;)</span> <span class="hljs-keyword">int</span> id, Callback cb)</span></span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * 具有返回值的函数为同步执行的。</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@GET(&quot;/user/&#123;id&#125;/photo&quot;)</span>
+<span class="hljs-function">Photo <span class="hljs-title">listUsers</span><span class="hljs-params">(<span class="hljs-meta">@Path(&quot;id&quot;)</span>  <span class="hljs-keyword">int</span> id)</span></span>;
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">* 而异步执行函数没有返回值并且要求函数最后一个参数为Callback对象</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-meta">@GET(&quot;/user/&#123;id&#125;/photo&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">listUsers</span><span class="hljs-params">(<span class="hljs-meta">@Path(&quot;id&quot;)</span> <span class="hljs-keyword">int</span> id, Callback cb)</span></span>;</code></pre></div>
 <p>在Retrofit 2.0上，只需定义一个模式，因此要简单得多。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">/*</span><br><span class="hljs-comment">* 定义</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@POST</span>(<span class="hljs-string">&quot;/list&quot;</span>)<br>Call loadRepo();<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">* 同步调用</span><br><span class="hljs-comment">*/</span><br>Call call=service.loadRepo();<br>Repo repo=call.execute();<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">* 异步调用</span><br><span class="hljs-comment">*/</span><br>Call call=service.loadRepo();<br>call.enqueue(<span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">Callback</span>(<span class="hljs-params"></span>)</span> &#123;<br><br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-function"><span class="hljs-title">onResponse</span>(<span class="hljs-params">Response response</span>)</span>&#123;<br><br>	&#125;<br><br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-function"><span class="hljs-title">onFailure</span>(<span class="hljs-params">Throwable t</span>)</span> &#123;<br><br>	&#125;<br>&#125;);<br><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs typescript"><span class="hljs-comment">/*</span>
+<span class="hljs-comment">* 定义</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-meta">@POST</span>(<span class="hljs-string">&quot;/list&quot;</span>)
+Call loadRepo();
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">* 同步调用</span>
+<span class="hljs-comment">*/</span>
+Call call=service.loadRepo();
+Repo repo=call.execute();
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">* 异步调用</span>
+<span class="hljs-comment">*/</span>
+Call call=service.loadRepo();
+call.enqueue(<span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">Callback</span>(<span class="hljs-params"></span>)</span> &#123;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-function"><span class="hljs-title">onResponse</span>(<span class="hljs-params">Response response</span>)</span>&#123;
+
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-function"><span class="hljs-title">onFailure</span>(<span class="hljs-params">Throwable t</span>)</span> &#123;
+
+	&#125;
+&#125;);
+</code></pre></div>
 <h3 id="取消正在进行的网络任务"><a href="#取消正在进行的网络任务" class="headerlink" title="取消正在进行的网络任务"></a>取消正在进行的网络任务</h3><p> Retrofit1对正在进行的网络任务无法取消，如果你想做这件事必须手动杀死，而这并不好实现。而Retrofit2接口的定时形式变化，正是为了解决这个问题。要做到这点，你只需要调用call.cancel即可.</p>
 <h3 id="Converter现在从Retrofit中删除Retrofit1中的setConverter，在2-0中换以addConverterFactory，用于支持Gson转换。"><a href="#Converter现在从Retrofit中删除Retrofit1中的setConverter，在2-0中换以addConverterFactory，用于支持Gson转换。" class="headerlink" title="Converter现在从Retrofit中删除Retrofit1中的setConverter，在2.0中换以addConverterFactory，用于支持Gson转换。"></a>Converter现在从Retrofit中删除Retrofit1中的setConverter，在2.0中换以addConverterFactory，用于支持Gson转换。</h3><p>在Retrofit 1.9中，GsonConverter 包含在了package 中而且自动在RestAdapter创建的时候被初始化。这样来自服务器的son结果会自动解析成定义好了的Data Access Object（DAO）<br>但是在Retrofit 2.0中，Converter 不再包含在package 中了。你需要自己插入一个Converter 不然的话Retrofit 只能接收字符串结果。同样的，Retrofit 2.0也不再依赖于Gson 。</p>
 <p>如果你想接收json 结果并解析成DAO，你必须把Gson Converter 作为一个独立的依赖添加进来。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">compile <span class="hljs-string">&#x27;com.squareup.retrofit:converter-gson:2.1.0&#x27;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs stylus">compile <span class="hljs-string">&#x27;com.squareup.retrofit:converter-gson:2.1.0&#x27;</span></code></pre></div>
 <p>然后使用addConverterFactory把它添加进来。注意RestAdapter的别名仍然为Retrofit。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stylus">Retrofit retrofit = new Retrofit<span class="hljs-selector-class">.Builder</span>()<br>			<span class="hljs-selector-class">.baseUrl</span>(<span class="hljs-string">&quot;http://api.nuuneoi.com/base/&quot;</span>)<br>			<span class="hljs-selector-class">.addConverterFactory</span>(GsonConverterFactory<span class="hljs-selector-class">.create</span>())<br>			<span class="hljs-selector-class">.build</span>();<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs stylus">Retrofit retrofit = new Retrofit<span class="hljs-selector-class">.Builder</span>()
+			<span class="hljs-selector-class">.baseUrl</span>(<span class="hljs-string">&quot;http://api.nuuneoi.com/base/&quot;</span>)
+			<span class="hljs-selector-class">.addConverterFactory</span>(GsonConverterFactory<span class="hljs-selector-class">.create</span>())
+			<span class="hljs-selector-class">.build</span>();</code></pre></div>
 <h3 id="自定义Gson对象"><a href="#自定义Gson对象" class="headerlink" title="自定义Gson对象"></a>自定义Gson对象</h3><p> 为了以防你需要调整json里面的一些格式，比如，Date Format。你可以创建一个Gson 对象并把它传递给GsonConverterFactory.create()。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus">Gson gson = new GsonBuilder()<br>		<span class="hljs-selector-class">.setDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd&#x27;T&#x27;HH:mm:ssZ&quot;</span>)<br>		<span class="hljs-selector-class">.create</span>();<br>Retrofit retrofit = new Retrofit<span class="hljs-selector-class">.Builder</span>()<br>		<span class="hljs-selector-class">.baseUrl</span>(<span class="hljs-string">&quot;http://api.nuuneoi.com/base/&quot;</span>)<br>		<span class="hljs-selector-class">.addConverterFactory</span>(GsonConverterFactory<span class="hljs-selector-class">.create</span>(gson))<br>		<span class="hljs-selector-class">.build</span>();<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs stylus">Gson gson = new GsonBuilder()
+		<span class="hljs-selector-class">.setDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd&#x27;T&#x27;HH:mm:ssZ&quot;</span>)
+		<span class="hljs-selector-class">.create</span>();
+Retrofit retrofit = new Retrofit<span class="hljs-selector-class">.Builder</span>()
+		<span class="hljs-selector-class">.baseUrl</span>(<span class="hljs-string">&quot;http://api.nuuneoi.com/base/&quot;</span>)
+		<span class="hljs-selector-class">.addConverterFactory</span>(GsonConverterFactory<span class="hljs-selector-class">.create</span>(gson))
+		<span class="hljs-selector-class">.build</span>();</code></pre></div>
 
 <h3 id="新的URL定义方式"><a href="#新的URL定义方式" class="headerlink" title="新的URL定义方式"></a>新的URL定义方式</h3><p>对于 Retrofit 2.0中新的URL定义方式，建议：</p>
 <ul>
@@ -254,22 +301,43 @@
 </li>
 </ul>
 <p> 而且在Retrofit 2.0中我们还可以在@Url里面定义完整的URL, 这种情况下Base URL会被忽略。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">@POST(<span class="hljs-string">&quot;http://api.nuuneoi.com/special/user/list&quot;</span>)<br>Call loadSpecialUsers();<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs stylus">@POST(<span class="hljs-string">&quot;http://api.nuuneoi.com/special/user/list&quot;</span>)
+Call loadSpecialUsers();</code></pre></div>
 
 <p>可以看到在URL的处理方式上发生了很大变化。它和前面的版本完全不同。如果你想把代码迁移到Retrofit 2.0，别忘了修正URL部分的代码。</p>
 <h3 id="即使response存在问题onResponse依然被调用"><a href="#即使response存在问题onResponse依然被调用" class="headerlink" title="即使response存在问题onResponse依然被调用"></a>即使response存在问题onResponse依然被调用</h3><p>在Retrofit 1.9中，如果获取的 response 不能背解析成定义好的对象，则会调用failure。但是在Retrofit 2.0中，不管 response 是否能被解析。onResponse总是会被调用。但是在结果不能被解析的情况下，response.body()会返回null。所以使用的时候别忘了处理这种情况。</p>
 <p>如果response存在什么问题，比如404什么的，onResponse也会被调用。你可以从response.errorBody().string()中获取错误信息的主体。</p>
 <h3 id="缺少INTERNET权限会导致SecurityException异常"><a href="#缺少INTERNET权限会导致SecurityException异常" class="headerlink" title="缺少INTERNET权限会导致SecurityException异常"></a>缺少INTERNET权限会导致SecurityException异常</h3><p>在Retrofit 1.9中，如果你忘记在AndroidManifest.xml文件中添加INTERNET权限。异步请求会直接进入failure回调方法，得到PERMISSION DENIED 错误消息。没有任何异常被抛出。<br>但是在Retrofit 2.0中，当你调用call.enqueue或者call.execute，将立即抛出SecurityException，如果你不使用try-catch会导致崩溃。</p>
 <h3 id="Use-an-Interceptor-from-OkHttp"><a href="#Use-an-Interceptor-from-OkHttp" class="headerlink" title="Use an Interceptor from OkHttp"></a>Use an Interceptor from OkHttp</h3><p>在Retrofit 1.9中，你可以使用RequestInterceptor来拦截一个请求，但是它已经从Retrofit 2.0 移除了，因为HTTP连接层已经转为OkHttp。<br>结果就是，现在我们必须转而使用OkHttp里面的Interceptor。首先你需要使用Interceptor创建一个OkHttpClient对象，通常的应用时用于拦截OkHttp日志。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs stylus">HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();<br><br>interceptor<span class="hljs-selector-class">.setLevel</span>(HttpLoggingInterceptor<span class="hljs-selector-class">.Level</span>.BODY);<br>client = new OkHttpClient<span class="hljs-selector-class">.Builder</span>()<br>			<span class="hljs-selector-class">.addInterceptor</span>(interceptor)<br>			<span class="hljs-selector-class">.retryOnConnectionFailure</span>(true)<br>			<span class="hljs-selector-class">.connectTimeout</span>(<span class="hljs-number">15</span>, TimeUnit.SECONDS)<br>			<span class="hljs-selector-class">.addNetworkInterceptor</span>(authorizationInterceptor)<br>			<span class="hljs-selector-class">.build</span>();<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs stylus">HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+
+interceptor<span class="hljs-selector-class">.setLevel</span>(HttpLoggingInterceptor<span class="hljs-selector-class">.Level</span>.BODY);
+client = new OkHttpClient<span class="hljs-selector-class">.Builder</span>()
+			<span class="hljs-selector-class">.addInterceptor</span>(interceptor)
+			<span class="hljs-selector-class">.retryOnConnectionFailure</span>(true)
+			<span class="hljs-selector-class">.connectTimeout</span>(<span class="hljs-number">15</span>, TimeUnit.SECONDS)
+			<span class="hljs-selector-class">.addNetworkInterceptor</span>(authorizationInterceptor)
+			<span class="hljs-selector-class">.build</span>();</code></pre></div>
 <p> 然后传递创建的client到Retrofit的Builder链中。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">Retrofit retrofit = new Retrofit<span class="hljs-selector-class">.Builder</span>()<br>			<span class="hljs-selector-class">.baseUrl</span>(<span class="hljs-string">&quot;http://api.nuuneoi.com/base/&quot;</span>)<br>			<span class="hljs-selector-class">.addConverterFactory</span>(GsonConverterFactory<span class="hljs-selector-class">.create</span>())<br>			<span class="hljs-selector-class">.client</span>(client)<br>			<span class="hljs-selector-class">.build</span>();<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs stylus">Retrofit retrofit = new Retrofit<span class="hljs-selector-class">.Builder</span>()
+			<span class="hljs-selector-class">.baseUrl</span>(<span class="hljs-string">&quot;http://api.nuuneoi.com/base/&quot;</span>)
+			<span class="hljs-selector-class">.addConverterFactory</span>(GsonConverterFactory<span class="hljs-selector-class">.create</span>())
+			<span class="hljs-selector-class">.client</span>(client)
+			<span class="hljs-selector-class">.build</span>();</code></pre></div>
 
 <h3 id="RxJava-Integration-with-CallAdapter"><a href="#RxJava-Integration-with-CallAdapter" class="headerlink" title="RxJava Integration with CallAdapter"></a>RxJava Integration with CallAdapter</h3><p>  RxJava准备的CallAdapter，它将作为Observable返回。要使用它，你的项目依赖中必须包含两个modules。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">compile <span class="hljs-string">&#x27;io.reactivex:rxandroid:1.2.1&#x27;</span><br><br>compile <span class="hljs-string">&#x27;com.squareup.retrofit:adapter-rxjava:2.1.0&#x27;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs stylus">compile <span class="hljs-string">&#x27;io.reactivex:rxandroid:1.2.1&#x27;</span>
+
+compile <span class="hljs-string">&#x27;com.squareup.retrofit:adapter-rxjava:2.1.0&#x27;</span></code></pre></div>
 
 <p> Gradle并在Retrofit Builder链表中如下调用addCallAdapterFactory：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus">Retrofit retrofit = new Retrofit<span class="hljs-selector-class">.Builder</span>()<br>			<span class="hljs-selector-class">.baseUrl</span>(<span class="hljs-string">&quot;http://api.nuuneoi.com/base/&quot;</span>)<br>			<span class="hljs-selector-class">.addConverterFactory</span>(GsonConverterFactory<span class="hljs-selector-class">.create</span>())<br>			<span class="hljs-selector-class">.addCallAdapterFactory</span>(RxJavaCallAdapterFactory<span class="hljs-selector-class">.create</span>())<br>			<span class="hljs-selector-class">.build</span>();<br><br>Observable observable=service<span class="hljs-selector-class">.loadDessertListRx</span>();<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs stylus">Retrofit retrofit = new Retrofit<span class="hljs-selector-class">.Builder</span>()
+			<span class="hljs-selector-class">.baseUrl</span>(<span class="hljs-string">&quot;http://api.nuuneoi.com/base/&quot;</span>)
+			<span class="hljs-selector-class">.addConverterFactory</span>(GsonConverterFactory<span class="hljs-selector-class">.create</span>())
+			<span class="hljs-selector-class">.addCallAdapterFactory</span>(RxJavaCallAdapterFactory<span class="hljs-selector-class">.create</span>())
+			<span class="hljs-selector-class">.build</span>();
+
+Observable observable=service<span class="hljs-selector-class">.loadDessertListRx</span>();</code></pre></div>
 
 <p>可能还有一些issues本文没有提到，更多的完整的变化可以去官方的<a target="_blank" rel="noopener" href="https://github.com/square/retrofit/blob/master/CHANGELOG.md">Change Log </a>查看，对于每个版本的变化都有详细的讲解。</p>
 
