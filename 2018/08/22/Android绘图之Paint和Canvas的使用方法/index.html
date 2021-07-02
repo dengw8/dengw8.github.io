@@ -1,112 +1,236 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="dengw">
+  <meta name="keywords" content="">
   
-  <title>Android绘图之Paint和Canvas的使用方法 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="在自定义 View 的时候经常会使用到 Paint 和 Canvas 进行绘图，这些类比较像一些工具类，主要集中在方法的理解与使用。下面是给出的一些常用方法，当然还有很多还有方法没有列出来，使用的时候可以直接查看源码查找相应的方法。 Paint类setStyle用于设置画笔的风格，可以指定是圆心还是实心，该方法在矩形，圆形有明显的效果 12&#x2F;&#x2F;参数style为画笔的风格public void se">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Android绘图之Paint和Canvas的使用方法">
-<meta property="og:url" content="http://example.com/2018/08/22/Android%E7%BB%98%E5%9B%BE%E4%B9%8BPaint%E5%92%8CCanvas%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在自定义 View 的时候经常会使用到 Paint 和 Canvas 进行绘图，这些类比较像一些工具类，主要集中在方法的理解与使用。下面是给出的一些常用方法，当然还有很多还有方法没有列出来，使用的时候可以直接查看源码查找相应的方法。 Paint类setStyle用于设置画笔的风格，可以指定是圆心还是实心，该方法在矩形，圆形有明显的效果 12&#x2F;&#x2F;参数style为画笔的风格public void se">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://dengw.xyz/hexo-blog/180822/B1dge7fakI.png">
-<meta property="og:image" content="http://dengw.xyz/hexo-blog/180822/Jb3DiKd5jm.png">
-<meta property="article:published_time" content="2018-08-22T10:17:05.000Z">
-<meta property="article:modified_time" content="2021-07-02T10:14:18.887Z">
-<meta property="article:author" content="John Doe">
-<meta property="article:tag" content="View布局">
-<meta property="article:tag" content="Canvas">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://dengw.xyz/hexo-blog/180822/B1dge7fakI.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+  <title>Android绘图之Paint和Canvas的使用方法 - dengw‘s blog</title>
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Android绘图之Paint和Canvas的使用方法">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-08-22 18:17" pubdate>
+        2018年8月22日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-      <div class="outer">
-        <section id="main"><article id="post-Android绘图之Paint和Canvas的使用方法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/08/22/Android%E7%BB%98%E5%9B%BE%E4%B9%8BPaint%E5%92%8CCanvas%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="article-date">
-  <time class="dt-published" datetime="2018-08-22T10:17:05.000Z" itemprop="datePublished">2018-08-22</time>
-</a>
+  <main>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Android绘图之Paint和Canvas的使用方法
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>在自定义 View 的时候经常会使用到 Paint 和 Canvas 进行绘图，这些类比较像一些工具类，主要集中在方法的理解与使用。下面是给出的一些常用方法，当然还有很多还有方法没有列出来，使用的时候可以直接查看源码查找相应的方法。</p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Android绘图之Paint和Canvas的使用方法</h1>
+            
+            <div class="markdown-body">
+              <p>在自定义 View 的时候经常会使用到 Paint 和 Canvas 进行绘图，这些类比较像一些工具类，主要集中在方法的理解与使用。下面是给出的一些常用方法，当然还有很多还有方法没有列出来，使用的时候可以直接查看源码查找相应的方法。</p>
 <h3 id="Paint类"><a href="#Paint类" class="headerlink" title="Paint类"></a>Paint类</h3><h4 id="setStyle"><a href="#setStyle" class="headerlink" title="setStyle"></a>setStyle</h4><p>用于设置画笔的风格，可以指定是圆心还是实心，该方法在矩形，圆形有明显的效果</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//参数style为画笔的风格</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStyle</span><span class="params">(Paint.Style style)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//参数style为画笔的风格</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setStyle</span><span class="hljs-params">(Paint.Style style)</span></span><br></code></pre></td></tr></table></figure>
 <p>可选参数包括：</p>
 <ul>
 <li>Style.FILL: 实心</li>
@@ -114,7 +238,7 @@
 <li>Style.STROKE: 空心</li>
 </ul>
 <h4 id="setStrokeCap"><a href="#setStrokeCap" class="headerlink" title="setStrokeCap"></a>setStrokeCap</h4><p> 用来控制我们的画笔在离开画板时候留下的最后一点图形，或者说叫做笔触风格 ，笔触就像我们现实世界中的笔，如果你用圆珠笔在纸上戳一点，那么这个点是个圆，它代表了笔的笔触形状，如果我们把一支铅笔笔尖削成方形的，那么画出来的线条会是一条弯曲的“矩形”，这就是笔触的意思。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStrokeCap</span><span class="params">(Cap cap)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setStrokeCap</span><span class="hljs-params">(Cap cap)</span></span><br></code></pre></td></tr></table></figure>
 <p>参数可选列表：</p>
 <ul>
 <li>Cap.BUTT : 无笔触风格</li>
@@ -122,7 +246,7 @@
 <li>Cap.SQUARE ： 方形</li>
 </ul>
 <h4 id="setStrokeJoin"><a href="#setStrokeJoin" class="headerlink" title="setStrokeJoin"></a>setStrokeJoin</h4><p>设置线段连接处样式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStrokeJoin</span><span class="params">(Join join)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setStrokeJoin</span><span class="hljs-params">(Join join)</span></span><br></code></pre></td></tr></table></figure>
 <p>可选值包括：</p>
 <ul>
 <li>Join.MITER（结合处为锐角）</li>
@@ -130,7 +254,7 @@
 <li>Join.BEVEL(结合处为直线) </li>
 </ul>
 <h4 id="setTypeface"><a href="#setTypeface" class="headerlink" title="setTypeface"></a>setTypeface</h4><p>用于设置画笔的字体样式，可以使用系统自带的字段，也可以使用自定义的字体</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//typeface为字体样式</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Typeface</span><span class="params">(Typeface typeface)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//typeface为字体样式</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Typeface</span><span class="hljs-params">(Typeface typeface)</span></span><br></code></pre></td></tr></table></figure>
 
 <p>一些可选值包括：</p>
 <ul>
@@ -141,7 +265,7 @@
 <li>Typeface.SERIF: serif字体</li>
 </ul>
 <h4 id="setColor"><a href="#setColor" class="headerlink" title="setColor"></a>setColor</h4><p>用于设置画笔的颜色</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//参数color为颜色值，也可以使用Color类定义的颜色</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setColor</span><span class="params">(<span class="keyword">int</span> color)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//参数color为颜色值，也可以使用Color类定义的颜色</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setColor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> color)</span></span><br></code></pre></td></tr></table></figure>
 
 <p>下面是一些Color类定义的颜色：</p>
 <ul>
@@ -157,13 +281,13 @@
 <li>Color.TRANSPARENT:透明色</li>
 </ul>
 <h4 id="setAlpha"><a href="#setAlpha" class="headerlink" title="setAlpha"></a>setAlpha</h4><p>用于设置画笔的透明度，为透明度，其取值范围为0~255，数值越小越透明</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAlpha</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAlpha</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span><br></code></pre></td></tr></table></figure>
 <h4 id="setPathEffect"><a href="#setPathEffect" class="headerlink" title="setPathEffect"></a>setPathEffect</h4><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/tianzhijiexian/p/4297783.html">详解Paint的setPathEffect(PathEffect effect)</a></p>
 <h4 id="setStrokeWidth"><a href="#setStrokeWidth" class="headerlink" title="setStrokeWidth"></a>setStrokeWidth</h4><p>用于设置画笔的空心线宽，该方法在矩形，圆形，等图形上有明显的效果；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//参数width为线宽，浮点型数据</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStrokeWidth</span><span class="params">(<span class="keyword">float</span> width)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//参数width为线宽，浮点型数据</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setStrokeWidth</span><span class="hljs-params">(<span class="hljs-keyword">float</span> width)</span></span><br></code></pre></td></tr></table></figure>
 
 <h4 id="setARGB"><a href="#setARGB" class="headerlink" title="setARGB"></a>setARGB</h4><p>用于设置画笔的颜色和透明度</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setARGB</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> r,<span class="keyword">int</span> g,<span class="keyword">int</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setARGB</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> r,<span class="hljs-keyword">int</span> g,<span class="hljs-keyword">int</span> b)</span></span>;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>参数a为透明度，范围0~255</li>
@@ -172,10 +296,10 @@
 <li>参数b为蓝色的颜色值，范围0~255</li>
 </ul>
 <h4 id="setTextSize"><a href="#setTextSize" class="headerlink" title="setTextSize"></a>setTextSize</h4><p> 用于设置画笔的字体大小，主要用于绘制字符串</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 参数为字体大小</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTextSize</span><span class="params">(<span class="keyword">float</span> textSize)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 参数为字体大小</span><br> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setTextSize</span><span class="hljs-params">(<span class="hljs-keyword">float</span> textSize)</span></span><br></code></pre></td></tr></table></figure>
 
 <h4 id="setShadowLayer"><a href="#setShadowLayer" class="headerlink" title="setShadowLayer"></a>setShadowLayer</h4><p>用于设置添加阴影</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setShadowLayer</span><span class="params">(<span class="keyword">float</span> radius, <span class="keyword">float</span> dx, <span class="keyword">float</span> dy, <span class="keyword">int</span> shadowColor)</span> </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setShadowLayer</span><span class="hljs-params">(<span class="hljs-keyword">float</span> radius, <span class="hljs-keyword">float</span> dx, <span class="hljs-keyword">float</span> dy, <span class="hljs-keyword">int</span> shadowColor)</span> </span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>adius 表示阴影的倾斜度</li>
 <li>dx:水平方向位移的像素</li>
@@ -183,19 +307,19 @@
 <li>shadowColor:设置阴影的颜色</li>
 </ul>
 <h4 id="setTextScaleX"><a href="#setTextScaleX" class="headerlink" title="setTextScaleX"></a>setTextScaleX</h4><p>设置字体水平方向的拉伸，默认为1，当大于1时表示向两边拉伸，小于1时表示向中间压缩</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTextScaleX</span><span class="params">(<span class="keyword">float</span> scaleX)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setTextScaleX</span><span class="hljs-params">(<span class="hljs-keyword">float</span> scaleX)</span></span><br></code></pre></td></tr></table></figure>
 
 <h4 id="setFakeBoldText"><a href="#setFakeBoldText" class="headerlink" title="setFakeBoldText"></a>setFakeBoldText</h4><p>用于设置文字是否为粗体</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFakeBoldText</span><span class="params">(<span class="keyword">boolean</span> fakeBoldText)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setFakeBoldText</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> fakeBoldText)</span></span><br></code></pre></td></tr></table></figure>
 
 <h4 id="setStrikeThruText"><a href="#setStrikeThruText" class="headerlink" title="setStrikeThruText"></a>setStrikeThruText</h4><p>设置是否带有删除线效果</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStrikeThruText</span><span class="params">(<span class="keyword">boolean</span> strikeThruText)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setStrikeThruText</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> strikeThruText)</span></span><br></code></pre></td></tr></table></figure>
 
 <h4 id="setUnderlineText"><a href="#setUnderlineText" class="headerlink" title="setUnderlineText"></a>setUnderlineText</h4><p>用于设置画笔的下划线，当取值为true时，表示显示下划线</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUnderlineText</span><span class="params">(Boolean underlintext)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUnderlineText</span><span class="hljs-params">(Boolean underlintext)</span></span><br></code></pre></td></tr></table></figure>
 
 <h4 id="setTextAlign"><a href="#setTextAlign" class="headerlink" title="setTextAlign"></a>setTextAlign</h4><p>设置文字对齐方式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 参数为文字对齐方式</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTextAlign</span><span class="params">(Align align)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 参数为文字对齐方式</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setTextAlign</span><span class="hljs-params">(Align align)</span></span><br></code></pre></td></tr></table></figure>
 
 <p>可选参数包括：</p>
 <ul>
@@ -204,12 +328,12 @@
 <li>Align.CENTER</li>
 </ul>
 <h4 id="setTextSkewX"><a href="#setTextSkewX" class="headerlink" title="setTextSkewX"></a>setTextSkewX</h4><p>用于设置画笔的倾斜因子</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 参数 skewX 为倾斜因子，正数表示向左倾斜，负数表示向右倾斜</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTextSkewX</span><span class="params">(<span class="keyword">float</span> skewX)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 参数 skewX 为倾斜因子，正数表示向左倾斜，负数表示向右倾斜</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setTextSkewX</span><span class="hljs-params">(<span class="hljs-keyword">float</span> skewX)</span></span><br></code></pre></td></tr></table></figure>
 
-<h3 id="Canvas类"><a href="#Canvas类" class="headerlink" title="Canvas类"></a>Canvas类</h3><h4 id="绘制背景"><a href="#绘制背景" class="headerlink" title="绘制背景"></a>绘制背景</h4><h5 id="drawColor"><a href="#drawColor" class="headerlink" title="drawColor"></a>drawColor</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawColor</span><span class="params">(<span class="keyword">int</span> color)</span> </span></span><br></pre></td></tr></table></figure>
-<h5 id="drawRGB"><a href="#drawRGB" class="headerlink" title="drawRGB"></a>drawRGB</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawRGB</span><span class="params">(<span class="keyword">int</span> r, <span class="keyword">int</span> g, <span class="keyword">int</span> b)</span> </span></span><br></pre></td></tr></table></figure>
+<h3 id="Canvas类"><a href="#Canvas类" class="headerlink" title="Canvas类"></a>Canvas类</h3><h4 id="绘制背景"><a href="#绘制背景" class="headerlink" title="绘制背景"></a>绘制背景</h4><h5 id="drawColor"><a href="#drawColor" class="headerlink" title="drawColor"></a>drawColor</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawColor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> color)</span> </span><br></code></pre></td></tr></table></figure>
+<h5 id="drawRGB"><a href="#drawRGB" class="headerlink" title="drawRGB"></a>drawRGB</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawRGB</span><span class="hljs-params">(<span class="hljs-keyword">int</span> r, <span class="hljs-keyword">int</span> g, <span class="hljs-keyword">int</span> b)</span> </span><br></code></pre></td></tr></table></figure>
 
-<h4 id="绘制弧形"><a href="#绘制弧形" class="headerlink" title="绘制弧形"></a>绘制弧形</h4><h5 id="drawArc"><a href="#drawArc" class="headerlink" title="drawArc"></a>drawArc</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawArc</span><span class="params">(<span class="keyword">float</span> left, <span class="keyword">float</span> top, <span class="keyword">float</span> right, <span class="keyword">float</span> bottom, <span class="keyword">float</span> startAngle, <span class="keyword">float</span> sweepAngle, <span class="keyword">boolean</span> useCenter, <span class="meta">@NonNull</span> Paint paint)</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="绘制弧形"><a href="#绘制弧形" class="headerlink" title="绘制弧形"></a>绘制弧形</h4><h5 id="drawArc"><a href="#drawArc" class="headerlink" title="drawArc"></a>drawArc</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawArc</span><span class="hljs-params">(<span class="hljs-keyword">float</span> left, <span class="hljs-keyword">float</span> top, <span class="hljs-keyword">float</span> right, <span class="hljs-keyword">float</span> bottom, <span class="hljs-keyword">float</span> startAngle, <span class="hljs-keyword">float</span> sweepAngle, <span class="hljs-keyword">boolean</span> useCenter, <span class="hljs-meta">@NonNull</span> Paint paint)</span></span><br></code></pre></td></tr></table></figure>
 
 <p>参数信息：</p>
 <ul>
@@ -219,9 +343,9 @@
 <li>useCenter ：若为true表示此弧会和 RectF 中心相连形成扇形，否则，弧的两头直接相连形成图形</li>
 <li>paint</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawArc</span><span class="params">(<span class="meta">@NonNull</span> RectF oval, <span class="keyword">float</span> startAngle, <span class="keyword">float</span> sweepAngle, <span class="keyword">boolean</span> useCenter, <span class="meta">@NonNull</span> Paint paint)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawArc</span><span class="hljs-params">(<span class="hljs-meta">@NonNull</span> RectF oval, <span class="hljs-keyword">float</span> startAngle, <span class="hljs-keyword">float</span> sweepAngle, <span class="hljs-keyword">boolean</span> useCenter, <span class="hljs-meta">@NonNull</span> Paint paint)</span></span><br></code></pre></td></tr></table></figure>
 <p>直接用 RectF 来表示矩形区域</p>
-<h4 id="绘制圆"><a href="#绘制圆" class="headerlink" title="绘制圆"></a>绘制圆</h4><h5 id="drawCircle"><a href="#drawCircle" class="headerlink" title="drawCircle"></a>drawCircle</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawCircle</span><span class="params">(<span class="keyword">float</span> cx, <span class="keyword">float</span> cy, <span class="keyword">float</span> radius, <span class="meta">@NonNull</span> Paint paint)</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="绘制圆"><a href="#绘制圆" class="headerlink" title="绘制圆"></a>绘制圆</h4><h5 id="drawCircle"><a href="#drawCircle" class="headerlink" title="drawCircle"></a>drawCircle</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawCircle</span><span class="hljs-params">(<span class="hljs-keyword">float</span> cx, <span class="hljs-keyword">float</span> cy, <span class="hljs-keyword">float</span> radius, <span class="hljs-meta">@NonNull</span> Paint paint)</span></span><br></code></pre></td></tr></table></figure>
 
 <p>参数信息：</p>
 <ul>
@@ -231,7 +355,7 @@
 <li>paint</li>
 </ul>
 <h4 id="绘制点"><a href="#绘制点" class="headerlink" title="绘制点"></a>绘制点</h4><h5 id="drawPoint"><a href="#drawPoint" class="headerlink" title="drawPoint"></a>drawPoint</h5><p>绘制一个点</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawPoint</span><span class="params">(<span class="keyword">float</span> x, <span class="keyword">float</span> y, <span class="meta">@NonNull</span> Paint paint)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawPoint</span><span class="hljs-params">(<span class="hljs-keyword">float</span> x, <span class="hljs-keyword">float</span> y, <span class="hljs-meta">@NonNull</span> Paint paint)</span></span><br></code></pre></td></tr></table></figure>
 
 <p>参数信息：</p>
 <ul>
@@ -239,7 +363,7 @@
 <li>y: 纵坐标</li>
 <li>paint</li>
 </ul>
-<h4 id="绘制线段"><a href="#绘制线段" class="headerlink" title="绘制线段"></a>绘制线段</h4><h5 id="drawLine"><a href="#drawLine" class="headerlink" title="drawLine"></a>drawLine</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawLine</span><span class="params">(<span class="keyword">float</span> startX, <span class="keyword">float</span> startY, <span class="keyword">float</span> stopX, <span class="keyword">float</span> stopY, <span class="meta">@NonNull</span> Paint paint)</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="绘制线段"><a href="#绘制线段" class="headerlink" title="绘制线段"></a>绘制线段</h4><h5 id="drawLine"><a href="#drawLine" class="headerlink" title="drawLine"></a>drawLine</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawLine</span><span class="hljs-params">(<span class="hljs-keyword">float</span> startX, <span class="hljs-keyword">float</span> startY, <span class="hljs-keyword">float</span> stopX, <span class="hljs-keyword">float</span> stopY, <span class="hljs-meta">@NonNull</span> Paint paint)</span></span><br></code></pre></td></tr></table></figure>
 
 <p>参数信息：</p>
 <ul>
@@ -249,26 +373,26 @@
 <li>stopY: 第一个点的纵坐标</li>
 <li>paint</li>
 </ul>
-<h4 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h4><h5 id="drawRect"><a href="#drawRect" class="headerlink" title="drawRect"></a>drawRect</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawRect</span><span class="params">(<span class="keyword">float</span> left, <span class="keyword">float</span> top, <span class="keyword">float</span> right, <span class="keyword">float</span> bottom, Paint paint)</span>  </span></span><br></pre></td></tr></table></figure>
+<h4 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h4><h5 id="drawRect"><a href="#drawRect" class="headerlink" title="drawRect"></a>drawRect</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawRect</span><span class="hljs-params">(<span class="hljs-keyword">float</span> left, <span class="hljs-keyword">float</span> top, <span class="hljs-keyword">float</span> right, <span class="hljs-keyword">float</span> bottom, Paint paint)</span>  </span><br></code></pre></td></tr></table></figure>
 <p>因为默认矩形是水平的，所以只需要给出四条边的左边</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawRect</span><span class="params">(Rect r, Paint paint)</span> </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawRect</span><span class="hljs-params">(Rect r, Paint paint)</span> </span><br></code></pre></td></tr></table></figure>
 
-<h4 id="绘制圆角矩形"><a href="#绘制圆角矩形" class="headerlink" title="绘制圆角矩形"></a>绘制圆角矩形</h4><h5 id="drawRoundRect"><a href="#drawRoundRect" class="headerlink" title="drawRoundRect"></a>drawRoundRect</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawRoundRect</span> <span class="params">(RectF rect,<span class="keyword">float</span> rx,<span class="keyword">float</span> ry,Paint paint)</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="绘制圆角矩形"><a href="#绘制圆角矩形" class="headerlink" title="绘制圆角矩形"></a>绘制圆角矩形</h4><h5 id="drawRoundRect"><a href="#drawRoundRect" class="headerlink" title="drawRoundRect"></a>drawRoundRect</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawRoundRect</span> <span class="hljs-params">(RectF rect,<span class="hljs-keyword">float</span> rx,<span class="hljs-keyword">float</span> ry,Paint paint)</span></span><br></code></pre></td></tr></table></figure>
 <p>参数信息：</p>
 <ul>
 <li>rx为X方向上的圆角半径</li>
 <li>ry为Y方向上的圆角半径</li>
 </ul>
 <h4 id="绘制椭圆"><a href="#绘制椭圆" class="headerlink" title="绘制椭圆"></a>绘制椭圆</h4><h5 id="drawOval"><a href="#drawOval" class="headerlink" title="drawOval"></a>drawOval</h5><p>通过指定椭圆的外切矩形实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawOval</span><span class="params">(RectF rect.Paint paint)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawOval</span><span class="hljs-params">(RectF rect.Paint paint)</span></span><br></code></pre></td></tr></table></figure>
 
 <h4 id="根据定义的路径画出图"><a href="#根据定义的路径画出图" class="headerlink" title="根据定义的路径画出图"></a>根据定义的路径画出图</h4><p>主要用于绘制复杂的图形轮廓</p>
-<h5 id="drawPath"><a href="#drawPath" class="headerlink" title="drawPath"></a>drawPath</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawPath</span><span class="params">(Path path, Paint paint)</span></span></span><br></pre></td></tr></table></figure>
+<h5 id="drawPath"><a href="#drawPath" class="headerlink" title="drawPath"></a>drawPath</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawPath</span><span class="hljs-params">(Path path, Paint paint)</span></span><br></code></pre></td></tr></table></figure>
 
 <p>比如我想要绘制一个三角形，可以定义一个path对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Path path = <span class="keyword">new</span> Path(); <span class="comment">//定义一条路径</span></span><br><span class="line">path.moveTo(<span class="number">60</span>, <span class="number">60</span>); <span class="comment">//起始点 坐标60,60</span></span><br><span class="line">path.lineTo(<span class="number">100</span>, <span class="number">100</span>);<span class="comment">//连接直线</span></span><br><span class="line">path.lineTo(<span class="number">200</span>,<span class="number">80</span>);</span><br><span class="line">path.lineTo(<span class="number">60</span>, <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 绘制定义的 path</span></span><br><span class="line">canvas.drawPath(path,paint);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">Path path = <span class="hljs-keyword">new</span> Path(); <span class="hljs-comment">//定义一条路径</span><br>path.moveTo(<span class="hljs-number">60</span>, <span class="hljs-number">60</span>); <span class="hljs-comment">//起始点 坐标60,60</span><br>path.lineTo(<span class="hljs-number">100</span>, <span class="hljs-number">100</span>);<span class="hljs-comment">//连接直线</span><br>path.lineTo(<span class="hljs-number">200</span>,<span class="hljs-number">80</span>);<br>path.lineTo(<span class="hljs-number">60</span>, <span class="hljs-number">60</span>);<br><br><span class="hljs-comment">// 绘制定义的 path</span><br>canvas.drawPath(path,paint);<br></code></pre></td></tr></table></figure>
 
-<h4 id="绘制字体"><a href="#绘制字体" class="headerlink" title="绘制字体"></a>绘制字体</h4><h5 id="drawText"><a href="#drawText" class="headerlink" title="drawText"></a>drawText</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawText</span><span class="params">(String text, <span class="keyword">float</span> x, <span class="keyword">float</span> y, Paint paint)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawText</span><span class="params">(<span class="keyword">char</span>[] text,<span class="keyword">int</span> index,<span class="keyword">int</span> count,<span class="keyword">float</span> x,<span class="keyword">float</span> y,Paint paint)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawText</span><span class="params">(CharSequence text,<span class="keyword">int</span> start,<span class="keyword">int</span> end,<span class="keyword">float</span> x,<span class="keyword">float</span> y,Paint paint)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawText</span><span class="params">(String text,<span class="keyword">int</span> start,<span class="keyword">int</span> end,<span class="keyword">float</span> x,<span class="keyword">float</span> y,Paint paint)</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="绘制字体"><a href="#绘制字体" class="headerlink" title="绘制字体"></a>绘制字体</h4><h5 id="drawText"><a href="#drawText" class="headerlink" title="drawText"></a>drawText</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawText</span><span class="hljs-params">(String text, <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">float</span> y, Paint paint)</span></span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawText</span><span class="hljs-params">(<span class="hljs-keyword">char</span>[] text,<span class="hljs-keyword">int</span> index,<span class="hljs-keyword">int</span> count,<span class="hljs-keyword">float</span> x,<span class="hljs-keyword">float</span> y,Paint paint)</span></span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawText</span><span class="hljs-params">(CharSequence text,<span class="hljs-keyword">int</span> start,<span class="hljs-keyword">int</span> end,<span class="hljs-keyword">float</span> x,<span class="hljs-keyword">float</span> y,Paint paint)</span></span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawText</span><span class="hljs-params">(String text,<span class="hljs-keyword">int</span> start,<span class="hljs-keyword">int</span> end,<span class="hljs-keyword">float</span> x,<span class="hljs-keyword">float</span> y,Paint paint)</span></span><br></code></pre></td></tr></table></figure>
 <p>参数信息：</p>
 <ul>
 <li>text为字符串的内容</li>
@@ -279,18 +403,18 @@
 <li>start为显示的起始字符的位置</li>
 <li>end为显示的终止的字符的位置</li>
 </ul>
-<h4 id="绘制Bitmap"><a href="#绘制Bitmap" class="headerlink" title="绘制Bitmap"></a>绘制Bitmap</h4><h5 id="drawBitmap"><a href="#drawBitmap" class="headerlink" title="drawBitmap"></a>drawBitmap</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawBitmap</span><span class="params">(Bitmap bitmap, <span class="keyword">float</span> left, <span class="keyword">float</span> top, Paint paint)</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="绘制Bitmap"><a href="#绘制Bitmap" class="headerlink" title="绘制Bitmap"></a>绘制Bitmap</h4><h5 id="drawBitmap"><a href="#drawBitmap" class="headerlink" title="drawBitmap"></a>drawBitmap</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawBitmap</span><span class="hljs-params">(Bitmap bitmap, <span class="hljs-keyword">float</span> left, <span class="hljs-keyword">float</span> top, Paint paint)</span></span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>参数bitmap为Bitmap对象，代表图像资源，</li>
 <li>left为图像显示的左边的位置</li>
 <li>right为图像的显示的右边的位置</li>
 </ul>
-<h4 id="Canvas平移"><a href="#Canvas平移" class="headerlink" title="Canvas平移"></a>Canvas平移</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 画布向（100，50）方向平移 </span></span><br><span class="line"><span class="comment"> *  </span></span><br><span class="line"><span class="comment"> * 参数1: 向X轴方向移动100距离</span></span><br><span class="line"><span class="comment"> * 参数2: 向Y轴方向移动50距离</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> canvas.translate(<span class="number">100</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="Canvas平移"><a href="#Canvas平移" class="headerlink" title="Canvas平移"></a>Canvas平移</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** </span><br><span class="hljs-comment"> * 画布向（100，50）方向平移 </span><br><span class="hljs-comment"> *  </span><br><span class="hljs-comment"> * 参数1: 向X轴方向移动100距离</span><br><span class="hljs-comment"> * 参数2: 向Y轴方向移动50距离</span><br><span class="hljs-comment"> */</span><br> canvas.translate(<span class="hljs-number">100</span>, <span class="hljs-number">50</span>);<br></code></pre></td></tr></table></figure>
 
-<h4 id="Canvas缩放"><a href="#Canvas缩放" class="headerlink" title="Canvas缩放"></a>Canvas缩放</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 在X轴方向放大为原来2倍，Y轴方向方大为原来的4倍 </span></span><br><span class="line"><span class="comment"> * 参数1: X轴的放大倍数 </span></span><br><span class="line"><span class="comment"> * 参数2: Y轴的放大倍数 </span></span><br><span class="line"><span class="comment"> * 默认原点为左上角</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">canvas.scale(<span class="number">2</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 在X轴方向放大为原来2倍，Y轴方向方大为原来的4倍 </span></span><br><span class="line"><span class="comment"> * 参数1: X轴的放大倍数 </span></span><br><span class="line"><span class="comment"> * 参数2: Y轴的放大倍数 </span></span><br><span class="line"><span class="comment"> * 参数3: 原点X坐标</span></span><br><span class="line"><span class="comment"> * 参数4: 原点Y坐标</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">canvas.scale(<span class="number">2</span>, <span class="number">4</span>，<span class="number">100</span>,<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
-<p>作用效果：<br><img src="http://dengw.xyz/hexo-blog/180822/B1dge7fakI.png" alt="enter image description here"></p>
-<h4 id="Canvas旋转"><a href="#Canvas旋转" class="headerlink" title="Canvas旋转"></a>Canvas旋转</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 原点为中心，旋转30度（顺时针方向为正方向 ）</span></span><br><span class="line"><span class="comment"> * 参数: 旋转角度 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">canvas.rotate(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * 以（100,100）为中心，旋转30度，顺时针方向为正方向 </span></span><br><span class="line"><span class="comment"> * 参数: 旋转角度 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">canvas.rotate(<span class="number">30</span>,<span class="number">100</span>,<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
-<p>作用效果：<br><img src="http://dengw.xyz/hexo-blog/180822/Jb3DiKd5jm.png" alt="enter image description here"></p>
+<h4 id="Canvas缩放"><a href="#Canvas缩放" class="headerlink" title="Canvas缩放"></a>Canvas缩放</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** </span><br><span class="hljs-comment"> * 在X轴方向放大为原来2倍，Y轴方向方大为原来的4倍 </span><br><span class="hljs-comment"> * 参数1: X轴的放大倍数 </span><br><span class="hljs-comment"> * 参数2: Y轴的放大倍数 </span><br><span class="hljs-comment"> * 默认原点为左上角</span><br><span class="hljs-comment"> */</span><br>canvas.scale(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>);<br><br><span class="hljs-comment">/** </span><br><span class="hljs-comment"> * 在X轴方向放大为原来2倍，Y轴方向方大为原来的4倍 </span><br><span class="hljs-comment"> * 参数1: X轴的放大倍数 </span><br><span class="hljs-comment"> * 参数2: Y轴的放大倍数 </span><br><span class="hljs-comment"> * 参数3: 原点X坐标</span><br><span class="hljs-comment"> * 参数4: 原点Y坐标</span><br><span class="hljs-comment"> */</span><br>canvas.scale(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>，<span class="hljs-number">100</span>,<span class="hljs-number">100</span>);<br></code></pre></td></tr></table></figure>
+<p>作用效果：<br><img src="http://dengw.xyz/hexo-blog/180822/B1dge7fakI.png" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
+<h4 id="Canvas旋转"><a href="#Canvas旋转" class="headerlink" title="Canvas旋转"></a>Canvas旋转</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** </span><br><span class="hljs-comment"> * 原点为中心，旋转30度（顺时针方向为正方向 ）</span><br><span class="hljs-comment"> * 参数: 旋转角度 </span><br><span class="hljs-comment"> */</span><br>canvas.rotate(<span class="hljs-number">30</span>);<br><br><span class="hljs-comment">/** </span><br><span class="hljs-comment"> * 以（100,100）为中心，旋转30度，顺时针方向为正方向 </span><br><span class="hljs-comment"> * 参数: 旋转角度 </span><br><span class="hljs-comment"> */</span><br>canvas.rotate(<span class="hljs-number">30</span>,<span class="hljs-number">100</span>,<span class="hljs-number">100</span>);<br></code></pre></td></tr></table></figure>
+<p>作用效果：<br><img src="http://dengw.xyz/hexo-blog/180822/Jb3DiKd5jm.png" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <h4 id="Canvas保存和还原"><a href="#Canvas保存和还原" class="headerlink" title="Canvas保存和还原"></a>Canvas保存和还原</h4><p>Canvas提供了几个方法，让我们可以方便的对Canvas的状态进行更改和还原。这些方法是：</p>
 <ul>
 <li>save()</li>
@@ -300,161 +424,216 @@
 <p>我们在对 Canvas 进行平移、旋转、放大等操作时候，可以调用save()方法，将当前修改过的Canvas状态进行保存，调用restore() 方法后，会将 Canvas 还原成最近的一个save() 的状态。</p>
 <p>save()方法还会有一个返回值，我们也可以调用 restoreToCount(int saveCount) 方法，将这个返回值作为参数传递进去，就可以将Canvas还原成某一个特定的save()状态。</p>
 <p>一个可参考操作：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">canvas.translate(<span class="number">100</span>,<span class="number">100</span>); <span class="comment">// 平移（100,100）</span></span><br><span class="line"><span class="keyword">int</span> save1 = canvas.save(); <span class="comment">// 保存Canvas状态（状态1）</span></span><br><span class="line">canvas.scale(<span class="number">2</span>, <span class="number">2</span>); <span class="comment">// 放大2倍</span></span><br><span class="line"><span class="keyword">int</span> save2 = canvas.save(); <span class="comment">// 保存Canvas状态（状态2）</span></span><br><span class="line">canvas.restore(); <span class="comment">// 返回最新的save状态，即状态2</span></span><br><span class="line">canvas.restoreToCount(save1);<span class="comment">// 手动指定的返回到 状态1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">canvas.translate(<span class="hljs-number">100</span>,<span class="hljs-number">100</span>); <span class="hljs-comment">// 平移（100,100）</span><br><span class="hljs-keyword">int</span> save1 = canvas.save(); <span class="hljs-comment">// 保存Canvas状态（状态1）</span><br>canvas.scale(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// 放大2倍</span><br><span class="hljs-keyword">int</span> save2 = canvas.save(); <span class="hljs-comment">// 保存Canvas状态（状态2）</span><br>canvas.restore(); <span class="hljs-comment">// 返回最新的save状态，即状态2</span><br>canvas.restoreToCount(save1);<span class="hljs-comment">// 手动指定的返回到 状态1</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f69873371763">Android Canvas 方法总结</a></p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2018/08/22/Android%E7%BB%98%E5%9B%BE%E4%B9%8BPaint%E5%92%8CCanvas%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="ckqm6kpl0000hxxr5hkyje6xc" data-title="Android绘图之Paint和Canvas的使用方法" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Canvas/" rel="tag">Canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/View%E5%B8%83%E5%B1%80/" rel="tag">View布局</a></li></ul>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/View%E5%B8%83%E5%B1%80/">View布局</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Canvas/">Canvas</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/09/24/%E5%B8%B8%E7%94%A8%E7%9A%84git%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">常用的git命令清单</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/08/21/IdCardCamera%E2%80%94%E4%BB%8E%E4%B8%80%E4%B8%AADemo%E5%AD%A6%E4%B9%A0Android%E5%B9%B3%E5%8F%B0Camera%E5%BC%80%E5%8F%91/">
+                        <span class="hidden-mobile">IdCardCamera — 从一个Demo学习Android平台Camera开发</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/09/24/%E5%B8%B8%E7%94%A8%E7%9A%84git%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          常用的git命令清单
-        
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2018/08/21/IdCardCamera%E2%80%94%E4%BB%8E%E4%B8%80%E4%B8%AADemo%E5%AD%A6%E4%B9%A0Android%E5%B9%B3%E5%8F%B0Camera%E5%BC%80%E5%8F%91/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">IdCardCamera — 从一个Demo学习Android平台Camera开发</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%AD%A6%E4%B9%A0/">Java学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php%E5%AD%A6%E4%B9%A0/">php学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring%E5%AD%A6%E4%B9%A0/">spring学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
     </div>
-  </div>
-
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ANR/" rel="tag">ANR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/" rel="tag">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" rel="tag">Android消息机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation/" rel="tag">Animation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/" rel="tag">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera%E5%BC%80%E5%8F%91/" rel="tag">Camera开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/" rel="tag">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/" rel="tag">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">Java内存机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%AE%B9%E5%99%A8/" rel="tag">Java容器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/" rel="tag">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecylerView/" rel="tag">RecylerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View%E5%B8%83%E5%B1%80/" rel="tag">View布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Window/" rel="tag">Window</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" rel="tag">apk反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring-boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87Offer/" rel="tag">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0/" rel="tag">实习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" rel="tag">文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%A1%E6%8B%9B/" rel="tag">校招</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" rel="tag">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" rel="tag">网络框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" rel="tag">自定义View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" rel="tag">项目总结</a></li></ul>
-    </div>
-  </div>
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ANR/" style="font-size: 10px;">ANR</a> <a href="/tags/Activity/" style="font-size: 12.5px;">Activity</a> <a href="/tags/Android/" style="font-size: 12.5px;">Android</a> <a href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Android消息机制</a> <a href="/tags/Animation/" style="font-size: 10px;">Animation</a> <a href="/tags/Bitmap/" style="font-size: 10px;">Bitmap</a> <a href="/tags/Camera%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Camera开发</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/HTTP/" style="font-size: 17.5px;">HTTP</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java内存机制</a> <a href="/tags/Java%E5%AE%B9%E5%99%A8/" style="font-size: 10px;">Java容器</a> <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 17.5px;">Java虚拟机</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Linux命令</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RecylerView/" style="font-size: 10px;">RecylerView</a> <a href="/tags/Retrofit/" style="font-size: 15px;">Retrofit</a> <a href="/tags/View%E5%B8%83%E5%B1%80/" style="font-size: 20px;">View布局</a> <a href="/tags/Window/" style="font-size: 10px;">Window</a> <a href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" style="font-size: 10px;">apk反编译</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring-boot</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/vim/" style="font-size: 12.5px;">vim</a> <a href="/tags/%E5%89%91%E6%8C%87Offer/" style="font-size: 10px;">剑指Offer</a> <a href="/tags/%E5%8F%8D%E5%B0%84/" style="font-size: 12.5px;">反射</a> <a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 12.5px;">实习</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" style="font-size: 10px;">文件下载</a> <a href="/tags/%E6%A0%A1%E6%8B%9B/" style="font-size: 17.5px;">校招</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 10px;">泛型</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" style="font-size: 15px;">类加载</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">网络框架</a> <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" style="font-size: 10px;">自定义View</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15px;">设计模式</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" style="font-size: 10px;">项目总结</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/">Mac终端常用快捷键总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/">关于php的empty函数</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">Spring常用注解</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/">使用.gitignore配置git忽略提交规则</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Mysql常用命令总结</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
   </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
 </footer>
 
-    </div>
-    <nav id="mobile-nav">
+
+  <!-- SCRIPTS -->
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <script  src="/js/img-lazyload.js" ></script>
   
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
-<script src="/js/script.js"></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
 
 
 
 
 
-  </div>
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
 </body>
 </html>

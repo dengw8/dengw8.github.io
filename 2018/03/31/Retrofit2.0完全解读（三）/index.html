@@ -1,131 +1,254 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="dengw">
+  <meta name="keywords" content="">
   
-  <title>Retrofit2.0完全解读（三） | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="在前面一篇文章中介绍了Retrofit的快速使用，根据这些介绍就可以搭建一个简单的Demo来练练手了。但是这些对了掌握Retrofit来说当然是远远不够，下面就详细地讲解一下在步骤中一些很重要的东西吧。 依赖添加Retrofit 2.0以后的版本已经默认使用OkHttp作为作为HTTP 连接接口，在之前的版本是可以选择的。所以在之前的版本里面，如果想要使用OkHttp，就必须要像下面这样把OkHt">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Retrofit2.0完全解读（三）">
-<meta property="og:url" content="http://example.com/2018/03/31/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在前面一篇文章中介绍了Retrofit的快速使用，根据这些介绍就可以搭建一个简单的Demo来练练手了。但是这些对了掌握Retrofit来说当然是远远不够，下面就详细地讲解一下在步骤中一些很重要的东西吧。 依赖添加Retrofit 2.0以后的版本已经默认使用OkHttp作为作为HTTP 连接接口，在之前的版本是可以选择的。所以在之前的版本里面，如果想要使用OkHttp，就必须要像下面这样把OkHt">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://dengw.xyz/hexo-blog/180331/Hci6kla12g.png">
-<meta property="og:image" content="http://dengw.xyz/hexo-blog/180331/LB9HF0e2ak.png">
-<meta property="og:image" content="http://dengw.xyz/hexo-blog/180331/mbLCdbcdId.png">
-<meta property="article:published_time" content="2018-03-31T07:44:13.000Z">
-<meta property="article:modified_time" content="2021-07-02T10:14:18.903Z">
-<meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Retrofit">
-<meta property="article:tag" content="网络框架">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://dengw.xyz/hexo-blog/180331/Hci6kla12g.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+  <title>Retrofit2.0完全解读（三） - dengw‘s blog</title>
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Retrofit2.0完全解读（三）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-03-31 15:44" pubdate>
+        2018年3月31日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      45
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-      <div class="outer">
-        <section id="main"><article id="post-Retrofit2.0完全解读（三）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/03/31/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%B8%89%EF%BC%89/" class="article-date">
-  <time class="dt-published" datetime="2018-03-31T07:44:13.000Z" itemprop="datePublished">2018-03-31</time>
-</a>
+  <main>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Retrofit2.0完全解读（三）
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>在前面一篇文章中介绍了Retrofit的快速使用，根据这些介绍就可以搭建一个简单的Demo来练练手了。但是这些对了掌握Retrofit来说当然是远远不够，下面就详细地讲解一下在步骤中一些很重要的东西吧。</p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Retrofit2.0完全解读（三）</h1>
+            
+            <div class="markdown-body">
+              <p>在前面一篇文章中介绍了Retrofit的快速使用，根据这些介绍就可以搭建一个简单的Demo来练练手了。但是这些对了掌握Retrofit来说当然是远远不够，下面就详细地讲解一下在步骤中一些很重要的东西吧。</p>
 <h2 id="依赖添加"><a href="#依赖添加" class="headerlink" title="依赖添加"></a>依赖添加</h2><p>Retrofit 2.0以后的版本已经默认使用OkHttp作为作为HTTP 连接接口，在之前的版本是可以选择的。所以在之前的版本里面，如果想要使用OkHttp，就必须要像下面这样把OkHttp的依赖也添加到依赖文件里面：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    ...</span><br><span class="line">    compile <span class="string">&#x27;com.squareup.retrofit2:retrofit:2.0.2&#x27;</span></span><br><span class="line"></span><br><span class="line">    compile <span class="string">&#x27;com.squareup.okhttp3:okhttp:3.1.2&#x27;</span></span><br><span class="line">	</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">dependencies &#123;<br>    ...<br>    compile <span class="hljs-string">&#x27;com.squareup.retrofit2:retrofit:2.0.2&#x27;</span><br><br>    compile <span class="hljs-string">&#x27;com.squareup.okhttp3:okhttp:3.1.2&#x27;</span><br>	<br>  &#125;<br></code></pre></td></tr></table></figure>
 <p>但是在Retrofit 2.0中，已经自动为OkHttp设置了依赖：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.squareup.okhttp&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;okhttp&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.squareup.okhttp<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>okhttp<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    ...<br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>所以在依赖文件只需要添加Retrofit的依赖即可:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    ...</span><br><span class="line">    implementation &#x27;com.squareup.retrofit2:retrofit:2.3.0&#x27;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs clean">dependencies &#123;<br>    ...<br>    <span class="hljs-keyword">implementation</span> <span class="hljs-string">&#x27;com.squareup.retrofit2:retrofit:2.3.0&#x27;</span><br>  &#125;<br><br></code></pre></td></tr></table></figure>
 <p>当然一般我们都会集合Gson使用，有时候还会使用RxJava，这些也要添加依赖的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    ...</span><br><span class="line">    implementation &#x27;com.squareup.retrofit2:retrofit:2.3.0&#x27;</span><br><span class="line">    implementation &#x27;com.squareup.retrofit2:adapter-rxjava:2.3.0&#x27;</span><br><span class="line">    implementation &#x27;com.squareup.retrofit2:converter-gson:2.3.0&#x27;</span><br><span class="line"></span><br><span class="line">    implementation &#x27;io.reactivex:rxandroid:1.2.1&#x27;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs clean">dependencies &#123;<br>    ...<br>    <span class="hljs-keyword">implementation</span> <span class="hljs-string">&#x27;com.squareup.retrofit2:retrofit:2.3.0&#x27;</span><br>    <span class="hljs-keyword">implementation</span> <span class="hljs-string">&#x27;com.squareup.retrofit2:adapter-rxjava:2.3.0&#x27;</span><br>    <span class="hljs-keyword">implementation</span> <span class="hljs-string">&#x27;com.squareup.retrofit2:converter-gson:2.3.0&#x27;</span><br><br>    <span class="hljs-keyword">implementation</span> <span class="hljs-string">&#x27;io.reactivex:rxandroid:1.2.1&#x27;</span><br>  &#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="接口创建"><a href="#接口创建" class="headerlink" title="接口创建"></a>接口创建</h2><p>官方给的是这样的一个样例，看着简单，但是这里面却有很多要说</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GitHubService</span> </span>&#123;</span><br><span class="line">  <span class="meta">@GET(&quot;users/&#123;user&#125;/repos&quot;)</span></span><br><span class="line">  Call&lt;List&lt;Repo&gt;&gt; listRepos(<span class="meta">@Path(&quot;user&quot;)</span> String user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GitHubService</span> </span>&#123;<br>  <span class="hljs-meta">@GET(&quot;users/&#123;user&#125;/repos&quot;)</span><br>  Call&lt;List&lt;Repo&gt;&gt; listRepos(<span class="hljs-meta">@Path(&quot;user&quot;)</span> String user);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>可以看到在接口设置这儿有很多的注解类型，Retrofit2.0 中有三种类型的注解，分别是：网络请求方法、标记类、网络请求参数。</p>
 <h3 id="网络请求方法"><a href="#网络请求方法" class="headerlink" title="网络请求方法"></a>网络请求方法</h3><p>这儿对应Http request的请求类型，上面示范代码中的<code>@Get</code>就是网络请求方法的一种，不同的注解代表不同的操作，Http请求方法有以下几种，其中，除HTTP以外都对应了HTTP标准中的请求方法：</p>
-<p><img src="http://dengw.xyz/hexo-blog/180331/Hci6kla12g.png" alt="HTTP请求方法注解"></p>
+<p><img src="http://dengw.xyz/hexo-blog/180331/Hci6kla12g.png" srcset="/img/loading.gif" lazyload alt="HTTP请求方法注解"></p>
 <p>对于每种方法的作用这里就不详细的介绍，具体的讲一下每一种请求类型在这儿的使用方法。</p>
 <ul>
 <li>@GET、@POST、@PUT、@DELETE、@HEAD、@Path、@HEAD、@OPTIONS</li>
 </ul>
 <p>这些方法都是HTTP的请求方法，它们的使用方法很类似，都可以以下面这样的形式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@XXX(path)</span></span><br><span class="line"></span><br><span class="line">比如：</span><br><span class="line"><span class="meta">@GET(&quot;users/list&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@POST(&quot;users/new&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@PUT(&quot;user/photo&quot;)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@XXX(path)</span><br><br>比如：<br><span class="hljs-meta">@GET(&quot;users/list&quot;)</span><br><br><span class="hljs-meta">@POST(&quot;users/new&quot;)</span><br><br><span class="hljs-meta">@PUT(&quot;user/photo&quot;)</span><br></code></pre></td></tr></table></figure>
 <p>说到这儿了，就很有必要讲一下Retrofit2.0 的URL组成了。一般都是由两部分组成: baseUrl + path， 其中baseUrl是在创建Retrofit2.0 实例时设置的，path就是上面请求方法中括号中的path。组合的规则如下：</p>
 <table>
 <thead>
@@ -157,14 +280,14 @@
 <li>具体使用：通过属性method、path、hasBody进行设置</li>
 </ul>
 <p>例如，下面两段代码等价：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@GET(&quot;users/&#123;user&#125;&quot;)</span></span><br><span class="line"> <span class="function">Observable&lt;User&gt; <span class="title">getUser</span><span class="params">(<span class="meta">@Path(&quot;user&quot;)</span> String user)</span></span>;</span><br><span class="line">	</span><br><span class="line"><span class="comment">//使用@HTTP替代@GET</span></span><br><span class="line"><span class="meta">@HTTP(method=&quot;GET&quot;, path=&quot;users/&#123;user&#125;&quot;, hasBody = false)</span></span><br><span class="line"> <span class="function">Observable&lt;User&gt; <span class="title">getUser</span><span class="params">(<span class="meta">@Path(&quot;user&quot;)</span> String user)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-meta">@GET(&quot;users/&#123;user&#125;&quot;)</span><br> <span class="hljs-function">Observable&lt;User&gt; <span class="hljs-title">getUser</span><span class="hljs-params">(<span class="hljs-meta">@Path(&quot;user&quot;)</span> String user)</span></span>;<br>	<br><span class="hljs-comment">//使用@HTTP替代@GET</span><br><span class="hljs-meta">@HTTP(method=&quot;GET&quot;, path=&quot;users/&#123;user&#125;&quot;, hasBody = false)</span><br> <span class="hljs-function">Observable&lt;User&gt; <span class="hljs-title">getUser</span><span class="hljs-params">(<span class="hljs-meta">@Path(&quot;user&quot;)</span> String user)</span></span>;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>method 表示请求的方法，区分大小写</li>
 <li>path表示路径</li>
 <li>hasBody表示是否有请求体</li>
 </ul>
-<h3 id="标记"><a href="#标记" class="headerlink" title="标记"></a>标记</h3><p><img src="http://dengw.xyz/hexo-blog/180331/LB9HF0e2ak.png" alt="标记类注解"></p>
+<h3 id="标记"><a href="#标记" class="headerlink" title="标记"></a>标记</h3><p><img src="http://dengw.xyz/hexo-blog/180331/LB9HF0e2ak.png" srcset="/img/loading.gif" lazyload alt="标记类注解"></p>
 <p>@FormUrlEncoded</p>
 <p>作用：表示发送form-encoded的数据<br>每个键值对需要用@Filed来注解键名，随后的对象需要提供值。</p>
 <p>@Multipart</p>
@@ -172,9 +295,9 @@
 <p>@Streaming</p>
 <p>如果下载一个非常大的文件，Retrofit会试图将整个文件读进内存。为了避免这种现象的发生，我们添加了一个特殊的注解来声明请求。</p>
 <p>声明@Streaming并不是意味着你需要观察一个Netflix文件。它意味着立刻传递字节码，而不需要把整个文件读进内存。值得注意的是，如果你使用了@Streaming，并且依然使用以上的代码片段来进行处理。Android将会抛出android.os.NetworkOnMainThreadException异常。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> FormUrlEncoded&#125; 表明是一个表单格式的请求（Content-Type:application/x-www-form-urlencoded）</span></span><br><span class="line"><span class="comment"> * &lt;code&gt;Field(&quot;username&quot;)&lt;/code&gt; 表示将后面的 &lt;code&gt;String name&lt;/code&gt; 中name的取值作为 username 的值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line"><span class="meta">@FormUrlEncoded</span></span><br><span class="line"><span class="function">Call&lt;ResponseBody&gt; <span class="title">testFormUrlEncoded1</span><span class="params">(<span class="meta">@Field(&quot;username&quot;)</span> String name, <span class="meta">@Field(&quot;age&quot;)</span> <span class="keyword">int</span> age)</span></span>;</span><br><span class="line">		</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> Part&#125; 后面支持三种类型，&#123;<span class="doctag">@link</span> RequestBody&#125;、&#123;<span class="doctag">@link</span> okhttp3.MultipartBody.Part&#125; 、任意类型</span></span><br><span class="line"><span class="comment"> * 除 &#123;<span class="doctag">@link</span> okhttp3.MultipartBody.Part&#125; 以外，其它类型都必须带上表单字段(&#123;<span class="doctag">@link</span> okhttp3.MultipartBody.Part&#125; 中已经包含了表单字段的信息)，</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line"><span class="meta">@Multipart</span></span><br><span class="line"><span class="function">Call&lt;ResponseBody&gt; <span class="title">testFileUpload1</span><span class="params">(<span class="meta">@Part(&quot;name&quot;)</span> RequestBody name, <span class="meta">@Part(&quot;age&quot;)</span> RequestBody age, <span class="meta">@Part</span> MultipartBody.Part file)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@link</span> FormUrlEncoded&#125; 表明是一个表单格式的请求（Content-Type:application/x-www-form-urlencoded）</span><br><span class="hljs-comment"> * &lt;code&gt;Field(&quot;username&quot;)&lt;/code&gt; 表示将后面的 &lt;code&gt;String name&lt;/code&gt; 中name的取值作为 username 的值</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@POST(&quot;/form&quot;)</span><br><span class="hljs-meta">@FormUrlEncoded</span><br><span class="hljs-function">Call&lt;ResponseBody&gt; <span class="hljs-title">testFormUrlEncoded1</span><span class="hljs-params">(<span class="hljs-meta">@Field(&quot;username&quot;)</span> String name, <span class="hljs-meta">@Field(&quot;age&quot;)</span> <span class="hljs-keyword">int</span> age)</span></span>;<br>		<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &#123;<span class="hljs-doctag">@link</span> Part&#125; 后面支持三种类型，&#123;<span class="hljs-doctag">@link</span> RequestBody&#125;、&#123;<span class="hljs-doctag">@link</span> okhttp3.MultipartBody.Part&#125; 、任意类型</span><br><span class="hljs-comment"> * 除 &#123;<span class="hljs-doctag">@link</span> okhttp3.MultipartBody.Part&#125; 以外，其它类型都必须带上表单字段(&#123;<span class="hljs-doctag">@link</span> okhttp3.MultipartBody.Part&#125; 中已经包含了表单字段的信息)，</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@POST(&quot;/form&quot;)</span><br><span class="hljs-meta">@Multipart</span><br><span class="hljs-function">Call&lt;ResponseBody&gt; <span class="hljs-title">testFileUpload1</span><span class="hljs-params">(<span class="hljs-meta">@Part(&quot;name&quot;)</span> RequestBody name, <span class="hljs-meta">@Part(&quot;age&quot;)</span> RequestBody age, <span class="hljs-meta">@Part</span> MultipartBody.Part file)</span></span>;<br></code></pre></td></tr></table></figure>
 
-<h3 id="网络请求参数"><a href="#网络请求参数" class="headerlink" title="网络请求参数"></a>网络请求参数</h3><p><img src="http://dengw.xyz/hexo-blog/180331/mbLCdbcdId.png" alt="参数类注解"></p>
+<h3 id="网络请求参数"><a href="#网络请求参数" class="headerlink" title="网络请求参数"></a>网络请求参数</h3><p><img src="http://dengw.xyz/hexo-blog/180331/mbLCdbcdId.png" srcset="/img/loading.gif" lazyload alt="参数类注解"></p>
 <ul>
 <li>@Header &amp; @Headers</li>
 </ul>
@@ -182,7 +305,7 @@
 <blockquote>
 <p>作用：添加请求头 &amp;添加不固定的请求头</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @Header</span></span><br><span class="line"><span class="meta">@GET(&quot;user&quot;)</span></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">getUser</span><span class="params">(<span class="meta">@Header(&quot;Authorization&quot;)</span> String authorization)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// @Headers</span></span></span><br><span class="line"><span class="function">@<span class="title">Headers</span><span class="params">(<span class="string">&quot;Authorization: authorization&quot;</span>)</span></span></span><br><span class="line"><span class="function">@<span class="title">GET</span><span class="params">(<span class="string">&quot;user&quot;</span>)</span></span></span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">getUser</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 以上的效果是一致的。</span></span></span><br><span class="line"><span class="function"><span class="comment">// 区别在于使用场景和使用方式</span></span></span><br><span class="line"><span class="function"><span class="comment">// 1. 使用场景：@Header用于添加不固定的请求头，@Headers用于添加固定的请求头</span></span></span><br><span class="line"><span class="function"><span class="comment">// 2. 使用方式：@Header作用于方法的参数；@Headers作用于方法</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// @Header</span><br><span class="hljs-meta">@GET(&quot;user&quot;)</span><br><span class="hljs-function">Call&lt;User&gt; <span class="hljs-title">getUser</span><span class="hljs-params">(<span class="hljs-meta">@Header(&quot;Authorization&quot;)</span> String authorization)</span></span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-comment">// @Headers</span></span><br><span class="hljs-function">@<span class="hljs-title">Headers</span><span class="hljs-params">(<span class="hljs-string">&quot;Authorization: authorization&quot;</span>)</span></span><br><span class="hljs-function">@<span class="hljs-title">GET</span><span class="hljs-params">(<span class="hljs-string">&quot;user&quot;</span>)</span></span><br><span class="hljs-function">Call&lt;User&gt; <span class="hljs-title">getUser</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-comment">// 以上的效果是一致的。</span></span><br><span class="hljs-function"><span class="hljs-comment">// 区别在于使用场景和使用方式</span></span><br><span class="hljs-function"><span class="hljs-comment">// 1. 使用场景：@Header用于添加不固定的请求头，@Headers用于添加固定的请求头</span></span><br><span class="hljs-function"><span class="hljs-comment">// 2. 使用方式：@Header作用于方法的参数；@Headers作用于方法</span></span><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>@Body</li>
@@ -190,14 +313,14 @@
 <blockquote>
 <p>作用：以 Post方式 传递 自定义数据类型 给服务器<br>特别注意：如果提交的是一个Map，那么作用相当于 @Field </p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@POST(&quot;blog&quot;)</span></span><br><span class="line">Call&lt;Result&lt;Blog&gt;&gt; createBlog(<span class="meta">@Body</span> Blog blog);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@POST(&quot;blog&quot;)</span><br>Call&lt;Result&lt;Blog&gt;&gt; createBlog(<span class="hljs-meta">@Body</span> Blog blog);<br></code></pre></td></tr></table></figure>
 
 <p>被@Body注解的的Blog将会被Gson转换成RequestBody发送到服务器。</p>
 <p>具体使用：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BlogService service = retrofit.create(BlogService.class);</span><br><span class="line">Blog blog = <span class="keyword">new</span> Blog();</span><br><span class="line">blog.content = <span class="string">&quot;新建的Blog&quot;</span>;</span><br><span class="line">blog.title = <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">blog.author = <span class="string">&quot;怪盗kidou&quot;</span>;</span><br><span class="line">Call&lt;Result&lt;Blog&gt;&gt; call = service.createBlog(blog);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">BlogService service = retrofit.create(BlogService.class);<br>Blog blog = <span class="hljs-keyword">new</span> Blog();<br>blog.content = <span class="hljs-string">&quot;新建的Blog&quot;</span>;<br>blog.title = <span class="hljs-string">&quot;测试&quot;</span>;<br>blog.author = <span class="hljs-string">&quot;怪盗kidou&quot;</span>;<br>Call&lt;Result&lt;Blog&gt;&gt; call = service.createBlog(blog);<br></code></pre></td></tr></table></figure>
 
 <p>服务器收到的数据：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Result&#123;code=<span class="number">200</span>, msg=<span class="string">&#x27;OK&#x27;</span>, data=Blog&#123;id=<span class="number">20</span>, date=<span class="string">&#x27;2016-04-21 05:29:58&#x27;</span>, author=<span class="string">&#x27;怪盗kidou&#x27;</span>, title=<span class="string">&#x27;测试&#x27;</span>, content=<span class="string">&#x27;新建的Blog&#x27;</span>&#125;, count=<span class="number">0</span>, page=<span class="number">0</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">Result&#123;code=<span class="hljs-number">200</span>, msg=<span class="hljs-string">&#x27;OK&#x27;</span>, data=Blog&#123;id=<span class="hljs-number">20</span>, date=<span class="hljs-string">&#x27;2016-04-21 05:29:58&#x27;</span>, author=<span class="hljs-string">&#x27;怪盗kidou&#x27;</span>, title=<span class="hljs-string">&#x27;测试&#x27;</span>, content=<span class="hljs-string">&#x27;新建的Blog&#x27;</span>&#125;, count=<span class="hljs-number">0</span>, page=<span class="hljs-number">0</span>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>@Field &amp; @FieldMap<blockquote>
@@ -205,7 +328,7 @@
 </blockquote>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GetRequest_Interface</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *表明是一个表单格式的请求（Content-Type:application/x-www-form-urlencoded）</span></span><br><span class="line"><span class="comment">     * &lt;code&gt;Field(&quot;username&quot;)&lt;/code&gt; 表示将后面的 &lt;code&gt;String name&lt;/code&gt; 中name的取值作为 username 的值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line">    <span class="meta">@FormUrlEncoded</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">testFormUrlEncoded1</span><span class="params">(<span class="meta">@Field(&quot;username&quot;)</span> String name, <span class="meta">@Field(&quot;age&quot;)</span> <span class="keyword">int</span> age)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">      * Map的key作为表单的键</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line">    <span class="meta">@FormUrlEncoded</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">testFormUrlEncoded2</span><span class="params">(<span class="meta">@FieldMap</span> Map&lt;String, Object&gt; map)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 具体使用</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// @Field</span></span><br><span class="line">    Call&lt;ResponseBody&gt; call1 = service.testFormUrlEncoded1(<span class="string">&quot;Carson&quot;</span>, <span class="number">24</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// @FieldMap</span></span><br><span class="line">    <span class="comment">// 实现的效果与上面相同，但要传入Map</span></span><br><span class="line">    Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;Carson&quot;</span>);</span><br><span class="line">    map.put(<span class="string">&quot;age&quot;</span>, <span class="number">24</span>);</span><br><span class="line">    Call&lt;ResponseBody&gt; call2 = service.testFormUrlEncoded2(map);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GetRequest_Interface</span> </span>&#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *表明是一个表单格式的请求（Content-Type:application/x-www-form-urlencoded）</span><br><span class="hljs-comment">     * &lt;code&gt;Field(&quot;username&quot;)&lt;/code&gt; 表示将后面的 &lt;code&gt;String name&lt;/code&gt; 中name的取值作为 username 的值</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@POST(&quot;/form&quot;)</span><br>    <span class="hljs-meta">@FormUrlEncoded</span><br>    <span class="hljs-function">Call&lt;ResponseBody&gt; <span class="hljs-title">testFormUrlEncoded1</span><span class="hljs-params">(<span class="hljs-meta">@Field(&quot;username&quot;)</span> String name, <span class="hljs-meta">@Field(&quot;age&quot;)</span> <span class="hljs-keyword">int</span> age)</span></span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">      * Map的key作为表单的键</span><br><span class="hljs-comment">      */</span><br>    <span class="hljs-meta">@POST(&quot;/form&quot;)</span><br>    <span class="hljs-meta">@FormUrlEncoded</span><br>    <span class="hljs-function">Call&lt;ResponseBody&gt; <span class="hljs-title">testFormUrlEncoded2</span><span class="hljs-params">(<span class="hljs-meta">@FieldMap</span> Map&lt;String, Object&gt; map)</span></span>;<br>&#125;<br><br><span class="hljs-comment">// 具体使用</span><br><br>    <span class="hljs-comment">// @Field</span><br>    Call&lt;ResponseBody&gt; call1 = service.testFormUrlEncoded1(<span class="hljs-string">&quot;Carson&quot;</span>, <span class="hljs-number">24</span>);<br><br>    <span class="hljs-comment">// @FieldMap</span><br>    <span class="hljs-comment">// 实现的效果与上面相同，但要传入Map</span><br>    Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>    map.put(<span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;Carson&quot;</span>);<br>    map.put(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">24</span>);<br>    Call&lt;ResponseBody&gt; call2 = service.testFormUrlEncoded2(map);<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li> @Part &amp; @PartMap<blockquote>
@@ -214,7 +337,7 @@
 </li>
 </ul>
 <p>具体使用：与 @Multipart 注解配合使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GetRequest_Interface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &#123;<span class="doctag">@link</span> Part&#125; 后面支持三种类型，&#123;<span class="doctag">@link</span> RequestBody&#125;、&#123;<span class="doctag">@link</span> okhttp3.MultipartBody.Part&#125; 、任意类型</span></span><br><span class="line"><span class="comment">     * 除 &#123;<span class="doctag">@link</span> okhttp3.MultipartBody.Part&#125; 以外，其它类型都必须带上表单字段(&#123;<span class="doctag">@link</span> okhttp3.MultipartBody.Part&#125; 中已经包含了表单字段的信息)，</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line">    <span class="meta">@Multipart</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">testFileUpload1</span><span class="params">(<span class="meta">@Part(&quot;name&quot;)</span> RequestBody name, <span class="meta">@Part(&quot;age&quot;)</span> RequestBody age, <span class="meta">@Part</span> MultipartBody.Part file)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * PartMap 注解支持一个Map作为参数，支持 &#123;<span class="doctag">@link</span> RequestBody &#125; 类型，</span></span><br><span class="line"><span class="comment">     * 如果有其它的类型，会被&#123;<span class="doctag">@link</span> retrofit2.Converter&#125;转换，如后面会介绍的 使用&#123;<span class="doctag">@link</span> com.google.gson.Gson&#125; 的 &#123;<span class="doctag">@link</span> retrofit2.converter.gson.GsonRequestBodyConverter&#125;</span></span><br><span class="line"><span class="comment">     * 所以&#123;<span class="doctag">@link</span> MultipartBody.Part&#125; 就不适用了,所以文件只能用&lt;b&gt; <span class="doctag">@Part</span> MultipartBody.Part &lt;/b&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line">    <span class="meta">@Multipart</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">testFileUpload2</span><span class="params">(<span class="meta">@PartMap</span> Map&lt;String, RequestBody&gt; args, <span class="meta">@Part</span> MultipartBody.Part file)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@POST(&quot;/form&quot;)</span></span><br><span class="line">    <span class="meta">@Multipart</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">testFileUpload3</span><span class="params">(<span class="meta">@PartMap</span> Map&lt;String, RequestBody&gt; args)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 具体使用</span></span><br><span class="line">    MediaType textType = MediaType.parse(<span class="string">&quot;text/plain&quot;</span>);</span><br><span class="line">    RequestBody name = RequestBody.create(textType, <span class="string">&quot;Carson&quot;</span>);</span><br><span class="line">    RequestBody age = RequestBody.create(textType, <span class="string">&quot;24&quot;</span>);</span><br><span class="line">    RequestBody file = RequestBody.create(MediaType.parse(<span class="string">&quot;application/octet-stream&quot;</span>), <span class="string">&quot;这里是模拟文件的内容&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// @Part</span></span><br><span class="line">    MultipartBody.Part filePart = MultipartBody.Part.createFormData(<span class="string">&quot;file&quot;</span>, <span class="string">&quot;test.txt&quot;</span>, file);</span><br><span class="line">    Call&lt;ResponseBody&gt; call3 = service.testFileUpload1(name, age, filePart);</span><br><span class="line">    ResponseBodyPrinter.printResponseBody(call3);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// @PartMap</span></span><br><span class="line">    <span class="comment">// 实现和上面同样的效果</span></span><br><span class="line">    Map&lt;String, RequestBody&gt; fileUpload2Args = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    fileUpload2Args.put(<span class="string">&quot;name&quot;</span>, name);</span><br><span class="line">    fileUpload2Args.put(<span class="string">&quot;age&quot;</span>, age);</span><br><span class="line">    <span class="comment">//这里并不会被当成文件，因为没有文件名(包含在Content-Disposition请求头中)，但上面的 filePart 有</span></span><br><span class="line">    <span class="comment">//fileUpload2Args.put(&quot;file&quot;, file);</span></span><br><span class="line">    Call&lt;ResponseBody&gt; call4 = service.testFileUpload2(fileUpload2Args, filePart); <span class="comment">//单独处理文件</span></span><br><span class="line">    ResponseBodyPrinter.printResponseBody(call4);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GetRequest_Interface</span> </span>&#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * &#123;<span class="hljs-doctag">@link</span> Part&#125; 后面支持三种类型，&#123;<span class="hljs-doctag">@link</span> RequestBody&#125;、&#123;<span class="hljs-doctag">@link</span> okhttp3.MultipartBody.Part&#125; 、任意类型</span><br><span class="hljs-comment">     * 除 &#123;<span class="hljs-doctag">@link</span> okhttp3.MultipartBody.Part&#125; 以外，其它类型都必须带上表单字段(&#123;<span class="hljs-doctag">@link</span> okhttp3.MultipartBody.Part&#125; 中已经包含了表单字段的信息)，</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@POST(&quot;/form&quot;)</span><br>    <span class="hljs-meta">@Multipart</span><br>    <span class="hljs-function">Call&lt;ResponseBody&gt; <span class="hljs-title">testFileUpload1</span><span class="hljs-params">(<span class="hljs-meta">@Part(&quot;name&quot;)</span> RequestBody name, <span class="hljs-meta">@Part(&quot;age&quot;)</span> RequestBody age, <span class="hljs-meta">@Part</span> MultipartBody.Part file)</span></span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * PartMap 注解支持一个Map作为参数，支持 &#123;<span class="hljs-doctag">@link</span> RequestBody &#125; 类型，</span><br><span class="hljs-comment">     * 如果有其它的类型，会被&#123;<span class="hljs-doctag">@link</span> retrofit2.Converter&#125;转换，如后面会介绍的 使用&#123;<span class="hljs-doctag">@link</span> com.google.gson.Gson&#125; 的 &#123;<span class="hljs-doctag">@link</span> retrofit2.converter.gson.GsonRequestBodyConverter&#125;</span><br><span class="hljs-comment">     * 所以&#123;<span class="hljs-doctag">@link</span> MultipartBody.Part&#125; 就不适用了,所以文件只能用&lt;b&gt; <span class="hljs-doctag">@Part</span> MultipartBody.Part &lt;/b&gt;</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@POST(&quot;/form&quot;)</span><br>    <span class="hljs-meta">@Multipart</span><br>    <span class="hljs-function">Call&lt;ResponseBody&gt; <span class="hljs-title">testFileUpload2</span><span class="hljs-params">(<span class="hljs-meta">@PartMap</span> Map&lt;String, RequestBody&gt; args, <span class="hljs-meta">@Part</span> MultipartBody.Part file)</span></span>;<br><br>    <span class="hljs-meta">@POST(&quot;/form&quot;)</span><br>    <span class="hljs-meta">@Multipart</span><br>    <span class="hljs-function">Call&lt;ResponseBody&gt; <span class="hljs-title">testFileUpload3</span><span class="hljs-params">(<span class="hljs-meta">@PartMap</span> Map&lt;String, RequestBody&gt; args)</span></span>;<br>&#125;<br><br>    <span class="hljs-comment">// 具体使用</span><br>    MediaType textType = MediaType.parse(<span class="hljs-string">&quot;text/plain&quot;</span>);<br>    RequestBody name = RequestBody.create(textType, <span class="hljs-string">&quot;Carson&quot;</span>);<br>    RequestBody age = RequestBody.create(textType, <span class="hljs-string">&quot;24&quot;</span>);<br>    RequestBody file = RequestBody.create(MediaType.parse(<span class="hljs-string">&quot;application/octet-stream&quot;</span>), <span class="hljs-string">&quot;这里是模拟文件的内容&quot;</span>);<br><br>    <span class="hljs-comment">// @Part</span><br>    MultipartBody.Part filePart = MultipartBody.Part.createFormData(<span class="hljs-string">&quot;file&quot;</span>, <span class="hljs-string">&quot;test.txt&quot;</span>, file);<br>    Call&lt;ResponseBody&gt; call3 = service.testFileUpload1(name, age, filePart);<br>    ResponseBodyPrinter.printResponseBody(call3);<br><br>    <span class="hljs-comment">// @PartMap</span><br>    <span class="hljs-comment">// 实现和上面同样的效果</span><br>    Map&lt;String, RequestBody&gt; fileUpload2Args = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>    fileUpload2Args.put(<span class="hljs-string">&quot;name&quot;</span>, name);<br>    fileUpload2Args.put(<span class="hljs-string">&quot;age&quot;</span>, age);<br>    <span class="hljs-comment">//这里并不会被当成文件，因为没有文件名(包含在Content-Disposition请求头中)，但上面的 filePart 有</span><br>    <span class="hljs-comment">//fileUpload2Args.put(&quot;file&quot;, file);</span><br>    Call&lt;ResponseBody&gt; call4 = service.testFileUpload2(fileUpload2Args, filePart); <span class="hljs-comment">//单独处理文件</span><br>    ResponseBodyPrinter.printResponseBody(call4);<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>@Query和@QueryMap<blockquote>
@@ -223,7 +346,7 @@
 </li>
 </ul>
 <p>具体使用：配置时只需要在接口方法中增加一个参数即可：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//url = http://www.println.net/?cate=android，其中，Query = cate</span></span><br><span class="line"><span class="meta">@GET(&quot;/&quot;)</span>    </span><br><span class="line"><span class="function">Call&lt;String&gt; <span class="title">cate</span><span class="params">(<span class="meta">@Query(&quot;cate&quot;)</span> String cate)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//url = http://www.println.net/?cate=android，其中，Query = cate</span><br><span class="hljs-meta">@GET(&quot;/&quot;)</span>    <br><span class="hljs-function">Call&lt;String&gt; <span class="hljs-title">cate</span><span class="hljs-params">(<span class="hljs-meta">@Query(&quot;cate&quot;)</span> String cate)</span></span>;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>@Path<blockquote>
@@ -232,7 +355,7 @@
 </li>
 </ul>
 <p>具体使用：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GetRequest_Interface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GET(&quot;users/&#123;user&#125;/repos&quot;)</span></span><br><span class="line">    Call&lt;ResponseBody&gt;  getBlog（<span class="meta">@Path(&quot;user&quot;)</span> String user ）;</span><br><span class="line">    <span class="comment">// 访问的API是：https://api.github.com/users/&#123;user&#125;/repos</span></span><br><span class="line">    <span class="comment">// 在发起请求时， &#123;user&#125; 会被替换为方法的第一个参数 user（被@Path注解作用）</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GetRequest_Interface</span> </span>&#123;<br><br>    <span class="hljs-meta">@GET(&quot;users/&#123;user&#125;/repos&quot;)</span><br>    Call&lt;ResponseBody&gt;  getBlog（<span class="hljs-meta">@Path(&quot;user&quot;)</span> String user ）;<br>    <span class="hljs-comment">// 访问的API是：https://api.github.com/users/&#123;user&#125;/repos</span><br>    <span class="hljs-comment">// 在发起请求时， &#123;user&#125; 会被替换为方法的第一个参数 user（被@Path注解作用）</span><br> &#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>@Url</li>
@@ -241,13 +364,13 @@
 <p>作用：直接传入一个请求的 URL变量 用于URL设置</p>
 </blockquote>
 <p>具体使用：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GetRequest_Interface</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GET</span></span><br><span class="line">    <span class="function">Call&lt;ResponseBody&gt; <span class="title">testUrlAndQuery</span><span class="params">(<span class="meta">@Url</span> String url, <span class="meta">@Query(&quot;showAll&quot;)</span> <span class="keyword">boolean</span> showAll)</span></span>;</span><br><span class="line">    <span class="comment">// 当有URL注解时，@GET传入的URL就可以省略</span></span><br><span class="line">    <span class="comment">// 当GET、POST...HTTP等方法中没有设置Url时，则必须使用 &#123;@link Url&#125;提供</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GetRequest_Interface</span> </span>&#123;<br><br>    <span class="hljs-meta">@GET</span><br>    <span class="hljs-function">Call&lt;ResponseBody&gt; <span class="hljs-title">testUrlAndQuery</span><span class="hljs-params">(<span class="hljs-meta">@Url</span> String url, <span class="hljs-meta">@Query(&quot;showAll&quot;)</span> <span class="hljs-keyword">boolean</span> showAll)</span></span>;<br>    <span class="hljs-comment">// 当有URL注解时，@GET传入的URL就可以省略</span><br>    <span class="hljs-comment">// 当GET、POST...HTTP等方法中没有设置Url时，则必须使用 &#123;@link Url&#125;提供</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="创建Retrofit-实例"><a href="#创建Retrofit-实例" class="headerlink" title="创建Retrofit 实例"></a>创建Retrofit 实例</h2><p>在这一步中也有很多需要注意的地方。</p>
 <h3 id="OkHttpClient"><a href="#OkHttpClient" class="headerlink" title="OkHttpClient"></a>OkHttpClient</h3><p>前面已经提到，Retrofit2.0中会自动使用OkHttp实现HTTP连接，所以没有特殊需求的话，可以向下面这样很快的创建一个Retrofit 实例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">    .baseUrl(<span class="string">&quot;https://api.github.com&quot;</span>)</span><br><span class="line">    .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Retrofit retrofit = <span class="hljs-keyword">new</span> Retrofit.Builder()<br>    .baseUrl(<span class="hljs-string">&quot;https://api.github.com&quot;</span>)<br>    .addConverterFactory(GsonConverterFactory.create())<br>    .build();<br></code></pre></td></tr></table></figure>
 <p>但是当你需要进行一些特殊化处理的时候，比如cookie的设置、网络超时的设置、请求header设置等，这个时候我们就需要自己先配置好好OkHttpClient然后手动地设置Retrofit 的Client。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先配置好一个OkHttpClient</span></span><br><span class="line">OkHttpClient okHttpClient = <span class="keyword">new</span> OkHttpClient.Builder()  </span><br><span class="line">            .connectTimeout(<span class="number">5</span>*<span class="number">1000</span>, TimeUnit.MILLISECONDS) <span class="comment">//链接超时  </span></span><br><span class="line">            .readTimeout(<span class="number">10</span>*<span class="number">1000</span>,TimeUnit.MILLISECONDS) <span class="comment">//读取超时  </span></span><br><span class="line">            .writeTimeout(<span class="number">10</span>*<span class="number">1000</span>,TimeUnit.MILLISECONDS) <span class="comment">//写入超时  </span></span><br><span class="line">            .addInterceptor(<span class="keyword">new</span> HttpHeadInterceptor()) <span class="comment">//应用拦截器：统一添加消息头  </span></span><br><span class="line">            .addNetworkInterceptor(<span class="keyword">new</span> NetworkspaceInterceptor())<span class="comment">//网络拦截器  </span></span><br><span class="line">            .addInterceptor(loggingInterceptor)<span class="comment">//应用拦截器：打印日志  </span></span><br><span class="line">            .cache(cache)  <span class="comment">//设置缓存  </span></span><br><span class="line">            .build();</span><br><span class="line">			</span><br><span class="line">retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">		.baseUrl(baseUrl)</span><br><span class="line">		 .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">		.addCallAdapterFactory(RxJavaCallAdapterFactory.create())</span><br><span class="line">		 .client(okHttpClient)                      <span class="comment">//设置配置好的OkHttpClient为Retrofit的Client</span></span><br><span class="line">		 .build();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//先配置好一个OkHttpClient</span><br>OkHttpClient okHttpClient = <span class="hljs-keyword">new</span> OkHttpClient.Builder()  <br>            .connectTimeout(<span class="hljs-number">5</span>*<span class="hljs-number">1000</span>, TimeUnit.MILLISECONDS) <span class="hljs-comment">//链接超时  </span><br>            .readTimeout(<span class="hljs-number">10</span>*<span class="hljs-number">1000</span>,TimeUnit.MILLISECONDS) <span class="hljs-comment">//读取超时  </span><br>            .writeTimeout(<span class="hljs-number">10</span>*<span class="hljs-number">1000</span>,TimeUnit.MILLISECONDS) <span class="hljs-comment">//写入超时  </span><br>            .addInterceptor(<span class="hljs-keyword">new</span> HttpHeadInterceptor()) <span class="hljs-comment">//应用拦截器：统一添加消息头  </span><br>            .addNetworkInterceptor(<span class="hljs-keyword">new</span> NetworkspaceInterceptor())<span class="hljs-comment">//网络拦截器  </span><br>            .addInterceptor(loggingInterceptor)<span class="hljs-comment">//应用拦截器：打印日志  </span><br>            .cache(cache)  <span class="hljs-comment">//设置缓存  </span><br>            .build();<br>			<br>retrofit = <span class="hljs-keyword">new</span> Retrofit.Builder()<br>		.baseUrl(baseUrl)<br>		 .addConverterFactory(GsonConverterFactory.create())<br>		.addCallAdapterFactory(RxJavaCallAdapterFactory.create())<br>		 .client(okHttpClient)                      <span class="hljs-comment">//设置配置好的OkHttpClient为Retrofit的Client</span><br>		 .build();<br></code></pre></td></tr></table></figure>
 <p><strong>NOTE：</strong>具体可配置参数见<a target="_blank" rel="noopener" href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.Builder.html">OkHttpClient.Builder</a>类。</p>
 <h3 id="数据解析器（Converter）"><a href="#数据解析器（Converter）" class="headerlink" title="数据解析器（Converter）"></a>数据解析器（Converter）</h3><p>Retrofit2.0 支持多种数据解析方式，官方给了下面几种解析器，根据自己需要选择。</p>
 <table>
@@ -292,161 +415,216 @@
 </blockquote>
 <p>Retrofit2.0 除了默认的 CallAdapter外，还支持多种网络请求适配器方式：guava、Java8和 rxjava<br>不过我就只用过RxJava，这应该是Retrofit名气最大的适配器，确实非常好用，多好用呢？自己去感受一下。关于RxJava的使用也有很多是要学习的，这里帖两篇很好的博客。<br><a target="_blank" rel="noopener" href="http://gank.io/post/560e15be2dca930e00da1083">给 Android 开发者的 RxJava 详解</a><br><a target="_blank" rel="noopener" href="https://gank.io/post/56e80c2c677659311bed9841">RxJava 与 Retrofit 结合的最佳实践</a></p>
 <h3 id="发送网络请求"><a href="#发送网络请求" class="headerlink" title="发送网络请求"></a>发送网络请求</h3><p>Retrofit 2.0发送网络请求有两种方法，同步和异步。我们在Retrofit 2.0 和Retrofit 1.0的差别中有介绍到，Retrofit 2.0不管是使用同步还是使用异步的方法，都是同一个函数接口，这一点相比Retrofit 1.0，省去不少功夫，具体的调用方法如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 发送网络请求（同步）</span></span><br><span class="line">Response&lt;Reception&gt; response = call.execute();</span><br><span class="line"></span><br><span class="line"><span class="comment">//发送网络请求(异步)</span></span><br><span class="line">call.enqueue(<span class="keyword">new</span> Callback&lt;Translation&gt;() &#123;</span><br><span class="line">	  <span class="comment">//请求成功时回调</span></span><br><span class="line">	  <span class="meta">@Override</span></span><br><span class="line">	  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;Translation&gt; call, Response&lt;Translation&gt; response)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//请求处理,输出结果</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//请求失败时候的回调</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;Translation&gt; call, Throwable throwable)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 发送网络请求（同步）</span><br>Response&lt;Reception&gt; response = call.execute();<br><br><span class="hljs-comment">//发送网络请求(异步)</span><br>call.enqueue(<span class="hljs-keyword">new</span> Callback&lt;Translation&gt;() &#123;<br>	  <span class="hljs-comment">//请求成功时回调</span><br>	  <span class="hljs-meta">@Override</span><br>	  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(Call&lt;Translation&gt; call, Response&lt;Translation&gt; response)</span> </span>&#123;<br>		<span class="hljs-comment">//请求处理,输出结果</span><br><br>    &#125;<br><br>    <span class="hljs-comment">//请求失败时候的回调</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(Call&lt;Translation&gt; call, Throwable throwable)</span> </span>&#123;<br><br>	  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
 
 <p><strong>注</strong>：本文大部分内容来自<a target="_blank" rel="noopener" href="https://blog.csdn.net/carson_ho/article/details/73732076"> 这是一份很详细的 Retrofit 2.0 使用教程（含实例讲解）</a>，我写出来主要是为了加深自己的印象，作为个人博客能够好好系统总结一下，并结合自己理解对内容作了部分修改。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2018/03/31/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%B8%89%EF%BC%89/" data-id="ckqm6kpnh006zxxr5gb1s7g7x" data-title="Retrofit2.0完全解读（三）" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" rel="tag">网络框架</a></li></ul>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Retrofit/">Retrofit</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/">网络框架</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/04/18/Android-MVP%E5%88%9D%E4%BD%93%E9%AA%8C/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android学习笔记—MVP初体验</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/03/22/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89/">
+                        <span class="hidden-mobile">Retrofit2.0完全解读（二）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/04/18/Android-MVP%E5%88%9D%E4%BD%93%E9%AA%8C/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Android学习笔记—MVP初体验
-        
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2018/03/22/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Retrofit2.0完全解读（二）</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%AD%A6%E4%B9%A0/">Java学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php%E5%AD%A6%E4%B9%A0/">php学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring%E5%AD%A6%E4%B9%A0/">spring学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
     </div>
-  </div>
-
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ANR/" rel="tag">ANR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/" rel="tag">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" rel="tag">Android消息机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation/" rel="tag">Animation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/" rel="tag">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera%E5%BC%80%E5%8F%91/" rel="tag">Camera开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/" rel="tag">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/" rel="tag">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">Java内存机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%AE%B9%E5%99%A8/" rel="tag">Java容器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/" rel="tag">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecylerView/" rel="tag">RecylerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View%E5%B8%83%E5%B1%80/" rel="tag">View布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Window/" rel="tag">Window</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" rel="tag">apk反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring-boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87Offer/" rel="tag">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0/" rel="tag">实习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" rel="tag">文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%A1%E6%8B%9B/" rel="tag">校招</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" rel="tag">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" rel="tag">网络框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" rel="tag">自定义View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" rel="tag">项目总结</a></li></ul>
-    </div>
-  </div>
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ANR/" style="font-size: 10px;">ANR</a> <a href="/tags/Activity/" style="font-size: 12.5px;">Activity</a> <a href="/tags/Android/" style="font-size: 12.5px;">Android</a> <a href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Android消息机制</a> <a href="/tags/Animation/" style="font-size: 10px;">Animation</a> <a href="/tags/Bitmap/" style="font-size: 10px;">Bitmap</a> <a href="/tags/Camera%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Camera开发</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/HTTP/" style="font-size: 17.5px;">HTTP</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java内存机制</a> <a href="/tags/Java%E5%AE%B9%E5%99%A8/" style="font-size: 10px;">Java容器</a> <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 17.5px;">Java虚拟机</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Linux命令</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RecylerView/" style="font-size: 10px;">RecylerView</a> <a href="/tags/Retrofit/" style="font-size: 15px;">Retrofit</a> <a href="/tags/View%E5%B8%83%E5%B1%80/" style="font-size: 20px;">View布局</a> <a href="/tags/Window/" style="font-size: 10px;">Window</a> <a href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" style="font-size: 10px;">apk反编译</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring-boot</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/vim/" style="font-size: 12.5px;">vim</a> <a href="/tags/%E5%89%91%E6%8C%87Offer/" style="font-size: 10px;">剑指Offer</a> <a href="/tags/%E5%8F%8D%E5%B0%84/" style="font-size: 12.5px;">反射</a> <a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 12.5px;">实习</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" style="font-size: 10px;">文件下载</a> <a href="/tags/%E6%A0%A1%E6%8B%9B/" style="font-size: 17.5px;">校招</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 10px;">泛型</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" style="font-size: 15px;">类加载</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">网络框架</a> <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" style="font-size: 10px;">自定义View</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15px;">设计模式</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" style="font-size: 10px;">项目总结</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/">Mac终端常用快捷键总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/">关于php的empty函数</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">Spring常用注解</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/">使用.gitignore配置git忽略提交规则</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Mysql常用命令总结</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
   </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
 </footer>
 
-    </div>
-    <nav id="mobile-nav">
+
+  <!-- SCRIPTS -->
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <script  src="/js/img-lazyload.js" ></script>
   
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
-<script src="/js/script.js"></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
 
 
 
 
 
-  </div>
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
 </body>
 </html>

@@ -1,109 +1,234 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="dengw">
+  <meta name="keywords" content="">
   
-  <title>Android学习笔记—MVP初体验 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="最近正在学习MVP模式，在学习了相关的知识之后就尝试着对之前的一些项目使用MVP模式进行重构。在这个过程中有一些个人感悟，在这里记录一下这次尝试中自己的一些想法、遇到的问题以及解决思路。最后在贴上重构前以及重构后的代码版本，方便对比学习。因为这是自己第一次尝试着使用MVP模式，应该一些地方自己理解的不是很深刻，肯定有很多需要改进的地方，对MVP的一些特性暂时理解不到。 MVP简单介绍MVC模式想必">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Android学习笔记—MVP初体验">
-<meta property="og:url" content="http://example.com/2018/04/18/Android-MVP%E5%88%9D%E4%BD%93%E9%AA%8C/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="最近正在学习MVP模式，在学习了相关的知识之后就尝试着对之前的一些项目使用MVP模式进行重构。在这个过程中有一些个人感悟，在这里记录一下这次尝试中自己的一些想法、遇到的问题以及解决思路。最后在贴上重构前以及重构后的代码版本，方便对比学习。因为这是自己第一次尝试着使用MVP模式，应该一些地方自己理解的不是很深刻，肯定有很多需要改进的地方，对MVP的一些特性暂时理解不到。 MVP简单介绍MVC模式想必">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://dengw.xyz/hexo-blog/180420/HGCGE61a88.png">
-<meta property="article:published_time" content="2018-04-17T17:27:18.000Z">
-<meta property="article:modified_time" content="2021-07-02T10:14:18.882Z">
-<meta property="article:author" content="John Doe">
-<meta property="article:tag" content="MVP">
-<meta property="article:tag" content="设计模式">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://dengw.xyz/hexo-blog/180420/HGCGE61a88.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+  <title>Android学习笔记—MVP初体验 - dengw‘s blog</title>
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Android学习笔记—MVP初体验">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-04-18 01:27" pubdate>
+        2018年4月18日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-      <div class="outer">
-        <section id="main"><article id="post-Android-MVP初体验" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/04/18/Android-MVP%E5%88%9D%E4%BD%93%E9%AA%8C/" class="article-date">
-  <time class="dt-published" datetime="2018-04-17T17:27:18.000Z" itemprop="datePublished">2018-04-18</time>
-</a>
+  <main>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Android学习笔记—MVP初体验
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>最近正在学习MVP模式，在学习了相关的知识之后就尝试着对之前的一些项目使用MVP模式进行重构。在这个过程中有一些个人感悟，在这里记录一下这次尝试中自己的一些想法、遇到的问题以及解决思路。最后在贴上重构前以及重构后的代码版本，方便对比学习。因为这是自己第一次尝试着使用MVP模式，应该一些地方自己理解的不是很深刻，肯定有很多需要改进的地方，对MVP的一些特性暂时理解不到。</p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Android学习笔记—MVP初体验</h1>
+            
+            <div class="markdown-body">
+              <p>最近正在学习MVP模式，在学习了相关的知识之后就尝试着对之前的一些项目使用MVP模式进行重构。在这个过程中有一些个人感悟，在这里记录一下这次尝试中自己的一些想法、遇到的问题以及解决思路。最后在贴上重构前以及重构后的代码版本，方便对比学习。因为这是自己第一次尝试着使用MVP模式，应该一些地方自己理解的不是很深刻，肯定有很多需要改进的地方，对MVP的一些特性暂时理解不到。</p>
 <h3 id="MVP简单介绍"><a href="#MVP简单介绍" class="headerlink" title="MVP简单介绍"></a>MVP简单介绍</h3><p>MVC模式想必大家已经比较熟悉了，之前在做web应用开发的时候就已经接触过了。在学习Android的时候，使用AS开发项目一般都是使用MVC模式的。但是随着开发的深入，会发现Activity类会越来越臃肿，在Activity中实现的逻辑越来越复杂，有时候甚至会把业务逻辑，数据请求等全部放在Activity中实现。即使你对里面使用到的函数有很好的命名规范，但是一段时间后你再回来看甚至看不明白这个类，这个函数有什么用。</p>
 <p>这个时候MVP模式就显得很有用了，它可以把逻辑关系里的非常顺，条理非常清晰，MVP模式对各个层的任务有非常明确的分配。所以学习MVP模式很重要的一点个人感觉就是了解各个层的具体任务，明白各个层具体是干嘛的，这样就能够将功能进行有效的划分，这也是一个初学者的首要任务吧。</p>
 <p>在介绍各个层之前有必要介绍另外一个重要的概念—接口。Model、Presenter和View都被设置成为接口的形式。至于为什么要全部设置为接口而不直接设成类，个人觉得这样更符合Java面向抽象的设计思想，一个接口可以有很多个具体实现的类，实现方法根据具体的类而定；另外一个原因我想应该是根据接口的特性，一个类可以实现多个接口，因为存在一个类中要使用多个类中的方法，而接口可以更好地满足这一点。</p>
@@ -111,186 +236,241 @@
 <p>我最开始以为model层就放一些bean类就好了，后来发现其实不是。我认为model层更准确的叫法叫data层，是用来和数据打交道的，比如请求数据，处理数据的。当你确定好有哪些和数据相关的方法之后，就可以在model层接口中声明相应的函数，然后根据函数的返回情况设置好相应的回调函数。然后在Presenter层会获得当前model接口的一个引用，这样就能调用接口的方法进行数据处理了。</p>
 <p>一个访问网络请求数据的接口实现如下：</p>
 <p>根据用户名访问网络请求数据，回调函数接口为GetUserInfoCallback</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.duang1996.githubfetcher.Main.model;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by duang1996 on 2018/4/17.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IMainModel</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getUserInfo</span><span class="params">(String userName, GetUserInfoCallback getUserInfoCallback)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.duang1996.githubfetcher.Main.model;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Created by duang1996 on 2018/4/17.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IMainModel</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getUserInfo</span><span class="hljs-params">(String userName, GetUserInfoCallback getUserInfoCallback)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>回调函数的实现，因为我是使用Retrofit请求数据的，这里返回情况有三种</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.duang1996.githubfetcher.Main.model;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by duang1996 on 2018/4/17.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GetUserInfoCallback</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">GetSuccess</span><span class="params">(Map&lt;String, Object&gt; tem)</span></span>;    <span class="comment">// 对应于onSuccess()</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">GetComplete</span><span class="params">()</span></span>;                          <span class="comment">// 对应于onNext</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">GetFailed</span><span class="params">()</span></span>;                            <span class="comment">//对应于onError</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.duang1996.githubfetcher.Main.model;<br><br><span class="hljs-keyword">import</span> java.util.Map;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Created by duang1996 on 2018/4/17.</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GetUserInfoCallback</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GetSuccess</span><span class="hljs-params">(Map&lt;String, Object&gt; tem)</span></span>;    <span class="hljs-comment">// 对应于onSuccess()</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GetComplete</span><span class="hljs-params">()</span></span>;                          <span class="hljs-comment">// 对应于onNext</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GetFailed</span><span class="hljs-params">()</span></span>;                            <span class="hljs-comment">//对应于onError</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>实现model接口，实现了具体的方法，用来实例化接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainModel</span> <span class="keyword">implements</span> <span class="title">IMainModel</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> GitHubService gitHubService = <span class="keyword">new</span> ServiceFactory().getGitHubService();;</span><br><span class="line">    <span class="keyword">private</span> Subscriber&lt;User&gt; subscriber;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUserInfo</span><span class="params">(String userName, <span class="keyword">final</span> GetUserInfoCallback getUserInfoCallback)</span> </span>&#123;</span><br><span class="line">        subscriber = <span class="keyword">new</span> Subscriber&lt;User&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                getUserInfoCallback.GetComplete();   <span class="comment">//调动回调函数接口中的方法，下同</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line">                getUserInfoCallback.GetFailed();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">                Map&lt;String, Object&gt; tem = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line">                tem.put(<span class="string">&quot;name&quot;</span>, user.getLogin());</span><br><span class="line">                tem.put(<span class="string">&quot;id&quot;</span>, <span class="string">&quot;id: &quot;</span> + user.getId());</span><br><span class="line">                tem.put(<span class="string">&quot;blog&quot;</span>, <span class="string">&quot;blog: &quot;</span> + user.getBlog());</span><br><span class="line">                getUserInfoCallback.GetSuccess(tem);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        gitHubService.getUser(userName)</span><br><span class="line">                .subscribeOn(Schedulers.io())</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .subscribe(subscriber);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainModel</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IMainModel</span></span>&#123;<br>    <span class="hljs-keyword">private</span> GitHubService gitHubService = <span class="hljs-keyword">new</span> ServiceFactory().getGitHubService();;<br>    <span class="hljs-keyword">private</span> Subscriber&lt;User&gt; subscriber;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getUserInfo</span><span class="hljs-params">(String userName, <span class="hljs-keyword">final</span> GetUserInfoCallback getUserInfoCallback)</span> </span>&#123;<br>        subscriber = <span class="hljs-keyword">new</span> Subscriber&lt;User&gt;() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCompleted</span><span class="hljs-params">()</span> </span>&#123;<br>                getUserInfoCallback.GetComplete();   <span class="hljs-comment">//调动回调函数接口中的方法，下同</span><br>            &#125;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onError</span><span class="hljs-params">(Throwable e)</span> </span>&#123;<br>                getUserInfoCallback.GetFailed();<br>            &#125;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNext</span><span class="hljs-params">(User user)</span> </span>&#123;<br>                Map&lt;String, Object&gt; tem = <span class="hljs-keyword">new</span> LinkedHashMap&lt;&gt;();<br>                tem.put(<span class="hljs-string">&quot;name&quot;</span>, user.getLogin());<br>                tem.put(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;id: &quot;</span> + user.getId());<br>                tem.put(<span class="hljs-string">&quot;blog&quot;</span>, <span class="hljs-string">&quot;blog: &quot;</span> + user.getBlog());<br>                getUserInfoCallback.GetSuccess(tem);<br>            &#125;<br>        &#125;;<br>        gitHubService.getUser(userName)<br>                .subscribeOn(Schedulers.io())<br>                .observeOn(AndroidSchedulers.mainThread())<br>                .subscribe(subscriber);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>View层</strong><br>View层用来处理UI界面相关的逻辑，作用效果是改变UI视图，一般这个接口的方法最开始不太好定义，因为不知道具体有哪些地方需要更改UI，不过不用着急，有个笨办法，当你需要一个就定义一个。不过这种方法对于接口的复用不太友好，而复用又是MVP很重要的一个特性。当你水平够高了，项目经验足够丰富的时候就可以一眼看穿，事先定义好啦~</p>
 <p>继续来样例，View接口的定义</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.duang1996.githubfetcher.Main.view;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by duang1996 on 2018/4/17.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IMainView</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showProcessBar</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hideProcessBar</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">toRepoActivity</span><span class="params">(String userName)</span></span>;   <span class="comment">//其实这个方法是否放在这儿还有待考虑</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">notifyItemInserted</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.duang1996.githubfetcher.Main.view;<br><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Created by duang1996 on 2018/4/17.</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IMainView</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">showProcessBar</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">hideProcessBar</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">toRepoActivity</span><span class="hljs-params">(String userName)</span></span>;   <span class="hljs-comment">//其实这个方法是否放在这儿还有待考虑</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">notifyItemInserted</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>View接口的实现：<br>看网上相关的教程不难发现。View接口的具体实现是在Activity中操作，我刚开始看到的时候还在想，为什么View接口的不单独新建一个类来实现View接口中的方法呢，凭什么其他两种接口就可以有单独的类来实现就View就没有呢？你们先想一下能够想到答案吗？</p>
 <p>哈哈，机智的你应该已经想到了。我的理解是这样的。首先，View层是用来干嘛的，是用来更新UI的，准确的说是用来改变布局控件的外观的，那这些控件是在哪儿实例化的呢，就是在Activity中，所以View接口是在activity中实现的，方便方法直接访问这些控件。</p>
 <p>说完了就看一下view接口的具体实现吧</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> <span class="keyword">implements</span> <span class="title">IMainView</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> EditText input;</span><br><span class="line">    <span class="keyword">private</span> Button clearBtn;</span><br><span class="line">    <span class="keyword">private</span> Button fetchBtn;</span><br><span class="line">    <span class="keyword">private</span> ProgressBar progressBar;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> RecyclerView usersView;</span><br><span class="line">    <span class="keyword">private</span> CardAdapter cardAdapter;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MainPresenterCompl mainPresenterCompl;  <span class="comment">//获取一个继承自presenter接口的实例</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         *初始化元素</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        initViews();</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	......</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showProcessBar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        progressBar.setVisibility(View.VISIBLE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hideProcessBar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        progressBar.setVisibility(View.GONE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">toRepoActivity</span><span class="params">(String userName)</span></span>&#123;</span><br><span class="line">        Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, RepoActivity.class);</span><br><span class="line">        intent.putExtra(<span class="string">&quot;login&quot;</span>, userName);</span><br><span class="line">        startActivity(intent);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyItemInserted</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        cardAdapter.notifyItemInserted(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IMainView</span></span>&#123;<br>    <span class="hljs-keyword">private</span> EditText input;<br>    <span class="hljs-keyword">private</span> Button clearBtn;<br>    <span class="hljs-keyword">private</span> Button fetchBtn;<br>    <span class="hljs-keyword">private</span> ProgressBar progressBar;<br><br>    <span class="hljs-keyword">private</span> RecyclerView usersView;<br>    <span class="hljs-keyword">private</span> CardAdapter cardAdapter;<br><br>    <span class="hljs-keyword">private</span> MainPresenterCompl mainPresenterCompl;  <span class="hljs-comment">//获取一个继承自presenter接口的实例</span><br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br><br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">         *初始化元素</span><br><span class="hljs-comment">         */</span><br>        initViews();<br>    &#125;<br>	<br>	......<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showProcessBar</span><span class="hljs-params">()</span> </span>&#123;<br>        progressBar.setVisibility(View.VISIBLE);<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">hideProcessBar</span><span class="hljs-params">()</span> </span>&#123;<br>        progressBar.setVisibility(View.GONE);<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">toRepoActivity</span><span class="hljs-params">(String userName)</span></span>&#123;<br>        Intent intent = <span class="hljs-keyword">new</span> Intent(MainActivity.<span class="hljs-keyword">this</span>, RepoActivity.class);<br>        intent.putExtra(<span class="hljs-string">&quot;login&quot;</span>, userName);<br>        startActivity(intent);<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">notifyItemInserted</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;<br>        cardAdapter.notifyItemInserted(i);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="Presenter层"><a href="#Presenter层" class="headerlink" title="Presenter层"></a>Presenter层</h3><p>Presenter是Model和View之间交互的桥梁，我的理解是将model层返回的数据传递给View层，然后更新UI界面，此外还可以收到view层UI上的反馈命令后分发处理逻辑，充当一个业务逻辑层的额角色</p>
 <p>一个Presenter接口定义如下，里面的函数包括一些业务逻辑函数以及对model层函数的包装</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.duang1996.githubfetcher.Main.presenter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by duang1996 on 2018/4/17.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IMainPresenter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getUserInfo</span><span class="params">(String str)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setClick</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setLongClick</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">destorySubscription</span><span class="params">()</span></span>;</span><br><span class="line">    List&lt;Map&lt;String, Object&gt;&gt; getUserList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.duang1996.githubfetcher.Main.presenter;<br><br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.Map;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Created by duang1996 on 2018/4/17.</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IMainPresenter</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getUserInfo</span><span class="hljs-params">(String str)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setLongClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">destorySubscription</span><span class="hljs-params">()</span></span>;<br>    List&lt;Map&lt;String, Object&gt;&gt; getUserList();<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>presenter接口的具体实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//view 与model之间的桥梁</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainPresenterCompl</span> <span class="keyword">implements</span> <span class="title">IMainPresenter</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> IMainModel iMainModel;  <span class="comment">// 获取model接口的引用</span></span><br><span class="line">    <span class="keyword">private</span> IMainView iMainView;  <span class="comment">// 获取view接口的引用</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;Map&lt;String, Object&gt;&gt; userList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MainPresenterCompl</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.iMainModel = <span class="keyword">new</span> MainModel();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//因为要获取Activity的引用，结合下面的方法可以防止引用空指针</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attachView</span><span class="params">(IMainView iMainView)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.iMainView = iMainView;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isViewAttached</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> iMainView != <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 解除引用，防止内存泄漏</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">detachView</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">this</span>.iMainView= <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUserInfo</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isViewAttached()) &#123;</span><br><span class="line">            iMainView.showProcessBar();</span><br><span class="line">            iMainModel.getUserInfo(str, <span class="keyword">new</span> GetUserInfoCallback() &#123;  </span><br><span class="line">			    <span class="comment">//model 层中回调接口的具体实现</span></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetSuccess</span><span class="params">(Map&lt;String, Object&gt; tem)</span> </span>&#123;</span><br><span class="line">                    userList.add(tem);</span><br><span class="line">                    iMainView.notifyItemInserted(userList.size() - <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    iMainView.hideProcessBar();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetFailed</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setClick</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isViewAttached()) &#123;</span><br><span class="line">            Map&lt;String, Object&gt; tem = userList.get(i);</span><br><span class="line">            String login = tem.get(<span class="string">&quot;name&quot;</span>).toString();</span><br><span class="line">            iMainView.toRepoActivity(login);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLongClick</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isViewAttached()) &#123;</span><br><span class="line">            userList.remove(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isViewAttached()) &#123;</span><br><span class="line">            userList.clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Map&lt;String, Object&gt;&gt; getUserList() &#123;</span><br><span class="line">        <span class="keyword">if</span>(isViewAttached()) &#123;</span><br><span class="line">            <span class="keyword">return</span> userList;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destorySubscription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isViewAttached()) &#123;</span><br><span class="line">            iMainModel.destorySubscription();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//view 与model之间的桥梁</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainPresenterCompl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IMainPresenter</span></span>&#123;<br>    <span class="hljs-keyword">private</span> IMainModel iMainModel;  <span class="hljs-comment">// 获取model接口的引用</span><br>    <span class="hljs-keyword">private</span> IMainView iMainView;  <span class="hljs-comment">// 获取view接口的引用</span><br><br>    <span class="hljs-keyword">private</span> List&lt;Map&lt;String, Object&gt;&gt; userList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MainPresenterCompl</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.iMainModel = <span class="hljs-keyword">new</span> MainModel();<br>    &#125;<br><br>     <span class="hljs-comment">//因为要获取Activity的引用，结合下面的方法可以防止引用空指针</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attachView</span><span class="hljs-params">(IMainView iMainView)</span> </span>&#123;  <br>        <span class="hljs-keyword">this</span>.iMainView = iMainView;<br>    &#125;<br>	<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isViewAttached</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> iMainView != <span class="hljs-keyword">null</span>;<br>    &#125;<br>	<span class="hljs-comment">// 解除引用，防止内存泄漏</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">detachView</span><span class="hljs-params">()</span> </span>&#123; <br>        <span class="hljs-keyword">this</span>.iMainView= <span class="hljs-keyword">null</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getUserInfo</span><span class="hljs-params">(String str)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;<br>            iMainView.showProcessBar();<br>            iMainModel.getUserInfo(str, <span class="hljs-keyword">new</span> GetUserInfoCallback() &#123;  <br>			    <span class="hljs-comment">//model 层中回调接口的具体实现</span><br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GetSuccess</span><span class="hljs-params">(Map&lt;String, Object&gt; tem)</span> </span>&#123;<br>                    userList.add(tem);<br>                    iMainView.notifyItemInserted(userList.size() - <span class="hljs-number">1</span>);<br>                &#125;<br><br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GetComplete</span><span class="hljs-params">()</span> </span>&#123;<br>                    iMainView.hideProcessBar();<br>                &#125;<br><br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GetFailed</span><span class="hljs-params">()</span> </span>&#123;<br><br>                &#125;<br>            &#125;);<br>        &#125;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;<br>            Map&lt;String, Object&gt; tem = userList.get(i);<br>            String login = tem.get(<span class="hljs-string">&quot;name&quot;</span>).toString();<br>            iMainView.toRepoActivity(login);<br>        &#125;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setLongClick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;<br>            userList.remove(i);<br>        &#125;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;<br>            userList.clear();<br>        &#125;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> List&lt;Map&lt;String, Object&gt;&gt; getUserList() &#123;<br>        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;<br>            <span class="hljs-keyword">return</span> userList;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destorySubscription</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(isViewAttached()) &#123;<br>            iMainModel.destorySubscription();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="MVP各层之间的引用关系"><a href="#MVP各层之间的引用关系" class="headerlink" title="MVP各层之间的引用关系"></a>MVP各层之间的引用关系</h3><p><img src="http://dengw.xyz/hexo-blog/180420/HGCGE61a88.png" alt="层关系引用图"><br><strong>Presenterc层</strong><br>Presenter持有model接口和view接口的引用，这样也很好理解，Presenter充当一个桥梁的角色，肯定要能够使用到两个接口中的方法</p>
+<h3 id="MVP各层之间的引用关系"><a href="#MVP各层之间的引用关系" class="headerlink" title="MVP各层之间的引用关系"></a>MVP各层之间的引用关系</h3><p><img src="http://dengw.xyz/hexo-blog/180420/HGCGE61a88.png" srcset="/img/loading.gif" lazyload alt="层关系引用图"><br><strong>Presenterc层</strong><br>Presenter持有model接口和view接口的引用，这样也很好理解，Presenter充当一个桥梁的角色，肯定要能够使用到两个接口中的方法</p>
 <p><strong>View层</strong><br>View层持有presenter层的接口，presenter层需要处理一些UI界面上的业务逻辑，因此将presenter接口暴露给view层方便调用。</p>
 <p>可能初学的时候大家会觉得presenter层和view层互相持有对方的接口有一点绕，可以按照下面的这个思路来理解。</p>
 <p>Model层获取到数据返回给Prensenter层，这时候需要更新UI，然后根据Presenter中引用的View接口，调用View接口中的相应方法，这是presenter层到view层。<br>当View层上获取一些逻辑命名，比如button被点击了，这个时候通过View层中引用的Presenter接口，调用presenter接口中定义相关的函数，这是view层到presenter层。</p>
 <h3 id="使用对比"><a href="#使用对比" class="headerlink" title="使用对比"></a>使用对比</h3><p>下面是使用MVP模式和不适用MVP模式对同一个项目的两种实现，完整的代码：<br><a target="_blank" rel="noopener" href="https://github.com/duang0626/GithubFetcher/tree/7bd31479901f9c0163f707e8e3e91282b5bbb180">使用MVP模式重构之前的版本</a><br><a target="_blank" rel="noopener" href="https://github.com/duang0626/GithubFetcher">使用MVP模式重构之后的版本</a></p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2018/04/18/Android-MVP%E5%88%9D%E4%BD%93%E9%AA%8C/" data-id="ckqm6kpks0007xxr5359c2p0a" data-title="Android学习笔记—MVP初体验" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MVP/" rel="tag">MVP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/MVP/">MVP</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/04/23/SelectCourseApp%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SelectCourseApp开发过程问题总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/03/31/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%B8%89%EF%BC%89/">
+                        <span class="hidden-mobile">Retrofit2.0完全解读（三）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/04/23/SelectCourseApp%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          SelectCourseApp开发过程问题总结
-        
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2018/03/31/Retrofit2.0%E5%AE%8C%E5%85%A8%E8%A7%A3%E8%AF%BB%EF%BC%88%E4%B8%89%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Retrofit2.0完全解读（三）</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%AD%A6%E4%B9%A0/">Java学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php%E5%AD%A6%E4%B9%A0/">php学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring%E5%AD%A6%E4%B9%A0/">spring学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
     </div>
-  </div>
-
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ANR/" rel="tag">ANR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/" rel="tag">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" rel="tag">Android消息机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation/" rel="tag">Animation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/" rel="tag">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera%E5%BC%80%E5%8F%91/" rel="tag">Camera开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/" rel="tag">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/" rel="tag">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">Java内存机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%AE%B9%E5%99%A8/" rel="tag">Java容器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/" rel="tag">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecylerView/" rel="tag">RecylerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View%E5%B8%83%E5%B1%80/" rel="tag">View布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Window/" rel="tag">Window</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" rel="tag">apk反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring-boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87Offer/" rel="tag">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0/" rel="tag">实习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" rel="tag">文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%A1%E6%8B%9B/" rel="tag">校招</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" rel="tag">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" rel="tag">网络框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" rel="tag">自定义View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" rel="tag">项目总结</a></li></ul>
-    </div>
-  </div>
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ANR/" style="font-size: 10px;">ANR</a> <a href="/tags/Activity/" style="font-size: 12.5px;">Activity</a> <a href="/tags/Android/" style="font-size: 12.5px;">Android</a> <a href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Android消息机制</a> <a href="/tags/Animation/" style="font-size: 10px;">Animation</a> <a href="/tags/Bitmap/" style="font-size: 10px;">Bitmap</a> <a href="/tags/Camera%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Camera开发</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/HTTP/" style="font-size: 17.5px;">HTTP</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java内存机制</a> <a href="/tags/Java%E5%AE%B9%E5%99%A8/" style="font-size: 10px;">Java容器</a> <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 17.5px;">Java虚拟机</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Linux命令</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RecylerView/" style="font-size: 10px;">RecylerView</a> <a href="/tags/Retrofit/" style="font-size: 15px;">Retrofit</a> <a href="/tags/View%E5%B8%83%E5%B1%80/" style="font-size: 20px;">View布局</a> <a href="/tags/Window/" style="font-size: 10px;">Window</a> <a href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" style="font-size: 10px;">apk反编译</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring-boot</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/vim/" style="font-size: 12.5px;">vim</a> <a href="/tags/%E5%89%91%E6%8C%87Offer/" style="font-size: 10px;">剑指Offer</a> <a href="/tags/%E5%8F%8D%E5%B0%84/" style="font-size: 12.5px;">反射</a> <a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 12.5px;">实习</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" style="font-size: 10px;">文件下载</a> <a href="/tags/%E6%A0%A1%E6%8B%9B/" style="font-size: 17.5px;">校招</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 10px;">泛型</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" style="font-size: 15px;">类加载</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">网络框架</a> <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" style="font-size: 10px;">自定义View</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15px;">设计模式</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" style="font-size: 10px;">项目总结</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/">Mac终端常用快捷键总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/">关于php的empty函数</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">Spring常用注解</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/">使用.gitignore配置git忽略提交规则</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Mysql常用命令总结</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
   </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
 </footer>
 
-    </div>
-    <nav id="mobile-nav">
+
+  <!-- SCRIPTS -->
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <script  src="/js/img-lazyload.js" ></script>
   
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
-<script src="/js/script.js"></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
 
 
 
 
 
-  </div>
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
 </body>
 </html>

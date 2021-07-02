@@ -1,106 +1,234 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="dengw">
+  <meta name="keywords" content="">
   
-  <title>IdCardCamera — 从一个Demo学习Android平台Camera开发 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="之前在 meitu 实习的时候就接触过 Android Camera，现在 Android 已经有两套相机 API：Camera 和Camera2，虽然现在官方推崇的是 Camera2 而且部分 Camera1 的很多API现在已经不再推荐使用了，但是现在市场上的手机厂商对 Camera2 的支持程度也各不相同，所以现在开发使用的还是主要是  Camera1  的API，给出的 Demo 也是在">
-<meta property="og:type" content="article">
-<meta property="og:title" content="IdCardCamera — 从一个Demo学习Android平台Camera开发">
-<meta property="og:url" content="http://example.com/2018/08/21/IdCardCamera%E2%80%94%E4%BB%8E%E4%B8%80%E4%B8%AADemo%E5%AD%A6%E4%B9%A0Android%E5%B9%B3%E5%8F%B0Camera%E5%BC%80%E5%8F%91/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="之前在 meitu 实习的时候就接触过 Android Camera，现在 Android 已经有两套相机 API：Camera 和Camera2，虽然现在官方推崇的是 Camera2 而且部分 Camera1 的很多API现在已经不再推荐使用了，但是现在市场上的手机厂商对 Camera2 的支持程度也各不相同，所以现在开发使用的还是主要是  Camera1  的API，给出的 Demo 也是在">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2018-08-21T06:46:55.000Z">
-<meta property="article:modified_time" content="2021-07-02T10:14:18.891Z">
-<meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Camera开发">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+  <title>IdCardCamera — 从一个Demo学习Android平台Camera开发 - dengw‘s blog</title>
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
 
   
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="IdCardCamera — 从一个Demo学习Android平台Camera开发">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-08-21 14:46" pubdate>
+        2018年8月21日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      51
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-      <div class="outer">
-        <section id="main"><article id="post-IdCardCamera—从一个Demo学习Android平台Camera开发" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/08/21/IdCardCamera%E2%80%94%E4%BB%8E%E4%B8%80%E4%B8%AADemo%E5%AD%A6%E4%B9%A0Android%E5%B9%B3%E5%8F%B0Camera%E5%BC%80%E5%8F%91/" class="article-date">
-  <time class="dt-published" datetime="2018-08-21T06:46:55.000Z" itemprop="datePublished">2018-08-21</time>
-</a>
+  <main>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      IdCardCamera — 从一个Demo学习Android平台Camera开发
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>之前在 meitu 实习的时候就接触过 Android Camera，现在 Android 已经有两套相机 API：Camera 和Camera2，虽然现在官方推崇的是 Camera2 而且部分 Camera1 的很多API现在已经不再推荐使用了，但是现在市场上的手机厂商对 Camera2 的支持程度也各不相同，所以现在开发使用的还是主要是  Camera1  的API，给出的 Demo 也是在 Camera1 的基础上实现的。</p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">IdCardCamera — 从一个Demo学习Android平台Camera开发</h1>
+            
+            <div class="markdown-body">
+              <p>之前在 meitu 实习的时候就接触过 Android Camera，现在 Android 已经有两套相机 API：Camera 和Camera2，虽然现在官方推崇的是 Camera2 而且部分 Camera1 的很多API现在已经不再推荐使用了，但是现在市场上的手机厂商对 Camera2 的支持程度也各不相同，所以现在开发使用的还是主要是  Camera1  的API，给出的 Demo 也是在 Camera1 的基础上实现的。</p>
 <h2 id="Camera-实践"><a href="#Camera-实践" class="headerlink" title="Camera 实践"></a>Camera 实践</h2><p>Demo实现的功能是一个拍摄身份证正反面的相机应用，首先肯定支持拍摄功能，这个过程就可以完整地体验一下相机应用的开发流程以及相关API的使用，比如：</p>
 <ul>
 <li>预览</li>
@@ -117,10 +245,10 @@
 <li>释放相机资源，相机是一个共享资源，当相机使用完毕后，必须正确地将其释放，以免其它程序访问使用时发生冲突。</li>
 </ol>
 <h4 id="资源权限和权限申请"><a href="#资源权限和权限申请" class="headerlink" title="资源权限和权限申请"></a>资源权限和权限申请</h4><p>首先要检查相机资源，获取系统相机的相关信息。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断是否有相机</span></span><br><span class="line">context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断是否有前置相机</span></span><br><span class="line">context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 判断是否有相机</span><br>context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);<br><br><span class="hljs-comment">// 判断是否有前置相机</span><br>context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT);<br></code></pre></td></tr></table></figure>
 
 <p>或者</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//有多少个摄像头</span></span><br><span class="line">numberOfCameras = Camera.getNumberOfCameras();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numberOfCameras; ++i) &#123;</span><br><span class="line">    <span class="keyword">final</span> Camera.CameraInfo cameraInfo = <span class="keyword">new</span> Camera.CameraInfo();</span><br><span class="line"></span><br><span class="line">    Camera.getCameraInfo(i, cameraInfo);</span><br><span class="line">    <span class="comment">//后置摄像头</span></span><br><span class="line">    <span class="keyword">if</span> (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK)</span><br><span class="line">    &#123;</span><br><span class="line">        faceBackCameraId = i;</span><br><span class="line">        faceBackCameraOrientation = cameraInfo.orientation;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//前置摄像头</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) </span><br><span class="line">    &#123;</span><br><span class="line">        faceFrontCameraId = i;</span><br><span class="line">        faceFrontCameraOrientation = cameraInfo.orientation;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//有多少个摄像头</span><br>numberOfCameras = Camera.getNumberOfCameras();<br><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; numberOfCameras; ++i) &#123;<br>    <span class="hljs-keyword">final</span> Camera.CameraInfo cameraInfo = <span class="hljs-keyword">new</span> Camera.CameraInfo();<br><br>    Camera.getCameraInfo(i, cameraInfo);<br>    <span class="hljs-comment">//后置摄像头</span><br>    <span class="hljs-keyword">if</span> (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK)<br>    &#123;<br>        faceBackCameraId = i;<br>        faceBackCameraOrientation = cameraInfo.orientation;<br>    &#125; <br>    <span class="hljs-comment">//前置摄像头</span><br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) <br>    &#123;<br>        faceFrontCameraId = i;<br>        faceFrontCameraOrientation = cameraInfo.orientation;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 <p>另外，相机开发还会设计及到一些权限操作，比如，调用相机拍摄图片的权限，读、写文件的权限等，在demo中需要申请3个权限：</p>
@@ -132,18 +260,18 @@
 <p>这里学习到了一种同时申请多个权限的方法</p>
 <ul>
 <li><p>首先用一个字符串数组保存要申请的权限：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 需要申请的权限数组</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String[] permissions = <span class="keyword">new</span> String[]&#123;</span><br><span class="line">        Manifest.permission.WRITE_EXTERNAL_STORAGE,</span><br><span class="line">        Manifest.permission.READ_EXTERNAL_STORAGE,</span><br><span class="line">        Manifest.permission.CAMERA</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 需要申请的权限数组</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String[] permissions = <span class="hljs-keyword">new</span> String[]&#123;<br>        Manifest.permission.WRITE_EXTERNAL_STORAGE,<br>        Manifest.permission.READ_EXTERNAL_STORAGE,<br>        Manifest.permission.CAMERA<br>&#125;;<br></code></pre></td></tr></table></figure></li>
 <li><p>检查应用是否已经具有某个权限，如果没有的话就申请这个权限；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 检查权限，检查应用所需要的某个权限</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> context</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> requestCode  请求码</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> permission  权限</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">checkSinglePermission</span><span class="params">(Context context,<span class="keyword">int</span> requestCode, String permission)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> permissionCode = ActivityCompat.checkSelfPermission(context, permission);</span><br><span class="line">	<span class="comment">// PackageManager.PERMISSION_GRANTED 表示应用已经具有的权限</span></span><br><span class="line">	<span class="keyword">if</span>(permissionCode != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">		ActivityCompat.requestPermissions((Activity) context, <span class="keyword">new</span> String[]&#123;permission&#125;, requestCode);</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 检查权限，检查应用所需要的某个权限</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> requestCode  请求码</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> permission  权限</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">*/</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">checkSinglePermission</span><span class="hljs-params">(Context context,<span class="hljs-keyword">int</span> requestCode, String permission)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> permissionCode = ActivityCompat.checkSelfPermission(context, permission);<br>	<span class="hljs-comment">// PackageManager.PERMISSION_GRANTED 表示应用已经具有的权限</span><br>	<span class="hljs-keyword">if</span>(permissionCode != PackageManager.PERMISSION_GRANTED) &#123;<br>		ActivityCompat.requestPermissions((Activity) context, <span class="hljs-keyword">new</span> String[]&#123;permission&#125;, requestCode);<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 <p>或者说同时检查应用是否已经具有多个权限，如果没有的话就申请其中应用还不具备权限；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 检查权限，检查应用所需要的所有权限</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> context</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> requestCode  请求码</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> permissions  权限数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">checkMultiPermissions</span><span class="params">(Context context, <span class="keyword">int</span> requestCode, String []permissions)</span> </span>&#123;</span><br><span class="line">	rejectedPermissions.clear();</span><br><span class="line">	<span class="keyword">for</span>(String per : permissions) &#123;</span><br><span class="line">		<span class="keyword">int</span> permissionCode = ActivityCompat.checkSelfPermission(context, per);</span><br><span class="line">		<span class="keyword">if</span>(permissionCode != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">	        rejectedPermissions.add(per);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(rejectedPermissions.isEmpty()) &#123;</span><br><span class="line">	    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	    String[] permissionList = rejectedPermissions.toArray(<span class="keyword">new</span> String[rejectedPermissions.size()]);</span><br><span class="line">        ActivityCompat.requestPermissions((Activity)context, permissionList, requestCode);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 检查权限，检查应用所需要的所有权限</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> context</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> requestCode  请求码</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> permissions  权限数组</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">checkMultiPermissions</span><span class="hljs-params">(Context context, <span class="hljs-keyword">int</span> requestCode, String []permissions)</span> </span>&#123;<br>	rejectedPermissions.clear();<br>	<span class="hljs-keyword">for</span>(String per : permissions) &#123;<br>		<span class="hljs-keyword">int</span> permissionCode = ActivityCompat.checkSelfPermission(context, per);<br>		<span class="hljs-keyword">if</span>(permissionCode != PackageManager.PERMISSION_GRANTED) &#123;<br>	        rejectedPermissions.add(per);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(rejectedPermissions.isEmpty()) &#123;<br>	    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>	    String[] permissionList = rejectedPermissions.toArray(<span class="hljs-keyword">new</span> String[rejectedPermissions.size()]);<br>        ActivityCompat.requestPermissions((Activity)context, permissionList, requestCode);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>思路就是用一个数组保存还不具备的权限，如果数组不为空的话说明就需要申请这些权限。</p>
 <ul>
 <li>申请需要的权限</li>
 </ul>
 <p>申请一个权限的时候使用的是 <code>ActivityCompat</code> 的 <code>requestPermissions</code> 方法，该方法的声明为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public static void requestPermissions(final @NonNull Activity activity,</span><br><span class="line">            final @NonNull String[] permissions, final @IntRange(from = 0) int requestCode)</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">public</span> <span class="hljs-selector-tag">static</span> <span class="hljs-selector-tag">void</span> <span class="hljs-selector-tag">requestPermissions</span>(final <span class="hljs-variable">@NonNull</span> Activity activity,<br>            final <span class="hljs-variable">@NonNull</span> String[] permissions, final <span class="hljs-variable">@IntRange</span>(from = <span class="hljs-number">0</span>) int requestCode)<br></code></pre></td></tr></table></figure>
 <p>其中：</p>
 <ul>
 <li>activity：上下文，</li>
@@ -151,12 +279,12 @@
 <li>requestCode：请求码</li>
 </ul>
 <p>并且该方法请求完之后会有一个回调接口，需要在上面传入的上下文中重写该方法，该回调接口的作用就是权限请求的结果：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="meta">@NonNull</span> String[] permissions, <span class="meta">@NonNull</span> <span class="keyword">int</span>[] grantResults)</span> </span>&#123;</span><br><span class="line"><span class="comment">/* callback - no nothing */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onRequestPermissionsResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-meta">@NonNull</span> String[] permissions, <span class="hljs-meta">@NonNull</span> <span class="hljs-keyword">int</span>[] grantResults)</span> </span>&#123;<br><span class="hljs-comment">/* callback - no nothing */</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>所以，比如当我们  requestPermissions 方法传入的 context 是 CameraActivity ，那么我们就需要在 CameraActivity 中重写 onRequestPermissionsResult 方法，详细见下面链接中给出的项目代码。</p>
-<h4 id="打开相机"><a href="#打开相机" class="headerlink" title="打开相机"></a>打开相机</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 默认开启后置相机</span><br><span class="line">camera = Camera.open();</span><br><span class="line"></span><br><span class="line">// 当知道某个相机具体的id，参考上面检查是否有相机资源的第二种方法</span><br><span class="line">camera = Camera.open(cameraId);</span><br></pre></td></tr></table></figure>
+<h4 id="打开相机"><a href="#打开相机" class="headerlink" title="打开相机"></a>打开相机</h4><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 默认开启后置相机</span><br>camera = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Camera</span>.</span></span><span class="hljs-keyword">open</span><span class="hljs-literal">()</span>;<br><br><span class="hljs-comment">// 当知道某个相机具体的id，参考上面检查是否有相机资源的第二种方法</span><br>camera = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Camera</span>.</span></span><span class="hljs-keyword">open</span>(cameraId);<br></code></pre></td></tr></table></figure>
 
-<h4 id="获取相机参数"><a href="#获取相机参数" class="headerlink" title="获取相机参数"></a>获取相机参数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//获取相机参数</span><br><span class="line">Camera.Parameters parameters = camera.getParameters();</span><br></pre></td></tr></table></figure>
+<h4 id="获取相机参数"><a href="#获取相机参数" class="headerlink" title="获取相机参数"></a>获取相机参数</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>获取相机参数<br>Camera.Parameters parameters = camera.getParameters();<br></code></pre></td></tr></table></figure>
 
 <p>常见的参数有以下几种:</p>
 <p>闪光灯配置参数，可以通过Parameters.getFlashMode()接口获取:</p>
@@ -198,23 +326,23 @@
 <li>surfaceDestroyed(SurfaceHolder holder); 当Surface被销毁的时候调用</li>
 </ul>
 <p>介绍完上面这些可以写我们用于预览的控件了，下面是我们demo中的预览控件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">// 继承自 SurfaceView 并实现 SurfaceHolder.Callback 接口</span><br><span class="line">public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback&#123;</span><br><span class="line">	// camera实例</span><br><span class="line">    private Camera mCamera;</span><br><span class="line">	</span><br><span class="line">	// 自定义View的三个构造函数</span><br><span class="line">    public CameraPreview(Context context) &#123;</span><br><span class="line">        super(context);</span><br><span class="line">        init(context);</span><br><span class="line">    &#125;</span><br><span class="line">    public CameraPreview(Context context, AttributeSet attrs) &#123;</span><br><span class="line">        super(context, attrs);</span><br><span class="line">        init(context);</span><br><span class="line">    &#125;</span><br><span class="line">    public CameraPreview(Context context, AttributeSet attrs, int defStyleAttr) &#123;</span><br><span class="line">        super(context, attrs, defStyleAttr);</span><br><span class="line">        init(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 依次为重写的 SurfaceHolder.Callback 的三个函数</span><br><span class="line">	 */ </span><br><span class="line"></span><br><span class="line">	// 在这个函数中一般设置预览界面的一些参数，然后开启预览</span><br><span class="line">    @Override</span><br><span class="line">    public void surfaceCreated(SurfaceHolder holder) &#123;</span><br><span class="line">        if(mCamera != null) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                Camera.Parameters parameters = mCamera.getParameters();</span><br><span class="line">                if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) &#123;</span><br><span class="line">                    //竖屏拍照时，需要设置旋转90度，否者看到的相机预览方向和界面方向不相同</span><br><span class="line">                    mCamera.setDisplayOrientation(90);</span><br><span class="line">                    parameters.setRotation(90);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    mCamera.setDisplayOrientation(0);</span><br><span class="line">                    parameters.setRotation(0);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                // 设置预览的尺寸</span><br><span class="line">                Camera.Size size = getBestSize(parameters.getSupportedPreviewSizes());</span><br><span class="line">                if(size != null) &#123;</span><br><span class="line">                    parameters.setPreviewSize(size.width, size.height);</span><br><span class="line">                    parameters.setPictureSize(size.width, size.height);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    parameters.setPreviewSize(1920, 1080);</span><br><span class="line">                    parameters.setPictureSize(1920, 1080);</span><br><span class="line">                &#125;</span><br><span class="line">                //设置surfaceHolder</span><br><span class="line">                mCamera.setPreviewDisplay(holder);</span><br><span class="line">                //设置相机参数</span><br><span class="line">                mCamera.setParameters(parameters);</span><br><span class="line">                // 开启预览</span><br><span class="line">                mCamera.startPreview();</span><br><span class="line">                //首次对焦</span><br><span class="line">                CameraUtil.focus();</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void surfaceChanged(SurfaceHolder holder, int format, int width,</span><br><span class="line">                               int height) &#123;</span><br><span class="line">        //因为设置了固定屏幕方向，所以在实际使用中不会触发这个方法</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	// 这个函数中一般用来回收资源</span><br><span class="line">    @Override</span><br><span class="line">    public void surfaceDestroyed(SurfaceHolder holder) &#123;</span><br><span class="line">        //回收释放资源</span><br><span class="line">        release();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void init(Context context) &#123;</span><br><span class="line">        SurfaceHolder surfaceHolder = getHolder();</span><br><span class="line">        surfaceHolder.addCallback(this);</span><br><span class="line">        surfaceHolder.setKeepScreenOn(true);</span><br><span class="line">        surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);</span><br><span class="line">        mCamera = CameraUtil.getCameraInstance(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Android相机的预览尺寸都是4:3或者16:9，这里遍历所有支持的预览尺寸，得到16:9的最大尺寸，保证成像清晰度</span><br><span class="line">     *</span><br><span class="line">     * @param sizes</span><br><span class="line">     * @return 最佳尺寸</span><br><span class="line">     */</span><br><span class="line">    private Camera.Size getBestSize(List&lt;Camera.Size&gt; sizes) &#123;</span><br><span class="line">        Camera.Size bestSize = null;</span><br><span class="line">        for (Camera.Size size : sizes) &#123;</span><br><span class="line">            if ((float) size.width / (float) size.height == 16.0f / 9.0f) &#123;</span><br><span class="line">                if (bestSize == null) &#123;</span><br><span class="line">                    bestSize = size;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    if (size.width &gt; bestSize.width) &#123;</span><br><span class="line">                        bestSize = size;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return bestSize;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 释放资源</span><br><span class="line">     */</span><br><span class="line">    private void release() &#123;</span><br><span class="line">        if (mCamera != null) &#123;</span><br><span class="line">            mCamera.stopPreview();</span><br><span class="line">            CameraUtil.release();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 开启预览</span><br><span class="line">     */</span><br><span class="line">    public void startPreview() &#123;</span><br><span class="line">        if (mCamera != null) &#123;</span><br><span class="line">            mCamera.startPreview();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="关闭预览"><a href="#关闭预览" class="headerlink" title="关闭预览"></a>关闭预览</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">camera.stopPreview();</span><br></pre></td></tr></table></figure>
-<h4 id="开启闪关灯"><a href="#开启闪关灯" class="headerlink" title="开启闪关灯"></a>开启闪关灯</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 开关闪光灯</span><br><span class="line"> *</span><br><span class="line"> * @return 闪光灯是否开启</span><br><span class="line"> */</span><br><span class="line">public static boolean switchFlashLight() &#123;</span><br><span class="line">	if (camera != null) &#123;</span><br><span class="line">		Camera.Parameters parameters = camera.getParameters();</span><br><span class="line">		if (parameters.getFlashMode().equals(Camera.Parameters.FLASH_MODE_OFF))</span><br><span class="line">		&#123;</span><br><span class="line">	        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);</span><br><span class="line">            camera.setParameters(parameters);</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);</span><br><span class="line">            camera.setParameters(parameters);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-comment">// 继承自 SurfaceView 并实现 SurfaceHolder.Callback 接口</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CameraPreview</span> <span class="hljs-title">extends</span> <span class="hljs-title">SurfaceView</span> <span class="hljs-title">implements</span> <span class="hljs-title">SurfaceHolder</span>.<span class="hljs-title">Callback</span>&#123;</span><br>	<span class="hljs-comment">// camera实例</span><br>    <span class="hljs-keyword">private</span> Camera mCamera;<br>	<br>	<span class="hljs-comment">// 自定义View的三个构造函数</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CameraPreview</span><span class="hljs-params">(Context context)</span> </span>&#123;<br>        <span class="hljs-built_in">super</span>(context);<br>        <span class="hljs-built_in">init</span>(context);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CameraPreview</span><span class="hljs-params">(Context context, AttributeSet attrs)</span> </span>&#123;<br>        <span class="hljs-built_in">super</span>(context, attrs);<br>        <span class="hljs-built_in">init</span>(context);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CameraPreview</span><span class="hljs-params">(Context context, AttributeSet attrs, <span class="hljs-keyword">int</span> defStyleAttr)</span> </span>&#123;<br>        <span class="hljs-built_in">super</span>(context, attrs, defStyleAttr);<br>        <span class="hljs-built_in">init</span>(context);<br>    &#125;<br><br>	<span class="hljs-comment">/**</span><br><span class="hljs-comment">	 * 依次为重写的 SurfaceHolder.Callback 的三个函数</span><br><span class="hljs-comment">	 */</span> <br><br>	<span class="hljs-comment">// 在这个函数中一般设置预览界面的一些参数，然后开启预览</span><br>    @<span class="hljs-function">Override</span><br><span class="hljs-function">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">surfaceCreated</span><span class="hljs-params">(SurfaceHolder holder)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(mCamera != null) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                Camera.Parameters parameters = mCamera.<span class="hljs-built_in">getParameters</span>();<br>                <span class="hljs-keyword">if</span>(<span class="hljs-built_in">getResources</span>().<span class="hljs-built_in">getConfiguration</span>().orientation == Configuration.ORIENTATION_PORTRAIT) &#123;<br>                    <span class="hljs-comment">//竖屏拍照时，需要设置旋转90度，否者看到的相机预览方向和界面方向不相同</span><br>                    mCamera.<span class="hljs-built_in">setDisplayOrientation</span>(<span class="hljs-number">90</span>);<br>                    parameters.<span class="hljs-built_in">setRotation</span>(<span class="hljs-number">90</span>);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    mCamera.<span class="hljs-built_in">setDisplayOrientation</span>(<span class="hljs-number">0</span>);<br>                    parameters.<span class="hljs-built_in">setRotation</span>(<span class="hljs-number">0</span>);<br>                &#125;<br><br>                <span class="hljs-comment">// 设置预览的尺寸</span><br>                Camera.Size size = <span class="hljs-built_in">getBestSize</span>(parameters.<span class="hljs-built_in">getSupportedPreviewSizes</span>());<br>                <span class="hljs-keyword">if</span>(size != null) &#123;<br>                    parameters.<span class="hljs-built_in">setPreviewSize</span>(size.width, size.height);<br>                    parameters.<span class="hljs-built_in">setPictureSize</span>(size.width, size.height);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    parameters.<span class="hljs-built_in">setPreviewSize</span>(<span class="hljs-number">1920</span>, <span class="hljs-number">1080</span>);<br>                    parameters.<span class="hljs-built_in">setPictureSize</span>(<span class="hljs-number">1920</span>, <span class="hljs-number">1080</span>);<br>                &#125;<br>                <span class="hljs-comment">//设置surfaceHolder</span><br>                mCamera.<span class="hljs-built_in">setPreviewDisplay</span>(holder);<br>                <span class="hljs-comment">//设置相机参数</span><br>                mCamera.<span class="hljs-built_in">setParameters</span>(parameters);<br>                <span class="hljs-comment">// 开启预览</span><br>                mCamera.<span class="hljs-built_in">startPreview</span>();<br>                <span class="hljs-comment">//首次对焦</span><br>                CameraUtil.<span class="hljs-built_in">focus</span>();<br>            &#125; <span class="hljs-built_in"><span class="hljs-keyword">catch</span></span> (IOException e) &#123;<br>                e.<span class="hljs-built_in">printStackTrace</span>();<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    @<span class="hljs-function">Override</span><br><span class="hljs-function">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">surfaceChanged</span><span class="hljs-params">(SurfaceHolder holder, <span class="hljs-keyword">int</span> format, <span class="hljs-keyword">int</span> width,</span></span><br><span class="hljs-params"><span class="hljs-function">                               <span class="hljs-keyword">int</span> height)</span> </span>&#123;<br>        <span class="hljs-comment">//因为设置了固定屏幕方向，所以在实际使用中不会触发这个方法</span><br>    &#125;<br><br>	<span class="hljs-comment">// 这个函数中一般用来回收资源</span><br>    @<span class="hljs-function">Override</span><br><span class="hljs-function">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">surfaceDestroyed</span><span class="hljs-params">(SurfaceHolder holder)</span> </span>&#123;<br>        <span class="hljs-comment">//回收释放资源</span><br>        <span class="hljs-built_in">release</span>();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(Context context)</span> </span>&#123;<br>        SurfaceHolder surfaceHolder = <span class="hljs-built_in">getHolder</span>();<br>        surfaceHolder.<span class="hljs-built_in">addCallback</span>(<span class="hljs-keyword">this</span>);<br>        surfaceHolder.<span class="hljs-built_in">setKeepScreenOn</span>(<span class="hljs-literal">true</span>);<br>        surfaceHolder.<span class="hljs-built_in">setType</span>(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);<br>        mCamera = CameraUtil.<span class="hljs-built_in">getCameraInstance</span>(context);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * Android相机的预览尺寸都是4:3或者16:9，这里遍历所有支持的预览尺寸，得到16:9的最大尺寸，保证成像清晰度</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * @param sizes</span><br><span class="hljs-comment">     * @return 最佳尺寸</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Camera.<span class="hljs-function">Size <span class="hljs-title">getBestSize</span><span class="hljs-params">(List&lt;Camera.Size&gt; sizes)</span> </span>&#123;<br>        Camera.Size bestSize = null;<br>        <span class="hljs-keyword">for</span> (Camera.Size size : sizes) &#123;<br>            <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">float</span>) size.width / (<span class="hljs-keyword">float</span>) size.height == <span class="hljs-number">16.0f</span> / <span class="hljs-number">9.0f</span>) &#123;<br>                <span class="hljs-keyword">if</span> (bestSize == null) &#123;<br>                    bestSize = size;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">if</span> (size.width &gt; bestSize.width) &#123;<br>                        bestSize = size;<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> bestSize;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 释放资源</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">release</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (mCamera != null) &#123;<br>            mCamera.<span class="hljs-built_in">stopPreview</span>();<br>            CameraUtil.<span class="hljs-built_in">release</span>();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 开启预览</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startPreview</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (mCamera != null) &#123;<br>            mCamera.<span class="hljs-built_in">startPreview</span>();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="关闭预览"><a href="#关闭预览" class="headerlink" title="关闭预览"></a>关闭预览</h4><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">camera.stopPreview()<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+<h4 id="开启闪关灯"><a href="#开启闪关灯" class="headerlink" title="开启闪关灯"></a>开启闪关灯</h4><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 开关闪光灯</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * @return 闪光灯是否开启</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">boolean</span> switchFlashLight() &#123;<br>	<span class="hljs-keyword">if</span> (<span class="hljs-built_in">camera</span> != <span class="hljs-keyword">null</span>) &#123;<br>		Camera.Parameters parameters = <span class="hljs-built_in">camera</span>.getParameters();<br>		<span class="hljs-keyword">if</span> (parameters.getFlashMode().equals(Camera.Parameters.FLASH_MODE_OFF))<br>		&#123;<br>	        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);<br>            <span class="hljs-built_in">camera</span>.setParameters(parameters);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);<br>            <span class="hljs-built_in">camera</span>.setParameters(parameters);<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>这里需要注意的是严谨的话开启闪光灯之前还需要判断是否具有闪光灯，虽然现在没有手机闪光灯的手机基本上没有了。</p>
-<h4 id="开启对焦"><a href="#开启对焦" class="headerlink" title="开启对焦"></a>开启对焦</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">camera.autoFocus(null);</span><br></pre></td></tr></table></figure>
+<h4 id="开启对焦"><a href="#开启对焦" class="headerlink" title="开启对焦"></a>开启对焦</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">camera.<span class="hljs-built_in">auto</span>Focus(<span class="hljs-literal">null</span>);<br></code></pre></td></tr></table></figure>
 
 <h4 id="拍照"><a href="#拍照" class="headerlink" title="拍照"></a>拍照</h4><p>拍照时通过调用Camera的takePicture()方法来完成的，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">takePicture(ShutterCallback shutter, PictureCallback raw,</span><br><span class="line">            PictureCallback jpeg)</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">takePicture(<span class="hljs-keyword">ShutterCallback </span><span class="hljs-keyword">shutter, </span>PictureCallback raw,<br>            PictureCallback <span class="hljs-keyword">jpeg)</span><br></code></pre></td></tr></table></figure>
 <p>该方法有三个参数：</p>
 <ul>
 <li>ShutterCallback shutter：在拍照的瞬间被回调，这里通常可以播放”咔嚓”这样的拍照音效。</li>
 <li>PictureCallback raw：返回未经压缩的图像数据。<br>PictureCallback jpeg：返回经过JPEG压缩的图像数据。</li>
 </ul>
 <p>我们一般用的就是最后一个，实现最后一个PictureCallback即可，在本demo中主要是在 PictureCallback 中进行图片的剪切。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Camera.PictureCallback() &#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPictureTaken</span><span class="params">(<span class="keyword">final</span> <span class="keyword">byte</span>[] data, Camera camera)</span> </span>&#123;</span><br><span class="line">		camera.stopPreview();</span><br><span class="line">		<span class="comment">//子线程处理图片，防止ANR</span></span><br><span class="line">		<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">				Bitmap bitmap = BitmapFactory.decodeByteArray(data, <span class="number">0</span>, data.length);</span><br><span class="line"></span><br><span class="line">				<span class="comment">// 计算裁剪位置</span></span><br><span class="line">				<span class="keyword">float</span> left, top, right, bottom;</span><br><span class="line">                left = ((<span class="keyword">float</span>) mLlCameraCropContainer.getLeft() - (<span class="keyword">float</span>)mCameraPreview.getLeft()) / (<span class="keyword">float</span>) mCameraPreview.getWidth();</span><br><span class="line">                top = (<span class="keyword">float</span>) mIvCameraCrop.getTop() / (<span class="keyword">float</span>) mCameraPreview.getHeight();</span><br><span class="line">                right = (<span class="keyword">float</span>) mLlCameraCropContainer.getRight() / (<span class="keyword">float</span>) mCameraPreview.getWidth();</span><br><span class="line">                bottom = (<span class="keyword">float</span>) mIvCameraCrop.getBottom() / (<span class="keyword">float</span>) mCameraPreview.getHeight();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 自动裁剪</span></span><br><span class="line">                mCropBitmap = Bitmap.createBitmap(bitmap,</span><br><span class="line">                (<span class="keyword">int</span>) (left * (<span class="keyword">float</span>) bitmap.getWidth()),</span><br><span class="line">                (<span class="keyword">int</span>) (top * (<span class="keyword">float</span>) bitmap.getHeight()),</span><br><span class="line">                (<span class="keyword">int</span>) ((right - left) * (<span class="keyword">float</span>) bitmap.getWidth()),</span><br><span class="line">                (<span class="keyword">int</span>) ((bottom - top) * (<span class="keyword">float</span>) bitmap.getHeight()));</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 手动裁剪</span></span><br><span class="line">                runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	                <span class="comment">//将裁剪区域设置成与扫描框一样大</span></span><br><span class="line">                    mCropImageView.setLayoutParams(<span class="keyword">new</span> LinearLayout.LayoutParams(mIvCameraCrop.getWidth(), mIvCameraCrop.getHeight()));</span><br><span class="line">                    setCropLayout();</span><br><span class="line">                    mCropImageView.setImageBitmap(mCropBitmap);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;).start();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">new</span> Camera.PictureCallback() &#123;<br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPictureTaken</span><span class="hljs-params">(<span class="hljs-keyword">final</span> <span class="hljs-keyword">byte</span>[] data, Camera camera)</span> </span>&#123;<br>		camera.stopPreview();<br>		<span class="hljs-comment">//子线程处理图片，防止ANR</span><br>		<span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() &#123;<br>			<span class="hljs-meta">@Override</span><br>			<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>				Bitmap bitmap = BitmapFactory.decodeByteArray(data, <span class="hljs-number">0</span>, data.length);<br><br>				<span class="hljs-comment">// 计算裁剪位置</span><br>				<span class="hljs-keyword">float</span> left, top, right, bottom;<br>                left = ((<span class="hljs-keyword">float</span>) mLlCameraCropContainer.getLeft() - (<span class="hljs-keyword">float</span>)mCameraPreview.getLeft()) / (<span class="hljs-keyword">float</span>) mCameraPreview.getWidth();<br>                top = (<span class="hljs-keyword">float</span>) mIvCameraCrop.getTop() / (<span class="hljs-keyword">float</span>) mCameraPreview.getHeight();<br>                right = (<span class="hljs-keyword">float</span>) mLlCameraCropContainer.getRight() / (<span class="hljs-keyword">float</span>) mCameraPreview.getWidth();<br>                bottom = (<span class="hljs-keyword">float</span>) mIvCameraCrop.getBottom() / (<span class="hljs-keyword">float</span>) mCameraPreview.getHeight();<br><br>                <span class="hljs-comment">// 自动裁剪</span><br>                mCropBitmap = Bitmap.createBitmap(bitmap,<br>                (<span class="hljs-keyword">int</span>) (left * (<span class="hljs-keyword">float</span>) bitmap.getWidth()),<br>                (<span class="hljs-keyword">int</span>) (top * (<span class="hljs-keyword">float</span>) bitmap.getHeight()),<br>                (<span class="hljs-keyword">int</span>) ((right - left) * (<span class="hljs-keyword">float</span>) bitmap.getWidth()),<br>                (<span class="hljs-keyword">int</span>) ((bottom - top) * (<span class="hljs-keyword">float</span>) bitmap.getHeight()));<br><br>                <span class="hljs-comment">// 手动裁剪</span><br>                runOnUiThread(<span class="hljs-keyword">new</span> Runnable() &#123;<br>                <span class="hljs-meta">@Override</span><br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>	                <span class="hljs-comment">//将裁剪区域设置成与扫描框一样大</span><br>                    mCropImageView.setLayoutParams(<span class="hljs-keyword">new</span> LinearLayout.LayoutParams(mIvCameraCrop.getWidth(), mIvCameraCrop.getHeight()));<br>                    setCropLayout();<br>                    mCropImageView.setImageBitmap(mCropBitmap);<br>                &#125;<br>            &#125;);<br>         &#125;<br>     &#125;).start();<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h4 id="释放资源"><a href="#释放资源" class="headerlink" title="释放资源"></a>释放资源</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">camera.release();</span><br></pre></td></tr></table></figure>
+<h4 id="释放资源"><a href="#释放资源" class="headerlink" title="释放资源"></a>释放资源</h4><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">camera.release()<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="图片截取"><a href="#图片截取" class="headerlink" title="图片截取"></a>图片截取</h3><p>上面的部分只是 Camera API的一些使用，基本上跟着文档走就可以了，也主要是为了帮助学习和熟悉 Camera API 。</p>
 <p>下面回到Demo的需求，获取省份证正反两面的图片，很多时候就需要对一张现成的图片进行截取，这个时候就需要自己定义一个支持图片截图的控件了。</p>
@@ -228,44 +356,44 @@
 <li>canvas.drawLine(top.x, top.y, bottom.x, bottom.y, paint);</li>
 </ul>
 <p>这样，对于截取，重要的就是确定截取后四个顶点的位置，然后再重新绘图</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//图片裁剪的核心功能</span><br><span class="line">Bitmap.createBitmap(originalBitmap,//原图</span><br><span class="line">                 cropX,//图片裁剪横坐标开始位置</span><br><span class="line">                 cropY,//图片裁剪纵坐标开始位置</span><br><span class="line">                 cropWidth,//要裁剪的宽度</span><br><span class="line">                 cropHeight);//要裁剪的高度</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>图片裁剪的核心功能<br>Bitmap.createBitmap(originalBitmap,<span class="hljs-regexp">//</span>原图<br>                 cropX,<span class="hljs-regexp">//</span>图片裁剪横坐标开始位置<br>                 cropY,<span class="hljs-regexp">//</span>图片裁剪纵坐标开始位置<br>                 cropWidth,<span class="hljs-regexp">//</span>要裁剪的宽度<br>                 cropHeight);<span class="hljs-regexp">//</span>要裁剪的高度<br></code></pre></td></tr></table></figure>
 
 <h4 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h4><ul>
-<li>四个顶点(左上，左下，右上，右下)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private Point topLeft, topRight, bottomLeft, bottomRight;</span><br></pre></td></tr></table></figure></li>
-<li>原图 Bitmap<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 确定要截取的范围后在原Bitmap的基础上创建一个新的Bitmap</span><br><span class="line">private Bitmap bitmap;</span><br></pre></td></tr></table></figure></li>
+<li>四个顶点(左上，左下，右上，右下)<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">private</span> Point topLeft, topRight, bottomLeft, bottomRight;<br></code></pre></td></tr></table></figure></li>
+<li>原图 Bitmap<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-comment">// 确定要截取的范围后在原Bitmap的基础上创建一个新的Bitmap</span><br><span class="hljs-keyword">private</span> Bitmap bitmap;<br></code></pre></td></tr></table></figure></li>
 <li>绘制背景</li>
 </ul>
 <p>Paint + Path + Canvas</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">private void drawBackground(Canvas canvas) &#123;</span><br><span class="line">	Paint paint = new Paint();</span><br><span class="line">    paint.setColor(Color.parseColor(&quot;#66000000&quot;));</span><br><span class="line">    paint.setStyle(Paint.Style.FILL);</span><br><span class="line">    Path path = new Path();</span><br><span class="line">    path.moveTo(topLeft.x, topLeft.y);</span><br><span class="line">    path.lineTo(topRight.x, topRight.y);</span><br><span class="line">    path.lineTo(bottomRight.x, bottomRight.y);</span><br><span class="line">    path.lineTo(bottomLeft.x, bottomLeft.y);</span><br><span class="line">    path.close();</span><br><span class="line">    canvas.save();</span><br><span class="line">    canvas.clipPath(path, Region.Op.DIFFERENCE);</span><br><span class="line">    canvas.drawColor(Color.parseColor(&quot;#66000000&quot;));</span><br><span class="line">    canvas.restore();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void draw<span class="hljs-constructor">Background(Canvas <span class="hljs-params">canvas</span>)</span> &#123;<br>	Paint paint = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Paint()</span>;<br>    paint.set<span class="hljs-constructor">Color(Color.<span class="hljs-params">parseColor</span>(<span class="hljs-string">&quot;#66000000&quot;</span>)</span>);<br>    paint.set<span class="hljs-constructor">Style(Paint.Style.FILL)</span>;<br>    Path path = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Path()</span>;<br>    path.move<span class="hljs-constructor">To(<span class="hljs-params">topLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topLeft</span>.<span class="hljs-params">y</span>)</span>;<br>    path.line<span class="hljs-constructor">To(<span class="hljs-params">topRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">y</span>)</span>;<br>    path.line<span class="hljs-constructor">To(<span class="hljs-params">bottomRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomRight</span>.<span class="hljs-params">y</span>)</span>;<br>    path.line<span class="hljs-constructor">To(<span class="hljs-params">bottomLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">y</span>)</span>;<br>    path.close<span class="hljs-literal">()</span>;<br>    canvas.save<span class="hljs-literal">()</span>;<br>    canvas.clip<span class="hljs-constructor">Path(<span class="hljs-params">path</span>, Region.Op.DIFFERENCE)</span>;<br>    canvas.draw<span class="hljs-constructor">Color(Color.<span class="hljs-params">parseColor</span>(<span class="hljs-string">&quot;#66000000&quot;</span>)</span>);<br>    canvas.restore<span class="hljs-literal">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>绘制顶点</li>
 </ul>
 <p>Paint + Canvas</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void drawVertex(Canvas canvas) &#123;</span><br><span class="line">    Paint paint = new Paint();</span><br><span class="line">    paint.setColor(Color.WHITE);</span><br><span class="line">    paint.setStyle(Paint.Style.FILL);</span><br><span class="line"></span><br><span class="line">    canvas.drawCircle(topLeft.x, topLeft.y, vertexSize, paint);</span><br><span class="line">    canvas.drawCircle(topRight.x, topRight.y, vertexSize, paint);</span><br><span class="line">    canvas.drawCircle(bottomLeft.x, bottomLeft.y, vertexSize, paint);</span><br><span class="line">    canvas.drawCircle(bottomRight.x, bottomRight.y, vertexSize, paint);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void draw<span class="hljs-constructor">Vertex(Canvas <span class="hljs-params">canvas</span>)</span> &#123;<br>    Paint paint = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Paint()</span>;<br>    paint.set<span class="hljs-constructor">Color(Color.WHITE)</span>;<br>    paint.set<span class="hljs-constructor">Style(Paint.Style.FILL)</span>;<br><br>    canvas.draw<span class="hljs-constructor">Circle(<span class="hljs-params">topLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">vertexSize</span>, <span class="hljs-params">paint</span>)</span>;<br>    canvas.draw<span class="hljs-constructor">Circle(<span class="hljs-params">topRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">vertexSize</span>, <span class="hljs-params">paint</span>)</span>;<br>    canvas.draw<span class="hljs-constructor">Circle(<span class="hljs-params">bottomLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">vertexSize</span>, <span class="hljs-params">paint</span>)</span>;<br>    canvas.draw<span class="hljs-constructor">Circle(<span class="hljs-params">bottomRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">vertexSize</span>, <span class="hljs-params">paint</span>)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>绘制顶点间的连线从而构成矩形</li>
 </ul>
 <p>Paint + Canvas</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">private void drawEdge(Canvas canvas) &#123;</span><br><span class="line">    Paint paint = new Paint();</span><br><span class="line">    paint.setColor(Color.WHITE);</span><br><span class="line">    paint.setStrokeWidth(3);</span><br><span class="line">    paint.setAntiAlias(true);</span><br><span class="line"></span><br><span class="line">    canvas.drawLine(topLeft.x, topLeft.y, topRight.x, topRight.y, paint);</span><br><span class="line">    canvas.drawLine(topLeft.x, topLeft.y, bottomLeft.x, bottomLeft.y, paint);</span><br><span class="line">    canvas.drawLine(bottomRight.x, bottomRight.y, topRight.x, topRight.y, paint);</span><br><span class="line">    canvas.drawLine(bottomRight.x, bottomRight.y, bottomLeft.x, bottomLeft.y, paint);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void draw<span class="hljs-constructor">Edge(Canvas <span class="hljs-params">canvas</span>)</span> &#123;<br>    Paint paint = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Paint()</span>;<br>    paint.set<span class="hljs-constructor">Color(Color.WHITE)</span>;<br>    paint.set<span class="hljs-constructor">StrokeWidth(3)</span>;<br>    paint.set<span class="hljs-constructor">AntiAlias(<span class="hljs-params">true</span>)</span>;<br><br>    canvas.draw<span class="hljs-constructor">Line(<span class="hljs-params">topLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">paint</span>)</span>;<br>    canvas.draw<span class="hljs-constructor">Line(<span class="hljs-params">topLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">paint</span>)</span>;<br>    canvas.draw<span class="hljs-constructor">Line(<span class="hljs-params">bottomRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">topRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">paint</span>)</span>;<br>    canvas.draw<span class="hljs-constructor">Line(<span class="hljs-params">bottomRight</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomRight</span>.<span class="hljs-params">y</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">x</span>, <span class="hljs-params">bottomLeft</span>.<span class="hljs-params">y</span>, <span class="hljs-params">paint</span>)</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>touchEvevt 处理</li>
 </ul>
 <p>处理 MotionEvent.ACTION_DOWN + MotionEvent.ACTION_MOVE事件，并拦截事件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public boolean onTouchEvent(MotionEvent event) &#123;</span><br><span class="line">    switch (event.getAction()) &#123;</span><br><span class="line">        case MotionEvent.ACTION_UP:</span><br><span class="line">            getParent().requestDisallowInterceptTouchEvent(false);</span><br><span class="line">            break;</span><br><span class="line">        case MotionEvent.ACTION_DOWN:</span><br><span class="line">            getParent().requestDisallowInterceptTouchEvent(false);</span><br><span class="line">            onActionDown(event);</span><br><span class="line">            return true;</span><br><span class="line">        case MotionEvent.ACTION_MOVE:</span><br><span class="line">            getParent().requestDisallowInterceptTouchEvent(true);</span><br><span class="line">            onActionMove(event);</span><br><span class="line">            return true;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs csharp">@Override<br><span class="hljs-function"><span class="hljs-keyword">public</span> boolean <span class="hljs-title">onTouchEvent</span>(<span class="hljs-params">MotionEvent <span class="hljs-keyword">event</span></span>)</span> &#123;<br>    <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">event</span>.getAction()) &#123;<br>        <span class="hljs-keyword">case</span> MotionEvent.ACTION_UP:<br>            getParent().requestDisallowInterceptTouchEvent(<span class="hljs-literal">false</span>);<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> MotionEvent.ACTION_DOWN:<br>            getParent().requestDisallowInterceptTouchEvent(<span class="hljs-literal">false</span>);<br>            onActionDown(<span class="hljs-keyword">event</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">case</span> MotionEvent.ACTION_MOVE:<br>            getParent().requestDisallowInterceptTouchEvent(<span class="hljs-literal">true</span>);<br>            onActionMove(<span class="hljs-keyword">event</span>);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>MotionEvent.ACTION_DOWN事件的逻辑</li>
 </ul>
 <p>根据touchPoint确定作用的顶点</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">private void onActionDown(MotionEvent event) &#123;</span><br><span class="line">    touchDownX = event.getX();</span><br><span class="line">    touchDownY = event.getY();</span><br><span class="line">    Point touchPoint = new Point((int) event.getX(), (int) event.getY());</span><br><span class="line">    int minDistance = distance(touchPoint, topLeft);</span><br><span class="line">    cropPosition = CropPosition.TOP_LEFT;</span><br><span class="line">    if (minDistance &gt; distance(touchPoint, topRight)) &#123;</span><br><span class="line">        minDistance = distance(touchPoint, topRight);</span><br><span class="line">        cropPosition = CropPosition.TOP_RIGHT;</span><br><span class="line">    &#125;</span><br><span class="line">    if (minDistance &gt; distance(touchPoint, bottomLeft)) &#123;</span><br><span class="line">        minDistance = distance(touchPoint, bottomLeft);</span><br><span class="line">        cropPosition = CropPosition.BOTTOM_LEFT;</span><br><span class="line">    &#125;</span><br><span class="line">    if (minDistance &gt; distance(touchPoint, bottomRight)) &#123;</span><br><span class="line">        cropPosition = CropPosition.BOTTOM_RIGHT;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">private</span> void <span class="hljs-literal">on</span>ActionDown(MotionEvent event) &#123;<br>    <span class="hljs-attribute">touchDownX</span> = event.getX();<br>    <span class="hljs-attribute">touchDownY</span> = event.getY();<br>    <span class="hljs-attribute">Point</span> touchPoint = new Point((int) event.getX(), (int) event.getY());<br>    <span class="hljs-attribute">int</span> minDistance = distance(touchPoint, topLeft);<br>    <span class="hljs-attribute">cropPosition</span> = CropPosition.TOP_LEFT;<br>    <span class="hljs-attribute">if</span> (minDistance &gt; distance(touchPoint, topRight)) &#123;<br>        <span class="hljs-attribute">minDistance</span> = distance(touchPoint, topRight);<br>        <span class="hljs-attribute">cropPosition</span> = CropPosition.TOP_RIGHT;<br>    &#125;<br>    <span class="hljs-attribute">if</span> (minDistance &gt; distance(touchPoint, bottomLeft)) &#123;<br>        <span class="hljs-attribute">minDistance</span> = distance(touchPoint, bottomLeft);<br>        <span class="hljs-attribute">cropPosition</span> = CropPosition.BOTTOM_LEFT;<br>    &#125;<br>    <span class="hljs-attribute">if</span> (minDistance &gt; distance(touchPoint, bottomRight)) &#123;<br>        <span class="hljs-attribute">cropPosition</span> = CropPosition.BOTTOM_RIGHT;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>MotionEvent.ACTION_MOV</li>
 </ul>
 <p>根据上面确定的顶点，计算touchPoint的移动在 x 和 y方向的偏移量，然后调整作用顶点的坐标，最后调用 invalidate() 方法重新绘制View</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">private void onActionMove(MotionEvent event) &#123;</span><br><span class="line">    int deltaX = (int) (event.getX() - touchDownX);</span><br><span class="line">    int deltaY = (int) (event.getY() - touchDownY);</span><br><span class="line"></span><br><span class="line">    switch (cropPosition) &#123;</span><br><span class="line">        case TOP_LEFT:</span><br><span class="line">            adjustPointCoordinate(topLeft, deltaX, deltaY);</span><br><span class="line">            invalidate();</span><br><span class="line">            break;</span><br><span class="line">        case TOP_RIGHT:</span><br><span class="line">            adjustPointCoordinate(topRight, deltaX, deltaY);</span><br><span class="line">            invalidate();</span><br><span class="line">            break;</span><br><span class="line">        case BOTTOM_LEFT:</span><br><span class="line">            adjustPointCoordinate(bottomLeft, deltaX, deltaY);</span><br><span class="line">            invalidate();</span><br><span class="line">            break;</span><br><span class="line">        case BOTTOM_RIGHT:</span><br><span class="line">            adjustPointCoordinate(bottomRight, deltaX, deltaY);</span><br><span class="line">            invalidate();</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">    touchDownX = event.getX();</span><br><span class="line">    touchDownY = event.getY();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 移动中调整作用顶点的坐标</span><br><span class="line"> */</span><br><span class="line">private void adjustPointCoordinate(Point point, int deltaX, int deltaY) &#123;</span><br><span class="line">    int newX = point.x + deltaX;</span><br><span class="line">    if (newX &lt; minX) newX = minX;</span><br><span class="line">    if (newX &gt; maxX) newX = maxX;</span><br><span class="line"></span><br><span class="line">    int newY = point.y + deltaY;</span><br><span class="line">    if (newY &lt; minY) newY = minY;</span><br><span class="line">    if (newY &gt; maxY) newY = maxY;</span><br><span class="line"></span><br><span class="line">    point.set(newX, newY);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">private</span> void onActionMove(MotionEvent event) &#123;<br>    int deltaX = (int) (event.getX() - touchDownX);<br>    int deltaY = (int) (event.getY() - touchDownY);<br><br>    <span class="hljs-keyword">switch</span> (cropPosition) &#123;<br>        <span class="hljs-keyword">case</span> TOP_LEFT:<span class="hljs-type"></span><br>            adjustPointCoordinate(topLeft, deltaX, deltaY);<br>            invalidate();<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> TOP_RIGHT:<span class="hljs-type"></span><br>            adjustPointCoordinate(topRight, deltaX, deltaY);<br>            invalidate();<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> BOTTOM_LEFT:<span class="hljs-type"></span><br>            adjustPointCoordinate(bottomLeft, deltaX, deltaY);<br>            invalidate();<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> BOTTOM_RIGHT:<span class="hljs-type"></span><br>            adjustPointCoordinate(bottomRight, deltaX, deltaY);<br>            invalidate();<br>            <span class="hljs-keyword">break</span>;<br>    &#125;<br>    touchDownX = event.getX();<br>    touchDownY = event.getY();<br>&#125;<br><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 移动中调整作用顶点的坐标</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> void adjustPointCoordinate(Point point, int deltaX, int deltaY) &#123;<br>    int <span class="hljs-keyword">new</span><span class="hljs-type">X</span> = point.x + deltaX;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span><span class="hljs-type">X</span> &lt; minX) <span class="hljs-keyword">new</span><span class="hljs-type">X</span> = minX;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span><span class="hljs-type">X</span> &gt; maxX) <span class="hljs-keyword">new</span><span class="hljs-type">X</span> = maxX;<br><br>    int <span class="hljs-keyword">new</span><span class="hljs-type">Y</span> = point.y + deltaY;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span><span class="hljs-type">Y</span> &lt; minY) <span class="hljs-keyword">new</span><span class="hljs-type">Y</span> = minY;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span><span class="hljs-type">Y</span> &gt; maxY) <span class="hljs-keyword">new</span><span class="hljs-type">Y</span> = maxY;<br><br>    point.<span class="hljs-keyword">set</span>(<span class="hljs-keyword">new</span><span class="hljs-type">X</span>, <span class="hljs-keyword">new</span><span class="hljs-type">Y</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 <ul>
@@ -274,157 +402,210 @@
 <h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://github.com/duang0626/IDCardCamera">Demo地址 ： IDCardCamera</a></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.im/post/5a33a5106fb9a04525782db5">Android平台Camera开发实践指南</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/chunqiuwei/article/details/78858192">Android自定义 view之图片裁剪从设计到实现</a></p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2018/08/21/IdCardCamera%E2%80%94%E4%BB%8E%E4%B8%80%E4%B8%AADemo%E5%AD%A6%E4%B9%A0Android%E5%B9%B3%E5%8F%B0Camera%E5%BC%80%E5%8F%91/" data-id="ckqm6kpnf006wxxr5fv6mh1f0" data-title="IdCardCamera — 从一个Demo学习Android平台Camera开发" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Camera%E5%BC%80%E5%8F%91/" rel="tag">Camera开发</a></li></ul>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Camera%E5%BC%80%E5%8F%91/">Camera开发</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/08/22/Android%E7%BB%98%E5%9B%BE%E4%B9%8BPaint%E5%92%8CCanvas%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android绘图之Paint和Canvas的使用方法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/08/15/%E5%9C%A8%E4%B8%A4%E4%B8%AAActivity%E4%B9%8B%E9%97%B4%E4%BC%A0%E9%80%92Bitmap%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95/">
+                        <span class="hidden-mobile">在两个Activity之间传递Bitmap对象的方法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/08/22/Android%E7%BB%98%E5%9B%BE%E4%B9%8BPaint%E5%92%8CCanvas%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Android绘图之Paint和Canvas的使用方法
-        
+            
+          </article>
+        </div>
       </div>
-    </a>
-  
-  
-    <a href="/2018/08/15/%E5%9C%A8%E4%B8%A4%E4%B8%AAActivity%E4%B9%8B%E9%97%B4%E4%BC%A0%E9%80%92Bitmap%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">在两个Activity之间传递Bitmap对象的方法</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android%E5%BC%80%E5%8F%91/">Android开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%AD%A6%E4%B9%A0/">Java学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php%E5%AD%A6%E4%B9%A0/">php学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring%E5%AD%A6%E4%B9%A0/">spring学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></li></ul>
     </div>
-  </div>
-
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ANR/" rel="tag">ANR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/" rel="tag">Activity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" rel="tag">Android消息机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation/" rel="tag">Animation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bitmap/" rel="tag">Bitmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Camera%E5%BC%80%E5%8F%91/" rel="tag">Camera开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/" rel="tag">Canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/" rel="tag">Intent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" rel="tag">Java内存机制</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E5%AE%B9%E5%99%A8/" rel="tag">Java容器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">Java虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVP/" rel="tag">MVP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RecylerView/" rel="tag">RecylerView</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Retrofit/" rel="tag">Retrofit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View%E5%B8%83%E5%B1%80/" rel="tag">View布局</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Window/" rel="tag">Window</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" rel="tag">apk反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring-boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87Offer/" rel="tag">剑指Offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag">反射</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9E%E4%B9%A0/" rel="tag">实习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" rel="tag">文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%A1%E6%8B%9B/" rel="tag">校招</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag">泛型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" rel="tag">类加载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" rel="tag">网络框架</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" rel="tag">自定义View</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" rel="tag">项目总结</a></li></ul>
-    </div>
-  </div>
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ANR/" style="font-size: 10px;">ANR</a> <a href="/tags/Activity/" style="font-size: 12.5px;">Activity</a> <a href="/tags/Android/" style="font-size: 12.5px;">Android</a> <a href="/tags/Android%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Android消息机制</a> <a href="/tags/Animation/" style="font-size: 10px;">Animation</a> <a href="/tags/Bitmap/" style="font-size: 10px;">Bitmap</a> <a href="/tags/Camera%E5%BC%80%E5%8F%91/" style="font-size: 10px;">Camera开发</a> <a href="/tags/Canvas/" style="font-size: 10px;">Canvas</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Github/" style="font-size: 15px;">Github</a> <a href="/tags/HTTP/" style="font-size: 17.5px;">HTTP</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Java%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java内存机制</a> <a href="/tags/Java%E5%AE%B9%E5%99%A8/" style="font-size: 10px;">Java容器</a> <a href="/tags/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 17.5px;">Java虚拟机</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Linux命令</a> <a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RecylerView/" style="font-size: 10px;">RecylerView</a> <a href="/tags/Retrofit/" style="font-size: 15px;">Retrofit</a> <a href="/tags/View%E5%B8%83%E5%B1%80/" style="font-size: 20px;">View布局</a> <a href="/tags/Window/" style="font-size: 10px;">Window</a> <a href="/tags/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" style="font-size: 10px;">apk反编译</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring-boot</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/tool/" style="font-size: 10px;">tool</a> <a href="/tags/vim/" style="font-size: 12.5px;">vim</a> <a href="/tags/%E5%89%91%E6%8C%87Offer/" style="font-size: 10px;">剑指Offer</a> <a href="/tags/%E5%8F%8D%E5%B0%84/" style="font-size: 12.5px;">反射</a> <a href="/tags/%E5%AE%9E%E4%B9%A0/" style="font-size: 12.5px;">实习</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" style="font-size: 10px;">文件下载</a> <a href="/tags/%E6%A0%A1%E6%8B%9B/" style="font-size: 17.5px;">校招</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 10px;">泛型</a> <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" style="font-size: 15px;">类加载</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/" style="font-size: 15px;">网络框架</a> <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" style="font-size: 10px;">自定义View</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15px;">设计模式</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" style="font-size: 10px;">项目总结</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/07/06/Mac%E7%BB%88%E7%AB%AF%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%80%BB%E7%BB%93/">Mac终端常用快捷键总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/23/%E5%85%B3%E4%BA%8Ephp%E7%9A%84empty%E5%87%BD%E6%95%B0/">关于php的empty函数</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/16/Spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">Spring常用注解</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/05/%E4%BD%BF%E7%94%A8-gitignore%E9%85%8D%E7%BD%AEgit%E5%BF%BD%E7%95%A5%E6%8F%90%E4%BA%A4%E8%A7%84%E5%88%99/">使用.gitignore配置git忽略提交规则</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/05/Mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Mysql常用命令总结</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
   </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
 </footer>
 
-    </div>
-    <nav id="mobile-nav">
+
+  <!-- SCRIPTS -->
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <script  src="/js/img-lazyload.js" ></script>
   
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
-<script src="/js/script.js"></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
 
 
 
 
 
-  </div>
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
 </body>
 </html>
