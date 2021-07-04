@@ -230,7 +230,7 @@
             <div class="markdown-body">
               <p>上个学期在学习Android的时候接触了很多Java的容器类，比如ArrayList HashMap等等。这段时间准备找一个Android相关的实习，因为之前没有学习过java，所以着重复习了一下Java的基础。在学习J2SE容器相关部分的时候就惊呆了，相比c++,Java的容器太多了! 每种容器也有很多特性，为了不翻船，就觉得很有必要对Java一些常用到的容器总结一下，了解各种容器的特性，把一些容器横向对比，加深印象，帮助理解。</p>
 <h2 id="常用容器类及其继承关系"><a href="#常用容器类及其继承关系" class="headerlink" title="常用容器类及其继承关系"></a>常用容器类及其继承关系</h2><p>先上图，原图片链接：<a target="_blank" rel="noopener" href="http://pierrchen.blogspot.com/2014/03/java-collections-framework-cheat-sheet.html">Java Collections Framework Cheat Sheet</a></p>
-<p><img src="http://dengw.xyz/hexo-blog/180330/j4a9Hl940J.PNG" srcset="/img/loading.gif" lazyload alt="Java Collections Framework Cheat Sheet"></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/j4a9Hl940J.PNG" srcset="/img/loading.gif" lazyload alt="Java Collections Framework Cheat Sheet"></p>
 <p>这张图真是总结的太好了，几乎把我想说的都表达了出来，容器是类还是接口，容器之间的继承关系，底层的实现方式，容器的特性在这张图上都可以很清楚的知道。</p>
 <ul>
 <li> 图中实线代表继承了这个类，虚线代表实现了这个接口。</li>
@@ -366,7 +366,7 @@ removeAll(Collection<?>c):                                   将数组中属于�
 
 <h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>可以说是Map中最重要的一种结构了，是很多结构的实现基础。<br>HashMap继承自抽象类AbstractMap，抽象类AbstractMap实现了Map接口。</p>
 <p>HashMap采用了链地址法，也就是使用数组+链表的方式解决哈希冲突。主干是一个Entry数组。Entry是HashMap的基本组成单元，每一个Entry包含一个key-value键值对，枝干是使用链表实现的，链表的节点也是一个Entry，包含一个key-value键值对。</p>
-<p><img src="http://dengw.xyz/hexo-blog/180330/dgIfbCKL1H.png" srcset="/img/loading.gif" lazyload alt="HashMap的整体结构"></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/dgIfbCKL1H.png" srcset="/img/loading.gif" lazyload alt="HashMap的整体结构"></p>
 <p><strong>很重要</strong>：</p>
 <ul>
 <li>不管hashcode还是Equal的对象都是键，即Object</li>
@@ -394,7 +394,7 @@ removeAll(Collection<?>c):                                   将数组中属于�
 </blockquote>
 <p>由于现在有些赶，对TreeMap也不是很深入，这里贴一篇关于<a target="_blank" rel="noopener" href="https://blog.csdn.net/chenssy/article/details/26668941">TreeMap</a>的博客，讲解的非常清楚，等这段时间面试完再来补。</p>
 <h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><p>inkedHashMap不仅像HashMap那样对其进行基于哈希表和单链表的Entry数组+ next链表的存储方式，而且还结合了LinkedList的优点，为每个Entry节点增加了前驱和后继，并增加了一个为null头结点，构造了一个<strong>双向循环链表</strong>。<strong>即主干同样是一个数组，而枝干是一个双向链表实现的，并且该链表是有序的，可以按元素插入顺序或元素最近访问顺序(LRU)排列。</strong></p>
-<p><img src="http://dengw.xyz/hexo-blog/180330/h2b0eH8C1H.png" srcset="/img/loading.gif" lazyload alt="LinkedHashMap具体结构"></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/h2b0eH8C1H.png" srcset="/img/loading.gif" lazyload alt="LinkedHashMap具体结构"></p>
 <p>看一下LinkedHashMap的构造方法：</p>
 <div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">LinkedHashMap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> initialCapacity, <span class="hljs-keyword">float</span> loadFactor)</span> </span>&#123;  
         <span class="hljs-keyword">super</span>(initialCapacity, loadFactor);  

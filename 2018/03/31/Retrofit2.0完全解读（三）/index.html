@@ -268,7 +268,7 @@
 &#125;</code></pre></div>
 <p>可以看到在接口设置这儿有很多的注解类型，Retrofit2.0 中有三种类型的注解，分别是：网络请求方法、标记类、网络请求参数。</p>
 <h3 id="网络请求方法"><a href="#网络请求方法" class="headerlink" title="网络请求方法"></a>网络请求方法</h3><p>这儿对应Http request的请求类型，上面示范代码中的<code>@Get</code>就是网络请求方法的一种，不同的注解代表不同的操作，Http请求方法有以下几种，其中，除HTTP以外都对应了HTTP标准中的请求方法：</p>
-<p><img src="http://dengw.xyz/hexo-blog/180331/Hci6kla12g.png" srcset="/img/loading.gif" lazyload alt="HTTP请求方法注解"></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/Hci6kla12g.png" srcset="/img/loading.gif" lazyload alt="HTTP请求方法注解"></p>
 <p>对于每种方法的作用这里就不详细的介绍，具体的讲一下每一种请求类型在这儿的使用方法。</p>
 <ul>
 <li>@GET、@POST、@PUT、@DELETE、@HEAD、@Path、@HEAD、@OPTIONS</li>
@@ -325,7 +325,7 @@
 <li>path表示路径</li>
 <li>hasBody表示是否有请求体</li>
 </ul>
-<h3 id="标记"><a href="#标记" class="headerlink" title="标记"></a>标记</h3><p><img src="http://dengw.xyz/hexo-blog/180331/LB9HF0e2ak.png" srcset="/img/loading.gif" lazyload alt="标记类注解"></p>
+<h3 id="标记"><a href="#标记" class="headerlink" title="标记"></a>标记</h3><p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/LB9HF0e2ak.png" srcset="/img/loading.gif" lazyload alt="标记类注解"></p>
 <p>@FormUrlEncoded</p>
 <p>作用：表示发送form-encoded的数据<br>每个键值对需要用@Filed来注解键名，随后的对象需要提供值。</p>
 <p>@Multipart</p>
@@ -349,7 +349,7 @@
 <span class="hljs-meta">@Multipart</span>
 <span class="hljs-function">Call&lt;ResponseBody&gt; <span class="hljs-title">testFileUpload1</span><span class="hljs-params">(<span class="hljs-meta">@Part(&quot;name&quot;)</span> RequestBody name, <span class="hljs-meta">@Part(&quot;age&quot;)</span> RequestBody age, <span class="hljs-meta">@Part</span> MultipartBody.Part file)</span></span>;</code></pre></div>
 
-<h3 id="网络请求参数"><a href="#网络请求参数" class="headerlink" title="网络请求参数"></a>网络请求参数</h3><p><img src="http://dengw.xyz/hexo-blog/180331/mbLCdbcdId.png" srcset="/img/loading.gif" lazyload alt="参数类注解"></p>
+<h3 id="网络请求参数"><a href="#网络请求参数" class="headerlink" title="网络请求参数"></a>网络请求参数</h3><p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/mbLCdbcdId.png" srcset="/img/loading.gif" lazyload alt="参数类注解"></p>
 <ul>
 <li>@Header &amp; @Headers</li>
 </ul>

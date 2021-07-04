@@ -350,7 +350,7 @@ protected void on<span class="hljs-constructor">Create(Bundle <span class="hljs-
 <span class="hljs-comment">// mDecor itself, or a child of mDecor where the contents go.</span>
 <span class="hljs-keyword">private</span> ViewGroup mContentParent;</code></pre></div>
 <p>首先它的数据类型 ViewGroup，再结合<code>①</code>处代码可以得知，这个 mContentParent 是我们设置的布局(即main_activity.xml )的父布局。此外注释还提到了，这个 mContentParent 是 mDecor 本身或者是 mDecor 的一个子元素，mContentParent 是 mDecor 的子元素很好理解，但是为什么是 mDecor 本身呢？对于这一点，个人理解是当设置了 FEATURE_NO_ACTIONBAR，即设置了不显示标题栏的时候，此时 DecorView 内部的Linearlayout 就没有任何的意义，并且 DecorView 和 mContentParent 都采用的是 Framelayout 的布局类型，所以从布局的效果上来看可以认为 mContentParent 就是 mDecor 的本身。</p>
-<p>到这里我们就把 Window 涉及到的所有 View 都介绍了一遍，下面给一张图形象地表示一下他们的关系：<br><img src="http://dengw.xyz/blog/180628/63FeffG9AL.png?imageslim)" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
+<p>到这里我们就把 Window 涉及到的所有 View 都介绍了一遍，下面给一张图形象地表示一下他们的关系：<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/63FeffG9AL.png?imageslim)" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <p>对于这个图，还真是花了挺多功夫的，刚开始看了网上挺多的博客，但是发现都比较零散，没有一个比较系统的，完整介绍这个 View Tree 的，而且里面有一些概念很容易混淆，所以对各个 View 之间的关系不是十分的明确。后来通过对比各方面资料以及根据源码自己理解，也算是确定了他们的关系，绘制了上面的图。</p>
 <p>概念清楚了我们接着看在 PhoneWindow 中的 installDecor() 方法：</p>
 <div class="code-wrapper"><pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void install<span class="hljs-constructor">Decor()</span> &#123;
@@ -391,9 +391,9 @@ protected void on<span class="hljs-constructor">Create(Bundle <span class="hljs-
 <p>展示的代码部分将布局添加到 DecorView 中，并且将 contentParent 布局中 id 为 ID_ANDROID_CONTENT 的 FrameLayout 绑定。所以我们可以通过 findViewById(ID_ANDROID_CONTENT) 获取到 contentParent. 其中 ID_ANDROID_CONTENT 的定义如下，这个 id 所对应的 ViewGroup 就是 mContentParent ：</p>
 <div class="code-wrapper"><pre><code class="hljs axapta"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-built_in">int</span> ID_ANDROID_CONTENT = com.android.<span class="hljs-keyword">internal</span>.R.id.content;</code></pre></div>
 <p>上述整个步骤可以用下面的图表示：</p>
-<p><img src="http://dengw.xyz/blog/180627/4Ag21f0ll3.png?imageslim" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/4Ag21f0ll3.png?imageslim" srcset="/img/loading.gif" lazyload></p>
 <h3 id="Window-的添加"><a href="#Window-的添加" class="headerlink" title="Window 的添加"></a>Window 的添加</h3><p>经过上面的步骤，DecorView 已经被创建并初始化完毕，Activity 的布局文件也已经成功添加到了 DecorView 的 mContentParent 中，但是这个时候 DecorView 还没有被 WindowManager 正式添加到 Window 中，我们的 View 还是不可见的，因为我们仅仅是加载了布局，并没有对View进行任何的测量、布局、绘制工作。在 View 进行测量流程之前，还要进行一个步骤，那就是把 DecorView 添加至 window中。</p>
-<p>下面我们就来讨论这个过程，先上一个图来表示整个过程：<br><img src="http://dengw.xyz/blog/180627/i9ciHJkedj.png?imageslim" srcset="/img/loading.gif" lazyload></p>
+<p>下面我们就来讨论这个过程，先上一个图来表示整个过程：<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/i9ciHJkedj.png?imageslim" srcset="/img/loading.gif" lazyload></p>
 <p>我们继续看 Activity 启动的方法 handleLaunchActivity() 中调用的 handleResumeActivity() 方法。</p>
 <div class="code-wrapper"><pre><code class="hljs reasonml">final void handle<span class="hljs-constructor">ResumeActivity(IBinder <span class="hljs-params">token</span>, <span class="hljs-params">boolean</span> <span class="hljs-params">clearHide</span>, <span class="hljs-params">boolean</span> <span class="hljs-params">isForward</span>)</span> &#123; 
     <span class="hljs-comment">//...</span>

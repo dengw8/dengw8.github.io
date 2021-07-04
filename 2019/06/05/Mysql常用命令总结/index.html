@@ -236,34 +236,34 @@
 
 <h2 id="查询类"><a href="#查询类" class="headerlink" title="查询类"></a>查询类</h2><h3 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h3><div class="code-wrapper"><pre><code class="hljs abnf">show databases<span class="hljs-comment">;</span></code></pre></div>
 <p>注意命令后面有一个英语的分号；</p>
-<p><img src="http://dengw.xyz/20190606094548.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20190606094548.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h3><div class="code-wrapper"><pre><code class="hljs abnf">use db_name<span class="hljs-comment">;</span></code></pre></div>
-<p>查看<code>db_name</code>为 <code>db_olime</code>的数据库；<br><img src="http://dengw.xyz/20190606094846.png" srcset="/img/loading.gif" lazyload></p>
+<p>查看<code>db_name</code>为 <code>db_olime</code>的数据库；<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20190606094846.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="查看当前使用的数据库"><a href="#查看当前使用的数据库" class="headerlink" title="查看当前使用的数据库"></a>查看当前使用的数据库</h3><div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">database</span>(<span class="hljs-params"></span>)</span>;</code></pre></div>
-<p><img src="http://dengw.xyz/20190606100921.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20190606100921.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="查看数据表"><a href="#查看数据表" class="headerlink" title="查看数据表"></a>查看数据表</h3><p>查看当前数据库的所有table;</p>
 <div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">tables</span>;</code></pre></div>
-<p><img src="http://dengw.xyz/20190606095236.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20190606095236.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h3><p>显示表结构，字段类型，主键，是否为空等属性，但不显示外键。</p>
 <div class="code-wrapper"><pre><code class="hljs abnf">desc tabl_name<span class="hljs-comment">;</span></code></pre></div>
-<p><img src="http://dengw.xyz/20190606095535.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20190606095535.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="查看建表语句、表注释"><a href="#查看建表语句、表注释" class="headerlink" title="查看建表语句、表注释"></a>查看建表语句、表注释</h3><div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> <span class="hljs-built_in">table_name</span>;</code></pre></div>
-<p><img src="http://dengw.xyz/20190606100313.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20190606100313.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="查看数据库的连接情况"><a href="#查看数据库的连接情况" class="headerlink" title="查看数据库的连接情况"></a>查看数据库的连接情况</h3><p>会显示前100个连接；</p>
 <div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">full</span> processlist;</code></pre></div>
-<p><img src="http://dengw.xyz/20190606100701.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20190606100701.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="查看数据库状态"><a href="#查看数据库状态" class="headerlink" title="查看数据库状态"></a>查看数据库状态</h3><p>参考链接：<a target="_blank" rel="noopener" href="https://codeplayer.vip/p/j7sc4">使用show status查看MySQL服务器状态信息</a></p>
 <div class="code-wrapper"><pre><code class="hljs maxima"><span class="hljs-built_in">show</span> <span class="hljs-built_in">status</span>;</code></pre></div>
 <p>列出所连接的mysql服务器的状态信息，信息会有很多条，具体的含义等以后来理解。</p>
-<p><img src="http://dengw.xyz/20190606103403.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20190606103403.png" srcset="/img/loading.gif" lazyload></p>
 <p>如果你只想查看某一条具体的状态，可以使用以下命令：</p>
 <div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;Variable_name&#x27;</span>;</code></pre></div>
 <p>比如要查看当前MySQL本次启动后的运行统计时间；</p>
 <div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;uptime&#x27;</span>;</code></pre></div>
-<p><img src="http://dengw.xyz/20190606103737.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20190606103737.png" srcset="/img/loading.gif" lazyload></p>
 <p>此外，与WHERE子句中的LIKE关键字类似，show status后的LIKE关键字也可以使用’_’ 或’%’等通配符来进行模糊匹配。例如我们可以执行如下语句来查看MySQL服务器的线程信息：</p>
 <div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;Thread_%&#x27;</span>;</code></pre></div>
-<p><img src="http://dengw.xyz/20190606104040.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20190606104040.png" srcset="/img/loading.gif" lazyload></p>
 <p>下面列一些常用的show status命令：<br>常用的:</p>
 <div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-comment">--查看查询时间超过long_query_time秒的查询的个数。</span>
 
@@ -323,7 +323,7 @@
 <h3 id="打印当前时间"><a href="#打印当前时间" class="headerlink" title="打印当前时间"></a>打印当前时间</h3><div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">now</span>(<span class="hljs-params"></span>)</span>;
 或
 <span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">current_timestamp</span>(<span class="hljs-params"></span>)</span>;</code></pre></div>
-<p><img src="http://dengw.xyz/20190606102015.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20190606102015.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="alter命令"><a href="#alter命令" class="headerlink" title="alter命令"></a>alter命令</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zsg88/p/7818684">https://www.cnblogs.com/zsg88/p/7818684</a>.<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013063153/article/details/53304325">https://blog.csdn.net/u013063153/article/details/53304325</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kuillldan/p/5865339.html">https://www.cnblogs.com/kuillldan/p/5865339.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/devcjq/articles/6021338.html">https://www.cnblogs.com/devcjq/articles/6021338.html</a></p>
 
             </div>

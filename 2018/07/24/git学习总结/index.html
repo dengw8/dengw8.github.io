@@ -231,7 +231,7 @@
               <p>##概念区分</p>
 <h3 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h3><p>就是你在电脑里能看到的目录</p>
 <h3 id="暂存区"><a href="#暂存区" class="headerlink" title="暂存区"></a>暂存区</h3><p>工作区有一个隐藏目录<code>.git</code>，这个不算工作区，而是Git的版本库。</p>
-<p>Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。<br><img src="http://dengw.xyz/blog/180801/Jk8j0eFKLg.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
+<p>Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/Jk8j0eFKLg.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <h3 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h3><p>存在于本地电脑上的一个分布式 git 版本库</p>
 <h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><p>很好理解啦，就比如你的 github 上的一个项目（repository）。远程仓库的默认名称是origin</p>
 <h3 id="HEAD-和-master"><a href="#HEAD-和-master" class="headerlink" title="HEAD 和 master"></a>HEAD 和 master</h3><p>HEAD 指向当前分支，比如当你创建一个新的分支的时候，HEAD指向新的分支。<br>master 表示一个分支，一般代表的是主分支。</p>
@@ -246,15 +246,15 @@
 <br></li>
 <li><p>git diff<br>查看工作区和暂存区中文件的具体差异，不会显示暂存区和仓库中文件的差异</p>
 <br></li>
-<li><p>git log<br>显示从最近到最远的提交日志<br><img src="http://dengw.xyz/blog/180801/H9lK7egebh.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
+<li><p>git log<br>显示从最近到最远的提交日志<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/H9lK7egebh.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 </li>
-<li><p>git log –pretty=oneline<br>显示从最近到最远的提交日志，差别是这里会将一次提交的日志信息在一行输出，最前面的字符串是 commit 的版本号。<br><img src="http://dengw.xyz/blog/180801/D8L4eci81H.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
+<li><p>git log –pretty=oneline<br>显示从最近到最远的提交日志，差别是这里会将一次提交的日志信息在一行输出，最前面的字符串是 commit 的版本号。<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/D8L4eci81H.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 </li>
 <li><p>git reset –hard HEAD^<br>向前回退一个版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100</p>
 <br></li>
 <li><p>git reset –hard commit_id<br>版本回退，即回退到 commit 的版本号为 commit_id 的那次提交。</p>
 <br></li>
-<li><p>git reflog<br>查看命令历史，注意这里指挥显示关于版本前进或者后退相关的命令，比如<code>git add .</code>这种类型的命令就不会显示。<br><img src="http://dengw.xyz/blog/180801/aCl24Hkg96.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"> </p>
+<li><p>git reflog<br>查看命令历史，注意这里指挥显示关于版本前进或者后退相关的命令，比如<code>git add .</code>这种类型的命令就不会显示。<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/aCl24Hkg96.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"> </p>
 </li>
 </ul>
 <h4 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h4><ul>
@@ -287,8 +287,8 @@
 <li>git status<br>可以告诉我们冲突的文件<br></li>
 <li>git log –graph<br>查看分支合并图<br></li>
 </ul>
-<h4 id="合并策略"><a href="#合并策略" class="headerlink" title="合并策略"></a>合并策略</h4><h5 id="Fast-forward模式："><a href="#Fast-forward模式：" class="headerlink" title="Fast forward模式："></a>Fast forward模式：</h5><p><img src="http://dengw.xyz/blog/180801/K9kG5JeEld.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
-<h5 id="非-Fast-forward-模式：生成了一个新的-commit-对象"><a href="#非-Fast-forward-模式：生成了一个新的-commit-对象" class="headerlink" title="非 Fast forward 模式：生成了一个新的 commit 对象"></a>非 Fast forward 模式：生成了一个新的 commit 对象</h5><p><img src="http://dengw.xyz/blog/180801/1dde13h11J.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
+<h4 id="合并策略"><a href="#合并策略" class="headerlink" title="合并策略"></a>合并策略</h4><h5 id="Fast-forward模式："><a href="#Fast-forward模式：" class="headerlink" title="Fast forward模式："></a>Fast forward模式：</h5><p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/K9kG5JeEld.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
+<h5 id="非-Fast-forward-模式：生成了一个新的-commit-对象"><a href="#非-Fast-forward-模式：生成了一个新的-commit-对象" class="headerlink" title="非 Fast forward 模式：生成了一个新的 commit 对象"></a>非 Fast forward 模式：生成了一个新的 commit 对象</h5><p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/1dde13h11J.png?imageslim" srcset="/img/loading.gif" lazyload alt="enter image description here"></p>
 <ul>
 <li>git merge –no-ff -m “merge with no-ff” dev<br>使用非 Fast forward 模式合并一个分支<br></li>
 </ul>

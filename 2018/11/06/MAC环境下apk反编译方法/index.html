@@ -234,23 +234,23 @@
 <li>jd-gui: <a target="_blank" rel="noopener" href="http://jd.benow.ca/">JD-GUI下载链接</a><br>下载最新的Releases版本for OX;</li>
 </ul>
 <h2 id="反编译过程与排坑"><a href="#反编译过程与排坑" class="headerlink" title="反编译过程与排坑"></a>反编译过程与排坑</h2><p>首先可以将上面下载的三个包放到同一个文件夹里面（非必须，只是方便操作）；然后解压<code>dex2jar</code>以及<code>jd-gui</code>，然后便将你需要反编译的apk文件放入上面该文件夹中，这里我要反编译的apk名字为<code>BTcar.apk</code>，下面输入命令的时候对应输入你的apk文件名；</p>
-<p><img src="http://dengw.xyz/20181107105318.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20181107105318.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="apktool反编译apk得到图片、XML配置、语言资源等文件"><a href="#apktool反编译apk得到图片、XML配置、语言资源等文件" class="headerlink" title="apktool反编译apk得到图片、XML配置、语言资源等文件"></a>apktool反编译apk得到图片、XML配置、语言资源等文件</h3><p>打开命令行跳转到该目录下，执行如下命令：</p>
 <div class="code-wrapper"><pre><code class="hljs mipsasm"><span class="hljs-keyword">java </span>-<span class="hljs-keyword">jar </span>apktool_2.<span class="hljs-number">3</span>.<span class="hljs-number">4</span>.<span class="hljs-keyword">jar </span>d -f <span class="hljs-keyword">BTcar.apk </span>-o <span class="hljs-keyword">BTCar</span></code></pre></div>
-<p>其中， <code>apktool_2.3.4.jar</code>为我使用的<code>apktool</code>的apk包名，<code>BTCar</code>为生成的文件夹名，输入命令后的结果如图：<br><img src="http://dengw.xyz/20181107110350.png" srcset="/img/loading.gif" lazyload></p>
-<p>结果：<br><img src="http://dengw.xyz/20181107110549.png" srcset="/img/loading.gif" lazyload></p>
+<p>其中， <code>apktool_2.3.4.jar</code>为我使用的<code>apktool</code>的apk包名，<code>BTCar</code>为生成的文件夹名，输入命令后的结果如图：<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20181107110350.png" srcset="/img/loading.gif" lazyload></p>
+<p>结果：<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20181107110549.png" srcset="/img/loading.gif" lazyload></p>
 <p>这个BTCar文件夹为反编译生成的各种资源文件；</p>
 <h3 id="dex2jar反编译apk得到Java源代码"><a href="#dex2jar反编译apk得到Java源代码" class="headerlink" title="dex2jar反编译apk得到Java源代码"></a>dex2jar反编译apk得到Java源代码</h3><p>将要反编译的APK后缀名改为.zip，并解压，得到classes.dex文件；这里有一个坑就是使用系统自带的解压工具解压不能够成功，会生成如下的文件；</p>
-<p><img src="http://dengw.xyz/20181107110731.png" srcset="/img/loading.gif" lazyload><br><img src="http://dengw.xyz/20181107110811.png" srcset="/img/loading.gif" lazyload></p>
-<p>一种解决方法就是在 appStore 上下载一个叫做<code>The Archiver</code>的解压工具，然后就可以成功解压，生成<code>BTCar-1</code>文件夹：<br><img src="http://dengw.xyz/20181107110825.png" srcset="/img/loading.gif" lazyload></p>
-<p>打开该文件夹就可以看到需要的<code>class.dex</code>文件：<br><img src="http://dengw.xyz/20181107110854.png" srcset="/img/loading.gif" lazyload></p>
-<p>将获取到的<code>classes.dex</code>放到之前解压出来的工具<code>dex2jar</code>文件夹内，然后在<code>dex2jar</code>文件夹内打开终端输入命令<code>./d2j-dex2jar.sh classes.dex</code>，这个地方的一个坑就是可能会出现<code>Permission Denied</code>异常：<br><img src="http://dengw.xyz/20181107110912.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20181107110731.png" srcset="/img/loading.gif" lazyload><br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20181107110811.png" srcset="/img/loading.gif" lazyload></p>
+<p>一种解决方法就是在 appStore 上下载一个叫做<code>The Archiver</code>的解压工具，然后就可以成功解压，生成<code>BTCar-1</code>文件夹：<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20181107110825.png" srcset="/img/loading.gif" lazyload></p>
+<p>打开该文件夹就可以看到需要的<code>class.dex</code>文件：<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20181107110854.png" srcset="/img/loading.gif" lazyload></p>
+<p>将获取到的<code>classes.dex</code>放到之前解压出来的工具<code>dex2jar</code>文件夹内，然后在<code>dex2jar</code>文件夹内打开终端输入命令<code>./d2j-dex2jar.sh classes.dex</code>，这个地方的一个坑就是可能会出现<code>Permission Denied</code>异常：<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20181107110912.png" srcset="/img/loading.gif" lazyload></p>
 <p>关于如何在mac中修改文件权限可以参考这篇博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/x1876631/article/details/70162009/">mac 查看、修改文件权限的命令</a>，也可以直接使用下面的方法修改文件权限，一般报的哪个文件就修改对应文件权限即可，例如：</p>
 <div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">zsh</span>: permission denied: ./d<span class="hljs-number">2</span>j-dex<span class="hljs-number">2</span>jar.sh</code></pre></div>
 <p>然后就在终端输入：</p>
 <div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">chmod</span> <span class="hljs-number">777</span> d<span class="hljs-number">2</span>j-dex<span class="hljs-number">2</span>jar.sh</code></pre></div>
-<p>所有文件的权限修改成功过后再执行<code>./d2j-dex2jar.sh classes.dex</code>，生成<code>classes-dex2jar.jar</code>:<br><img src="http://dengw.xyz/20181107110936.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="使用jd-gui工具查看java代码"><a href="#使用jd-gui工具查看java代码" class="headerlink" title="使用jd-gui工具查看java代码"></a>使用jd-gui工具查看java代码</h3><p>在得到classes-dex2jar.jar文件之后，就可以使用jd-gui工具查看源码了。这里另外一个坑就是如果你的Java版本大于Java 8的话是运行不了jd-gui，解决方法可以参考这篇博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/YoungStunner/article/details/78699864">Mac上的jd-gui不能使用（打开）</a>，上面有很详细的解决方法。解决后就可以使用jd-gui工具查看java源代码了。<br><img src="http://dengw.xyz/20181107110955.png" srcset="/img/loading.gif" lazyload></p>
+<p>所有文件的权限修改成功过后再执行<code>./d2j-dex2jar.sh classes.dex</code>，生成<code>classes-dex2jar.jar</code>:<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20181107110936.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="使用jd-gui工具查看java代码"><a href="#使用jd-gui工具查看java代码" class="headerlink" title="使用jd-gui工具查看java代码"></a>使用jd-gui工具查看java代码</h3><p>在得到classes-dex2jar.jar文件之后，就可以使用jd-gui工具查看源码了。这里另外一个坑就是如果你的Java版本大于Java 8的话是运行不了jd-gui，解决方法可以参考这篇博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/YoungStunner/article/details/78699864">Mac上的jd-gui不能使用（打开）</a>，上面有很详细的解决方法。解决后就可以使用jd-gui工具查看java源代码了。<br><img src="https://raw.githubusercontent.com/dengw8/iPic/main/img/20181107110955.png" srcset="/img/loading.gif" lazyload></p>
 
             </div>
             <hr>
