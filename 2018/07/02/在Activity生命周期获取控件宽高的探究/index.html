@@ -229,7 +229,7 @@
             
             <div class="markdown-body">
               <p>在开发的时候经常需要获取控件的宽高进行处理，但是会发现在Activity启动的几个生命周期函数中获取的宽高都是0，这就让人摸不着头脑了。后来有一次面试的时候面试官也闻到了这个问题，自己也说不出个所以然。这几天学学习View绘制和Window相关的时候，发现了其中的奥妙，这里就来总结一下。</p>
-<p>在之前的博客<a target="_blank" rel="noopener" href="https://www.dengw.xyz/2018/06/25/%E4%BB%8EXML%E5%B8%83%E5%B1%80%E6%96%87%E4%BB%B6%E5%88%B0%20VIew%20%E7%BB%98%E5%88%B6%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/">从XML布局文件到 View 绘制的全过程分析</a>中其实对于这个问题已经有一定的启发，我们这里再回顾一下。</p>
+<p>在之前的博客<a target="_blank" rel="noopener" href="https://dengw8.github.io/2018/06/25/%E4%BB%8EXML%E5%B8%83%E5%B1%80%E6%96%87%E4%BB%B6%E5%88%B0%20VIew%20%E7%BB%98%E5%88%B6%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/">从XML布局文件到 View 绘制的全过程分析</a>中其实对于这个问题已经有一定的启发，我们这里再回顾一下。</p>
 <p>在Activity的启动过程中，onCreate 方法涉及到 UI 的操作主要有3个步骤：</p>
 <ol>
 <li>创建 DecorView 的时候会先设置 System Layout 的一些属性，比如加载预设的主题风格，就解析对应的系统的layout，然后设置是否包含title等等。</li>
